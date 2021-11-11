@@ -1,0 +1,35 @@
+name: "test/build"
+on:
+  - push
+
+jobs:
+  configure:
+    runs-on: ubuntu-latest
+    outputs:
+      uid_gid: ${{ steps.get-user.outputs.uid_gid }}
+    steps:
+      - id: get-user
+        run: echo "::set-output name=uid_gid::$(id -u):$(id -g)"
+
+  checks:
+    runs-on: ubuntu-latest
+    container:
+      image: zondax/rust-ci:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: show versions
+        run: |
+          rustup show
+      - name: rustfmt
+        run: |
+          cd rust
+          cargo fmt --version
+          cargo fmt -- --check
+      - name: clippy
+        run: |
+          cd rust
+          cargo clippy --version
+          cargo clippy --all-targets

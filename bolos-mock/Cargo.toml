@@ -1,0 +1,29 @@
+[package]
+name = "bolos-mock"
+version = "0.1.0"
+authors = ["Zondax <hello@zondax.ch>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+
+[dependencies]
+bolos-common = { version = "0.1", path = "../bolos-common", features = ["std"] }
+
+sha2 = "0.9.8"
+blake2 = "0.9.2"
+
+hmac = "0.11.0"
+
+cfg-if = "1.0.0"
+
+ed25519-dalek = "1.0.1"
+k256 = "0.9.6"
+p256 = "0.9.0"
+
+rand7 = { version = "0.7", package = "rand" }
+rand8 = { version = "0.8.4", package = "rand" }
+
+[dev-dependencies]
+bolos = { version = "0.1", path = "../bolos" }

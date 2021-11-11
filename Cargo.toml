@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "bolos", "bolos-sys", "bolos-impl", "bolos-mock", "bolos-common", "bolos-derive",
+    "zemu", "zuit",
+]
+
+resolver = "2"

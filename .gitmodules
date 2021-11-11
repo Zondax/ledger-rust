@@ -1,0 +1,6 @@
+[submodule "bolos-sys/sdk/nanox-secure-sdk"]
+	path = bolos-sys/sdk/nanox-secure-sdk
+	url = https://github.com/LedgerHQ/nanox-secure-sdk
+[submodule "bolos-sys/sdk/nanos-secure-sdk"]
+	path = bolos-sys/sdk/nanos-secure-sdk
+	url = https://github.com/LedgerHQ/nanos-secure-sdk
