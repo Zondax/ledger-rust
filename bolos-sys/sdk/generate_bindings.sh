@@ -8,18 +8,26 @@ SCRIPT_DIR=$(dirname "$0")
 
 : "${BOLOS_SDK_S_PATH:=$SCRIPT_DIR/nanos-secure-sdk}"
 : "${BOLOS_SDK_S_GIT:=https://github.com/LedgerHQ/nanos-secure-sdk}"
+: "${BOLOS_SDK_S_GIT_HASH:=1a20ae6b83329c6c0107eec0a3002a199355abbb}"
 : "${BOLOS_SDK_X_PATH:=$SCRIPT_DIR/nanox-secure-sdk}"
 : "${BOLOS_SDK_X_GIT:=https://github.com/LedgerHQ/nanox-secure-sdk}"
+: "${BOLOS_SDK_X_GIT_HASH:=a79eaf92aef434a5e63caca6b238fd00db523c8f}"
 
 TMP_HEADERS=$(dirname $TMP_HEADERS_PATH)
 
-echo "Checkout X SDK & update in $BOLOS_SDK_X_PATH from $BOLOS_SDK_S_GIT"
+echo "Checkout X SDK & update in $BOLOS_SDK_X_PATH from $BOLOS_SDK_X_GIT $BOLOS_SDK_X_GIT_HASH"
 git submodule add "$BOLOS_SDK_X_GIT" "$BOLOS_SDK_X_PATH" || true
 git submodule update --init "$BOLOS_SDK_X_PATH"
+pushd "$BOLOS_SDK_X_PATH" || exit
+git checkout $BOLOS_SDK_X_GIT_HASH
+popd || exit
 
-echo "Checkout S SDK & update in $BOLOS_SDK_S_PATH from $BOLOS_SDK_S_GIT"
-git submodule add "$BOLOS_SDK_S_GIT" "$BOLOS_SDK_S_PATH" || true
+echo "Checkout S SDK & update in $BOLOS_SDK_S_PATH from $BOLOS_SDK_S_GIT $BOLOS_SDK_S_GIT_HASH"
+git submodule add -b "$BOLOS_SDK_S_GIT_HASH" "$BOLOS_SDK_S_GIT" "$BOLOS_SDK_S_PATH" || true
 git submodule update --init "$BOLOS_SDK_S_PATH"
+pushd "$BOLOS_SDK_S_PATH" || exit
+git checkout $BOLOS_SDK_S_GIT_HASH
+popd || exit
 
 echo "Making sure $TMP_HEADERS_PATH exists"
 mkdir -p $TMP_HEADERS_PATH || true
