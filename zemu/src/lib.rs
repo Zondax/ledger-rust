@@ -33,6 +33,7 @@ pub(self) mod bindings {
 pub fn zemu_log(_s: &str) {
     #[cfg(zemu_sdk)]
     unsafe {
+        let _s = bolos_sys::pic::PIC::new(_s).into_inner();
         let p = _s.as_bytes().as_ptr();
         bindings::zemu_log(p)
     }
@@ -41,6 +42,7 @@ pub fn zemu_log(_s: &str) {
 pub fn zemu_log_stack(_s: &str) {
     #[cfg(zemu_sdk)]
     unsafe {
+        let _s = bolos_sys::pic::PIC::new(_s).into_inner();
         let p = _s.as_bytes().as_ptr();
         bindings::zemu_log_stack(p)
     }
