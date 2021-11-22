@@ -176,22 +176,26 @@ impl Curve {
     }
 
     pub fn domain_length(&self) -> Option<usize> {
+        use bolos_sys::pic::PIC;
+        //this seems unfortunately necessary,
+        // not even having 1 pic at the end was enough...
+
         match self {
-            Curve::None => None,
-            Curve::Secp256K1 | Curve::Secp256R1 | Curve::Nistp256 => Some(32),
-            Curve::Secp384R1 | Curve::Nistp384 => Some(48),
-            Curve::Secp521R1 | Curve::Nistp521 => Some(66),
-            Curve::BrainPoolP256T1 | Curve::BrainPoolP256R1 => Some(32),
-            Curve::BrainPoolP320T1 | Curve::BrainPoolP320R1 => Some(40),
-            Curve::BrainPoolP384T1 | Curve::BrainPoolP384R1 => Some(48),
-            Curve::BrainPoolP512T1 | Curve::BrainPoolP512R1 => Some(64),
-            Curve::Frp256V1 => Some(32),
-            Curve::Stark256 => None,
-            Curve::Bls12_381G1 => None,
-            Curve::Ed25519 => Some(32),
-            Curve::Ed448 => Some(57),
-            Curve::Curve25519 => Some(32),
-            Curve::Curve448 => Some(56),
+            Curve::None => *PIC::new(None).get_ref(),
+            Curve::Secp256K1 | Curve::Secp256R1 | Curve::Nistp256 => *PIC::new(Some(32)).get_ref(),
+            Curve::Secp384R1 | Curve::Nistp384 => *PIC::new(Some(48)).get_ref(),
+            Curve::Secp521R1 | Curve::Nistp521 => *PIC::new(Some(66)).get_ref(),
+            Curve::BrainPoolP256T1 | Curve::BrainPoolP256R1 => *PIC::new(Some(32)).get_ref(),
+            Curve::BrainPoolP320T1 | Curve::BrainPoolP320R1 => *PIC::new(Some(40)).get_ref(),
+            Curve::BrainPoolP384T1 | Curve::BrainPoolP384R1 => *PIC::new(Some(48)).get_ref(),
+            Curve::BrainPoolP512T1 | Curve::BrainPoolP512R1 => *PIC::new(Some(64)).get_ref(),
+            Curve::Frp256V1 => *PIC::new(Some(32)).get_ref(),
+            Curve::Stark256 => *PIC::new(None).get_ref(),
+            Curve::Bls12_381G1 => *PIC::new(None).get_ref(),
+            Curve::Ed25519 => *PIC::new(Some(32)).get_ref(),
+            Curve::Ed448 => *PIC::new(Some(57)).get_ref(),
+            Curve::Curve25519 => *PIC::new(Some(32)).get_ref(),
+            Curve::Curve448 => *PIC::new(Some(56)).get_ref(),
         }
     }
 }
