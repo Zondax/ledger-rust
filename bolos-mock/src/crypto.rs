@@ -23,6 +23,8 @@ pub enum Curve {
     Secp256R1,
 
     Ed25519,
+
+    Stark256,
 }
 
 impl TryFrom<u8> for Curve {
@@ -34,6 +36,7 @@ impl TryFrom<u8> for Curve {
             2 => Ok(Self::Secp256R1),
             3 => Ok(Self::Ed25519),
 
+            4 => Ok(Self::Stark256),
             _ => Err(()),
         }
     }
@@ -45,6 +48,7 @@ impl From<Curve> for u8 {
             Curve::Secp256K1 => 1,
             Curve::Secp256R1 => 2,
             Curve::Ed25519 => 3,
+            Curve::Stark256 => 4,
         }
     }
 }
@@ -100,3 +104,5 @@ impl Default for Mode {
 }
 
 pub mod ecfp256;
+
+pub mod stark;

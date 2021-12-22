@@ -24,4 +24,6 @@
 
 #define HAVE_HMAC
 
+#define HAVE_MATH
+
 #endif // DEFINES_H_

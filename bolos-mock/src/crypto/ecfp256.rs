@@ -90,6 +90,9 @@ impl<const B: usize> SecretKey<B> {
 
                 secret.to_bytes()
             }
+            Curve::Stark256 => {
+                panic!("invalid curve passed to ecfp256 new")
+            }
         };
 
         Self { curve, bytes }
@@ -139,7 +142,8 @@ impl<const B: usize> SecretKey<B> {
                 bytes[..32].copy_from_slice(&public.as_bytes()[..]);
 
                 (bytes, 32)
-            }
+            },
+            _ => unreachable!()
         };
 
         Ok(PublicKey {
@@ -196,6 +200,7 @@ impl<const B: usize> SecretKey<B> {
                 out[..64].copy_from_slice(&sig.to_bytes()[..]);
                 Ok(64)
             }
+            _ => unreachable!()
         }
     }
 }
