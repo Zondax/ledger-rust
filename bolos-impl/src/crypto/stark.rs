@@ -18,7 +18,6 @@ use zeroize::{Zeroize, Zeroizing};
 use super::{bip32::BIP32Path, Curve, Mode};
 use crate::{
     errors::Error,
-    hash::Sha256,
     raw::{cx_ecfp_private_key_t, cx_ecfp_public_key_t},
 };
 
@@ -46,7 +45,6 @@ impl AsRef<[u8]> for PublicKey {
 pub struct SecretKey<const B: usize> {
     path: BIP32Path<B>,
 }
-
 
 const SIGNATURE_MAX_LEN: usize = 72;
 
@@ -117,7 +115,7 @@ impl<const B: usize> SecretKey<B> {
         let mut sk = MaybeUninit::uninit();
         //get keypair with the generated secret key
         // discard secret key as it's not necessary anymore
-        stark_generate_pair_into(Some(self), &mut sk, pk)?;
+        stark_generate_pair_into(self, &mut sk, pk)?;
         //SAFE: sk is initialized
         unsafe { sk.assume_init() }.zeroize();
 
@@ -125,11 +123,7 @@ impl<const B: usize> SecretKey<B> {
     }
 
     #[inline(never)]
-    pub fn sign(
-        &self,
-        data: &[u8],
-        out: &mut [u8],
-    ) -> Result<usize, Error> {
+    pub fn sign(&self, data: &[u8], out: &mut [u8]) -> Result<usize, Error> {
         let (_, size) = stark_sign::<B>(self, data, out)?;
         Ok(size)
     }
@@ -138,17 +132,16 @@ impl<const B: usize> SecretKey<B> {
 mod bindings {
     #![allow(unused_imports)]
 
-    use super::{Curve, Error, SecretKey};
+    use super::{BIP32Path, Curve, Error, Mode, SecretKey};
     use crate::{
-        crypto::Mode,
         errors::catch,
-        hash::{Hasher, Sha256, HasherId},
+        hash::{Hasher, HasherId, Sha256},
+        math,
         raw::{cx_ecfp_private_key_t, cx_ecfp_public_key_t},
         PIC,
     };
-    use bolos_common::bip32::BIP32Path;
-    use core::{cmp::Ordering, mem::MaybeUninit};
-    use zeroize::Zeroize;
+    use core::mem::MaybeUninit;
+    use zeroize::Zeroizing;
 
     // C_cx_secp256k1_n - (C_cx_secp256k1_n % C_cx_Stark256_n)
     const STARK_DERIVE_BIAS: &[u8] = &[
@@ -164,118 +157,77 @@ mod bindings {
         0x4d, 0x2f,
     ];
 
-    pub fn math_cmp(a: &[u8], b: &[u8]) -> Result<Ordering, Error> {
-        let len = core::cmp::min(a.len(), b.len());
-        let a = a.as_ptr();
-        let b = b.as_ptr();
-
-        let mut diff = 0;
-
-        cfg_if! {
-            if #[cfg(nanox)] {
-                let might_throw = || unsafe {
-                    crate::raw::cx_math_cmp(a, b, len as _)
-                };
-
-                let diff = catch(might_throw)?;
-            } else if #[cfg(nanos)] {
-                match unsafe { crate::raw::cx_math_cmp_no_throw(a, b, len as _, &mut diff) } {
-                    0 => {},
-                    err => return Err(err.into())
-                }
-            } else {
-                unimplemented!("cx_math_cmp called in non-bolos");
-            }
-        }
-
-        if diff == 0 {
-            Ok(Ordering::Equal)
-        } else if diff < 0 {
-            Ok(Ordering::Less)
-        } else {
-            Ok(Ordering::Greater)
-        }
-    }
-
-    pub fn math_modm(v: &mut [u8], m: &[u8]) -> Result<(), Error> {
-        let (v, v_len) = (v.as_mut_ptr(), v.len());
-        let (m, m_len) = (m.as_ptr(), m.len());
-
-        cfg_if! {
-            if #[cfg(nanox)] {
-                let might_throw = || unsafe {
-                    crate::raw::cx_math_modm(v, v_len as _, m, m_len as _);
-                };
-
-                catch(might_throw)?;
-                Ok(())
-            } else if #[cfg(nanos)] {
-                match unsafe { crate::raw::cx_math_modm_no_throw(v, v_len as _, m, m_len as _) } {
-                    0 => Ok(()),
-                    err => Err(err.into())
-                }
-            } else {
-                unimplemented!("cx_math_modm called in non-bolos");
-            }
-        }
-    }
-
     pub fn stark_derive_node<const B: usize>(
         path: &BIP32Path<B>,
         out: &mut [u8; 32],
     ) -> Result<(), Error> {
-        let out_p = out.as_mut().as_mut_ptr();
-        let (components, path_len) = {
-            let components = path.components();
-            (components.as_ptr(), components.len() as u32)
-        };
+        zemu_sys::zemu_log_stack("stark_derive_node\x00");
 
-        let mut tmp = [0; 33];
+        //wrap in Zeroize so we guarantee zeroization on drop
+        let mut tmp_secret = Zeroizing::new([0; 33]);
         let mut index = 0;
 
         crate::crypto::bindings::os_perso_derive_node_with_seed_key(
             Mode::BIP32,
             Curve::Secp256K1,
             &path,
-            &mut tmp,
+            &mut *tmp_secret,
         )?;
 
-        loop {
-            tmp[32] = index;
-            Sha256::digest_into(&tmp, out)?;
+        //PIC STARK_DERIVE_BIAS
+        let stark_derive_bias = {
+            let data = STARK_DERIVE_BIAS;
+            let data_len = data.len();
 
-            if math_cmp(&out[..], PIC::new(STARK_DERIVE_BIAS).into_inner())? == Ordering::Less {
-                math_modm(out, PIC::new(C_CX_STARK256_N).into_inner())?;
+            let to_pic = data.as_ptr() as usize;
+            let picced = unsafe { PIC::manual(to_pic) } as *const ();
+
+            //cast to same type as `to_pic`
+            let ptr = picced.cast();
+            unsafe { ::core::slice::from_raw_parts(ptr, data_len) }
+        };
+
+        //PIC C_CX_STARK256_N
+        let c_cx_stark256_n = {
+            let data = C_CX_STARK256_N;
+            let data_len = data.len();
+
+            let to_pic = data.as_ptr() as usize;
+            let picced = unsafe { PIC::manual(to_pic) } as *const ();
+
+            //cast to same type as `to_pic`
+            let ptr = picced.cast();
+            unsafe { ::core::slice::from_raw_parts(ptr, data_len) }
+        };
+
+        //TODO: document the process behind this
+        // taken from original and converted to rust
+        // https://github.com/LedgerHQ/app-ethereum/blob/a53a2428cc024855ef2012ca357e054f838ab962/src/stark_crypto.c#L18
+        loop {
+            tmp_secret[32] = index;
+            Sha256::digest_into(&*tmp_secret, out)?;
+
+            if math::cmp(&out[..], stark_derive_bias)?.is_lt() {
+                math::modm(out, c_cx_stark256_n)?;
                 break;
             }
 
             index += 1;
         }
 
-        tmp.zeroize();
-
         Ok(())
     }
 
     pub fn stark_generate_pair_into<const B: usize>(
-        sk: Option<&SecretKey<B>>,
+        sk: &SecretKey<B>,
         out_sk: &mut MaybeUninit<cx_ecfp_private_key_t>,
         out_pk: &mut MaybeUninit<cx_ecfp_public_key_t>,
     ) -> Result<(), Error> {
-        zemu_sys::zemu_log_stack("cx_ecfp_generate_pair\x00");
+        zemu_sys::zemu_log_stack("stark_generate_pair\x00");
         let curve: u8 = Curve::Stark256.into();
 
-        let keep = match sk {
-            Some(sk) => {
-                sk.generate_into(out_sk)?;
-                true
-            }
-            None => {
-                //no need to write in `raw_sk`,
-                // since the function below will override everything
-                false
-            }
-        };
+        sk.generate_into(out_sk)?;
+        let keep = true;
 
         let raw_sk = out_sk.as_mut_ptr();
         let pk = out_pk.as_mut_ptr();
