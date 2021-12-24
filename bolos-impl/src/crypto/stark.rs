@@ -233,18 +233,7 @@ mod bindings {
         let pk = out_pk.as_mut_ptr();
 
         cfg_if! {
-            if #[cfg(nanox)] {
-                let might_throw = || unsafe {
-                    crate::raw::cx_ecfp_generate_pair(
-                        curve as _,
-                        pk,
-                        raw_sk,
-                        keep as u8 as _,
-                    );
-                };
-
-                catch(might_throw)?;
-            } else if #[cfg(nanos)] {
+            if #[cfg(any(nanox, nanos))] {
                 match unsafe { crate::raw::cx_ecfp_generate_pair_no_throw(
                     curve as _,
                     pk,
@@ -288,20 +277,7 @@ mod bindings {
         let mut info = 0;
 
         cfg_if! {
-            if #[cfg(nanox)] {
-                let might_throw = || unsafe { crate::raw::cx_ecdsa_sign(
-                    raw_sk,
-                    CX_RND_RFC6979 as _,
-                    id as _,
-                    data,
-                    data_len as _,
-                    sig,
-                    sig_len as _,
-                    &mut info as *mut u32 as *mut _,
-                )};
-
-                sig_len = catch(might_throw)? as u32;
-            } else if #[cfg(nanos)] {
+            if #[cfg(any(nanox, nanos))] {
                 match unsafe { crate::raw::cx_ecdsa_sign_no_throw(
                     raw_sk,
                     CX_RND_RFC6979,
