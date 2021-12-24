@@ -3657,6 +3657,276 @@ extern "C" {
     #[doc = "    max (most significant) bytes of hashmac to retrieve"]
     pub fn cx_hmac_final(ctx: *mut cx_hmac_t, out: *mut u8, out_len: *mut size_t) -> cx_err_t;
 }
+extern "C" {
+    #[doc = " Compare two operands"]
+    #[doc = ""]
+    #[doc = " @param [in] a"]
+    #[doc = "   Operand a"]
+    #[doc = ""]
+    #[doc = " @param [in] b"]
+    #[doc = "   Operand b"]
+    #[doc = ""]
+    #[doc = " @param [in] length"]
+    #[doc = "   Length on which the operands should be compared in bytes"]
+    #[doc = ""]
+    #[doc = " @return"]
+    #[doc = "   Result of the comparison ie:"]
+    #[doc = "   0 if a and b are identical"]
+    #[doc = "   < 0 if a is less than b"]
+    #[doc = "   > 0 if a is greater than b"]
+    pub fn cx_math_cmp_no_throw(
+        a: *const u8,
+        b: *const u8,
+        length: size_t,
+        diff: *mut cty::c_int,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " Add two operands"]
+    #[doc = ""]
+    #[doc = " @param [in] r"]
+    #[doc = "   Result of the operation"]
+    #[doc = ""]
+    #[doc = " @param [in] a"]
+    #[doc = "   Operand a"]
+    #[doc = ""]
+    #[doc = " @param [in] b"]
+    #[doc = "   Operand b"]
+    #[doc = ""]
+    #[doc = " @param [in] length"]
+    #[doc = "   Length on which the operands should be added in bytes"]
+    #[doc = ""]
+    #[doc = " @return"]
+    #[doc = "   a bool defining whether the operation has a carry or not:"]
+    #[doc = "   0 : has no carry"]
+    #[doc = "   1 : has a carry"]
+    pub fn cx_math_add_no_throw(r: *mut u8, a: *const u8, b: *const u8, len: size_t) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " Substract two operands"]
+    #[doc = ""]
+    #[doc = " @param [in] r"]
+    #[doc = "   Result of the operation"]
+    #[doc = ""]
+    #[doc = " @param [in] a"]
+    #[doc = "   Operand a"]
+    #[doc = ""]
+    #[doc = " @param [in] b"]
+    #[doc = "   Operand b"]
+    #[doc = ""]
+    #[doc = " @param [in] length"]
+    #[doc = "   Length on which the operands should be substracted in bytes"]
+    #[doc = ""]
+    #[doc = " @return"]
+    #[doc = "   a bool defining whether the operation has a carry or not (< 0):"]
+    #[doc = "   0 : has no carry"]
+    #[doc = "   1 : has a carry"]
+    pub fn cx_math_sub_no_throw(r: *mut u8, a: *const u8, b: *const u8, len: size_t) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " Multiply two operands"]
+    #[doc = ""]
+    #[doc = " @param [in] r"]
+    #[doc = "   Result of the operation"]
+    #[doc = ""]
+    #[doc = " @param [in] a"]
+    #[doc = "   Operand a"]
+    #[doc = ""]
+    #[doc = " @param [in] b"]
+    #[doc = "   Operand b"]
+    #[doc = ""]
+    #[doc = " @param [in] length"]
+    #[doc = "   Length on which the operands should be multiplied in bytes"]
+    pub fn cx_math_mult_no_throw(r: *mut u8, a: *const u8, b: *const u8, len: size_t) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " Modular Addition of two operands"]
+    #[doc = ""]
+    #[doc = " @param [in] r"]
+    #[doc = "   Result of the operation"]
+    #[doc = ""]
+    #[doc = " @param [in] a"]
+    #[doc = "   Operand a"]
+    #[doc = ""]
+    #[doc = " @param [in] b"]
+    #[doc = "   Operand b"]
+    #[doc = ""]
+    #[doc = " @param [in] m"]
+    #[doc = "   Modulo"]
+    #[doc = ""]
+    #[doc = " @param [in] length"]
+    #[doc = "   Length on which the operands should be mod-added in bytes"]
+    pub fn cx_math_addm_no_throw(
+        r: *mut u8,
+        a: *const u8,
+        b: *const u8,
+        m: *const u8,
+        len: size_t,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " Modular Substraction of two operands"]
+    #[doc = ""]
+    #[doc = " @param [in] r"]
+    #[doc = "   Result of the operation"]
+    #[doc = ""]
+    #[doc = " @param [in] a"]
+    #[doc = "   Operand a"]
+    #[doc = ""]
+    #[doc = " @param [in] b"]
+    #[doc = "   Operand b"]
+    #[doc = ""]
+    #[doc = " @param [in] m"]
+    #[doc = "   Modulo"]
+    #[doc = ""]
+    #[doc = " @param [in] length"]
+    #[doc = "   Length on which the operands should be mod-subbed in bytes"]
+    pub fn cx_math_subm_no_throw(
+        r: *mut u8,
+        a: *const u8,
+        b: *const u8,
+        m: *const u8,
+        len: size_t,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " Modular Multiplication of two operands"]
+    #[doc = ""]
+    #[doc = " @param [in] r"]
+    #[doc = "   Result of the operation"]
+    #[doc = ""]
+    #[doc = " @param [in] a"]
+    #[doc = "   Operand a"]
+    #[doc = ""]
+    #[doc = " @param [in] b"]
+    #[doc = "   Operand b"]
+    #[doc = ""]
+    #[doc = " @param [in] m"]
+    #[doc = "   Modulo"]
+    #[doc = ""]
+    #[doc = " @param [in] length"]
+    #[doc = "   Length on which the operands should be mod-mult in bytes"]
+    pub fn cx_math_multm_no_throw(
+        r: *mut u8,
+        a: *const u8,
+        b: *const u8,
+        m: *const u8,
+        len: size_t,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " Modulo Operation. (v % m)"]
+    #[doc = ""]
+    #[doc = " @param [in] v"]
+    #[doc = "   First operand (and also the result)"]
+    #[doc = ""]
+    #[doc = " @param [in] len_v"]
+    #[doc = "   Size of the first operand in bytes"]
+    #[doc = ""]
+    #[doc = " @param [in] m"]
+    #[doc = "   Second operand aka the modulo"]
+    #[doc = ""]
+    #[doc = " @param [in] len_m"]
+    #[doc = "   Size of the second operand in bytes"]
+    pub fn cx_math_modm_no_throw(
+        v: *mut u8,
+        len_v: size_t,
+        m: *const u8,
+        len_m: size_t,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " Modular Exponentiation of a number"]
+    #[doc = ""]
+    #[doc = " @param [in] r"]
+    #[doc = "   Result of the operation"]
+    #[doc = ""]
+    #[doc = " @param [in] a"]
+    #[doc = "   Operand a"]
+    #[doc = ""]
+    #[doc = " @param [in] e"]
+    #[doc = "   Operand e aka the exponent"]
+    #[doc = ""]
+    #[doc = " @param [in] len_e"]
+    #[doc = "   Size of the exponent in bytes"]
+    #[doc = ""]
+    #[doc = " @param [in] m"]
+    #[doc = "   Modulo"]
+    #[doc = ""]
+    #[doc = " @param [in] length"]
+    #[doc = "   Length of the result in bytes"]
+    pub fn cx_math_powm_no_throw(
+        r: *mut u8,
+        a: *const u8,
+        e: *const u8,
+        len_e: size_t,
+        m: *const u8,
+        len: size_t,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " Modular Inverse of a prime number"]
+    #[doc = ""]
+    #[doc = " @param [in] r"]
+    #[doc = "   Result of the operation"]
+    #[doc = ""]
+    #[doc = " @param [in] a"]
+    #[doc = "   Operand a"]
+    #[doc = ""]
+    #[doc = " @param [in] m"]
+    #[doc = "   Modulo"]
+    #[doc = ""]
+    #[doc = " @param [in] length"]
+    #[doc = "   Length of the result in bytes"]
+    pub fn cx_math_invprimem_no_throw(
+        r: *mut u8,
+        a: *const u8,
+        m: *const u8,
+        len: size_t,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " Modular Inverse of a number"]
+    #[doc = ""]
+    #[doc = " @param [in] r"]
+    #[doc = "   Result of the operation"]
+    #[doc = ""]
+    #[doc = " @param [in] a"]
+    #[doc = "   Operand a"]
+    #[doc = ""]
+    #[doc = " @param [in] m"]
+    #[doc = "   Modulo"]
+    #[doc = ""]
+    #[doc = " @param [in] length"]
+    #[doc = "   Length of the result in bytes"]
+    pub fn cx_math_invintm_no_throw(r: *mut u8, a: u32, m: *const u8, len: size_t) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " Is prime function"]
+    #[doc = ""]
+    #[doc = " @param [in] r"]
+    #[doc = "   Operand to be tested"]
+    #[doc = ""]
+    #[doc = " @param [in] length"]
+    #[doc = "   Length of the operand r in bytes"]
+    #[doc = ""]
+    #[doc = " @return"]
+    #[doc = "   a bool defining whether r is prime or not:"]
+    #[doc = "   0 : not prime"]
+    #[doc = "   1 : prime"]
+    pub fn cx_math_is_prime_no_throw(r: *const u8, len: size_t, prime: *mut bool) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " Next prime function"]
+    #[doc = ""]
+    #[doc = " @param [in] r"]
+    #[doc = "   Operand to be tested (and also the result)"]
+    #[doc = ""]
+    #[doc = " @param [in] length"]
+    #[doc = "   Length of the operand r in bytes"]
+    #[doc = ""]
+    pub fn cx_math_next_prime_no_throw(r: *mut u8, len: u32) -> cx_err_t;
+}
 #[doc = " Elliptic Curve public key"]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

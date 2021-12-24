@@ -300,7 +300,7 @@ mod bindings {
 
         let id: u8 = H::id().into();
 
-        let crv = sk.curve;
+        let crv = sk.curve();
 
         let mut raw_sk = sk.generate()?;
         let raw_sk: *mut cx_ecfp_private_key_t = &mut *raw_sk;
@@ -346,7 +346,7 @@ mod bindings {
     ) -> Result<usize, Error> {
         let id: u8 = crate::hash::Sha512::id().into();
 
-        let crv = sk.curve;
+        let crv = sk.curve();
 
         let mut raw_sk = sk.generate()?;
         let raw_sk: *mut cx_ecfp_private_key_t = &mut *raw_sk;
@@ -390,4 +390,4 @@ mod bindings {
         Ok(sig_len as usize)
     }
 }
-use bindings::*;
+pub(super) use bindings::*;

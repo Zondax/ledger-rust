@@ -10742,6 +10742,332 @@ extern "C" {
     pub fn cx_hmac_final(ctx: *mut cx_hmac_t, out: *mut u8, out_len: *mut size_t) -> cx_err_t;
 }
 extern "C" {
+    #[doc = " @brief Compare two integers represented as byte arrays."]
+    #[doc = ""]
+    #[doc = " @param[in]  a      Pointer to the first integer."]
+    #[doc = ""]
+    #[doc = " @param[in]  b      Pointer to the second integer."]
+    #[doc = ""]
+    #[doc = " @param[in]  length Number of bytes taken into account for the comparison."]
+    #[doc = ""]
+    #[doc = " @param[out] diff   Result of the comparison:"]
+    #[doc = "                    - 0 if a and b are identical"]
+    #[doc = "                    - < 0 if a is less than b"]
+    #[doc = "                    - > 0 if a is greater than b"]
+    #[doc = ""]
+    #[doc = " @return            Error code:"]
+    #[doc = "                    - CX_OK on success"]
+    #[doc = "                    - CX_NOT_UNLOCKED"]
+    #[doc = "                    - CX_INVALID_PARAMETER_SIZE"]
+    #[doc = "                    - CX_NOT_LOCKED"]
+    #[doc = "                    - CX_MEMORY_FULL"]
+    #[doc = "                    - CX_INVALID_PARAMETER"]
+    pub fn cx_math_cmp_no_throw(
+        a: *const u8,
+        b: *const u8,
+        length: size_t,
+        diff: *mut cty::c_int,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief Add two integers represented as byte arrays."]
+    #[doc = ""]
+    #[doc = " @param[out] r   Buffer for the result."]
+    #[doc = ""]
+    #[doc = " @param[in]  a   Pointer to the first integer."]
+    #[doc = ""]
+    #[doc = " @param[in]  b   Pointer to the second integer."]
+    #[doc = ""]
+    #[doc = " @param[in]  len Number of bytes taken into account for the addition."]
+    #[doc = ""]
+    #[doc = " @return         Error code:"]
+    #[doc = "                 - CX_OK on success"]
+    #[doc = "                 - CX_NOT_UNLOCKED"]
+    #[doc = "                 - CX_INVALID_PARAMETER_SIZE"]
+    #[doc = "                 - CX_NOT_LOCKED"]
+    #[doc = "                 - CX_MEMORY_FULL"]
+    #[doc = "                 - CX_INVALID_PARAMETER"]
+    pub fn cx_math_add_no_throw(r: *mut u8, a: *const u8, b: *const u8, len: size_t) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief Subtract two integers represented as byte arrays."]
+    #[doc = ""]
+    #[doc = " @param[out] r   Buffer for the result."]
+    #[doc = ""]
+    #[doc = " @param[in]  a   Pointer to the first integer."]
+    #[doc = ""]
+    #[doc = " @param[in]  b   Pointer to the second integer."]
+    #[doc = ""]
+    #[doc = " @param[in]  len Number of bytes taken into account for the subtraction."]
+    #[doc = ""]
+    #[doc = " @return         Error code:"]
+    #[doc = "                 - CX_OK on success"]
+    #[doc = "                 - CX_NOT_UNLOCKED"]
+    #[doc = "                 - CX_INVALID_PARAMETER_SIZE"]
+    #[doc = "                 - CX_NOT_LOCKED"]
+    #[doc = "                 - CX_MEMORY_FULL"]
+    #[doc = "                 - CX_INVALID_PARAMETER"]
+    pub fn cx_math_sub_no_throw(r: *mut u8, a: *const u8, b: *const u8, len: size_t) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief Multiply two integers represented as byte arrays."]
+    #[doc = ""]
+    #[doc = " @param[out] r   Buffer for the result."]
+    #[doc = ""]
+    #[doc = " @param[in]  a   Pointer to the first integer."]
+    #[doc = ""]
+    #[doc = " @param[in]  b   Pointer to the second integer."]
+    #[doc = ""]
+    #[doc = " @param[in]  len Number of bytes taken into account for the multiplication."]
+    #[doc = ""]
+    #[doc = " @return         Error code:"]
+    #[doc = "                 - CX_OK on success"]
+    #[doc = "                 - CX_NOT_UNLOCKED"]
+    #[doc = "                 - CX_INVALID_PARAMETER_SIZE"]
+    #[doc = "                 - CX_NOT_LOCKED"]
+    #[doc = "                 - CX_MEMORY_FULL"]
+    #[doc = "                 - CX_INVALID_PARAMETER"]
+    pub fn cx_math_mult_no_throw(r: *mut u8, a: *const u8, b: *const u8, len: size_t) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief Modular addition of two integers represented as byte arrays."]
+    #[doc = ""]
+    #[doc = " @param[out] r   Buffer for the result."]
+    #[doc = ""]
+    #[doc = " @param[in]  a   Pointer to the first integer."]
+    #[doc = "                 This must be strictly smaller than the modulus."]
+    #[doc = ""]
+    #[doc = " @param[in]  b   Pointer to the second integer."]
+    #[doc = "                 This must be strictly smaller than the modulus."]
+    #[doc = ""]
+    #[doc = " @param[in]  m   Modulus"]
+    #[doc = ""]
+    #[doc = " @param[in]  len Number of bytes taken into account for the operation."]
+    #[doc = ""]
+    #[doc = " @return         Error code:"]
+    #[doc = "                 - CX_OK on success"]
+    #[doc = "                 - CX_NOT_UNLOCKED"]
+    #[doc = "                 - CX_INVALID_PARAMETER_SIZE"]
+    #[doc = "                 - CX_NOT_LOCKED"]
+    #[doc = "                 - CX_MEMORY_FULL"]
+    #[doc = "                 - CX_INVALID_PARAMETER"]
+    pub fn cx_math_addm_no_throw(
+        r: *mut u8,
+        a: *const u8,
+        b: *const u8,
+        m: *const u8,
+        len: size_t,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief Modular subtraction of two integers represented as byte arrays."]
+    #[doc = ""]
+    #[doc = " @param[out] r   Buffer for the result."]
+    #[doc = ""]
+    #[doc = " @param[in]  a   Pointer to the first integer."]
+    #[doc = "                 This must be strictly smaller than the modulus."]
+    #[doc = ""]
+    #[doc = " @param[in]  b   Pointer to the second integer."]
+    #[doc = "                 This must be strictly smaller than the modulus."]
+    #[doc = ""]
+    #[doc = " @param[in]  m   Modulus"]
+    #[doc = ""]
+    #[doc = " @param[in]  len Number of bytes taken into account for the operation."]
+    #[doc = ""]
+    #[doc = " @return         Error code:"]
+    #[doc = "                 - CX_OK on success"]
+    #[doc = "                 - CX_NOT_UNLOCKED"]
+    #[doc = "                 - CX_INVALID_PARAMETER_SIZE"]
+    #[doc = "                 - CX_NOT_LOCKED"]
+    #[doc = "                 - CX_MEMORY_FULL"]
+    #[doc = "                 - CX_INVALID_PARAMETER"]
+    pub fn cx_math_subm_no_throw(
+        r: *mut u8,
+        a: *const u8,
+        b: *const u8,
+        m: *const u8,
+        len: size_t,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief Modular multiplication of two integers represented as byte arrays."]
+    #[doc = ""]
+    #[doc = " @param[out] r   Buffer for the result."]
+    #[doc = ""]
+    #[doc = " @param[in]  a   Pointer to the first integer."]
+    #[doc = ""]
+    #[doc = " @param[in]  b   Pointer to the second integer."]
+    #[doc = "                 This must be strictly smaller than the modulus."]
+    #[doc = ""]
+    #[doc = " @param[in]  m   Modulus"]
+    #[doc = ""]
+    #[doc = " @param[in]  len Number of bytes taken into account for the operation."]
+    #[doc = ""]
+    #[doc = " @return         Error code:"]
+    #[doc = "                 - CX_OK on success"]
+    #[doc = "                 - CX_NOT_UNLOCKED"]
+    #[doc = "                 - CX_INVALID_PARAMETER_SIZE"]
+    #[doc = "                 - CX_NOT_LOCKED"]
+    #[doc = "                 - CX_MEMORY_FULL"]
+    #[doc = "                 - CX_INVALID_PARAMETER"]
+    #[doc = "                 - CX_INVALID_PARAMETER_VALUE"]
+    pub fn cx_math_multm_no_throw(
+        r: *mut u8,
+        a: *const u8,
+        b: *const u8,
+        m: *const u8,
+        len: size_t,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Modulo operation."]
+    #[doc = ""]
+    #[doc = " @details Compute the remainder of the division of v by m. Store the result in v."]
+    #[doc = ""]
+    #[doc = " @param[in,out] v     Pointer to the dividend and buffer for the result."]
+    #[doc = ""]
+    #[doc = " @param[in]     len_v Number of bytes of the dividend."]
+    #[doc = ""]
+    #[doc = " @param[in]     m     Modulus."]
+    #[doc = ""]
+    #[doc = " @param[in]     len_m Number of bytes of the modulus."]
+    #[doc = ""]
+    #[doc = " @return              Error code:"]
+    #[doc = "                      - CX_OK on success"]
+    #[doc = "                      - CX_NOT_UNLOCKED"]
+    #[doc = "                      - CX_INVALID_PARAMETER_SIZE"]
+    #[doc = "                      - CX_NOT_LOCKED"]
+    #[doc = "                      - CX_MEMORY_FULL"]
+    #[doc = "                      - CX_INVALID_PARAMETER"]
+    pub fn cx_math_modm_no_throw(
+        v: *mut u8,
+        len_v: size_t,
+        m: *const u8,
+        len_m: size_t,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Modular exponentiation."]
+    #[doc = ""]
+    #[doc = " @details Compute the result of **a^e mod m**."]
+    #[doc = ""]
+    #[doc = " @param[out] r     Buffer for the result."]
+    #[doc = ""]
+    #[doc = " @param[in]  a     Pointer to an integer."]
+    #[doc = ""]
+    #[doc = " @param[in]  e     Pointer to the exponent."]
+    #[doc = ""]
+    #[doc = " @param[in]  len_e Number of bytes of the exponent."]
+    #[doc = ""]
+    #[doc = " @param[in]  m     Modulus"]
+    #[doc = ""]
+    #[doc = " @param[in]  len   Number of bytes of the result."]
+    #[doc = ""]
+    #[doc = " @return           Error code:"]
+    #[doc = "                   - CX_OK on success"]
+    #[doc = "                   - CX_NOT_UNLOCKED"]
+    #[doc = "                   - CX_INVALID_PARAMETER_SIZE"]
+    #[doc = "                   - CX_NOT_LOCKED"]
+    #[doc = "                   - CX_MEMORY_FULL"]
+    #[doc = "                   - CX_INVALID_PARAMETER"]
+    pub fn cx_math_powm_no_throw(
+        r: *mut u8,
+        a: *const u8,
+        e: *const u8,
+        len_e: size_t,
+        m: *const u8,
+        len: size_t,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Modular inverse with a prime modulus."]
+    #[doc = ""]
+    #[doc = " @details Compute the result of **a^(-1) mod m**, for a prime *m*."]
+    #[doc = ""]
+    #[doc = " @param[out] r   Buffer for the result."]
+    #[doc = ""]
+    #[doc = " @param[in]  a   Pointer to the integer."]
+    #[doc = ""]
+    #[doc = " @param[in]  m   Modulus. Must be a prime number."]
+    #[doc = ""]
+    #[doc = " @param[in]  len Number of bytes of the result."]
+    #[doc = ""]
+    #[doc = " @return         Error code:"]
+    #[doc = "                 - CX_OK on success"]
+    #[doc = "                 - CX_NOT_UNLOCKED"]
+    #[doc = "                 - CX_INVALID_PARAMETER_SIZE"]
+    #[doc = "                 - CX_NOT_LOCKED"]
+    #[doc = "                 - CX_MEMORY_FULL"]
+    #[doc = "                 - CX_INVALID_PARAMETER"]
+    pub fn cx_math_invprimem_no_throw(
+        r: *mut u8,
+        a: *const u8,
+        m: *const u8,
+        len: size_t,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Modular inverse."]
+    #[doc = ""]
+    #[doc = " @details Compute the result of **a^(-1) mod m**. *a* must be invertible modulo *m*,"]
+    #[doc = "          i.e. the greatest common divisor of *a* and *n* is 1."]
+    #[doc = ""]
+    #[doc = " @param[out] r   Buffer for the result."]
+    #[doc = ""]
+    #[doc = " @param[in]  a   Pointer to the integer."]
+    #[doc = ""]
+    #[doc = " @param[in]  m   Modulus."]
+    #[doc = ""]
+    #[doc = " @param[in]  len Number of bytes of the result."]
+    #[doc = ""]
+    #[doc = " @return         Error code:"]
+    #[doc = "                 - CX_OK on success"]
+    #[doc = "                 - CX_NOT_UNLOCKED"]
+    #[doc = "                 - CX_INVALID_PARAMETER_SIZE"]
+    #[doc = "                 - CX_NOT_LOCKED"]
+    #[doc = "                 - CX_MEMORY_FULL"]
+    #[doc = "                 - CX_INVALID_PARAMETER"]
+    pub fn cx_math_invintm_no_throw(r: *mut u8, a: u32, m: *const u8, len: size_t) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief Check whether a number is probable prime."]
+    #[doc = ""]
+    #[doc = " @param[in]  r     Pointer to an integer."]
+    #[doc = ""]
+    #[doc = " @param[in]  len   Number of bytes of the integer."]
+    #[doc = ""]
+    #[doc = " @param[out] prime Bool indicating whether r is prime or not:"]
+    #[doc = "                   - 0 : not prime"]
+    #[doc = "                   - 1 : prime"]
+    #[doc = ""]
+    #[doc = " @return           Error code:"]
+    #[doc = "                   - CX_OK on success"]
+    #[doc = "                   - CX_NOT_UNLOCKED"]
+    #[doc = "                   - CX_INVALID_PARAMETER_SIZE"]
+    #[doc = "                   - CX_NOT_LOCKED"]
+    #[doc = "                   - CX_MEMORY_FULL"]
+    #[doc = "                   - CX_INVALID_PARAMETER"]
+    pub fn cx_math_is_prime_no_throw(r: *const u8, len: size_t, prime: *mut bool) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief Compute the next prime after a given number."]
+    #[doc = ""]
+    #[doc = " @param[in] r   Pointer to the integer and buffer for the result."]
+    #[doc = ""]
+    #[doc = " @param[in] len Number of bytes of the integer."]
+    #[doc = ""]
+    #[doc = " @return        Error code:"]
+    #[doc = "                - CX_OK on success"]
+    #[doc = "                - CX_NOT_UNLOCKED"]
+    #[doc = "                - CX_INVALID_PARAMETER_SIZE"]
+    #[doc = "                - CX_MEMORY_FULL"]
+    #[doc = "                - CX_NOT_LOCKED"]
+    #[doc = "                - CX_INVALID_PARAMETER"]
+    #[doc = "                - CX_INTERNAL_ERROR"]
+    #[doc = "                - CX_OVERFLOW"]
+    pub fn cx_math_next_prime_no_throw(r: *mut u8, len: u32) -> cx_err_t;
+}
+extern "C" {
     #[doc = " @brief   Sign a message digest according to ECDSA specification"]
     #[doc = ""]
     #[doc = " @param[in]  pvkey    Private key."]
