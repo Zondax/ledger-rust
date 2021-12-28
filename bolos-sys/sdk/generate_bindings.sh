@@ -11,7 +11,7 @@ SCRIPT_DIR=$(dirname "$0")
 : "${BOLOS_SDK_S_GIT_HASH:=1a20ae6b83329c6c0107eec0a3002a199355abbb}"
 : "${BOLOS_SDK_X_PATH:=$SCRIPT_DIR/nanox-secure-sdk}"
 : "${BOLOS_SDK_X_GIT:=https://github.com/LedgerHQ/nanox-secure-sdk}"
-: "${BOLOS_SDK_X_GIT_HASH:=a79eaf92aef434a5e63caca6b238fd00db523c8f}"
+: "${BOLOS_SDK_X_GIT_HASH:=d9ff8d49fffdc80d373e1812d870420912d88505}"
 
 TMP_HEADERS=$(dirname $TMP_HEADERS_PATH)
 
