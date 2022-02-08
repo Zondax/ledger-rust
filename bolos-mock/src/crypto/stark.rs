@@ -78,11 +78,7 @@ impl<const B: usize> SecretKey<B> {
         Ok(())
     }
 
-    pub fn sign<H>(&self, data: &[u8], out: &mut [u8]) -> Result<usize, Error>
-    where
-        H: HasherId,
-        H::Id: Into<u8>,
-    {
+    pub fn sign(&self, data: &[u8], out: &mut [u8]) -> Result<usize, Error> {
         todo!("starkware sign")
     }
 }
