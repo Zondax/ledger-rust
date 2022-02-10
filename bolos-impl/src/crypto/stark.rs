@@ -123,9 +123,11 @@ impl<const B: usize> SecretKey<B> {
     }
 
     #[inline(never)]
-    pub fn sign(&self, data: &[u8], out: &mut [u8]) -> Result<usize, Error> {
-        let (_, size) = stark_sign::<B>(self, data, out)?;
-        Ok(size)
+    /// Signs a given message with the stark curve
+    ///
+    /// Returns (ECC_PARITY_ODD, sig_size)
+    pub fn sign(&self, data: &[u8], out: &mut [u8]) -> Result<(bool, usize), Error> {
+        stark_sign::<B>(self, data, out)
     }
 }
 
