@@ -18,7 +18,3 @@ typedef struct NanoSBackend {
 } NanoSBackend;
 
 extern struct NanoSBackend BACKEND_LAZY;
-
-void rs_h_expert_toggle(void);
-
-bool rs_h_paging_can_decrease(void);
