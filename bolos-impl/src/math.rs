@@ -27,7 +27,7 @@ pub fn cmp(a: &[u8], b: &[u8]) -> Result<Ordering, Error> {
     let mut diff = 0;
 
     cfg_if! {
-        if #[cfg(any(nanox, nanos))] {
+        if #[cfg(bolos_sdk)] {
             match unsafe { crate::raw::cx_math_cmp_no_throw(a, b, len as _, &mut diff) } {
                 0 => {},
                 err => return Err(err.into())
@@ -54,7 +54,7 @@ pub fn modm(v: &mut [u8], m: &[u8]) -> Result<(), Error> {
     let (m, m_len) = (m.as_ptr(), m.len());
 
     cfg_if! {
-        if #[cfg(any(nanox, nanos))] {
+        if #[cfg(bolos_sdk)] {
             match unsafe { crate::raw::cx_math_modm_no_throw(v, v_len as _, m, m_len as _) } {
                 0 => Ok(()),
                 err => Err(err.into())

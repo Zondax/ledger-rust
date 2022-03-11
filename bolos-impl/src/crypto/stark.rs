@@ -235,7 +235,7 @@ mod bindings {
         let pk = out_pk.as_mut_ptr();
 
         cfg_if! {
-            if #[cfg(any(nanox, nanos))] {
+            if #[cfg(bolos_sdk)] {
                 match unsafe { crate::raw::cx_ecfp_generate_pair_no_throw(
                     curve as _,
                     pk,
@@ -279,7 +279,7 @@ mod bindings {
         let mut info = 0;
 
         cfg_if! {
-            if #[cfg(any(nanox, nanos))] {
+            if #[cfg(bolos_sdk)] {
                 match unsafe { crate::raw::cx_ecdsa_sign_no_throw(
                     raw_sk,
                     CX_RND_RFC6979,
