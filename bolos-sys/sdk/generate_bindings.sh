@@ -13,7 +13,7 @@ SCRIPT_DIR=$(dirname "$0")
 # Nano X
 : "${BOLOS_SDK_X_PATH:=$SCRIPT_DIR/nanox-secure-sdk}"
 : "${BOLOS_SDK_X_GIT:=https://github.com/LedgerHQ/nanox-secure-sdk}"
-: "${BOLOS_SDK_X_GIT_HASH:=d9ff8d49fffdc80d373e1812d870420912d88505}"
+: "${BOLOS_SDK_X_GIT_HASH:=ba45af7f4208b6c02ac35fb0d43a914228febd56}"
 # Nano S+
 : "${BOLOS_SDK_SP_PATH:=$SCRIPT_DIR/nanosplus-secure-sdk}"
 : "${BOLOS_SDK_SP_GIT:=https://github.com/LedgerHQ/nanosplus-secure-sdk}"
@@ -25,6 +25,7 @@ echo "Checkout X SDK & update in $BOLOS_SDK_X_PATH from $BOLOS_SDK_X_GIT $BOLOS_
 git submodule add "$BOLOS_SDK_X_GIT" "$BOLOS_SDK_X_PATH" || true
 git submodule update --init "$BOLOS_SDK_X_PATH"
 pushd "$BOLOS_SDK_X_PATH" || exit
+git fetch origin
 git checkout $BOLOS_SDK_X_GIT_HASH
 popd || exit
 
@@ -32,6 +33,7 @@ echo "Checkout S SDK & update in $BOLOS_SDK_S_PATH from $BOLOS_SDK_S_GIT $BOLOS_
 git submodule add -b "$BOLOS_SDK_S_GIT_HASH" "$BOLOS_SDK_S_GIT" "$BOLOS_SDK_S_PATH" || true
 git submodule update --init "$BOLOS_SDK_S_PATH"
 pushd "$BOLOS_SDK_S_PATH" || exit
+git fetch origin
 git checkout $BOLOS_SDK_S_GIT_HASH
 popd || exit
 
@@ -39,6 +41,7 @@ echo "Checkout S+ SDK & update in $BOLOS_SDK_SP_PATH from $BOLOS_SDK_SP_GIT $BOL
 git submodule add -b "$BOLOS_SDK_SP_GIT_HASH" "$BOLOS_SDK_SP_GIT" "$BOLOS_SDK_SP_PATH" || true
 git submodule update --init "$BOLOS_SDK_SP_PATH"
 pushd "$BOLOS_SDK_SP_PATH" || exit
+git fetch origin
 git checkout $BOLOS_SDK_SP_GIT_HASH
 popd || exit
 
