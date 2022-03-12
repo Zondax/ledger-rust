@@ -4,3 +4,6 @@
 [submodule "bolos-sys/sdk/nanos-secure-sdk"]
 	path = bolos-sys/sdk/nanos-secure-sdk
 	url = https://github.com/LedgerHQ/nanos-secure-sdk
+[submodule "bolos-sys/sdk/nanosplus-secure-sdk"]
+	path = bolos-sys/sdk/nanosplus-secure-sdk
+	url = https://github.com/LedgerHQ/nanosplus-secure-sdk
