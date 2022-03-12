@@ -44,6 +44,9 @@ pub mod raw {
     }
 }
 
+#[cfg(bolos_sdk)]
+pub use raw::TARGET_ID;
+
 /// Wrapper for 'halt'
 /// Resets the device
 #[cfg(bolos_sdk)]
