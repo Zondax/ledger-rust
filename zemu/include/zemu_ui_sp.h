@@ -9,12 +9,12 @@
 
 #define MESSAGE_SIZE (4095 + 1)
 
-typedef struct NanoXBackend {
+typedef struct NanoSPBackend {
   uint8_t key[KEY_SIZE];
   uint8_t message[MESSAGE_SIZE];
   uintptr_t viewable_size;
   bool expert;
   bool flow_inside_loop;
-} NanoXBackend;
+} NanoSPBackend;
 
-extern struct NanoXBackend BACKEND_LAZY;
+extern struct NanoSPBackend BACKEND_LAZY;

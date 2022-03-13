@@ -181,7 +181,7 @@ mod bindings {
         let curve: u8 = curve.into();
 
         cfg_if! {
-            if #[cfg(any(nanox, nanos))] {
+            if #[cfg(bolos_sdk)] {
                 match unsafe { crate::raw::cx_edwards_compress_point_no_throw(
                     curve as _,
                     p.as_mut_ptr() as *mut _,
@@ -224,7 +224,7 @@ mod bindings {
         let out = out.as_mut_ptr();
 
         cfg_if! {
-            if #[cfg(any(nanox, nanos))] {
+            if #[cfg(bolos_sdk)] {
                 match unsafe { crate::raw::cx_ecfp_init_private_key_no_throw(
                     curve as _,
                     sk_data as *const _,
@@ -267,7 +267,7 @@ mod bindings {
         let pk = out_pk.as_mut_ptr();
 
         cfg_if! {
-            if #[cfg(any(nanox, nanos))] {
+            if #[cfg(bolos_sdk)] {
                 match unsafe { crate::raw::cx_ecfp_generate_pair_no_throw(
                     curve as _,
                     pk,
@@ -300,7 +300,7 @@ mod bindings {
 
         let id: u8 = H::id().into();
 
-        let crv = sk.curve;
+        let crv = sk.curve();
 
         let mut raw_sk = sk.generate()?;
         let raw_sk: *mut cx_ecfp_private_key_t = &mut *raw_sk;
@@ -317,7 +317,7 @@ mod bindings {
         let mut info = 0;
 
         cfg_if! {
-            if #[cfg(any(nanox, nanos))] {
+            if #[cfg(bolos_sdk)] {
                 match unsafe { crate::raw::cx_ecdsa_sign_no_throw(
                     raw_sk,
                     CX_RND_RFC6979,
@@ -346,7 +346,7 @@ mod bindings {
     ) -> Result<usize, Error> {
         let id: u8 = crate::hash::Sha512::id().into();
 
-        let crv = sk.curve;
+        let crv = sk.curve();
 
         let mut raw_sk = sk.generate()?;
         let raw_sk: *mut cx_ecfp_private_key_t = &mut *raw_sk;
@@ -361,7 +361,7 @@ mod bindings {
         } as u32;
 
         cfg_if! {
-            if #[cfg(any(nanox, nanos))] {
+            if #[cfg(bolos_sdk)] {
                 match unsafe { crate::raw::cx_eddsa_sign_no_throw(
                     raw_sk,
                     id as _,
@@ -390,4 +390,4 @@ mod bindings {
         Ok(sig_len as usize)
     }
 }
-use bindings::*;
+pub(super) use bindings::*;

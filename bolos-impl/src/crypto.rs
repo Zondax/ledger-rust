@@ -253,7 +253,7 @@ mod bindings {
         mode: Mode,
         curve: Curve,
         path: &BIP32Path<B>,
-        out: &mut [u8; 64],
+        out: &mut [u8],
     ) -> Result<(), Error> {
         zemu_sys::zemu_log_stack("os_perso_derive_node_with_seed_key\x00");
         let curve: u8 = curve.into();
@@ -266,7 +266,7 @@ mod bindings {
         };
 
         cfg_if! {
-            if #[cfg(any(nanox,nanos))] {
+            if #[cfg(bolos_sdk)] {
                 let might_throw = || unsafe {
                     crate::raw::os_perso_derive_node_with_seed_key(
                         mode as _,
@@ -291,3 +291,5 @@ mod bindings {
 }
 
 pub mod ecfp256;
+
+pub mod stark;
