@@ -15,7 +15,7 @@
 ********************************************************************************/
 #![allow(unused_imports)]
 
-use crate::raw::{cx_sha3_t, cx_hash_t, cx_md_t};
+use crate::raw::{cx_hash_t, cx_md_t, cx_sha3_t};
 use crate::{errors::catch, Error};
 
 use super::CxHash;
