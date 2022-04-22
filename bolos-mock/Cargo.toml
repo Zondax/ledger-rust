@@ -13,6 +13,7 @@ bolos-common = { version = "0.1", path = "../bolos-common", features = ["std"] }
 
 sha2 = "0.9.8"
 blake2 = "0.9.2"
+ripemd = "0.1.1"
 
 hmac = "0.11.0"
 

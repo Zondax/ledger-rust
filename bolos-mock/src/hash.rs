@@ -23,3 +23,6 @@ pub use sha256::Sha256;
 
 mod sha512;
 pub use sha512::Sha512;
+
+mod ripemd160;
+pub use ripemd160::Ripemd160;
