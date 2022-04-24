@@ -44,8 +44,12 @@ pub fn convert_bits<const FROM: u8, const TO: u8>(
         return Err(ConvertBitsError::InvalidConversion { from: FROM, to: TO });
     }
 
-    //.ceil() to include potential padding
-    let expected_out_size = ((input.len() * FROM as usize) as f64 / TO as f64).ceil() as usize;
+    let bits_num = input.len() * FROM as usize;
+    let expected_out_size = if bits_num % TO as usize == 0 {
+        bits_num / TO as usize
+    } else {
+        bits_num / TO as usize + 1
+    };
     if out.len() < expected_out_size {
         return Err(ConvertBitsError::OutputBufferTooSmall {
             expected: expected_out_size,
