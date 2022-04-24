@@ -169,7 +169,7 @@ impl<'b> Bech32Writer<'b> {
         let hrp = hrp.as_bytes();
         this.check_rem_out(hrp.len() + 1)?;
         this.out[0..hrp.len()].copy_from_slice(hrp);
-        this.out[hrp.len()] = '1' as u8; //hrp1data (separator)
+        this.out[hrp.len()] = b'1'; //hrp1data (separator)
         this.bytes_written = hrp.len() + 1;
 
         // expand HRP
@@ -221,7 +221,7 @@ impl<'b> Bech32Writer<'b> {
     }
 
     /// Write a chunck of data
-    pub fn write(&mut self, data: &impl AsRef<[u8]>) -> Result<(), Bech32WriterError> {
+    pub fn write(&mut self, data: impl AsRef<[u8]>) -> Result<(), Bech32WriterError> {
         // Amount of bits left over from last round, stored in buffer.
         let mut buffer_bits = 0u32;
         // Holds all unwritten bits left over from last round. The bits are stored beginning from
@@ -298,6 +298,21 @@ impl<'b> Bech32Writer<'b> {
     }
 }
 
+/// Encode `data` with the given `hrp` into the given `out` with `Bech32`
+pub fn encode(
+    hrp: &str,
+    data: impl AsRef<[u8]>,
+    out: &mut [u8],
+) -> Result<usize, Bech32WriterError> {
+    let mut encoder = Bech32Writer::new(hrp, out)?;
+    encoder.write(data)?;
+    encoder.finalize()
+}
+
+pub const fn estimate_size<const N: usize>(hrp: &str, data: &[u8; N]) -> usize {
+    Bech32Writer::estimate_size(hrp, data)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -320,7 +335,7 @@ mod tests {
     }
 
     #[test]
-    fn encode_something() {
+    fn encode_with_writer() {
         let mut out = [0; Bech32Writer::estimate_size(HRP, &INPUT)];
 
         let mut encoder = Bech32Writer::new(HRP, &mut out).expect("unable to write HRP");
@@ -330,5 +345,13 @@ mod tests {
         let encoded = std::str::from_utf8(&out).expect("invalid utf8 bytes");
 
         assert_eq!(&encoded[..written], EXPECTED, "encoding difference");
+    }
+
+    #[test]
+    fn encode_with_fn() {
+        let mut out = [0; estimate_size(HRP, &INPUT)];
+        let written = encode(HRP, &INPUT, &mut out).expect("unable to encode bech32");
+
+        assert_eq!(&out[..written], EXPECTED.as_bytes());
     }
 }
