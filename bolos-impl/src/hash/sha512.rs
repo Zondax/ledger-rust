@@ -27,6 +27,8 @@ pub struct Sha512 {
 }
 
 impl Sha512 {
+    pub const DIGEST_LEN: usize = 64;
+
     pub fn new() -> Result<Self, Error> {
         let mut this = Self {
             state: Default::default(),

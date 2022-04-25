@@ -27,6 +27,8 @@ pub struct Sha256 {
 }
 
 impl Sha256 {
+    pub const DIGEST_LEN: usize = 32;
+
     pub fn new() -> Result<Self, Error> {
         let mut this = Self {
             state: Default::default(),

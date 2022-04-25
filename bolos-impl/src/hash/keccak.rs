@@ -28,6 +28,8 @@ pub struct Keccak<const S: usize> {
 }
 
 impl<const S: usize> Keccak<S> {
+    pub const DIGEST_LEN: usize = S;
+
     #[inline(never)]
     pub fn new() -> Result<Self, Error> {
         zemu_sys::zemu_log_stack("Keccak::new\x00");

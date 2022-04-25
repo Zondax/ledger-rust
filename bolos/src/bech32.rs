@@ -61,7 +61,7 @@ pub fn convert_bits<const FROM: u8, const TO: u8>(
     let mut acc: u32 = 0;
     let mut bits: u32 = 0;
     let maxv: u32 = (1 << TO) - 1;
-    for (i, value) in input.into_iter().enumerate() {
+    for (i, value) in input.iter().enumerate() {
         let v = *value as u32;
         if (v >> FROM) != 0 {
             // Input value exceeds `from` bit size
@@ -105,6 +105,7 @@ impl u5 {
     ];
 
     /// Convert a `u8` to `u5` if in range, return `Error` otherwise
+    #[allow(dead_code)]
     pub fn try_from_u8(value: u8) -> Result<u5, ()> {
         if value > 31 {
             Err(())
@@ -129,9 +130,9 @@ impl u5 {
     }
 }
 
-impl Into<u8> for u5 {
-    fn into(self) -> u8 {
-        self.0
+impl From<u5> for u8 {
+    fn from(num: u5) -> Self {
+        num.0
     }
 }
 
@@ -285,15 +286,15 @@ impl<'b> Bech32Writer<'b> {
         Ok(self.bytes_written)
     }
 
-    pub const fn estimate_size<const N: usize>(hrp: &str, data: &[u8; N]) -> usize {
-        let bits_num = data.len() * 8;
+    pub const fn estimate_size(hrp_len: usize, data_len: usize) -> usize {
+        let bits_num = data_len * 8;
         //verify if there's a need to add an extra bite for padding
         let base = if bits_num % 5 == 0 {
             bits_num / 5
         } else {
             bits_num / 5 + 1
         };
-        base + 1 + 6 + hrp.as_bytes().len()
+        base + 1 + 6 + hrp_len
     }
 
     /// Finalize the writer
@@ -313,8 +314,8 @@ pub fn encode(
     encoder.finalize()
 }
 
-pub const fn estimate_size<const N: usize>(hrp: &str, data: &[u8; N]) -> usize {
-    Bech32Writer::estimate_size(hrp, data)
+pub const fn estimate_size(hrp_len: usize, data_len: usize) -> usize {
+    Bech32Writer::estimate_size(hrp_len, data_len)
 }
 
 #[cfg(test)]
@@ -329,18 +330,18 @@ mod tests {
     fn estimate() {
         assert_eq!(
             EXPECTED.as_bytes().len(),
-            Bech32Writer::estimate_size(HRP, &INPUT)
+            Bech32Writer::estimate_size(HRP.len(), INPUT.len())
         );
 
         assert_eq!(
             1 + 6 + 1 + HRP.len() + 1,
-            Bech32Writer::estimate_size(HRP, &[0])
+            Bech32Writer::estimate_size(HRP.len(), 1)
         );
     }
 
     #[test]
     fn encode_with_writer() {
-        let mut out = [0; Bech32Writer::estimate_size(HRP, &INPUT)];
+        let mut out = [0; Bech32Writer::estimate_size(HRP.len(), INPUT.len())];
 
         let mut encoder = Bech32Writer::new(HRP, &mut out).expect("unable to write HRP");
         encoder.write(&INPUT).expect("unable to write data");
@@ -353,7 +354,7 @@ mod tests {
 
     #[test]
     fn encode_with_fn() {
-        let mut out = [0; estimate_size(HRP, &INPUT)];
+        let mut out = [0; estimate_size(HRP.len(), INPUT.len())];
         let written = encode(HRP, &INPUT, &mut out).expect("unable to encode bech32");
 
         assert_eq!(&out[..written], EXPECTED.as_bytes());

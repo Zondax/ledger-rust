@@ -17,10 +17,13 @@
 #![no_builtins]
 #![allow(dead_code)]
 
+#[macro_use]
+extern crate cfg_if;
+
 /// cbindgen:ignore
 pub(self) mod bindings {
     extern "C" {
-        cfg_if::cfg_if! {
+        cfg_if! {
             if #[cfg(zemu_sdk)] {
                 pub fn zemu_log(buffer: *const u8);
                 pub fn check_canary();
@@ -31,11 +34,17 @@ pub(self) mod bindings {
 }
 
 pub fn zemu_log(_s: &str) {
-    #[cfg(zemu_sdk)]
-    unsafe {
-        let _s = bolos_sys::pic::PIC::new(_s).into_inner();
-        let p = _s.as_bytes().as_ptr();
-        bindings::zemu_log(p)
+    cfg_if! {
+        if #[cfg(zemu_sdk)] {
+            unsafe {
+                let _s = bolos_sys::pic::PIC::new(_s).into_inner();
+                let p = _s.as_bytes().as_ptr();
+                bindings::zemu_log(p)
+            }
+        } else {
+            extern crate std;
+            std::eprintln!("{}", _s)
+        }
     }
 }
 
@@ -47,6 +56,7 @@ pub fn zemu_log_stack(_s: &str) {
         bindings::zemu_log_stack(p)
     }
 }
+
 pub fn check_canary() {
     #[cfg(zemu_sdk)]
     unsafe {

@@ -19,9 +19,9 @@ use std::convert::Infallible;
 
 pub struct Ripemd160(ripemd::Ripemd160);
 
-const DIGEST_SIZE: usize = 20;
-
 impl Ripemd160 {
+    pub const DIGEST_LEN: usize = 20;
+
     pub fn new() -> Result<Self, Infallible> {
         Ok(Self(ripemd::Ripemd160::new()))
     }
@@ -47,7 +47,7 @@ impl Ripemd160 {
         fn digest(input: &[u8]) -> Result<[u8; S], Error>;
     }
 */
-impl super::Hasher<DIGEST_SIZE> for Ripemd160 {
+impl super::Hasher<{ Ripemd160::DIGEST_LEN }> for Ripemd160 {
     type Error = Infallible;
 
     fn update(&mut self, input: &[u8]) -> Result<(), Self::Error> {
@@ -55,14 +55,14 @@ impl super::Hasher<DIGEST_SIZE> for Ripemd160 {
         Ok(())
     }
 
-    fn finalize_dirty_into(&mut self, out: &mut [u8; DIGEST_SIZE]) -> Result<(), Self::Error> {
+    fn finalize_dirty_into(&mut self, out: &mut [u8; Self::DIGEST_LEN]) -> Result<(), Self::Error> {
         let digest = self.0.finalize_fixed_reset();
         out.copy_from_slice(digest.as_ref());
 
         Ok(())
     }
 
-    fn finalize_into(self, out: &mut [u8; DIGEST_SIZE]) -> Result<(), Self::Error> {
+    fn finalize_into(self, out: &mut [u8; Self::DIGEST_LEN]) -> Result<(), Self::Error> {
         let digest = self.0.finalize();
         out.copy_from_slice(digest.as_ref());
 
@@ -74,7 +74,7 @@ impl super::Hasher<DIGEST_SIZE> for Ripemd160 {
         Ok(())
     }
 
-    fn digest_into(input: &[u8], out: &mut [u8; DIGEST_SIZE]) -> Result<(), Self::Error> {
+    fn digest_into(input: &[u8], out: &mut [u8; Self::DIGEST_LEN]) -> Result<(), Self::Error> {
         let mut hasher = Self::new()?;
         hasher.update(input)?;
         hasher.finalize_into(out)

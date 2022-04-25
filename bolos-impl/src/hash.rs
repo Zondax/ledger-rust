@@ -13,7 +13,7 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 ********************************************************************************/
-#![allow(unused_imports)]
+#![allow(unused_imports, unused_braces)]
 
 use crate::errors::{catch, Error};
 pub(self) use crate::raw::{cx_hash_t, cx_md_t};
@@ -173,10 +173,10 @@ macro_rules! impl_hasher {
     };
 }
 
-impl_hasher! {@FIXED 32, Sha256}
+impl_hasher! {@FIXED { Sha256::DIGEST_LEN }, Sha256}
 impl_hasher! {@GENERIC S, Blake2b<S>}
-impl_hasher! {@FIXED 64, Sha512}
-impl_hasher! {@FIXED 20, Ripemd160}
+impl_hasher! {@FIXED { Sha512::DIGEST_LEN }, Sha512}
+impl_hasher! {@FIXED { Ripemd160::DIGEST_LEN }, Ripemd160}
 
 impl_hasher! {@FIXED 28, Keccak<28>}
 impl_hasher! {@FIXED 32, Keccak<32>}

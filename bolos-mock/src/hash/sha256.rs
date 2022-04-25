@@ -20,6 +20,8 @@ use std::convert::Infallible;
 pub struct Sha256(sha2::Sha256);
 
 impl Sha256 {
+    pub const DIGEST_LEN: usize = 32;
+
     pub fn new() -> Result<Self, Infallible> {
         Ok(Self(sha2::Sha256::new()))
     }
@@ -45,7 +47,7 @@ impl Sha256 {
         fn digest(input: &[u8]) -> Result<[u8; S], Error>;
     }
 */
-impl super::Hasher<32> for Sha256 {
+impl super::Hasher<{ Sha256::DIGEST_LEN }> for Sha256 {
     type Error = Infallible;
 
     fn update(&mut self, input: &[u8]) -> Result<(), Self::Error> {
@@ -53,14 +55,14 @@ impl super::Hasher<32> for Sha256 {
         Ok(())
     }
 
-    fn finalize_dirty_into(&mut self, out: &mut [u8; 32]) -> Result<(), Self::Error> {
+    fn finalize_dirty_into(&mut self, out: &mut [u8; Self::DIGEST_LEN]) -> Result<(), Self::Error> {
         let digest = self.0.finalize_fixed_reset();
         out.copy_from_slice(digest.as_ref());
 
         Ok(())
     }
 
-    fn finalize_into(self, out: &mut [u8; 32]) -> Result<(), Self::Error> {
+    fn finalize_into(self, out: &mut [u8; Self::DIGEST_LEN]) -> Result<(), Self::Error> {
         let digest = self.0.finalize();
         out.copy_from_slice(digest.as_ref());
 
@@ -72,7 +74,7 @@ impl super::Hasher<32> for Sha256 {
         Ok(())
     }
 
-    fn digest_into(input: &[u8], out: &mut [u8; 32]) -> Result<(), Self::Error> {
+    fn digest_into(input: &[u8], out: &mut [u8; Self::DIGEST_LEN]) -> Result<(), Self::Error> {
         let mut hasher = Self::new()?;
         hasher.update(input)?;
         hasher.finalize_into(out)

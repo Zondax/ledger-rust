@@ -22,11 +22,15 @@ use super::CxHash;
 
 use core::{mem::MaybeUninit, ptr::addr_of_mut};
 
+pub const DIGEST_LEN: usize = 20;
+
 pub struct Ripemd160 {
     state: cx_ripemd160_t,
 }
 
 impl Ripemd160 {
+    pub const DIGEST_LEN: usize = DIGEST_LEN;
+
     pub fn new() -> Result<Self, Error> {
         let mut this = Self {
             state: Default::default(),
@@ -61,7 +65,7 @@ impl Ripemd160 {
     }
 }
 
-impl CxHash<20> for Ripemd160 {
+impl CxHash<DIGEST_LEN> for Ripemd160 {
     fn cx_init_hasher() -> Result<Self, Error> {
         Self::new()
     }
