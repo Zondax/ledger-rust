@@ -174,6 +174,7 @@ mod bindings {
             Curve::Secp256K1,
             &path,
             &mut *tmp_secret,
+            None,
         )?;
 
         //PIC STARK_DERIVE_BIAS

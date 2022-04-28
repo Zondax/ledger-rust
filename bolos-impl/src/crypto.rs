@@ -254,15 +254,29 @@ mod bindings {
         curve: Curve,
         path: &BIP32Path<B>,
         out: &mut [u8],
+        chain: Option<&[u8; 32]>,
     ) -> Result<(), Error> {
         zemu_sys::zemu_log_stack("os_perso_derive_node_with_seed_key\x00");
         let curve: u8 = curve.into();
         let mode: u8 = mode.into();
 
-        let out_p = out.as_mut().as_mut_ptr();
+        let out_p = out.as_mut_ptr();
         let (components, path_len) = {
             let components = path.components();
             (components.as_ptr(), components.len() as u32)
+        };
+
+        let chain = if let Some(chain) = chain {
+            //Note, this is HORRIBLE
+            // I hate it so much, but C should actually _not_ edit this;
+            // yet, a *mut pointer is expected. ARGH!
+            // So I have to get a *const pointer and cast it to *mut
+            // I beg forgiveness. Do we have a better solution?
+            // I mean obviously, made `chain Option<&mut [u8; 32]>`,
+            // but that doesn't really describe the API correctly.
+            chain.as_ptr() as *mut [u8; 32]
+        } else {
+            std::ptr::null_mut()
         };
 
         cfg_if! {
@@ -274,7 +288,7 @@ mod bindings {
                         components as *const _,
                         path_len as _,
                         out_p as *mut _,
-                        std::ptr::null_mut(),
+                        chain as *mut _,
                         std::ptr::null_mut(),
                         0
                     )

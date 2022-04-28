@@ -62,15 +62,31 @@ impl AsRef<[u8]> for PublicKey {
     }
 }
 
-pub struct SecretKey<const B: usize> {
+pub struct SecretKey<'chain, const B: usize> {
     mode: Mode,
     curve: Curve,
     path: BIP32Path<B>,
+    chain: Option<&'chain [u8; 32]>,
 }
 
-impl<const B: usize> SecretKey<B> {
-    pub const fn new(mode: Mode, curve: Curve, path: BIP32Path<B>) -> Self {
-        Self { mode, curve, path }
+impl<'chain, const B: usize> SecretKey<'chain, B> {
+    /// Create a new secret key handle.
+    ///
+    /// No secret bytes are actually present within this struct, but rather,
+    /// the secret key is actually computed, based on the data stored here,
+    /// before each operation requiring said secret bytes.
+    pub const fn new(
+        mode: Mode,
+        curve: Curve,
+        path: BIP32Path<B>,
+        chain: Option<&'chain [u8; 32]>,
+    ) -> Self {
+        Self {
+            mode,
+            curve,
+            path,
+            chain,
+        }
     }
 
     pub const fn curve(&self) -> Curve {
@@ -96,6 +112,7 @@ impl<const B: usize> SecretKey<B> {
             self.curve,
             &self.path,
             &mut sk_data,
+            self.chain,
         )?;
 
         // Use the secret key data to prepare a secret key

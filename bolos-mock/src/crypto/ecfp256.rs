@@ -14,7 +14,7 @@
 *  limitations under the License.
 ********************************************************************************/
 use bolos_common::hash::HasherId;
-use core::mem::MaybeUninit;
+use core::{marker::PhantomData, mem::MaybeUninit};
 
 use crate::Error;
 
@@ -67,13 +67,14 @@ impl AsRef<[u8]> for PublicKey {
     }
 }
 
-pub struct SecretKey<const B: usize> {
+pub struct SecretKey<'chain, const B: usize> {
     curve: Curve,
     bytes: [u8; 32],
+    _chain: PhantomData<&'chain ()>,
 }
 
-impl<const B: usize> SecretKey<B> {
-    pub fn new(_: Mode, curve: Curve, _: BIP32Path<B>) -> Self {
+impl<'chain, const B: usize> SecretKey<'chain, B> {
+    pub fn new(_: Mode, curve: Curve, _: BIP32Path<B>, _: Option<&[u8; 32]>) -> Self {
         let bytes = match curve {
             Curve::Secp256K1 => {
                 let secret = k256::ecdsa::SigningKey::random(&mut rand8::thread_rng());
@@ -95,7 +96,11 @@ impl<const B: usize> SecretKey<B> {
             }
         };
 
-        Self { curve, bytes }
+        Self {
+            curve,
+            bytes,
+            _chain: Default::default(),
+        }
     }
 
     pub const fn curve(&self) -> Curve {
