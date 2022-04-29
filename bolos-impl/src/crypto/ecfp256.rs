@@ -15,7 +15,7 @@
 ********************************************************************************/
 use zeroize::{Zeroize, Zeroizing};
 
-use super::{bip32::BIP32Path, Curve, Mode};
+use super::{bip32::BIP32Path, Curve, Mode, CHAIN_CODE_LEN};
 use crate::{
     errors::Error,
     hash::HasherId,
@@ -62,31 +62,20 @@ impl AsRef<[u8]> for PublicKey {
     }
 }
 
-pub struct SecretKey<'chain, const B: usize> {
+pub struct SecretKey<const B: usize> {
     mode: Mode,
     curve: Curve,
     path: BIP32Path<B>,
-    chain: Option<&'chain [u8; 32]>,
 }
 
-impl<'chain, const B: usize> SecretKey<'chain, B> {
+impl<const B: usize> SecretKey<B> {
     /// Create a new secret key handle.
     ///
     /// No secret bytes are actually present within this struct, but rather,
     /// the secret key is actually computed, based on the data stored here,
     /// before each operation requiring said secret bytes.
-    pub const fn new(
-        mode: Mode,
-        curve: Curve,
-        path: BIP32Path<B>,
-        chain: Option<&'chain [u8; 32]>,
-    ) -> Self {
-        Self {
-            mode,
-            curve,
-            path,
-            chain,
-        }
+    pub const fn new(mode: Mode, curve: Curve, path: BIP32Path<B>) -> Self {
+        Self { mode, curve, path }
     }
 
     pub const fn curve(&self) -> Curve {
@@ -94,15 +83,22 @@ impl<'chain, const B: usize> SecretKey<'chain, B> {
     }
 
     #[inline(never)]
-    fn generate(&self) -> Result<Zeroizing<cx_ecfp_private_key_t>, Error> {
+    fn generate(
+        &self,
+        chaincode: Option<&mut [u8; CHAIN_CODE_LEN]>,
+    ) -> Result<Zeroizing<cx_ecfp_private_key_t>, Error> {
         let mut out = MaybeUninit::uninit();
 
-        self.generate_into(&mut out)?;
+        self.generate_into(chaincode, &mut out)?;
 
         Ok(Zeroizing::new(unsafe { out.assume_init() }))
     }
 
-    fn generate_into(&self, out: &mut MaybeUninit<cx_ecfp_private_key_t>) -> Result<(), Error> {
+    fn generate_into(
+        &self,
+        chaincode: Option<&mut [u8; CHAIN_CODE_LEN]>,
+        out: &mut MaybeUninit<cx_ecfp_private_key_t>,
+    ) -> Result<(), Error> {
         zemu_sys::zemu_log_stack("SecretKey::generate_into\x00");
         // Prepare secret key data with the ledger's key
         let mut sk_data = [0; 64];
@@ -112,7 +108,7 @@ impl<'chain, const B: usize> SecretKey<'chain, B> {
             self.curve,
             &self.path,
             &mut sk_data,
-            self.chain,
+            chaincode,
         )?;
 
         // Use the secret key data to prepare a secret key
@@ -127,14 +123,18 @@ impl<'chain, const B: usize> SecretKey<'chain, B> {
     pub fn public(&self) -> Result<PublicKey, Error> {
         let mut out = MaybeUninit::uninit();
 
-        self.public_into(&mut out)?;
+        self.public_into(None, &mut out)?;
 
         //this is safe as the call above initialized it
         Ok(unsafe { out.assume_init() })
     }
 
     #[inline(never)]
-    pub fn public_into(&self, out: &mut MaybeUninit<PublicKey>) -> Result<(), Error> {
+    pub fn public_into(
+        &self,
+        chaincode: Option<&mut [u8; CHAIN_CODE_LEN]>,
+        out: &mut MaybeUninit<PublicKey>,
+    ) -> Result<(), Error> {
         zemu_sys::zemu_log_stack("SecretKey::public_into\x00");
 
         let pk = {
@@ -152,7 +152,7 @@ impl<'chain, const B: usize> SecretKey<'chain, B> {
         let mut sk = MaybeUninit::uninit();
         //get keypair with the generated secret key
         // discard secret key as it's not necessary anymore
-        cx_ecfp_generate_pair_into(Some(self), self.curve, &mut sk, pk)?;
+        cx_ecfp_generate_pair_into(Some(self), self.curve, chaincode, &mut sk, pk)?;
         //SAFE: sk is initialized
         unsafe { sk.assume_init() }.zeroize();
 
@@ -186,7 +186,7 @@ impl<'chain, const B: usize> SecretKey<'chain, B> {
 mod bindings {
     #![allow(unused_imports)]
 
-    use super::{Curve, Error, HasherId, SecretKey};
+    use super::{Curve, Error, HasherId, SecretKey, CHAIN_CODE_LEN};
     use crate::{
         errors::catch,
         raw::{cx_ecfp_private_key_t, cx_ecfp_public_key_t},
@@ -262,6 +262,7 @@ mod bindings {
     pub fn cx_ecfp_generate_pair_into<const B: usize>(
         sk: Option<&SecretKey<B>>,
         curve: Curve,
+        chaincode: Option<&mut [u8; CHAIN_CODE_LEN]>,
         out_sk: &mut MaybeUninit<cx_ecfp_private_key_t>,
         out_pk: &mut MaybeUninit<cx_ecfp_public_key_t>,
     ) -> Result<(), Error> {
@@ -270,7 +271,7 @@ mod bindings {
 
         let keep = match sk {
             Some(sk) => {
-                sk.generate_into(out_sk)?;
+                sk.generate_into(chaincode, out_sk)?;
                 true
             }
             None => {
@@ -319,7 +320,7 @@ mod bindings {
 
         let crv = sk.curve();
 
-        let mut raw_sk = sk.generate()?;
+        let mut raw_sk = sk.generate(None)?;
         let raw_sk: *mut cx_ecfp_private_key_t = &mut *raw_sk;
         let raw_sk = raw_sk as *const _;
 
@@ -365,7 +366,7 @@ mod bindings {
 
         let crv = sk.curve();
 
-        let mut raw_sk = sk.generate()?;
+        let mut raw_sk = sk.generate(None)?;
         let raw_sk: *mut cx_ecfp_private_key_t = &mut *raw_sk;
         let raw_sk = raw_sk as *const _;
 

@@ -14,11 +14,11 @@
 *  limitations under the License.
 ********************************************************************************/
 use bolos_common::hash::HasherId;
-use core::{marker::PhantomData, mem::MaybeUninit};
+use core::mem::MaybeUninit;
 
 use crate::Error;
 
-use super::{bip32::BIP32Path, Curve, Mode};
+use super::{bip32::BIP32Path, Curve, Mode, CHAIN_CODE_LEN};
 
 #[derive(Clone, Copy)]
 pub struct PublicKey {
@@ -67,14 +67,13 @@ impl AsRef<[u8]> for PublicKey {
     }
 }
 
-pub struct SecretKey<'chain, const B: usize> {
+pub struct SecretKey<const B: usize> {
     curve: Curve,
     bytes: [u8; 32],
-    _chain: PhantomData<&'chain ()>,
 }
 
-impl<'chain, const B: usize> SecretKey<'chain, B> {
-    pub fn new(_: Mode, curve: Curve, _: BIP32Path<B>, _: Option<&[u8; 32]>) -> Self {
+impl<const B: usize> SecretKey<B> {
+    pub fn new(_: Mode, curve: Curve, _: BIP32Path<B>) -> Self {
         let bytes = match curve {
             Curve::Secp256K1 => {
                 let secret = k256::ecdsa::SigningKey::random(&mut rand8::thread_rng());
@@ -96,11 +95,7 @@ impl<'chain, const B: usize> SecretKey<'chain, B> {
             }
         };
 
-        Self {
-            curve,
-            bytes,
-            _chain: Default::default(),
-        }
+        Self { curve, bytes }
     }
 
     pub const fn curve(&self) -> Curve {
@@ -158,7 +153,11 @@ impl<'chain, const B: usize> SecretKey<'chain, B> {
         })
     }
 
-    pub fn public_into(&self, out: &mut MaybeUninit<PublicKey>) -> Result<(), Error> {
+    pub fn public_into(
+        &self,
+        _: Option<&mut [u8; CHAIN_CODE_LEN]>,
+        out: &mut MaybeUninit<PublicKey>,
+    ) -> Result<(), Error> {
         let pk = self.public()?;
 
         *out = MaybeUninit::new(pk);

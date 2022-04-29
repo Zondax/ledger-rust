@@ -20,6 +20,8 @@ use std::convert::TryFrom;
 
 pub use bolos_common::bip32;
 
+pub const CHAIN_CODE_LEN: usize = 32;
+
 //Constants
 use crate::raw::{
     cx_curve_e_CX_CURVE_BLS12_381_G1, cx_curve_e_CX_CURVE_BrainPoolP256R1,
@@ -254,7 +256,7 @@ mod bindings {
         curve: Curve,
         path: &BIP32Path<B>,
         out: &mut [u8],
-        chain: Option<&[u8; 32]>,
+        chain: Option<&mut [u8; 32]>,
     ) -> Result<(), Error> {
         zemu_sys::zemu_log_stack("os_perso_derive_node_with_seed_key\x00");
         let curve: u8 = curve.into();
@@ -267,14 +269,7 @@ mod bindings {
         };
 
         let chain = if let Some(chain) = chain {
-            //Note, this is HORRIBLE
-            // I hate it so much, but C should actually _not_ edit this;
-            // yet, a *mut pointer is expected. ARGH!
-            // So I have to get a *const pointer and cast it to *mut
-            // I beg forgiveness. Do we have a better solution?
-            // I mean obviously, made `chain Option<&mut [u8; 32]>`,
-            // but that doesn't really describe the API correctly.
-            chain.as_ptr() as *mut [u8; 32]
+            chain.as_mut_ptr()
         } else {
             std::ptr::null_mut()
         };

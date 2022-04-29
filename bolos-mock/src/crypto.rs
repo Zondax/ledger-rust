@@ -17,6 +17,8 @@ pub use bolos_common::bip32;
 
 use std::convert::TryFrom;
 
+pub const CHAIN_CODE_LEN: usize = 32;
+
 #[derive(Clone, Copy)]
 pub enum Curve {
     Secp256K1,
