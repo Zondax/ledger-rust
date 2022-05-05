@@ -14,16 +14,16 @@
 *  limitations under the License.
 ********************************************************************************/
 use core::mem::MaybeUninit;
-use sha2::digest::{Digest, FixedOutput};
+use ripemd::digest::{Digest, FixedOutputReset};
 use std::convert::Infallible;
 
-pub struct Sha256(sha2::Sha256);
+pub struct Ripemd160(ripemd::Ripemd160);
 
-impl Sha256 {
-    pub const DIGEST_LEN: usize = 32;
+impl Ripemd160 {
+    pub const DIGEST_LEN: usize = 20;
 
     pub fn new() -> Result<Self, Infallible> {
-        Ok(Self(sha2::Sha256::new()))
+        Ok(Self(ripemd::Ripemd160::new()))
     }
 
     pub fn new_gce(loc: &mut MaybeUninit<Self>) -> Result<(), Infallible> {
@@ -47,7 +47,7 @@ impl Sha256 {
         fn digest(input: &[u8]) -> Result<[u8; S], Error>;
     }
 */
-impl super::Hasher<{ Sha256::DIGEST_LEN }> for Sha256 {
+impl super::Hasher<{ Ripemd160::DIGEST_LEN }> for Ripemd160 {
     type Error = Infallible;
 
     fn update(&mut self, input: &[u8]) -> Result<(), Self::Error> {
@@ -81,10 +81,10 @@ impl super::Hasher<{ Sha256::DIGEST_LEN }> for Sha256 {
     }
 }
 
-impl super::HasherId for Sha256 {
+impl super::HasherId for Ripemd160 {
     type Id = u8;
 
     fn id() -> Self::Id {
-        3
+        4
     }
 }

@@ -37,6 +37,8 @@ cfg_if! {
 pub mod swapping_buffer;
 pub use swapping_buffer::*;
 
+pub mod bech32;
+
 cfg_if! {
     if #[cfg(all(__impl, __mock))] {
         compiler_error!("Can't have both `__impl` and `__mock` enabled");

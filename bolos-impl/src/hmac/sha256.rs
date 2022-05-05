@@ -28,6 +28,8 @@ pub struct Sha256HMAC {
 }
 
 impl Sha256HMAC {
+    pub const HMAC_LEN: usize = 32;
+
     pub fn new(key: &[u8]) -> Result<Self, Error> {
         let mut this = Self {
             state: Default::default(),
@@ -74,11 +76,11 @@ impl Sha256HMAC {
         super::cx_hmac(self.super_state(), false, input, None)
     }
 
-    pub fn finalize_hmac_into(mut self, out: &mut [u8; 32]) -> Result<(), Error> {
+    pub fn finalize_hmac_into(mut self, out: &mut [u8; Self::HMAC_LEN]) -> Result<(), Error> {
         super::cx_hmac(self.super_state(), false, &[], Some(&mut out[..]))
     }
 
-    pub fn finalize_hmac(self) -> Result<[u8; 32], Error> {
+    pub fn finalize_hmac(self) -> Result<[u8; Self::HMAC_LEN], Error> {
         let mut out = [0; 32];
 
         self.finalize_hmac_into(&mut out)?;

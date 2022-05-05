@@ -19,6 +19,8 @@ use core::mem::MaybeUninit;
 pub struct Blake2b<const S: usize>(blake2::VarBlake2b);
 
 impl<const S: usize> Blake2b<S> {
+    pub const DIGEST_LEN: usize = S;
+
     pub fn new_gce(loc: &mut MaybeUninit<Self>) -> Result<(), crate::Error> {
         *loc = MaybeUninit::new(Self::new()?);
 

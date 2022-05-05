@@ -28,6 +28,8 @@ pub struct Blake2b<const S: usize> {
 }
 
 impl<const S: usize> Blake2b<S> {
+    pub const DIGEST_LEN: usize = S;
+
     #[inline(never)]
     pub fn new() -> Result<Self, Error> {
         zemu_sys::zemu_log_stack("Blake2b::new\x00");

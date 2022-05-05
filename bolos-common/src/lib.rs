@@ -22,6 +22,8 @@ pub mod bip32;
 
 pub mod hash {
     pub trait Hasher<const S: usize>: Sized {
+        const DIGEST_LEN: usize = S;
+
         type Error;
 
         /// Add data to hasher

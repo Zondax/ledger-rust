@@ -15,19 +15,21 @@
 ********************************************************************************/
 #![allow(unused_imports)]
 
-use crate::raw::{cx_hash_t, cx_md_t, cx_sha512_t};
+use crate::raw::{cx_hash_t, cx_md_t, cx_ripemd160_t};
 use crate::{errors::catch, Error};
 
 use super::CxHash;
 
 use core::{mem::MaybeUninit, ptr::addr_of_mut};
 
-pub struct Sha512 {
-    state: cx_sha512_t,
+pub const DIGEST_LEN: usize = 20;
+
+pub struct Ripemd160 {
+    state: cx_ripemd160_t,
 }
 
-impl Sha512 {
-    pub const DIGEST_LEN: usize = 64;
+impl Ripemd160 {
+    pub const DIGEST_LEN: usize = DIGEST_LEN;
 
     pub fn new() -> Result<Self, Error> {
         let mut this = Self {
@@ -45,17 +47,17 @@ impl Sha512 {
         Self::init_state(state)
     }
 
-    fn init_state(state: *mut cx_sha512_t) -> Result<(), Error> {
+    fn init_state(state: *mut cx_ripemd160_t) -> Result<(), Error> {
         cfg_if! {
             if #[cfg(bolos_sdk)] {
-                match unsafe { crate::raw::cx_sha512_init_no_throw(
+                match unsafe { crate::raw::cx_ripemd160_init_no_throw(
                     state as *mut _
                 )} {
                     0 => {},
                     err => return Err(err.into()),
                 }
             } else {
-                unimplemented!("sha512init called in non-bolos")
+                unimplemented!("ripemd160 init called in non-bolos")
             }
         }
 
@@ -63,7 +65,7 @@ impl Sha512 {
     }
 }
 
-impl CxHash<64> for Sha512 {
+impl CxHash<DIGEST_LEN> for Ripemd160 {
     fn cx_init_hasher() -> Result<Self, Error> {
         Self::new()
     }
@@ -81,6 +83,6 @@ impl CxHash<64> for Sha512 {
     }
 
     fn cx_id() -> cx_md_t {
-        crate::raw::cx_md_e_CX_SHA512
+        crate::raw::cx_md_e_CX_RIPEMD160
     }
 }

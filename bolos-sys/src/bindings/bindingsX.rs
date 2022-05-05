@@ -704,6 +704,7 @@ pub const SYSCALL_io_button_read_ID_IN: u32 = 1610649378;
 pub const SYSCALL_PARAMETER_ARRAY_MAX_LEN: u32 = 11;
 pub const CX_AES_BLOCK_SIZE: u32 = 16;
 pub const CX_DES_BLOCK_SIZE: u32 = 8;
+pub const CX_RIPEMD160_SIZE: u32 = 20;
 pub const CX_SHA256_SIZE: u32 = 32;
 pub const CX_SHA384_SIZE: u32 = 48;
 pub const CX_SHA512_SIZE: u32 = 64;
@@ -9955,6 +9956,93 @@ extern "C" {
 extern "C" {
     pub fn cx_trng_init();
 }
+#[doc = " @brief RIPEMD-160 context."]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_ripemd160_s {
+    #[doc = "< See #cx_hash_header_s"]
+    pub header: cx_hash_header_s,
+    #[doc = "< Pending partial block length"]
+    pub blen: size_t,
+    #[doc = "< Pending partial block"]
+    pub block: [u8; 64usize],
+    #[doc = "< Current digest state"]
+    pub acc: [u8; 20usize],
+}
+#[test]
+fn bindgen_test_layout_cx_ripemd160_s() {
+    assert_eq!(
+        ::core::mem::size_of::<cx_ripemd160_s>(),
+        96usize,
+        concat!("Size of: ", stringify!(cx_ripemd160_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_ripemd160_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(cx_ripemd160_s))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<cx_ripemd160_s>())).header as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ripemd160_s),
+            "::",
+            stringify!(header)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<cx_ripemd160_s>())).blen as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ripemd160_s),
+            "::",
+            stringify!(blen)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<cx_ripemd160_s>())).block as *const _ as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ripemd160_s),
+            "::",
+            stringify!(block)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<cx_ripemd160_s>())).acc as *const _ as usize },
+        76usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ripemd160_s),
+            "::",
+            stringify!(acc)
+        )
+    );
+}
+impl Default for cx_ripemd160_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief RIPEMD-160 context."]
+pub type cx_ripemd160_t = cx_ripemd160_s;
+extern "C" {
+    #[doc = " @brief   Initialize a RIPEMD-160 context."]
+    #[doc = ""]
+    #[doc = " @param[out] hash Pointer to the context."]
+    #[doc = "                  The context shall be in RAM."]
+    #[doc = ""]
+    #[doc = " @return          Error code:"]
+    #[doc = "                  - CX_OK on success"]
+    pub fn cx_ripemd160_init_no_throw(hash: *mut cx_ripemd160_t) -> cx_err_t;
+}
 #[doc = " @brief SHA-224 and SHA-256 context"]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -10165,6 +10253,209 @@ extern "C" {
     #[doc = " @param[out] out_len Length of the output."]
     #[doc = "                     This is actually 512 bits."]
     pub fn cx_hash_sha512(in_: *const u8, in_len: size_t, out: *mut u8, out_len: size_t) -> size_t;
+}
+#[doc = " @brief KECCAK, SHA3 and SHA3-XOF context"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_sha3_s {
+    #[doc = "< @copydoc cx_ripemd160_s::header"]
+    pub header: cx_hash_header_s,
+    #[doc = "< Output digest size"]
+    pub output_size: size_t,
+    #[doc = "< Input block size"]
+    pub block_size: size_t,
+    #[doc = "< @copydoc cx_ripemd160_s::blen"]
+    pub blen: size_t,
+    #[doc = "< @copydoc cx_ripemd160_s::block"]
+    pub block: [u8; 200usize],
+    #[doc = "< @copydoc cx_ripemd160_s::acc"]
+    pub acc: [uint64bits_t; 25usize],
+}
+#[test]
+fn bindgen_test_layout_cx_sha3_s() {
+    assert_eq!(
+        ::core::mem::size_of::<cx_sha3_s>(),
+        424usize,
+        concat!("Size of: ", stringify!(cx_sha3_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_sha3_s>(),
+        8usize,
+        concat!("Alignment of ", stringify!(cx_sha3_s))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<cx_sha3_s>())).header as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_sha3_s),
+            "::",
+            stringify!(header)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<cx_sha3_s>())).output_size as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_sha3_s),
+            "::",
+            stringify!(output_size)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<cx_sha3_s>())).block_size as *const _ as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_sha3_s),
+            "::",
+            stringify!(block_size)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<cx_sha3_s>())).blen as *const _ as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_sha3_s),
+            "::",
+            stringify!(blen)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<cx_sha3_s>())).block as *const _ as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_sha3_s),
+            "::",
+            stringify!(block)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<cx_sha3_s>())).acc as *const _ as usize },
+        224usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_sha3_s),
+            "::",
+            stringify!(acc)
+        )
+    );
+}
+impl Default for cx_sha3_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief KECCAK, SHA3 and SHA3-XOF context"]
+pub type cx_sha3_t = cx_sha3_s;
+extern "C" {
+    #[doc = " @brief   Initialize a SHA3 context."]
+    #[doc = ""]
+    #[doc = " @details Supported output sizes in bits:"]
+    #[doc = "            - 224"]
+    #[doc = "            - 256"]
+    #[doc = "            - 384"]
+    #[doc = "            - 512"]
+    #[doc = ""]
+    #[doc = " @param[out] hash Pointer to the SHA3 context."]
+    #[doc = "                  The context shall be in RAM."]
+    #[doc = ""]
+    #[doc = " @param[in]  size Length of the hash output in bits."]
+    #[doc = ""]
+    #[doc = " @return          Error code:"]
+    #[doc = "                  - CX_OK on success"]
+    #[doc = "                  - CX_INVALID_PARAMETER"]
+    pub fn cx_sha3_init_no_throw(hash: *mut cx_sha3_t, size: size_t) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief Initialize a KECCAK context."]
+    #[doc = ""]
+    #[doc = " @details Supported output sizes in bits:"]
+    #[doc = "            - 224"]
+    #[doc = "            - 256"]
+    #[doc = "            - 384"]
+    #[doc = "            - 512"]
+    #[doc = ""]
+    #[doc = ""]
+    #[doc = " @param[out] hash  Pointer to the KECCAK context."]
+    #[doc = "                   The context shall be in RAM."]
+    #[doc = ""]
+    #[doc = " @param[in]  size  Length of the hash output in bits."]
+    #[doc = ""]
+    #[doc = " @return           Error code:"]
+    #[doc = "                   - CX_OK on success"]
+    #[doc = "                   - CX_INVALID_PARAMETER"]
+    pub fn cx_keccak_init_no_throw(hash: *mut cx_sha3_t, size: size_t) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Initialize a SHA3-XOF context."]
+    #[doc = ""]
+    #[doc = " @details SHAKE128 is a SHA3-XOF (Extendable Output Function"]
+    #[doc = "          based on SHA3) with a 128-bit security."]
+    #[doc = "          Supported output sizes in bits:"]
+    #[doc = "            - 256"]
+    #[doc = "            - 512"]
+    #[doc = ""]
+    #[doc = " @param[out] hash      Pointer to the context."]
+    #[doc = "                       The context shall be in RAM."]
+    #[doc = ""]
+    #[doc = " @param[in]  out_size  Length of the output in bits."]
+    #[doc = ""]
+    #[doc = " @return               Error code:"]
+    #[doc = "                       - CX_OK on success"]
+    #[doc = "                       - CX_INVALID_PARAMETER"]
+    pub fn cx_shake128_init_no_throw(hash: *mut cx_sha3_t, out_size: size_t) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Initialize a SHA3-XOF context."]
+    #[doc = ""]
+    #[doc = " @details SHAKE256 is a SHA3-XOF (Extendable Output Function"]
+    #[doc = "          based on SHA3) with a 256-bit security."]
+    #[doc = "          Supported output sizes in bits:"]
+    #[doc = "            - 256"]
+    #[doc = "            - 512"]
+    #[doc = ""]
+    #[doc = " @param[out] hash      Pointer to the context."]
+    #[doc = "                       The context shall be in RAM."]
+    #[doc = ""]
+    #[doc = " @param[in]  out_size  Length of the output in bits."]
+    #[doc = ""]
+    #[doc = " @return               Error code:"]
+    #[doc = "                       - CX_OK on success"]
+    #[doc = "                       - CX_INVALID_PARAMETER"]
+    pub fn cx_shake256_init_no_throw(hash: *mut cx_sha3_t, out_size: size_t) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Initialize a SHA3-XOF context."]
+    #[doc = ""]
+    #[doc = " @details This can be used to initialize either SHAKE128"]
+    #[doc = "          or SHAKE256."]
+    #[doc = "          Supported output sizes in bits:"]
+    #[doc = "            - 256"]
+    #[doc = "            - 512"]
+    #[doc = ""]
+    #[doc = " @param[out] hash         Pointer to the context."]
+    #[doc = "                          The context shall be in RAM."]
+    #[doc = ""]
+    #[doc = " @param[in]  size         Length of SHA3 digest in bits."]
+    #[doc = ""]
+    #[doc = " @param[in]  out_length   Length of the output in bytes."]
+    #[doc = ""]
+    #[doc = " @return                  Error code:"]
+    #[doc = "                          - CX_OK on success"]
+    #[doc = "                          - CX_INVALID_PARAMETER"]
+    pub fn cx_sha3_xof_init_no_throw(
+        hash: *mut cx_sha3_t,
+        size: size_t,
+        out_length: size_t,
+    ) -> cx_err_t;
 }
 #[doc = "< Size of a block"]
 pub const blake2b_constant_BLAKE2B_BLOCKBYTES: blake2b_constant = 128;
@@ -10448,6 +10739,80 @@ impl Default for cx_hmac_t {
             s.assume_init()
         }
     }
+}
+#[doc = " @brief HMAC context, concrete type for RIPEMD160"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_hmac_ripemd160_t {
+    #[doc = "< Key"]
+    pub key: [u8; 128usize],
+    #[doc = "< Hash context"]
+    pub hash_ctx: cx_ripemd160_t,
+}
+#[test]
+fn bindgen_test_layout_cx_hmac_ripemd160_t() {
+    assert_eq!(
+        ::core::mem::size_of::<cx_hmac_ripemd160_t>(),
+        224usize,
+        concat!("Size of: ", stringify!(cx_hmac_ripemd160_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_hmac_ripemd160_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(cx_hmac_ripemd160_t))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<cx_hmac_ripemd160_t>())).key as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_hmac_ripemd160_t),
+            "::",
+            stringify!(key)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<cx_hmac_ripemd160_t>())).hash_ctx as *const _ as usize },
+        128usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_hmac_ripemd160_t),
+            "::",
+            stringify!(hash_ctx)
+        )
+    );
+}
+impl Default for cx_hmac_ripemd160_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+extern "C" {
+    #[doc = " @brief   Initialize a HMAC-RIPEMD160 context."]
+    #[doc = ""]
+    #[doc = " @param[out] hmac    Pointer to the HMAC context."]
+    #[doc = "                     The context shall be in RAM."]
+    #[doc = ""]
+    #[doc = " @param[in]  key     Pointer to the HMAC key value."]
+    #[doc = "                     If a key has been set, passing"]
+    #[doc = "                     NULL pointeur will reinitialize"]
+    #[doc = "                     the context with the previously set key."]
+    #[doc = ""]
+    #[doc = " @param [in] key_len Length of the key."]
+    #[doc = "                     The key length shall be less than 64 bytes."]
+    #[doc = ""]
+    #[doc = " @return             Error code:"]
+    #[doc = "                     - CX_OK on success"]
+    #[doc = "                     - CX_INVALID_PARAMETER"]
+    pub fn cx_hmac_ripemd160_init_no_throw(
+        hmac: *mut cx_hmac_ripemd160_t,
+        key: *const u8,
+        key_len: size_t,
+    ) -> cx_err_t;
 }
 #[doc = " @brief HMAC context, concrete type for SHA-224/SHA-256"]
 #[repr(C)]

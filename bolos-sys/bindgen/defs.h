@@ -21,6 +21,8 @@
 #define HAVE_BLAKE2
 #define HAVE_SHA256
 #define HAVE_SHA512
+#define HAVE_RIPEMD160
+#define HAVE_SHA3
 
 #define HAVE_HMAC
 

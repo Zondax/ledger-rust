@@ -112,6 +112,7 @@ fn produce_custom_ty(
         ));
     };
 
+    //if we are planning to export this to cbindgen, make the static pub and add #[no_mangle]
     let (cbindgen_attrs, cbindgen_vis): (_, Option<Token![pub]>) = if cbindgen {
         (
             quote!(
@@ -126,16 +127,27 @@ fn produce_custom_ty(
     let output = quote! {
         #[allow(non_snake_case)]
         #[doc(hidden)]
+        /// This module contains a `lazy_static`-like implementation for ledger devices.
+        /// It avoids using atomics as those aren't present in ledger devices, aswell as bypass
+        /// the non-standard BSS initialization that is (was) present in the emulator and in the devices,
+        /// where BSS was initialized with 0x0A instead of 0x00.
         mod #mod_name {
             use super::*;
             use ::core::mem::MaybeUninit;
 
-            static mut UNINITIALIZED: MaybeUninit<u8> = MaybeUninit::uninit();
+            /// Marker, if it is a known value (currently 0x01),
+            /// then we have already initialized the statics of this module
+            static mut UNINITIALIZED_SENTINEL: u8 = 0;
 
             #cbindgen_attrs
             #cbindgen_vis static mut #static_name: MaybeUninit<#ty> = MaybeUninit::uninit();
 
             #[allow(non_camel_case_types)]
+            /// Acts as a "gateway" to the actual value, and is what is exposed outside [#mod_name]
+            ///
+            /// In the exposed static item, this struct is initialized in a `const` way (via [#struct_name::new])
+            /// but as this type implements [::core::ops::Deref] when accessing the static it will deref itself to
+            /// [#static_name], which _actually_ contains the _initialized_ data
             pub struct #struct_name {
                 __zst: (),
             }
@@ -147,6 +159,7 @@ fn produce_custom_ty(
                     }
                 }
 
+                /// Called always when attempting to access the inner static
                 fn init(&self) {
                     fn __initialize() -> #ty { #init }
 
@@ -154,19 +167,23 @@ fn produce_custom_ty(
                     // single-threaded code guarantees no data races when accessing
                     // global variables.
                     // Furthermore, u8 can't be uninitialized as any value is valid.
-                    let initialized_ptr = unsafe { UNINITIALIZED.as_mut_ptr() };
+                    let initialized_ptr: *mut u8 = unsafe { &mut UNINITIALIZED_SENTINEL };
 
                     //SAFETY:
                     // ptr comes from rust so guaranteed to be aligned and not null,
                     // is also initialized (see above), not deallocated (global)
+                    //
+                    // the read is volatile as to avoid the compiler from optimizing out this "simple" value
                     let initialized_val = unsafe { ::core::ptr::read_volatile(initialized_ptr as *const _) };
 
+                    //check against a known value, to avoid the non-standard BSS initialization
                     if initialized_val != 1u8 {
                         //SAFETY:
                         // single threaded access, non-null, aligned
                         unsafe { #static_name.as_mut_ptr().write(__initialize()); };
 
                         //SAFETY: see above when reading `initialized_val`
+                        // write to avoid falling into this branch again!
                         unsafe { initialized_ptr.write(1u8); }
                     }
 

@@ -18,7 +18,7 @@ use core::mem::MaybeUninit;
 
 use crate::Error;
 
-use super::{bip32::BIP32Path, Curve, Mode};
+use super::{bip32::BIP32Path, Curve, Mode, CHAIN_CODE_LEN};
 
 #[derive(Clone, Copy)]
 pub struct PublicKey {
@@ -153,7 +153,11 @@ impl<const B: usize> SecretKey<B> {
         })
     }
 
-    pub fn public_into(&self, out: &mut MaybeUninit<PublicKey>) -> Result<(), Error> {
+    pub fn public_into(
+        &self,
+        _: Option<&mut [u8; CHAIN_CODE_LEN]>,
+        out: &mut MaybeUninit<PublicKey>,
+    ) -> Result<(), Error> {
         let pk = self.public()?;
 
         *out = MaybeUninit::new(pk);
