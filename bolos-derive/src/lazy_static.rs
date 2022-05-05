@@ -137,7 +137,7 @@ fn produce_custom_ty(
 
             /// Marker, if it is a known value (currently 0x01),
             /// then we have already initialized the statics of this module
-            static mut UNINITIALIZED: MaybeUninit<u8> = MaybeUninit::uninit();
+            static mut UNINITIALIZED_SENTINEL: u8 = 0;
 
             #cbindgen_attrs
             #cbindgen_vis static mut #static_name: MaybeUninit<#ty> = MaybeUninit::uninit();
@@ -167,7 +167,7 @@ fn produce_custom_ty(
                     // single-threaded code guarantees no data races when accessing
                     // global variables.
                     // Furthermore, u8 can't be uninitialized as any value is valid.
-                    let initialized_ptr = unsafe { UNINITIALIZED.as_mut_ptr() };
+                    let initialized_ptr: *mut u8 = unsafe { &mut UNINITIALIZED_SENTINEL };
 
                     //SAFETY:
                     // ptr comes from rust so guaranteed to be aligned and not null,
