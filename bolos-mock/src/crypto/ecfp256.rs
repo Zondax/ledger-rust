@@ -73,20 +73,46 @@ pub struct SecretKey<const B: usize> {
 }
 
 impl<const B: usize> SecretKey<B> {
-    pub fn new(_: Mode, curve: Curve, _: BIP32Path<B>) -> Self {
+    fn rng8(path: BIP32Path<B>) -> rand_chacha8::ChaCha8Rng {
+        use rand_chacha8::rand_core::SeedableRng;
+
+        let mut seed = [0; 32 / 4];
+        for (i, c) in path.components().iter().enumerate().take(32 / 4) {
+            seed[i] = *c;
+        }
+
+        let seed: [u8; 32] = unsafe { std::mem::transmute(seed) };
+
+        rand_chacha8::ChaCha8Rng::from_seed(seed)
+    }
+
+    fn rng7(path: BIP32Path<B>) -> rand_chacha7::ChaCha8Rng {
+        use rand_chacha7::rand_core::SeedableRng;
+
+        let mut seed = [0; 32 / 4];
+        for (i, c) in path.components().iter().enumerate().take(32 / 4) {
+            seed[i] = *c;
+        }
+
+        let seed: [u8; 32] = unsafe { std::mem::transmute(seed) };
+
+        rand_chacha7::ChaCha8Rng::from_seed(seed)
+    }
+
+    pub fn new(_: Mode, curve: Curve, path: BIP32Path<B>) -> Self {
         let bytes = match curve {
             Curve::Secp256K1 => {
-                let secret = k256::ecdsa::SigningKey::random(&mut rand8::thread_rng());
+                let secret = k256::ecdsa::SigningKey::random(&mut Self::rng8(path));
 
                 *secret.to_bytes().as_ref()
             }
             Curve::Secp256R1 => {
-                let secret = p256::ecdsa::SigningKey::random(&mut rand8::thread_rng());
+                let secret = p256::ecdsa::SigningKey::random(&mut Self::rng8(path));
 
                 *secret.to_bytes().as_ref()
             }
             Curve::Ed25519 => {
-                let secret = ed25519_dalek::SecretKey::generate(&mut rand7::thread_rng());
+                let secret = ed25519_dalek::SecretKey::generate(&mut Self::rng7(path));
 
                 secret.to_bytes()
             }
