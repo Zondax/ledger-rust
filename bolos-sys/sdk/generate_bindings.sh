@@ -17,7 +17,7 @@ SCRIPT_DIR=$(dirname "$0")
 # Nano S+
 : "${BOLOS_SDK_SP_PATH:=$SCRIPT_DIR/nanosplus-secure-sdk}"
 : "${BOLOS_SDK_SP_GIT:=https://github.com/LedgerHQ/nanosplus-secure-sdk}"
-: "${BOLOS_SDK_SP_GIT_HASH:=dd4684c36592ddbdfc1df78e045d93376beaba96}"
+: "${BOLOS_SDK_SP_GIT_HASH:=21f284bf7999ac5233b46a3a21f9176b1fc68478}"
 
 TMP_HEADERS=$(dirname $TMP_HEADERS_PATH)
 
