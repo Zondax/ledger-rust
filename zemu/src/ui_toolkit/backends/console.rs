@@ -24,6 +24,8 @@ use arrayvec::ArrayString;
 const KEY_SIZE: usize = 64;
 const MESSAGE_SIZE: usize = 1024;
 
+use bolos_sys::pic::PIC;
+
 #[bolos_derive::lazy_static]
 pub static mut RUST_ZUI: Zui<ConsoleBackend, KEY_SIZE> = Zui::new();
 
