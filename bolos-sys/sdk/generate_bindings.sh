@@ -9,15 +9,15 @@ SCRIPT_DIR=$(dirname "$0")
 # Nano S
 : "${BOLOS_SDK_S_PATH:=$SCRIPT_DIR/nanos-secure-sdk}"
 : "${BOLOS_SDK_S_GIT:=https://github.com/LedgerHQ/nanos-secure-sdk}"
-: "${BOLOS_SDK_S_GIT_HASH:=1a20ae6b83329c6c0107eec0a3002a199355abbb}"
+: "${BOLOS_SDK_S_GIT_HASH:=026a1f5cf55e68f74062cb2795804f9b4554ea15}"
 # Nano X
 : "${BOLOS_SDK_X_PATH:=$SCRIPT_DIR/nanox-secure-sdk}"
 : "${BOLOS_SDK_X_GIT:=https://github.com/LedgerHQ/nanox-secure-sdk}"
-: "${BOLOS_SDK_X_GIT_HASH:=ba45af7f4208b6c02ac35fb0d43a914228febd56}"
+: "${BOLOS_SDK_X_GIT_HASH:=86324f6a73e269c04f6a3e3cf41f6569a8cc6c6b}"
 # Nano S+
 : "${BOLOS_SDK_SP_PATH:=$SCRIPT_DIR/nanosplus-secure-sdk}"
 : "${BOLOS_SDK_SP_GIT:=https://github.com/LedgerHQ/nanosplus-secure-sdk}"
-: "${BOLOS_SDK_SP_GIT_HASH:=dd4684c36592ddbdfc1df78e045d93376beaba96}"
+: "${BOLOS_SDK_SP_GIT_HASH:=e31465f4c99b7f6fdef2dfc7908a4006616556bd}"
 
 TMP_HEADERS=$(dirname $TMP_HEADERS_PATH)
 

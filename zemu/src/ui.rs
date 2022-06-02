@@ -17,6 +17,8 @@ use bolos_sys::raw::{
     io_exchange, G_io_apdu_buffer as APDU_BUFFER, CHANNEL_APDU, IO_ASYNCH_REPLY, IO_RETURN_AFTER_TX,
 };
 
+use bolos_sys::pic::PIC;
+
 mod comm;
 pub use comm::*;
 
