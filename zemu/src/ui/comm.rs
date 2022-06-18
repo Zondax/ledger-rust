@@ -68,5 +68,5 @@ pub trait Show: Viewable + Sized {
     /// This is also why the function is unsafe, to make sure this postcondition is held
     // for now we consume the item so we can guarantee
     // safe usage
-    unsafe fn show(self, flags: &mut u32) -> Result<(), ShowTooBig>;
+    unsafe fn show(self, flags: &mut u32) -> Result<(usize, u16), ShowTooBig>;
 }
