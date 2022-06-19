@@ -33,6 +33,8 @@ impl<T: Viewable + Sized> Show for T {
     unsafe fn show(mut self, _: &mut u32) -> Result<(usize, u16), ShowTooBig> {
         let out = OUT.as_mut().expect("UI MOCK LAYER NOT INITIALIZED");
 
+
+        // FIXME: The mock currently auto accepts. We should allow navigating + accepting from the test
         let response = self.accept(out);
 
         OUT.take();
