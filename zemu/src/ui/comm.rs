@@ -27,16 +27,16 @@ pub trait Viewable {
     /// Return the number of items to render
     fn num_items(&mut self) -> Result<u8, ViewError>;
 
-    /// Render `item_n` into `title` and `message`
+    /// Render `item_idx` into `title` and `message`
     ///
     /// If an item is too long to render in the output, the number of "pages" is returned,
-    /// and each page can be retrieved via the `page` parameter
+    /// and each page can be retrieved via the `page_idx` parameter
     fn render_item(
         &mut self,
-        item_n: u8,
+        item_idx: u8,
         title: &mut [u8],
         message: &mut [u8],
-        page: u8,
+        page_idx: u8,
     ) -> Result<u8, ViewError>;
 
     /// Called when the last item shown has been "accepted"
@@ -44,13 +44,13 @@ pub trait Viewable {
     /// `out` is the apdu_buffer
     ///
     /// Return is number of bytes written to out and the return code
-    fn accept(&mut self, out: &mut [u8]) -> (usize, u16);
+    fn accept(&mut self, apdu_response: &mut [u8]) -> (usize, u16);
 
     /// Called when the last item shows has been "rejected"
     /// `out` is the apdu_buffer
     ///
     /// Return is number of bytes written to out and the return code
-    fn reject(&mut self, out: &mut [u8]) -> (usize, u16);
+    fn reject(&mut self, apdu_response: &mut [u8]) -> (usize, u16);
 }
 
 pub struct ShowTooBig;
@@ -68,5 +68,5 @@ pub trait Show: Viewable + Sized {
     /// This is also why the function is unsafe, to make sure this postcondition is held
     // for now we consume the item so we can guarantee
     // safe usage
-    unsafe fn show(self, flags: &mut u32) -> Result<(), ShowTooBig>;
+    unsafe fn show(self, flags: &mut u32) -> Result<(usize, u16), ShowTooBig>;
 }

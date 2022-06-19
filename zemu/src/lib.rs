@@ -33,17 +33,18 @@ pub(self) mod bindings {
     }
 }
 
-pub fn zemu_log(_s: &str) {
+pub fn zemu_log(s: &str) {
     cfg_if! {
         if #[cfg(zemu_sdk)] {
             unsafe {
-                let _s = bolos_sys::pic::PIC::new(_s).into_inner();
-                let p = _s.as_bytes().as_ptr();
+                let s = bolos_sys::pic::PIC::new(s).into_inner();
+                let p = s.as_bytes().as_ptr();
                 bindings::zemu_log(p)
             }
         } else {
             extern crate std;
-            std::eprintln!("{}", _s)
+            let s = s.split_at(s.len() - 1).0; // remove null termination
+            std::print!("{}", s)
         }
     }
 }

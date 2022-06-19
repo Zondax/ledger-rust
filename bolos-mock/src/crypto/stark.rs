@@ -13,12 +13,12 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 ********************************************************************************/
-use bolos_common::hash::HasherId;
+//use bolos_common::hash::HasherId;
 use core::mem::MaybeUninit;
 
 use crate::Error;
 
-use super::{bip32::BIP32Path, Curve, Mode};
+use super::{bip32::BIP32Path, Curve};
 
 #[derive(Clone, Copy)]
 pub struct PublicKey {
@@ -47,15 +47,15 @@ impl AsRef<[u8]> for PublicKey {
 }
 
 pub struct SecretKey<const B: usize> {
-    bytes: [u8; 32],
+    _bytes: [u8; 32],
 }
 
 impl<const B: usize> SecretKey<B> {
     pub fn new(_: BIP32Path<B>) -> Self {
-        let bytes = [0; 32];
+        let _bytes = [0; 32];
 
         todo!("starkware new secret");
-        Self { bytes }
+        //Self { bytes: _bytes }
     }
 
     pub const fn curve(&self) -> Curve {
@@ -63,11 +63,11 @@ impl<const B: usize> SecretKey<B> {
     }
 
     pub fn public(&self) -> Result<PublicKey, Error> {
-        let (data, len) = ([0; 65], 0);
+        let (_data, _len) = ([0; 65], 0);
 
         todo!("starkware to public");
 
-        Ok(PublicKey { data, len })
+        //Ok(PublicKey { data: _data, len: _len })
     }
 
     pub fn public_into(&self, out: &mut MaybeUninit<PublicKey>) -> Result<(), Error> {
@@ -78,7 +78,7 @@ impl<const B: usize> SecretKey<B> {
         Ok(())
     }
 
-    pub fn sign(&self, data: &[u8], out: &mut [u8]) -> Result<(bool, usize), Error> {
+    pub fn sign(&self, _data: &[u8], _out: &mut [u8]) -> Result<(bool, usize), Error> {
         todo!("starkware sign")
     }
 }
