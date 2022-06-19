@@ -17,9 +17,9 @@
 #[derive(PartialEq, Eq, Clone, Copy)]
 #[cfg_attr(any(feature = "derive-debug", test), derive(Debug))]
 #[repr(align(4))]
-pub struct BIP32Path<const LEN: usize> {
+pub struct BIP32Path<const MAX_LEN: usize> {
     len: u8,
-    components: [u32; LEN],
+    components: [u32; MAX_LEN],
 }
 
 #[derive(Clone, Copy)]
@@ -33,14 +33,14 @@ pub enum BIP32PathError {
     TooMuchData,
 }
 
-impl<const LEN: usize> BIP32Path<LEN> {
+impl<const MAX_LEN: usize> BIP32Path<MAX_LEN> {
     /// Construct a BIP32Path from a list of components
     pub fn new(components: impl IntoIterator<Item = u32>) -> Result<Self, BIP32PathError> {
         let mut len = 0;
-        let mut components_array = [0; LEN];
+        let mut components_array = [0; MAX_LEN];
 
         for (i, c) in components.into_iter().enumerate() {
-            if i > LEN {
+            if i > MAX_LEN {
                 return Err(BIP32PathError::TooMuchData);
             }
             components_array[i] = c;
@@ -74,7 +74,7 @@ impl<const LEN: usize> BIP32Path<LEN> {
         let len = input[0] as usize;
         if len == 0 {
             return Err(BIP32PathError::ZeroLength);
-        } else if len > LEN || blen / 4 > len {
+        } else if len > MAX_LEN || blen / 4 > len {
             return Err(BIP32PathError::TooMuchData);
         } else if blen / 4 < len {
             return Err(BIP32PathError::NotEnoughData);
@@ -93,7 +93,7 @@ impl<const LEN: usize> BIP32Path<LEN> {
             //convert to u32
             .map(u32::from_be_bytes);
 
-        let mut components_array = [0; LEN];
+        let mut components_array = [0; MAX_LEN];
         for (i, component) in components.enumerate() {
             components_array[i] = component;
         }
@@ -111,7 +111,7 @@ impl<const LEN: usize> BIP32Path<LEN> {
 }
 
 #[cfg(any(test, feature = "std"))]
-impl<const LEN: usize> BIP32Path<LEN> {
+impl<const MAX_LEN: usize> BIP32Path<MAX_LEN> {
     /// Serialize a BIP32Path to a vector, ready to be used on [read](Self::read)
     pub fn serialize(&self) -> std::vec::Vec<u8> {
         let mut v = std::vec::Vec::with_capacity(1 + 4 * self.len as usize);
