@@ -85,8 +85,7 @@ impl<T: Viewable + Sized + 'static> Show for T {
 
         *flags |= IO_ASYNCH_REPLY;
 
-        // It will not be used, but just in case, we return BUSY = 0x9001
-        Ok( (0, 0x9001) )
+        Ok((0, 0x9000))
     }
 }
 
