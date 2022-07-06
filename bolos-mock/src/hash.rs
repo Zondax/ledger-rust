@@ -26,3 +26,6 @@ pub use sha512::Sha512;
 
 mod ripemd160;
 pub use ripemd160::Ripemd160;
+
+mod keccak;
+pub use keccak::Keccak;
