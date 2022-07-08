@@ -394,9 +394,9 @@ mod tests {
 
     const BECH32_ENCODINGS: [&str;5] = ["A12UEL5L",
 "an83characterlonghumanreadablepartthatcontainsthenumber1andtheexcludedcharactersbio1tt5tgs",
-"abcdef1qpzry9x8gf2tvdw0s3jn54khce6mua7lmqqqxw",
-"11qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqc8247j",
-"split1checkupstagehandshakeupstreamerranterredcaperred2y9e3w"];
+"abcdef1w3jhxarfdenjqmn4d43x2u3qxyetjagk",
+"11fysxxctwyp3k7atwwss82upqw3hjqarhv4h8g7fqw3mk7grpdejzqarfv5sx67fqd3skxetnyp6hqfqnfpy",
+"split1wd5xz6m9ypkhjgrgv9hxggr4wpehgun9v9kjqar0yp4x76twyp6xsefqvdex2actnr6mw"];
 
     /*
     const BECH32_INPUTS: [&[u8];5] = [& *b"",
@@ -431,11 +431,9 @@ mod tests {
     }
 
 
-    #[test]#[ignore]
+    #[test]
     fn valid_checksum_bech32_2() {
-        const INPUT: [u8; 32] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
-            16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
-
+        const INPUT: [u8;16] = *b"testing number 1";
         let mut out = [0; estimate_size(HRPS[2].len(), INPUT.len())];
         let written = encode(HRPS[2], &INPUT, &mut out, Variant::Bech32)
             .expect("unable to encode bech32");
@@ -444,9 +442,9 @@ mod tests {
         assert_eq!(BECH32_ENCODINGS[2].to_lowercase(), encoded.to_lowercase());
     }
 
-    #[test]#[ignore]
+    #[test]
     fn valid_checksum_bech32_3() {
-        const INPUT: [u8; 82] = [0;82];
+        const INPUT: [u8; 48] = *b"I can count up to twenty two and tie my laces up";
         let mut out = [0; estimate_size(HRPS[3].len(), INPUT.len())];
         let written = encode(HRPS[3], &INPUT, &mut out, Variant::Bech32)
             .expect("unable to encode bech32");
@@ -455,9 +453,9 @@ mod tests {
         assert_eq!(BECH32_ENCODINGS[3].to_lowercase(), encoded.to_lowercase());
     }
 
-    #[test]#[ignore]
+    #[test]
     fn valid_checksum_bech32_4() {
-        const INPUT: [u8; 0] = *b"";
+        const INPUT: [u8; 39] = *b"shake my hand upstream to join the crew";
         let mut out = [0; estimate_size(HRPS[4].len(), INPUT.len())];
         encode(HRPS[4], &INPUT, &mut out, Variant::Bech32)
             .expect("unable to encode bech32");
@@ -478,10 +476,10 @@ mod tests {
     ];
     const BECH32M_ENCODINGS: [&str;7] =["A1LQFN3A", "a1lqfn3a",
         "an83characterlonghumanreadablepartthatcontainsthetheexcludedcharactersbioandnumber11sg7hg6",
-        "abcdef1l7aum6echk45nj3s0wdvt2fg8x9yrzpqzd3ryx",
-        "11llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllludsr8",
-        "split1checkupstagehandshakeupstreamerranterredcaperredlc445v",
-        "?1v759aa"];
+        "abcdef1fysxxctwyp3k7atwwss82upqw3hjqarhv4h8g7fqw3mk7grpdejzqarfv5sx67fqd3skxetnyp6hq2jj757",
+        "11wd5xz6m9ypkhjgrgv9hxggr4wpehgun9v9kjqar0yp4x76twyp6xsefqvdex2acwrq0w6",
+        "split1wd5xz6m9ypkhjgrgv9hxggr4wpehgun9v9kjqar0yp4x76twyp6xsefqvdex2ac70nk7v",
+        "?1t9hsrndf9p"];
 
     #[test]
     fn valid_checksum_bech32m_0() {
@@ -516,9 +514,9 @@ mod tests {
         assert_eq!(BECH32M_ENCODINGS[2].to_lowercase(), encoded.to_lowercase());
     }
 
-    #[test]#[ignore]
+    #[test]
     fn valid_checksum_bech32m_3() {
-        const INPUT: [u8; 32] = [31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0];
+        const INPUT: [u8; 48] = *b"I can count up to twenty two and tie my laces up";
         let mut out = [0; estimate_size(BECH32M_HRPS[3].len(), INPUT.len())];
         encode(BECH32M_HRPS[3], &INPUT, &mut out, Variant::Bech32m)
             .expect("unable to encode bech32m");
@@ -527,9 +525,9 @@ mod tests {
         assert_eq!(BECH32M_ENCODINGS[3].to_lowercase(), encoded.to_lowercase());
     }
 
-    #[test]#[ignore]
+    #[test]
     fn valid_checksum_bech32m_4() {
-        const INPUT: [u8; 82] = [31;82];
+        const INPUT: [u8; 39] = *b"shake my hand upstream to join the crew";
         let mut out = [0; estimate_size(BECH32M_HRPS[4].len(), INPUT.len())];
         encode(BECH32M_HRPS[4], &INPUT, &mut out, Variant::Bech32m)
             .expect("unable to encode bech32m");
@@ -538,9 +536,9 @@ mod tests {
         assert_eq!(BECH32M_ENCODINGS[4].to_lowercase(), encoded.to_lowercase());
     }
 
-    #[test]#[ignore]
+    #[test]
     fn valid_checksum_bech32m_5() {
-        const INPUT: [u8; 48] = [24, 23, 25, 24, 22, 28, 1, 16, 11, 29, 8, 25, 23, 29, 19, 13, 16, 23, 29, 22, 25, 28, 1, 16, 11, 3, 25, 29, 27, 25, 3, 3, 29, 19, 11, 25, 3, 3, 25, 13, 24, 29, 1, 25, 3, 3, 25, 13];
+        const INPUT: [u8; 39] = *b"shake my hand upstream to join the crew";
         let mut out = [0; estimate_size(BECH32M_HRPS[5].len(), INPUT.len())];
         let written = encode(BECH32M_HRPS[5], &INPUT, &mut out, Variant::Bech32m)
             .expect("unable to encode bech32m");
@@ -551,7 +549,7 @@ mod tests {
 
     #[test]
     fn valid_checksum_bech32m_6() {
-        const INPUT: [u8; 0] = *b"";
+        const INPUT: [u8; 2] = *b"Yo";
         let mut out = [0; estimate_size(BECH32M_HRPS[6].len(), INPUT.len())];
         encode(BECH32M_HRPS[6], &INPUT, &mut out, Variant::Bech32m)
             .expect("unable to encode bech32m");
