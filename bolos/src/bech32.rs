@@ -321,7 +321,6 @@ pub const fn estimate_size(hrp_len: usize, data_len: usize) -> usize {
     Bech32Writer::estimate_size(hrp_len, data_len)
 }
 
-
 /// Used for encoding operations for the two variants of Bech32
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 pub enum Variant {
@@ -368,7 +367,8 @@ mod tests {
     fn encode_with_writer() {
         let mut out = [0; Bech32Writer::estimate_size(HRP.len(), INPUT.len())];
 
-        let mut encoder = Bech32Writer::new(HRP, &mut out, Variant::Bech32).expect("unable to write HRP");
+        let mut encoder =
+            Bech32Writer::new(HRP, &mut out, Variant::Bech32).expect("unable to write HRP");
         encoder.write(&INPUT).expect("unable to write data");
         let written = encoder.finalize().expect("unable to finalize");
 
@@ -380,16 +380,18 @@ mod tests {
     #[test]
     fn encode_with_fn() {
         let mut out = [0; estimate_size(HRP.len(), INPUT.len())];
-        let written = encode(HRP, &INPUT, &mut out, Variant::Bech32).expect("unable to encode bech32");
+        let written =
+            encode(HRP, &INPUT, &mut out, Variant::Bech32).expect("unable to encode bech32");
 
         assert_eq!(&out[..written], EXPECTED.as_bytes());
     }
 
-    const HRPS: [&str;5] =["a",
+    const HRPS: [&str; 5] = [
+        "a",
         "an83characterlonghumanreadablepartthatcontainsthenumber1andtheexcludedcharactersbio",
         "abcdef",
         "1",
-        "split"
+        "split",
     ];
 
     const BECH32_ENCODINGS: [&str;5] = ["A12UEL5L",
@@ -410,10 +412,8 @@ mod tests {
     #[test]
     fn valid_checksum_bech32_0() {
         const INPUT: [u8; 0] = *b"";
-        let mut out = [0; estimate_size(HRPS[0].len(),
-                                        INPUT.len())];
-        encode(HRPS[0], &INPUT, &mut out, Variant::Bech32)
-            .expect("unable to encode bech32");
+        let mut out = [0; estimate_size(HRPS[0].len(), INPUT.len())];
+        encode(HRPS[0], &INPUT, &mut out, Variant::Bech32).expect("unable to encode bech32");
         let encoded = std::str::from_utf8(&out).expect("invalid utf8 bytes");
 
         assert_eq!(BECH32_ENCODINGS[0].to_lowercase(), encoded.to_lowercase());
@@ -423,20 +423,18 @@ mod tests {
     fn valid_checksum_bech32_1() {
         const INPUT: [u8; 0] = *b"";
         let mut out = [0; estimate_size(HRPS[1].len(), INPUT.len())];
-        encode(HRPS[1], &INPUT, &mut out, Variant::Bech32)
-            .expect("unable to encode bech32");
+        encode(HRPS[1], &INPUT, &mut out, Variant::Bech32).expect("unable to encode bech32");
         let encoded = std::str::from_utf8(&out).expect("invalid utf8 bytes");
 
         assert_eq!(BECH32_ENCODINGS[1].to_lowercase(), encoded.to_lowercase());
     }
 
-
     #[test]
     fn valid_checksum_bech32_2() {
-        const INPUT: [u8;16] = *b"testing number 1";
+        const INPUT: [u8; 16] = *b"testing number 1";
         let mut out = [0; estimate_size(HRPS[2].len(), INPUT.len())];
-        let written = encode(HRPS[2], &INPUT, &mut out, Variant::Bech32)
-            .expect("unable to encode bech32");
+        let written =
+            encode(HRPS[2], &INPUT, &mut out, Variant::Bech32).expect("unable to encode bech32");
         let encoded = std::str::from_utf8(&out[..written]).expect("invalid utf8 bytes");
 
         assert_eq!(BECH32_ENCODINGS[2].to_lowercase(), encoded.to_lowercase());
@@ -446,8 +444,8 @@ mod tests {
     fn valid_checksum_bech32_3() {
         const INPUT: [u8; 48] = *b"I can count up to twenty two and tie my laces up";
         let mut out = [0; estimate_size(HRPS[3].len(), INPUT.len())];
-        let written = encode(HRPS[3], &INPUT, &mut out, Variant::Bech32)
-            .expect("unable to encode bech32");
+        let written =
+            encode(HRPS[3], &INPUT, &mut out, Variant::Bech32).expect("unable to encode bech32");
         let encoded = std::str::from_utf8(&out[..written]).expect("invalid utf8 bytes");
 
         assert_eq!(BECH32_ENCODINGS[3].to_lowercase(), encoded.to_lowercase());
@@ -457,22 +455,20 @@ mod tests {
     fn valid_checksum_bech32_4() {
         const INPUT: [u8; 39] = *b"shake my hand upstream to join the crew";
         let mut out = [0; estimate_size(HRPS[4].len(), INPUT.len())];
-        encode(HRPS[4], &INPUT, &mut out, Variant::Bech32)
-            .expect("unable to encode bech32");
+        encode(HRPS[4], &INPUT, &mut out, Variant::Bech32).expect("unable to encode bech32");
         let encoded = std::str::from_utf8(&out).expect("invalid utf8 bytes");
 
-        assert_eq!(BECH32_ENCODINGS[4].to_lowercase(),
-                   encoded.to_lowercase());
+        assert_eq!(BECH32_ENCODINGS[4].to_lowercase(), encoded.to_lowercase());
     }
 
-
-
-    const BECH32M_HRPS: [&str;7] =["a", "a",
+    const BECH32M_HRPS: [&str; 7] = [
+        "a",
+        "a",
         "an83characterlonghumanreadablepartthatcontainsthetheexcludedcharactersbioandnumber1",
         "abcdef",
         "1",
         "split",
-        "?"
+        "?",
     ];
     const BECH32M_ENCODINGS: [&str;7] =["A1LQFN3A", "a1lqfn3a",
         "an83characterlonghumanreadablepartthatcontainsthetheexcludedcharactersbioandnumber11sg7hg6",
@@ -485,7 +481,7 @@ mod tests {
     fn valid_checksum_bech32m_0() {
         const INPUT: [u8; 0] = *b"";
         let mut out = [0; estimate_size(BECH32M_HRPS[0].len(), INPUT.len())];
-         encode(BECH32M_HRPS[0], &INPUT, &mut out, Variant::Bech32m)
+        encode(BECH32M_HRPS[0], &INPUT, &mut out, Variant::Bech32m)
             .expect("unable to encode bech32m");
         let encoded = std::str::from_utf8(&out).expect("invalid utf8 bytes");
 
@@ -557,5 +553,4 @@ mod tests {
 
         assert_eq!(BECH32M_ENCODINGS[6].to_lowercase(), encoded.to_lowercase());
     }
-
-    }
+}
