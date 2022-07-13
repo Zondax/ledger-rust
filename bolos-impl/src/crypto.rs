@@ -112,28 +112,37 @@ impl TryFrom<u8> for Curve {
 
 impl Into<u8> for Curve {
     fn into(self) -> u8 {
+        use crate::PIC;
+
         let n = match self {
-            Curve::None => cx_curve_e_CX_CURVE_NONE,
-            Curve::Secp256K1 => cx_curve_e_CX_CURVE_SECP256K1,
-            Curve::Secp256R1 | Curve::Nistp256 => cx_curve_e_CX_CURVE_SECP256R1,
-            Curve::Secp384R1 | Curve::Nistp384 => cx_curve_e_CX_CURVE_SECP384R1,
-            Curve::Secp521R1 | Curve::Nistp521 => cx_curve_e_CX_CURVE_SECP521R1,
-            Curve::BrainPoolP256T1 => cx_curve_e_CX_CURVE_BrainPoolP256T1,
-            Curve::BrainPoolP256R1 => cx_curve_e_CX_CURVE_BrainPoolP256R1,
-            Curve::BrainPoolP320T1 => cx_curve_e_CX_CURVE_BrainPoolP320T1,
-            Curve::BrainPoolP320R1 => cx_curve_e_CX_CURVE_BrainPoolP320R1,
-            Curve::BrainPoolP384T1 => cx_curve_e_CX_CURVE_BrainPoolP384T1,
-            Curve::BrainPoolP384R1 => cx_curve_e_CX_CURVE_BrainPoolP384R1,
-            Curve::BrainPoolP512T1 => cx_curve_e_CX_CURVE_BrainPoolP512T1,
-            Curve::BrainPoolP512R1 => cx_curve_e_CX_CURVE_BrainPoolP512R1,
-            Curve::Frp256V1 => cx_curve_e_CX_CURVE_FRP256V1,
-            Curve::Stark256 => cx_curve_e_CX_CURVE_Stark256,
-            Curve::Bls12_381G1 => cx_curve_e_CX_CURVE_BLS12_381_G1,
-            Curve::Ed25519 => cx_curve_e_CX_CURVE_Ed25519,
-            Curve::Ed448 => cx_curve_e_CX_CURVE_Ed448,
-            Curve::Curve25519 => cx_curve_e_CX_CURVE_Curve25519,
-            Curve::Curve448 => cx_curve_e_CX_CURVE_Ed448,
+            Curve::None => *PIC::new(cx_curve_e_CX_CURVE_NONE).get_ref(),
+            Curve::Secp256K1 => *PIC::new(cx_curve_e_CX_CURVE_SECP256K1).get_ref(),
+            Curve::Secp256R1 | Curve::Nistp256 => {
+                *PIC::new(cx_curve_e_CX_CURVE_SECP256R1).get_ref()
+            }
+            Curve::Secp384R1 | Curve::Nistp384 => {
+                *PIC::new(cx_curve_e_CX_CURVE_SECP384R1).get_ref()
+            }
+            Curve::Secp521R1 | Curve::Nistp521 => {
+                *PIC::new(cx_curve_e_CX_CURVE_SECP521R1).get_ref()
+            }
+            Curve::BrainPoolP256T1 => *PIC::new(cx_curve_e_CX_CURVE_BrainPoolP256T1).get_ref(),
+            Curve::BrainPoolP256R1 => *PIC::new(cx_curve_e_CX_CURVE_BrainPoolP256R1).get_ref(),
+            Curve::BrainPoolP320T1 => *PIC::new(cx_curve_e_CX_CURVE_BrainPoolP320T1).get_ref(),
+            Curve::BrainPoolP320R1 => *PIC::new(cx_curve_e_CX_CURVE_BrainPoolP320R1).get_ref(),
+            Curve::BrainPoolP384T1 => *PIC::new(cx_curve_e_CX_CURVE_BrainPoolP384T1).get_ref(),
+            Curve::BrainPoolP384R1 => *PIC::new(cx_curve_e_CX_CURVE_BrainPoolP384R1).get_ref(),
+            Curve::BrainPoolP512T1 => *PIC::new(cx_curve_e_CX_CURVE_BrainPoolP512T1).get_ref(),
+            Curve::BrainPoolP512R1 => *PIC::new(cx_curve_e_CX_CURVE_BrainPoolP512R1).get_ref(),
+            Curve::Frp256V1 => *PIC::new(cx_curve_e_CX_CURVE_FRP256V1).get_ref(),
+            Curve::Stark256 => *PIC::new(cx_curve_e_CX_CURVE_Stark256).get_ref(),
+            Curve::Bls12_381G1 => *PIC::new(cx_curve_e_CX_CURVE_BLS12_381_G1).get_ref(),
+            Curve::Ed25519 => *PIC::new(cx_curve_e_CX_CURVE_Ed25519).get_ref(),
+            Curve::Ed448 => *PIC::new(cx_curve_e_CX_CURVE_Ed448).get_ref(),
+            Curve::Curve25519 => *PIC::new(cx_curve_e_CX_CURVE_Curve25519).get_ref(),
+            Curve::Curve448 => *PIC::new(cx_curve_e_CX_CURVE_Ed448).get_ref(),
         };
+
         n as u8
     }
 }
