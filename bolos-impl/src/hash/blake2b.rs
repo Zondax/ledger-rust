@@ -73,13 +73,16 @@ impl<const S: usize> Blake2b<S> {
         let salt = if salt.is_empty() {
             (std::ptr::null_mut(), 0)
         } else {
-            (salt.as_ptr() as *mut u8, salt.len())
+            (salt.as_ptr() as *mut u8, salt.len() as u32)
         };
 
-        let perso = if pesonalization.is_empty() {
+        let perso = if personalization.is_empty() {
             (std::ptr::null_mut(), 0)
         } else {
-            (personalization.as_ptr() as *mut u8, personalization.len())
+            (
+                personalization.as_ptr() as *mut u8,
+                personalization.len() as u32,
+            )
         };
 
         cfg_if! {
