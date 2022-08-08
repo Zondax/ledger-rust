@@ -7,6 +7,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [features]
+zcash = ["zcash_primitives"]
 
 [dependencies]
 bolos-common = { version = "0.1", path = "../bolos-common", features = ["std"] }
@@ -30,6 +31,8 @@ rand7 = { version = "0.7", package = "rand" }
 rand_chacha7 = { version = "0.2.2", package = "rand_chacha" }
 rand8 = { version = "0.8.4", package = "rand" }
 rand_chacha8 = { version = "0.3.1", package = "rand_chacha" }
+bytemuck = "1.11.0"
+zcash_primitives = { version = "0.7.0", optional = true }
 
 [dev-dependencies]
 bolos = { version = "0.1", path = "../bolos" }
