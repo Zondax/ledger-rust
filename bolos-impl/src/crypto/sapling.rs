@@ -5,7 +5,7 @@ pub const CTX_EXPAND_SEED_HASH_LEN : size_t = 64;
 pub const CTX_EXPAND_SEED_LEN : size_t = 16;
 
 pub fn fill_sapling_seed(zip32_seed: &mut [u8])  {
-    zemu_log_stack("fillSaplingSeed");
+    zemu_log_stack("fill_sapling_seed");
 // Get seed from Ed25519
     let path: [u32;HDPATH_LEN_DEFAULT] = [0x8000002c,
         0x80000085,
@@ -24,16 +24,6 @@ pub fn fill_sapling_seed(zip32_seed: &mut [u8])  {
     );
 }
 
-pub fn blake2b_expand_seed(a: &[u8], b: &[u8], perso: &[u8;16] ) -> [u8; 64] {
-    let mut hash = [0; 64];
-    unsafe {
-        let mut ctx: cx_blake2b_t;
-        cx_blake2b_init2_no_throw(&ctx, 8 * CTX_EXPAND_SEED_HASH_LEN, NULL, 0, (uint8_t *) perso, CTX_EXPAND_SEED_LEN);
-        cx_hash(&ctx.header, 0, a.as_ptr(), a.len() as u32, NULL, 0);
-        cx_hash(&ctx.header, CX_LAST, b.as_ptr(), b.len() as u32, hash.as_mut_ptr(), CTX_EXPAND_SEED_HASH_LEN);
-    }
-    hash
-}
 
 mod bindings {
     use super::{bip32::BIP32Path, Curve, Mode};
