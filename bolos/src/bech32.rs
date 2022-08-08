@@ -228,6 +228,8 @@ impl<'b> Bech32Writer<'b> {
     }
 
     /// Write a chunck of data
+    //TODO: calling write subsequently with the same data split
+    // should yield the same result as not splitting the data
     pub fn write(&mut self, data: impl AsRef<[u8]>) -> Result<(), Bech32WriterError> {
         // Amount of bits left over from last round, stored in buffer.
         let mut buffer_bits = 0u32;
@@ -296,7 +298,8 @@ impl<'b> Bech32Writer<'b> {
         } else {
             bits_num / 5 + 1
         };
-        base + 1 + 6 + hrp_len
+
+        hrp_len + 1 + base + 6
     }
 
     /// Finalize the writer
@@ -334,7 +337,7 @@ const BECH32_CONST: u32 = 1;
 const BECH32M_CONST: u32 = 0x2bc8_30a3;
 
 impl Variant {
-    fn constant(self) -> u32 {
+    const fn constant(self) -> u32 {
         match self {
             Variant::Bech32 => BECH32_CONST,
             Variant::Bech32m => BECH32M_CONST,
@@ -347,6 +350,7 @@ mod tests {
     use super::*;
 
     const EXPECTED: &str = "email1dpjkcmr0gpax7mnyv9uzucmggydtp0";
+    const EXPECTEDM: &str = "email1dpjkcmr0gpax7mnyv9uzucmgaca8yd";
     const HRP: &str = "email";
     const INPUT: [u8; 15] = *b"hello@zondax.ch";
 
@@ -354,6 +358,19 @@ mod tests {
     fn estimate() {
         assert_eq!(
             EXPECTED.as_bytes().len(),
+            Bech32Writer::estimate_size(HRP.len(), INPUT.len())
+        );
+
+        assert_eq!(
+            1 + 6 + 1 + HRP.len() + 1,
+            Bech32Writer::estimate_size(HRP.len(), 1)
+        );
+    }
+
+    #[test]
+    fn estimatem() {
+        assert_eq!(
+            EXPECTEDM.as_bytes().len(),
             Bech32Writer::estimate_size(HRP.len(), INPUT.len())
         );
 
@@ -375,6 +392,52 @@ mod tests {
         let encoded = std::str::from_utf8(&out).expect("invalid utf8 bytes");
 
         assert_eq!(&encoded[..written], EXPECTED, "encoding difference");
+    }
+
+    #[test]
+    #[ignore]
+    fn encode_with_writer_pieces() {
+        let mut out = [0; Bech32Writer::estimate_size(HRP.len(), INPUT.len())];
+
+        let mut encoder =
+            Bech32Writer::new(HRP, &mut out, Variant::Bech32).expect("unable to write HRP");
+        encoder.write(&INPUT[..3]).expect("unable to write data");
+        encoder.write(&INPUT[3..]).expect("unable to write data");
+        let written = encoder.finalize().expect("unable to finalize");
+
+        let encoded = std::str::from_utf8(&out).expect("invalid utf8 bytes");
+
+        assert_eq!(&encoded[..written], EXPECTED, "encoding difference");
+    }
+
+    #[test]
+    fn encodem_with_writer() {
+        let mut out = [0; Bech32Writer::estimate_size(HRP.len(), INPUT.len())];
+
+        let mut encoder =
+            Bech32Writer::new(HRP, &mut out, Variant::Bech32m).expect("unable to write HRP");
+        encoder.write(&INPUT).expect("unable to write data");
+        let written = encoder.finalize().expect("unable to finalize");
+
+        let encoded = std::str::from_utf8(&out).expect("invalid utf8 bytes");
+
+        assert_eq!(&encoded[..written], EXPECTEDM, "encoding difference");
+    }
+
+    #[test]
+    #[ignore]
+    fn encodem_with_writer_pieces() {
+        let mut out = [0; Bech32Writer::estimate_size(HRP.len(), INPUT.len())];
+
+        let mut encoder =
+            Bech32Writer::new(HRP, &mut out, Variant::Bech32m).expect("unable to write HRP");
+        encoder.write(&INPUT[..3]).expect("unable to write data");
+        encoder.write(&INPUT[3..]).expect("unable to write data");
+        let written = encoder.finalize().expect("unable to finalize");
+
+        let encoded = std::str::from_utf8(&out).expect("invalid utf8 bytes");
+
+        assert_eq!(&encoded[..written], EXPECTEDM, "encoding difference");
     }
 
     #[test]
