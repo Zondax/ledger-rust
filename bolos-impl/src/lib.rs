@@ -49,7 +49,6 @@ pub mod crypto;
 pub mod hash;
 pub mod hmac;
 pub mod math;
-pub mod sapling;
 
 pub use bolos_sys::TARGET_ID;
 
