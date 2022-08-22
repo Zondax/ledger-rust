@@ -203,6 +203,7 @@ impl<const B: usize> SecretKey<B> {
                 let secret = k256::ecdsa::SigningKey::from_bytes(&self.bytes[..]).unwrap();
 
                 let sig: Signature = secret.sign(data);
+                let sig = sig.to_der();
                 let sig = sig.as_ref();
 
                 out[..sig.len()].copy_from_slice(sig);
@@ -213,6 +214,7 @@ impl<const B: usize> SecretKey<B> {
 
                 let secret = p256::ecdsa::SigningKey::from_bytes(&self.bytes[..]).unwrap();
                 let sig = secret.sign(data);
+                let sig = sig.to_der();
                 let sig = sig.as_ref();
 
                 out[..sig.len()].copy_from_slice(sig);
