@@ -37,6 +37,11 @@ pub static mut RUST_ZUI: Zui<NanoSBackend, KEY_SIZE> = Zui::new();
 #[bolos_derive::lazy_static(cbindgen)]
 static mut BACKEND: NanoSBackend = NanoSBackend::default();
 
+const DEFAULT_IDLE: &[u8] = b"DO NOT USE";
+
+#[bolos_derive::lazy_static(cbindgen)]
+static mut IDLE_MESSAGE: *const u8 = core::ptr::null();
+
 #[repr(C)]
 pub struct NanoSBackend {
     key: [u8; KEY_SIZE],
@@ -103,7 +108,15 @@ impl UIBackend<KEY_SIZE> for NanoSBackend {
     }
 
     fn show_idle(&mut self, item_idx: usize, status: Option<&[u8]>) {
-        let status = status.unwrap_or(&pic_str!(b"DO NOT USE")[..]);
+        let status = status
+            .or_else(|| unsafe {
+                PIC::new(*IDLE_MESSAGE).into_inner().as_ref().map(|status| {
+                    let len = crate::ui_toolkit::c_strlen(status, KEY_SIZE).unwrap_or(KEY_SIZE);
+
+                    core::slice::from_raw_parts(status, len)
+                })
+            })
+            .unwrap_or_else(|| PIC::new(DEFAULT_IDLE).into_inner());
 
         let len = core::cmp::min(self.key.len(), status.len());
         self.key[..len].copy_from_slice(&status[..len]);

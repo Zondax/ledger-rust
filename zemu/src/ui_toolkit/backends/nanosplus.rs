@@ -33,6 +33,11 @@ pub static mut RUST_ZUI: Zui<NanoSPBackend, KEY_SIZE> = Zui::new();
 #[bolos_derive::lazy_static(cbindgen)]
 static mut BACKEND: NanoSPBackend = NanoSPBackend::default();
 
+const DEFAULT_IDLE: &[u8] = b"DO NOT USE";
+
+#[bolos_derive::lazy_static(cbindgen)]
+static mut IDLE_MESSAGE: *const u8 = core::ptr::null();
+
 #[repr(C)]
 pub struct NanoSPBackend {
     key: [u8; KEY_SIZE],
@@ -144,7 +149,15 @@ impl UIBackend<KEY_SIZE> for NanoSPBackend {
     fn split_value_field(&mut self, _: &'static mut str) {}
 
     fn show_idle(&mut self, _item_idx: usize, status: Option<&[u8]>) {
-        let status = status.unwrap_or(&pic_str!(b"DO NOT USE")[..]);
+        let status = status
+            .or_else(|| unsafe {
+                PIC::new(*IDLE_MESSAGE).into_inner().as_ref().map(|status| {
+                    let len = crate::ui_toolkit::c_strlen(status, KEY_SIZE).unwrap_or(KEY_SIZE);
+
+                    core::slice::from_raw_parts(status, len)
+                })
+            })
+            .unwrap_or_else(|| PIC::new(DEFAULT_IDLE).into_inner());
 
         self.key[..status.len()].copy_from_slice(status);
 

@@ -163,6 +163,30 @@ impl<'a> PIC<&'a [u8]> {
     }
 }
 
+impl<T: Sized> PIC<*const T> {
+    pub fn into_inner(&self) -> *const T {
+        cfg_if::cfg_if! {
+            if #[cfg(bolos_sdk)] {
+                unsafe { super::raw::pic(self.data as _) as *const T }
+            } else {
+                self.data
+            }
+        }
+    }
+}
+
+impl<T: Sized> PIC<*mut T> {
+    pub fn into_inner(&self) -> *mut T {
+        cfg_if::cfg_if! {
+            if #[cfg(bolos_sdk)] {
+                unsafe { super::raw::pic(self.data as *const T as _) as *mut T }
+            } else {
+                self.data
+            }
+        }
+    }
+}
+
 impl PIC<()> {
     /// Apply pic manually, interpreting `ptr` as the actual pointer to an _unknwon_ type
     ///
