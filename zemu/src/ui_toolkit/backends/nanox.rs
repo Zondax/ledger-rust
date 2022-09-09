@@ -33,7 +33,7 @@ pub static mut RUST_ZUI: Zui<NanoXBackend, KEY_SIZE> = Zui::new();
 #[bolos_derive::lazy_static(cbindgen)]
 static mut BACKEND: NanoXBackend = NanoXBackend::default();
 
-const DEFAULT_IDLE: &[u8] = b"DO NOT USE";
+const DEFAULT_IDLE: &[u8] = b"DO NOT USE\x00";
 
 #[bolos_derive::lazy_static(cbindgen)]
 static mut IDLE_MESSAGE: *const u8 = core::ptr::null();
