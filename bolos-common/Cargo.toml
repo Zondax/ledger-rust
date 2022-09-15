@@ -6,8 +6,9 @@ edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [features]
-std = ["no-std-compat/std", "derive-debug"]
+std = ["no-std-compat/std", "derive-debug", "bip32-display"]
 derive-debug = []
+bip32-display = []
 
 [dependencies]
 no-std-compat = { version = "0.4", default-features = false }

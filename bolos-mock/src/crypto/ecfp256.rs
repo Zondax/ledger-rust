@@ -34,6 +34,7 @@ impl PublicKey {
                 let point = k256::EncodedPoint::from_bytes(&self.data[..self.len]).unwrap();
                 let compressed = point.compress();
 
+                self.len = 33;
                 self.data[..33].copy_from_slice(compressed.as_ref());
                 Ok(())
             }
@@ -41,6 +42,7 @@ impl PublicKey {
                 let point = p256::EncodedPoint::from_bytes(&self.data[..self.len]).unwrap();
                 let compressed = point.compress();
 
+                self.len = 33;
                 self.data[..33].copy_from_slice(compressed.as_ref());
                 Ok(())
             }
