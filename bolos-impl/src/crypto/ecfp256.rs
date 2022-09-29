@@ -27,9 +27,73 @@ use core::{mem::MaybeUninit, ptr::addr_of_mut};
 #[derive(Clone, Copy)]
 pub struct PublicKey(cx_ecfp_public_key_t);
 
+// Taken from lcx_ecfp.h
+/**
+The value shall be the public point encoded as:
+ * - **04 || x || y** for Weiertrass curves
+ * - **04 || x || y**  or **02 || y** (plus sign) for Twisted Edward curves
+ * - **04 || x || y**  or **02 || x** for Montgomery curves
+*/
+
 impl PublicKey {
+    /// Retrieve the `x` component of the public key
+    #[allow(dead_code)]
+    fn x(&self) -> Result<&[u8], Error> {
+        let curve = self.curve();
+
+        //CX_INVALID_CURVE, should only be for stark...
+        let domain = curve.domain_length().ok_or(Error::from(0xFFFFFFA3u32))?;
+
+        match self.0.W[0] {
+            04 => Ok(&self.0.W[1..][..domain]),
+            //CX_INVALID_PARAMTER, compressed so it's missing
+            02 if curve.is_twisted_edward() => Err(Error::from(0xFFFFFF88u32)),
+            02 if curve.is_montgomery() => Ok(&self.0.W[1..][..domain]),
+            _ => Err(Error::from(0xFFFFFF87u32)), //CX_INVALID_PARAMETER_VALUE
+        }
+    }
+
+    /// Retrieve the `y` component of the public key
+    #[allow(dead_code)]
+    fn y(&self) -> Result<&[u8], Error> {
+        let curve = self.curve();
+
+        //CX_INVALID_CURVE, should only be for stark...
+        let domain = curve.domain_length().ok_or(Error::from(0xFFFFFFA3u32))?;
+
+        match self.0.W[0] {
+            04 => Ok(&self.0.W[1 + domain..][..domain]),
+            02 if curve.is_twisted_edward() => Ok(&self.0.W[1 + domain..][..domain]),
+            //CX_INVALID_PARAMTER, compressed so it's missing
+            02 if curve.is_montgomery() => Err(Error::from(0xFFFFFF88u32)),
+            _ => Err(Error::from(0xFFFFFF87u32)), //CX_INVALID_PARAMETER_VALUE
+        }
+    }
+
     pub fn compress(&mut self) -> Result<(), Error> {
         match self.curve() {
+            c if c.is_weirstrass() => {
+                //TODO: change to call cx_ecpoint_compress
+
+                //tag:
+                // 0x00 identity
+                // 0x02 compressed, even Y
+                // 0x03 compressed, odd Y
+                // 0x04 uncompressed
+
+                //assume it's compressed
+                // should never be identity or compact anyways
+                if self.0.W[0] != 4 {
+                    return Ok(());
+                }
+
+                //-1 on the len since otherwise it would access the 65th byte
+                let is_odd = self.0.W[(self.0.W_len as usize) - 1] & 0x01 > 0;
+                self.0.W[0] = 0x02 + is_odd as u8;
+                // cut the length to just 1 + 32 bytes (1 + x_len)
+                self.0.W_len = 33;
+                Ok(())
+            }
             Curve::Ed25519 => {
                 let comp_len = cx_edward_compress_point(Curve::Ed25519, &mut self.0.W[..])?;
                 self.0.W_len = comp_len as _;
