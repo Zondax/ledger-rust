@@ -125,6 +125,20 @@ impl<const MAX_LEN: usize> BIP32Path<MAX_LEN> {
     }
 }
 
+#[cfg(feature = "bip32-display")]
+impl<const MAX_LEN: usize> core::fmt::Display for BIP32Path<MAX_LEN> {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        write!(f, "m")?;
+        for component in self.components() {
+            let hardened = component & 0x8000_0000 > 0;
+            let component = component & !0x8000_0000;
+            write!(f, "/{}{}", component, if hardened { "'" } else { "" })?;
+        }
+
+        Ok(())
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

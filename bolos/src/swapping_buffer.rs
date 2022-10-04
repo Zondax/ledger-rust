@@ -70,7 +70,7 @@ impl<'r, 'f, const RAM: usize, const FLASH: usize> SwappingBuffer<'r, 'f, RAM, F
     /// Create a new instance of the buffer
     pub fn new(ram: &'r mut [u8; RAM], flash: &'f mut PIC<NVM<FLASH>>) -> Self {
         Self {
-            ram,
+            ram: PIC::new(ram).into_inner(),
             flash,
             state: Default::default(),
         }

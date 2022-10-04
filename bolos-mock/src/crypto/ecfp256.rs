@@ -34,6 +34,7 @@ impl PublicKey {
                 let point = k256::EncodedPoint::from_bytes(&self.data[..self.len]).unwrap();
                 let compressed = point.compress();
 
+                self.len = 33;
                 self.data[..33].copy_from_slice(compressed.as_ref());
                 Ok(())
             }
@@ -41,6 +42,7 @@ impl PublicKey {
                 let point = p256::EncodedPoint::from_bytes(&self.data[..self.len]).unwrap();
                 let compressed = point.compress();
 
+                self.len = 33;
                 self.data[..33].copy_from_slice(compressed.as_ref());
                 Ok(())
             }
@@ -203,6 +205,7 @@ impl<const B: usize> SecretKey<B> {
                 let secret = k256::ecdsa::SigningKey::from_bytes(&self.bytes[..]).unwrap();
 
                 let sig: Signature = secret.sign(data);
+                let sig = sig.to_der();
                 let sig = sig.as_ref();
 
                 out[..sig.len()].copy_from_slice(sig);
@@ -213,6 +216,7 @@ impl<const B: usize> SecretKey<B> {
 
                 let secret = p256::ecdsa::SigningKey::from_bytes(&self.bytes[..]).unwrap();
                 let sig = secret.sign(data);
+                let sig = sig.to_der();
                 let sig = sig.as_ref();
 
                 out[..sig.len()].copy_from_slice(sig);

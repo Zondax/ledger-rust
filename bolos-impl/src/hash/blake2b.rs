@@ -37,24 +37,64 @@ impl<const S: usize> Blake2b<S> {
             state: Default::default(),
         };
 
-        Self::init_state(&mut this.state)?;
+        Self::init_state_with_params(&mut this.state, &[], &[])?;
 
         Ok(this)
     }
 
+    /// Initialize a new Blake2B hasher with default key and personalization
     pub fn new_gce(loc: &mut MaybeUninit<Self>) -> Result<(), Error> {
         let state = unsafe { addr_of_mut!((*loc.as_mut_ptr()).state) };
 
-        Self::init_state(state)
+        Self::init_state_with_params(state, &[], &[])
     }
 
-    fn init_state(state: *mut cx_blake2b_t) -> Result<(), Error> {
+    /// Initialize a new Blake2B hasher with the given key and personalization
+    ///
+    /// Empty slices is the same as default initialization
+    pub fn new_gce_with_params(
+        loc: &mut MaybeUninit<Self>,
+        salt: &[u8],
+        personalization: &[u8],
+    ) -> Result<(), Error> {
+        let state = unsafe { addr_of_mut!((*loc.as_mut_ptr()).state) };
+
+        Self::init_state_with_params(state, salt, personalization)
+    }
+
+    /// Initialize with the given params
+    ///
+    /// Using empty slices is equivalent to a default initialization
+    fn init_state_with_params(
+        state: *mut cx_blake2b_t,
+        salt: &[u8],
+        personalization: &[u8],
+    ) -> Result<(), Error> {
+        let salt = if salt.is_empty() {
+            (std::ptr::null_mut(), 0)
+        } else {
+            (salt.as_ptr() as *mut u8, salt.len() as u32)
+        };
+
+        let perso = if personalization.is_empty() {
+            (std::ptr::null_mut(), 0)
+        } else {
+            (
+                personalization.as_ptr() as *mut u8,
+                personalization.len() as u32,
+            )
+        };
+
         cfg_if! {
             if #[cfg(bolos_sdk)] {
                 let r = unsafe {
-                    crate::raw::cx_blake2b_init_no_throw(
+                    crate::raw::cx_blake2b_init2_no_throw(
                         state,
-                        (S * 8) as u32
+                        (S * 8) as u32,
+                        salt.0,
+                        salt.1,
+                        perso.0,
+                        perso.1
                     )
                 };
 
@@ -81,7 +121,7 @@ impl<const S: usize> CxHash<S> for Blake2b<S> {
     }
 
     fn cx_reset(&mut self) -> Result<(), Error> {
-        Self::init_state(&mut self.state)
+        Self::init_state_with_params(&mut self.state, &[], &[])
     }
 
     fn cx_header(&mut self) -> &mut cx_hash_t {

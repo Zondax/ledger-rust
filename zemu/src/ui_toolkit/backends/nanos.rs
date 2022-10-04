@@ -15,7 +15,7 @@
 ********************************************************************************/
 use super::UIBackend;
 use crate::{
-    ui::{manual_vtable::RefMutDynViewable, Viewable},
+    ui::{apdu_buffer_mut, manual_vtable::RefMutDynViewable, Viewable},
     ui_toolkit::{strlen, Zui},
 };
 use bolos_derive::pic_str;
@@ -36,6 +36,11 @@ pub static mut RUST_ZUI: Zui<NanoSBackend, KEY_SIZE> = Zui::new();
 
 #[bolos_derive::lazy_static(cbindgen)]
 static mut BACKEND: NanoSBackend = NanoSBackend::default();
+
+const DEFAULT_IDLE: &[u8] = b"DO NOT USE\x00";
+
+#[bolos_derive::lazy_static(cbindgen)]
+static mut IDLE_MESSAGE: *const u8 = core::ptr::null();
 
 #[repr(C)]
 pub struct NanoSBackend {
@@ -103,7 +108,15 @@ impl UIBackend<KEY_SIZE> for NanoSBackend {
     }
 
     fn show_idle(&mut self, item_idx: usize, status: Option<&[u8]>) {
-        let status = status.unwrap_or(&pic_str!(b"DO NOT USE")[..]);
+        let status = status
+            .or_else(|| unsafe {
+                PIC::new(*IDLE_MESSAGE).into_inner().as_ref().map(|status| {
+                    let len = crate::ui_toolkit::c_strlen(status, KEY_SIZE).unwrap_or(KEY_SIZE);
+
+                    core::slice::from_raw_parts(status, len)
+                })
+            })
+            .unwrap_or_else(|| PIC::new(DEFAULT_IDLE).into_inner());
 
         let len = core::cmp::min(self.key.len(), status.len());
         self.key[..len].copy_from_slice(&status[..len]);
@@ -187,9 +200,10 @@ impl UIBackend<KEY_SIZE> for NanoSBackend {
     }
 
     fn accept_reject_out(&mut self) -> &mut [u8] {
-        use bolos_sys::raw::G_io_apdu_buffer as APDU_BUFFER;
+        let buf = apdu_buffer_mut();
+        let buf_len = buf.len();
 
-        unsafe { &mut APDU_BUFFER[..APDU_BUFFER.len() - self.viewable_size] }
+        &mut buf[..buf_len - self.viewable_size]
     }
 
     fn accept_reject_end(&mut self, len: usize) {
@@ -205,16 +219,16 @@ impl UIBackend<KEY_SIZE> for NanoSBackend {
         &mut self,
         viewable: V,
     ) -> Option<RefMutDynViewable> {
-        use bolos_sys::raw::G_io_apdu_buffer as APDU_BUFFER;
-
         let size = core::mem::size_of::<V>();
         unsafe {
-            let buf_len = APDU_BUFFER.len();
+            let apdu_buffer = apdu_buffer_mut();
+
+            let buf_len = apdu_buffer.len();
             if size > buf_len {
                 return None;
             }
 
-            let new_loc_slice = &mut APDU_BUFFER[buf_len - size..];
+            let new_loc_slice = &mut apdu_buffer[buf_len - size..];
             let new_loc_raw_ptr: *mut u8 = new_loc_slice.as_mut_ptr();
             let new_loc: *mut V = new_loc_raw_ptr.cast();
 

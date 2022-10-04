@@ -21,17 +21,31 @@ pub struct Blake2b<const S: usize>(blake2::VarBlake2b);
 impl<const S: usize> Blake2b<S> {
     pub const DIGEST_LEN: usize = S;
 
+    fn init_blake2b(salt: &[u8], personalization: &[u8]) -> blake2::VarBlake2b {
+        blake2::VarBlake2b::with_params(&[], salt, personalization, S)
+    }
+
     pub fn new_gce(loc: &mut MaybeUninit<Self>) -> Result<(), crate::Error> {
         *loc = MaybeUninit::new(Self::new()?);
 
         Ok(())
     }
 
+    /// Initialize a new Blake2B hasher with the given key and personalization
+    ///
+    /// Empty slices is the same as default initialization
+    pub fn new_gce_with_params(
+        loc: &mut MaybeUninit<Self>,
+        salt: &[u8],
+        personalization: &[u8],
+    ) -> Result<(), crate::Error> {
+        *loc = MaybeUninit::new(Self(Self::init_blake2b(salt, personalization)));
+
+        Ok(())
+    }
+
     pub fn new() -> Result<Self, crate::Error> {
-        blake2::VarBlake2b::new(S)
-            .map(Self)
-            .map_err(|_| S as u16)
-            .map_err(|e| e.into())
+        Ok(Self(Self::init_blake2b(&[], &[])))
     }
 }
 
