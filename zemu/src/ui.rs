@@ -114,6 +114,7 @@ unsafe extern "C" fn viewfunc_get_num_items(num_items: *mut u8) -> bindings::zxe
     match get_current_viewable() {
         Err(e) => e.into(),
         Ok((obj, _)) => match obj.num_items() {
+            Ok(0) => ViewError::NoData.into(),
             Ok(n) => {
                 num_items.write(n);
                 bindings::zxerr_t_zxerr_ok
