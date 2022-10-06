@@ -159,7 +159,10 @@ impl UIBackend<KEY_SIZE> for NanoSPBackend {
             })
             .unwrap_or_else(|| PIC::new(DEFAULT_IDLE).into_inner());
 
-        self.key[..status.len()].copy_from_slice(status);
+        //truncate status
+        let len = core::cmp::min(self.key.len() - 1, status.len());
+        self.key[..len].copy_from_slice(status);
+        self.key[len] = 0; //0 terminate
 
         unsafe {
             bindings::crapoline_ux_show_idle();
