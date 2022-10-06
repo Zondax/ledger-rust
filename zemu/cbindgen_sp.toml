@@ -10,4 +10,4 @@ features = ["cbindgen_sp"]
 nanosplus = "TARGET_NANOS2"
 
 [export]
-include = ["NanoSPBackend", "BACKEND_LAZY", "IDLE_MESSAGE_LAZY"]
+include = ["NanoSPBackend", "BACKEND_LAZY", "IDLE_MESSAGE"]

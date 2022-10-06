@@ -35,7 +35,7 @@ static mut BACKEND: NanoXBackend = NanoXBackend::default();
 
 const DEFAULT_IDLE: &[u8] = b"DO NOT USE\x00";
 
-#[bolos_derive::lazy_static(cbindgen)]
+#[no_mangle]
 static mut IDLE_MESSAGE: *const u8 = core::ptr::null();
 
 #[repr(C)]
@@ -151,7 +151,7 @@ impl UIBackend<KEY_SIZE> for NanoXBackend {
     fn show_idle(&mut self, _item_idx: usize, status: Option<&[u8]>) {
         let status = status
             .or_else(|| unsafe {
-                PIC::new(*IDLE_MESSAGE).into_inner().as_ref().map(|status| {
+                PIC::new(IDLE_MESSAGE).into_inner().as_ref().map(|status| {
                     let len = crate::ui_toolkit::c_strlen(status, KEY_SIZE).unwrap_or(KEY_SIZE);
 
                     core::slice::from_raw_parts(status, len)
