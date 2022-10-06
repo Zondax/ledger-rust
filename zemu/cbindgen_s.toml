@@ -10,4 +10,4 @@ crates = ["zemu-sys"]
 nanos = "TARGET_NANOS"
 
 [export]
-include = ["NanoSBackend", "BACKEND_LAZY", "IDLE_MESSAGE_LAZY"]
+include = ["NanoSBackend", "BACKEND_LAZY", "IDLE_MESSAGE"]
