@@ -118,8 +118,9 @@ impl UIBackend<KEY_SIZE> for NanoSBackend {
             })
             .unwrap_or_else(|| PIC::new(DEFAULT_IDLE).into_inner());
 
-        let len = core::cmp::min(self.key.len(), status.len());
+        let len = core::cmp::min(self.key.len() - 1, status.len());
         self.key[..len].copy_from_slice(&status[..len]);
+        self.key[len] = 0; //0 terminate
 
         self.update_expert();
 
