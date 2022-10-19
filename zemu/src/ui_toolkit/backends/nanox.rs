@@ -35,7 +35,7 @@ static mut BACKEND: NanoXBackend = NanoXBackend::default();
 
 const DEFAULT_IDLE: &[u8] = b"DO NOT USE\x00";
 
-#[bolos_derive::lazy_static()]
+#[bolos_derive::lazy_static]
 pub static mut IDLE_MESSAGE: *const u8 = core::ptr::null();
 
 #[repr(C)]
