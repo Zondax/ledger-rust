@@ -10,4 +10,4 @@ features = ["cbindgen_x"]
 nanox = "TARGET_NANOX"
 
 [export]
-include = ["NanoXBackend", "BACKEND_LAZY", "IDLE_MESSAGE"]
+include = ["NanoXBackend", "BACKEND_LAZY"]

@@ -39,8 +39,8 @@ static mut BACKEND: NanoSBackend = NanoSBackend::default();
 
 const DEFAULT_IDLE: &[u8] = b"DO NOT USE\x00";
 
-#[no_mangle]
-static mut IDLE_MESSAGE: *const u8 = core::ptr::null();
+#[bolos_derive::lazy_static]
+pub static mut IDLE_MESSAGE: *const u8 = core::ptr::null();
 
 #[repr(C)]
 pub struct NanoSBackend {
@@ -110,7 +110,7 @@ impl UIBackend<KEY_SIZE> for NanoSBackend {
     fn show_idle(&mut self, item_idx: usize, status: Option<&[u8]>) {
         let status = status
             .or_else(|| unsafe {
-                PIC::new(IDLE_MESSAGE).into_inner().as_ref().map(|status| {
+                PIC::new(*IDLE_MESSAGE).into_inner().as_ref().map(|status| {
                     let len = crate::ui_toolkit::c_strlen(status, KEY_SIZE).unwrap_or(KEY_SIZE);
 
                     core::slice::from_raw_parts(status, len)
@@ -248,6 +248,11 @@ impl UIBackend<KEY_SIZE> for NanoSBackend {
 
 mod cabi {
     use super::*;
+
+    #[no_mangle]
+    pub unsafe extern "C" fn view_init_impl(msg: *mut u8) {
+        *IDLE_MESSAGE = msg;
+    }
 
     #[no_mangle]
     pub unsafe extern "C" fn rs_h_expert_toggle() {
