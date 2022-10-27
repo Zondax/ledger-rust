@@ -40,7 +40,7 @@ impl<const MAX_LEN: usize> BIP32Path<MAX_LEN> {
         let mut components_array = [0; MAX_LEN];
 
         for (i, c) in components.into_iter().enumerate() {
-            if i > MAX_LEN {
+            if i >= MAX_LEN {
                 return Err(BIP32PathError::TooMuchData);
             }
             components_array[i] = c;
