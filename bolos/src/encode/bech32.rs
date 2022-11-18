@@ -14,8 +14,6 @@
 *  limitations under the License.
 ********************************************************************************/
 
-pub struct OutputBufferTooSmall;
-
 /// Integer in the range `0..32`
 #[derive(PartialEq, Eq, Debug, Copy, Clone, Default, PartialOrd, Ord, Hash)]
 #[allow(non_camel_case_types)]

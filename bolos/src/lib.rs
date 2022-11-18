@@ -17,7 +17,6 @@
 #![no_builtins]
 
 extern crate no_std_compat as std;
-
 extern crate self as bolos;
 
 #[macro_use]
@@ -25,19 +24,36 @@ extern crate cfg_if;
 
 pub use bolos_derive::*;
 
-cfg_if! {
-    if #[cfg(feature = "flash-slot")] {
-        #[macro_use]
-        pub mod flash_slot;
-        pub use flash_slot::Wear;
-    }
-}
+#[macro_use]
+pub mod flash_slot;
+pub use flash_slot::Wear;
 
 #[macro_use]
 pub mod swapping_buffer;
-pub use swapping_buffer::*;
+pub use swapping_buffer::SwappingBuffer;
 
-pub mod bech32;
+pub mod encode;
+
+pub mod lock;
+pub use lock::Lock;
+
+pub mod uploader;
+pub use uploader::Uploader;
+
+pub mod wrapper;
+pub use wrapper::ApduBufferRead;
+
+mod panic_traits;
+pub use panic_traits::LedgerUnwrap;
+
+mod apdu_errors;
+pub use apdu_errors::ApduError;
+
+mod apdu_handler;
+pub use apdu_handler::ApduHandler;
+
+/// Set of utilities for UI
+pub mod ui;
 
 cfg_if! {
     if #[cfg(all(__impl, __mock))] {

@@ -13,43 +13,9 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 ********************************************************************************/
-#![no_std]
-#![no_builtins]
 
-cfg_if::cfg_if! {
-    if #[cfg(not(bolos_sdk))] {
+mod wrapper;
+pub use wrapper::*;
 
-extern crate std;
-
-/// Wrapper for 'os_sched_exit'
-/// Exit application with status
-pub fn exit_app(status: u8) -> ! {
-    panic!("exiting app: {}", status);
-}
-
-pub const TARGET_ID: u32 = 0;
-
-pub mod pic;
-pub use pic::PIC;
-
-pub mod nvm;
-pub use nvm::NVM;
-
-#[doc(hidden)]
-pub mod errors;
-pub use errors::Error;
-
-pub mod crypto;
-pub mod hash;
-pub mod hmac;
-
-mod panic {
-    #[macro_export]
-    /// Register a panic handler to use within a ledger app
-    macro_rules! panic_handler {
-        ($($body:tt)*) => {};
-    }
-}
-
-    }
-}
+mod encode;
+pub use encode::{bech32, convert_bits, ConvertBitsError};

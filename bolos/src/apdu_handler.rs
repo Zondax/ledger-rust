@@ -13,43 +13,15 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 ********************************************************************************/
-#![no_std]
-#![no_builtins]
+use crate::{ApduBufferRead, ApduError};
 
-cfg_if::cfg_if! {
-    if #[cfg(not(bolos_sdk))] {
-
-extern crate std;
-
-/// Wrapper for 'os_sched_exit'
-/// Exit application with status
-pub fn exit_app(status: u8) -> ! {
-    panic!("exiting app: {}", status);
-}
-
-pub const TARGET_ID: u32 = 0;
-
-pub mod pic;
-pub use pic::PIC;
-
-pub mod nvm;
-pub use nvm::NVM;
-
-#[doc(hidden)]
-pub mod errors;
-pub use errors::Error;
-
-pub mod crypto;
-pub mod hash;
-pub mod hmac;
-
-mod panic {
-    #[macro_export]
-    /// Register a panic handler to use within a ledger app
-    macro_rules! panic_handler {
-        ($($body:tt)*) => {};
-    }
-}
-
-    }
+/// Trait defining an APDU handler
+pub trait ApduHandler {
+    /// Entrypoint of the handler
+    ///
+    /// `flags` is used with the ui, to communicate to the system that some UI is runing
+    /// `apdu_buffer` is the input (and output buffer
+    ///
+    /// The return tells how many bytes of output were written, or an error code.
+    fn handle(flags: &mut u32, apdu_buffer: ApduBufferRead) -> Result<u32, ApduError>;
 }

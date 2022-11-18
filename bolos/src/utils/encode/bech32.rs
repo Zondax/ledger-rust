@@ -14,8 +14,6 @@
 *  limitations under the License.
 ********************************************************************************/
 
-pub struct OutputBufferTooSmall;
-
 /// Integer in the range `0..32`
 #[derive(PartialEq, Eq, Debug, Copy, Clone, Default, PartialOrd, Ord, Hash)]
 #[allow(non_camel_case_types)]
@@ -65,112 +63,7 @@ impl From<u5> for u8 {
 impl AsRef<u8> for u5 {
     fn as_ref(&self) -> &u8 {
         &self.0
-    }
-}
-
-/// Structure to write a byte slice using the bech32 encoding
-pub struct Bech32Writer<'b> {
-    out: &'b mut [u8],
-    bytes_written: usize,
-    chk: u32,
-    variant: Variant,
-}
-
-#[derive(Debug)]
-pub enum Bech32WriterError {
-    OutputBufferTooSmall,
-}
-
-impl<'b> Bech32Writer<'b> {
-    /// Generator coefficients
-    const GEN: &'static [u32; 5] = &[
-        0x3b6a_57b2,
-        0x2650_8e6d,
-        0x1ea1_19fa,
-        0x3d42_33dd,
-        0x2a14_62b3,
-    ];
-
-    /// Creatw a new bech32 writer
-    pub fn new(hrp: &str, out: &'b mut [u8], variant: Variant) -> Result<Self, Bech32WriterError> {
-        let mut this = Self {
-            chk: 1,
-            out,
-            bytes_written: 0,
-            variant,
-        };
-
-        let hrp = hrp.as_bytes();
-        this.check_rem_out(hrp.len() + 1)?;
-        this.out[..hrp.len()].copy_from_slice(hrp);
-        this.out[hrp.len()] = b'1'; //hrp1data (separator)
-        this.bytes_written = hrp.len() + 1;
-
-        // expand HRP
-        for b in hrp {
-            this.polymod_step(u5(b >> 5));
-        }
-        this.polymod_step(u5(0));
-        for b in hrp {
-            this.polymod_step(u5(b & 0x1f));
-        }
-
-        Ok(this)
-    }
-
-    fn polymod_step(&mut self, v: u5) {
-        let b = (self.chk >> 25) as u8;
-        self.chk = (self.chk & 0x01ff_ffff) << 5 ^ (u32::from(*v.as_ref()));
-
-        for (i, item) in Self::gen().iter().enumerate() {
-            if (b >> i) & 1 == 1 {
-                self.chk ^= item;
-            }
-        }
-    }
-
-    //verify that out has enough space for the operation
-    fn check_rem_out(&self, needed: usize) -> Result<(), Bech32WriterError> {
-        let avail = self.out.len() - self.bytes_written;
-        if avail < needed {
-            Err(Bech32WriterError::OutputBufferTooSmall)
-        } else {
-            Ok(())
-        }
-    }
-
-    ///PIC'ed generator coefficients
-    fn gen() -> &'static [u32; 5] {
-        crate::PIC::new(Self::GEN).into_inner()
-    }
-
-    /// Writes a single 5 bit value of the data part
-    fn write_u5(&mut self, data: u5) -> Result<(), Bech32WriterError> {
-        self.check_rem_out(1)?;
-        self.polymod_step(data);
-        self.out[self.bytes_written] = data.to_char() as u8;
-        self.bytes_written += 1;
-
-        Ok(())
-    }
-
-    /// Write a chunck of data
-    pub fn write(&mut self, data: impl AsRef<[u8]>) -> Result<(), Bech32WriterError> {
-        // Amount of bits left over from last round, stored in buffer.
-        let mut buffer_bits = 0u32;
-        // Holds all unwritten bits left over from last round. The bits are stored beginning from
-        // the most significant bit. E.g. if buffer_bits=3, then the byte with bits a, b and c will
-        // look as follows: [a, b, c, 0, 0, 0, 0, 0]
-        let mut buffer: u8 = 0;
-
-        for b in data.as_ref() {
-            // Write first u5 if we have to write two u5s this round. That only happens if the
-            // buffer holds too many bits, so we don't have to combine buffer bits with new bits
-            // from this rounds byte.
-            if buffer_bits >= 5 {
-                self.write_u5(u5((buffer & 0b1111_1000) >> 3))?;
-                buffer <<= 5;
-                buffer_bits -= 5;
+                    buffer_bits -= 5;
             }
 
             // Combine all bits from buffer with enough bits from this rounds byte so that they fill
