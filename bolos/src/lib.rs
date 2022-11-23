@@ -55,6 +55,31 @@ pub use apdu_handler::ApduHandler;
 /// Set of utilities for UI
 pub mod ui;
 
+/// Contains the necessary mechanisms to
+/// register the app's handlers to be used
+///
+/// # How to use
+/// To register the app handler you should use the [`handlers::register`] macro:
+/**
+```rust
+# use bolos::handlers::*;
+# use bolos::{ApduBufferRead, ApduError, ApduHandler};
+
+struct Version;
+impl ApduHandler for Version {
+    fn handle(_: &mut u32, _: ApduBufferRead) -> Result<u32, ApduError> {
+        Ok(0)
+    }
+}
+
+#[register(HANDLERS)]
+static APP_VERSION: HandlerFn = Version::handle;
+
+# assert_eq!(unsafe{ HANDLERS.len() }, 1);
+```
+*/
+pub mod handlers;
+
 cfg_if! {
     if #[cfg(all(__impl, __mock))] {
         compiler_error!("Can't have both `__impl` and `__mock` enabled");
