@@ -110,7 +110,7 @@ impl<'r, 'f, const RAM: usize, const FLASH: usize> SwappingBuffer<'r, 'f, RAM, F
             BufferState::WritingToRam(cnt) if *cnt + len > RAM => {
                 //copy ram to flash, and move state over to flash
                 self.flash.write(0, &*self.ram)?;
-                self.state.transition_forward().unwrap();
+                _ = self.state.transition_forward();
 
                 //then write (counter already incremented)
                 self.write(bytes)?;

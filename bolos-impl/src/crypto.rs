@@ -300,7 +300,7 @@ mod bindings {
 
                 catch(might_throw)?;
             } else {
-                unimplemented!("os derive called in non-bolos")
+                unsafe { core::hint::unreachable_unchecked() }
             }
         }
 

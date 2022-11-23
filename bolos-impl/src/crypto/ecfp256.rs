@@ -122,7 +122,12 @@ impl PublicKey {
 
 impl AsRef<[u8]> for PublicKey {
     fn as_ref(&self) -> &[u8] {
-        &self.0.W[..self.0.W_len as usize]
+        match &self.0.W.get(..self.0.W_len as usize) {
+            Some(s) => s,
+            //SAFE: no one can write W_len legally and we
+            // are always in contro of the value
+            None => unsafe { core::hint::unreachable_unchecked() },
+        }
     }
 }
 
@@ -272,7 +277,7 @@ mod bindings {
                     err => Err(err.into())
                 }
             } else {
-                unimplemented!("edwards_compress_point called in non-bolos");
+                unsafe { core::hint::unreachable_unchecked() }
             }
         }
     }
@@ -316,7 +321,7 @@ mod bindings {
                     err => return Err(err.into()),
                 }
             } else {
-                unimplemented!("init ecfp_private_key called in non-bolos");
+                unsafe { core::hint::unreachable_unchecked() }
             }
         }
 
@@ -360,7 +365,7 @@ mod bindings {
                     err => return Err(err.into()),
                 }
             } else {
-                unimplemented!("generate_ecfp_keypair called in non-bolos");
+                unsafe { core::hint::unreachable_unchecked() }
             }
         }
 
@@ -414,7 +419,7 @@ mod bindings {
                     err => return Err(err.into()),
                 }
             } else {
-                unimplemented!("cx_ecdsa_sign called in not bolos")
+                unsafe { core::hint::unreachable_unchecked() }
             }
         }
 
@@ -465,7 +470,7 @@ mod bindings {
                     err => return Err(err.into()),
                 }
             } else {
-                unimplemented!("cx_eddsa_sign called in not bolos")
+                unsafe { core::hint::unreachable_unchecked() }
             }
         }
 
