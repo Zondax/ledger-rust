@@ -26,31 +26,36 @@ pub(self) mod bindings {
         cfg_if! {
             if #[cfg(zemu_sdk)] {
                 pub fn zemu_log(buffer: *const u8);
-                pub fn check_canary();
                 pub fn zemu_log_stack(ctx: *const u8);
+                pub fn check_canary();
             }
         }
     }
 }
 
-pub fn zemu_log(s: &str) {
+#[inline(always)]
+pub fn zemu_log(_s: &str) {
     cfg_if! {
-        if #[cfg(zemu_sdk)] {
-            unsafe {
-                let s = bolos_sys::pic::PIC::new(s).into_inner();
-                let p = s.as_bytes().as_ptr();
-                bindings::zemu_log(p)
-            }
+        if #[cfg(all(zemu_sdk, zemu_logging))] {
+                unsafe {
+                    let s = bolos_sys::pic::PIC::new(_s).into_inner();
+                    let p = s.as_bytes().as_ptr();
+                    bindings::zemu_log(p)
+                }
+        } else if #[cfg(zemu_sdk)] {
+            //do nothing, logging not enabled
         } else {
+            //polyfill for testing
             extern crate std;
-            let s = s.split_at(s.len() - 1).0; // remove null termination
+            let s = _s.split_at(_s.len() - 1).0; // remove null termination
             std::print!("{}", s)
         }
     }
 }
 
+#[inline(always)]
 pub fn zemu_log_stack(_s: &str) {
-    #[cfg(zemu_sdk)]
+    #[cfg(all(zemu_sdk, zemu_logging))]
     unsafe {
         let _s = bolos_sys::pic::PIC::new(_s).into_inner();
         let p = _s.as_bytes().as_ptr();

@@ -16,6 +16,12 @@ fn main() {
             }
 
             println!("cargo:rustc-cfg=zemu_sdk");
+
+            if let Some(log) = env::var_os("ZEMU_LOGGING") {
+                if !log.is_empty() {
+                    println!("cargo:rustc-cfg=zemu_logging");
+                }
+            }
         } else {
             panic!("BOLOS_SDK is not valid");
         }
