@@ -20,6 +20,19 @@ use crate::Error;
 
 use super::{bip32::BIP32Path, Curve, Mode, CHAIN_CODE_LEN};
 
+pub use enumflags2::BitFlags;
+
+#[enumflags2::bitflags]
+#[repr(u8)]
+#[derive(Clone, Copy, PartialEq)]
+#[cfg_attr(test, derive(Debug))]
+pub enum ECCInfo {
+    /// Tells wheter the Y component as even (0) or odd (1)
+    ParityOdd,
+    /// Tells wheter the X component was greater than the curve order
+    XGTn,
+}
+
 #[derive(Clone, Copy)]
 pub struct PublicKey {
     curve: Curve,
@@ -193,7 +206,7 @@ impl<const B: usize> SecretKey<B> {
         Ok(())
     }
 
-    pub fn sign<H>(&self, data: &[u8], out: &mut [u8]) -> Result<usize, Error>
+    pub fn sign<H>(&self, data: &[u8], out: &mut [u8]) -> Result<(BitFlags<ECCInfo>, usize), Error>
     where
         H: HasherId,
         H::Id: Into<u8>,
@@ -209,7 +222,7 @@ impl<const B: usize> SecretKey<B> {
                 let sig = sig.as_ref();
 
                 out[..sig.len()].copy_from_slice(sig);
-                Ok(sig.len())
+                Ok((Default::default(), sig.len()))
             }
             Curve::Secp256R1 => {
                 use p256::ecdsa::signature::Signer;
@@ -220,7 +233,7 @@ impl<const B: usize> SecretKey<B> {
                 let sig = sig.as_ref();
 
                 out[..sig.len()].copy_from_slice(sig);
-                Ok(sig.len())
+                Ok((Default::default(), sig.len()))
             }
             Curve::Ed25519 => {
                 use ed25519_dalek::Signer;
@@ -232,7 +245,7 @@ impl<const B: usize> SecretKey<B> {
                 let sig = keypair.sign(data);
 
                 out[..64].copy_from_slice(&sig.to_bytes()[..]);
-                Ok(64)
+                Ok((Default::default(), 64))
             }
             _ => unreachable!(),
         }

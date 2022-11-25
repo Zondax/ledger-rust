@@ -13,6 +13,7 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 ********************************************************************************/
+pub use enumflags2::BitFlags;
 use zeroize::{Zeroize, Zeroizing};
 
 use super::{bip32::BIP32Path, Curve, Mode, CHAIN_CODE_LEN};
@@ -23,6 +24,17 @@ use crate::{
 };
 
 use core::{mem::MaybeUninit, ptr::addr_of_mut};
+
+#[enumflags2::bitflags]
+#[repr(u8)]
+#[derive(Clone, Copy, PartialEq)]
+#[cfg_attr(test, derive(Debug))]
+pub enum ECCInfo {
+    /// Tells wheter the Y component as even (0) or odd (1)
+    ParityOdd = 1 << 0,
+    /// Tells wheter the X component was greater than the curve order
+    XGTn = 1 << 1,
+}
 
 #[derive(Clone, Copy)]
 pub struct PublicKey(cx_ecfp_public_key_t);
@@ -229,21 +241,18 @@ impl<const B: usize> SecretKey<B> {
     }
 
     #[inline(never)]
-    pub fn sign<H>(&self, data: &[u8], out: &mut [u8]) -> Result<usize, Error>
+    pub fn sign<H>(&self, data: &[u8], out: &mut [u8]) -> Result<(BitFlags<ECCInfo>, usize), Error>
     where
         H: HasherId,
         H::Id: Into<u8>,
     {
         let crv = self.curve;
         if crv.is_weirstrass() {
-            let (parity, size) = bindings::cx_ecdsa_sign::<H, B>(self, data, out)?;
-            if parity {
-                out[0] |= 0x01;
-            }
-
-            Ok(size)
+            bindings::cx_ecdsa_sign::<H, B>(self, data, out)
         } else if crv.is_twisted_edward() {
             bindings::cx_eddsa_sign(self, data, out)
+                //empty set of flags for eddsa
+                .map(|size| (Default::default(), size))
         } else if crv.is_montgomery() {
             todo!("montgomery sign")
         } else {
@@ -255,7 +264,7 @@ impl<const B: usize> SecretKey<B> {
 mod bindings {
     #![allow(unused_imports)]
 
-    use super::{Curve, Error, HasherId, SecretKey, CHAIN_CODE_LEN};
+    use super::{BitFlags, Curve, ECCInfo, Error, HasherId, SecretKey, CHAIN_CODE_LEN};
     use crate::{
         errors::catch,
         raw::{cx_ecfp_private_key_t, cx_ecfp_public_key_t},
@@ -378,7 +387,7 @@ mod bindings {
         sk: &SecretKey<B>,
         data: &[u8],
         sig_out: &mut [u8],
-    ) -> Result<(bool, usize), Error>
+    ) -> Result<(BitFlags<ECCInfo>, usize), Error>
     where
         H: HasherId,
         H::Id: Into<u8>,
@@ -401,7 +410,7 @@ mod bindings {
             None => sig_out.len(),
         } as u32;
 
-        let mut info = 0;
+        let mut info = 0u32;
 
         cfg_if! {
             if #[cfg(bolos_sdk)] {
@@ -423,7 +432,10 @@ mod bindings {
             }
         }
 
-        Ok((info == crate::raw::CX_ECCINFO_PARITY_ODD, sig_len as usize))
+        Ok((
+            BitFlags::<ECCInfo>::from_bits_truncate_c(info as u8, BitFlags::CONST_TOKEN),
+            sig_len as usize,
+        ))
     }
 
     pub fn cx_eddsa_sign<const B: usize>(
