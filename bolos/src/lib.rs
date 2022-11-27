@@ -49,21 +49,21 @@ pub use panic_traits::LedgerUnwrap;
 mod apdu_errors;
 pub use apdu_errors::ApduError;
 
-mod apdu_handler;
-pub use apdu_handler::ApduHandler;
-
 /// Set of utilities for UI
 pub mod ui;
 
 /// Contains the necessary mechanisms to
-/// register the app's handlers to be used
+/// register the app's handlers to be used.
+/// The registration requires 2 items,
+/// the instruction code used to determine if the handler should be called
+/// and the handler function itself.
 ///
 /// # How to use
 /// To register the app handler you should use the [`handlers::register`] macro:
 /**
 ```rust
 # use bolos::handlers::*;
-# use bolos::{ApduBufferRead, ApduError, ApduHandler};
+# use bolos::{ApduBufferRead, ApduError};
 
 struct Version;
 impl ApduHandler for Version {
@@ -73,12 +73,13 @@ impl ApduHandler for Version {
 }
 
 #[register(HANDLERS)]
-static APP_VERSION: HandlerFn = Version::handle;
+static APP_VERSION: (u8, HandlerFn) = (0, Version::handle);
 
 # assert_eq!(unsafe{ HANDLERS.len() }, 1);
 ```
 */
 pub mod handlers;
+pub use handlers::{apdu_dispatch, ApduHandler};
 
 cfg_if! {
     if #[cfg(all(__impl, __mock))] {

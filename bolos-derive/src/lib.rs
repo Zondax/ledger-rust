@@ -22,10 +22,15 @@
 //! * [macro@pic]
 //! * [macro@pic_str]
 //! * [macro@lazy_static]
+//! * [macro@enum_init]
 
 use proc_macro::TokenStream;
 use quote::quote;
 use syn::{parse_macro_input, ItemStatic};
+
+use proc_macro_error::proc_macro_error;
+
+pub(crate) mod utils;
 
 // #[bolos::nvm]
 // static mut __FLASH: [[u8; 0xFFFF]; ..];
@@ -114,4 +119,84 @@ mod lazy_static;
 #[proc_macro_attribute]
 pub fn lazy_static(metadata: TokenStream, input: TokenStream) -> TokenStream {
     lazy_static::lazy_static(metadata, input)
+}
+
+mod enum_init;
+
+#[proc_macro_error]
+#[proc_macro_attribute]
+/// The aim of this macro is to ease the writing of boilerplate for enums
+/// where we want to initialize said enum using [`MaybeUninit`].
+///
+/// The macro will generate an enum with N unit variants and N structs
+/// based on the number of variants of the original enum.
+///
+/// # Example
+/// ```rust,ignore
+/// #[enum_init]
+/// pub enum Foo<'b> {
+///     Bar(BarStruct<'b>),
+///     #[cfg(feature = "baz")]
+///     Baz {
+///         baz: u8
+///         bazz: &'b [u8]
+///     }
+/// }
+///
+/// //will generate ***-----------------------------****
+///
+/// #[repr(u8)]
+/// enum Foo__Type {
+///     Bar,
+///     #[cfg(feature = "baz")]
+///     Baz
+/// }
+///
+/// #[repr(C)]
+/// #[cfg(feature = "baz")]
+/// struct Baz<'b> {
+///     baz: u8
+///     bazz: &'b [u8]
+/// }
+///
+/// #[repr(C)]
+/// struct Bar__Variant<'b>(FooType, BarStruct<'b>);
+///
+/// #[repr(C)]
+/// #[cfg(feature = "baz")]
+/// struct Baz__Variant<'b>(FooType, Baz<'b>);
+///
+/// impl Foo<'b> {
+///     pub fn init_as_bar<__T, __F>(mut init: __F, out: &mut MaybeUninit<Self>) -> __T
+///     where
+///         __F: FnMut(&mut MaybeUninit<BarStruct<'b>>) -> __T
+///     {
+///         let out = out.as_mut_ptr() as *mut Bar__Variant;
+///         unsafe {
+///             ::core::ptr::addr_of_mut!((*out).0).write(Foo__Type::Bar__Variant);
+///         }
+///
+///         let item = unsafe { &mut *::core::ptr::addr_of_mut!((*out).1).cast() };
+///         init(item)
+///     }
+/// }
+///
+/// #[cfg(feature = "baz")]
+/// impl Foo<'b> {
+///     pub fn init_as_baz<__T, __F>(mut init: __F, out: &mut MaybeUninit<Self>) -> __T
+///     where
+///         __F: FnMut(&mut MaybeUninit<Baz<'b>>) -> __T
+///     {
+///         let out = out.as_mut_ptr() as *mut Baz__Variant;
+///         unsafe {
+///             ::core::ptr::addr_of_mut!((*out).0).write(Foo__Type::Baz__Variant);
+///         }
+///
+///         let item = unsafe { &mut *::core::ptr::addr_of_mut!((*out).1).cast() };
+///         init(item)
+///     }
+/// }
+/// ```
+pub fn enum_init(metadata: TokenStream, input: TokenStream) -> TokenStream {
+    enum_init::enum_init(metadata, input)
 }
