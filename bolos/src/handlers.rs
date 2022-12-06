@@ -13,10 +13,8 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 ********************************************************************************/
-pub use linkme::distributed_slice as register;
-
 pub mod prelude {
-    pub use super::{register, ApduHandler, HandlerFn, HANDLERS};
+    pub use super::ApduHandler;
     pub use crate::{ApduBufferRead, ApduError};
 }
 
@@ -36,14 +34,47 @@ pub trait ApduHandler {
 /// Handler function signature
 pub type HandlerFn = fn(&mut u32, ApduBufferRead) -> Result<u32, ApduError>;
 
-#[register]
-pub static HANDLERS: [(u8, HandlerFn)] = [..];
+/// Enum representing the different supported types of rules to choose which handler to run
+pub enum HandlerRule {
+    /// The handler will be selected when the ADPU's INSTRUCTION value matches the given one
+    Instruction(u8),
+    /// The handler will always be selected if it has this rule
+    Always,
+}
+
+/// Structure representing the handlers accepted by [`apdu_dispatch`]
+pub struct Handler {
+    pub(crate) rule: HandlerRule,
+    handler: crate::PIC<HandlerFn>,
+}
+
+impl Handler {
+    /// Create a new [`Handler`]
+    pub fn new(rule: HandlerRule, f: HandlerFn) -> Self {
+        Self {
+            rule,
+            handler: crate::PIC::new(f),
+        }
+    }
+
+    /// Shorthand to create a new simpler handler
+    pub fn simple_handler<T: ApduHandler>(ins: u8) -> Self {
+        Self::new(HandlerRule::Instruction(ins), T::handle)
+    }
+
+    fn handler(&self) -> &HandlerFn {
+        self.handler.get_ref()
+    }
+}
 
 #[inline(never)]
+/// Dispatch the APDU based on the list of given `handlers`
+///
+/// The list is accessed as given, meaning earlier handlers take precedence
 pub fn apdu_dispatch<const CLA: u8>(
     flags: &mut u32,
     apdu_buffer: ApduBufferRead,
-    handlers: &[(u8, HandlerFn)],
+    handlers: &[Handler],
 ) -> Result<u32, ApduError> {
     *flags = 0;
 
@@ -55,11 +86,14 @@ pub fn apdu_dispatch<const CLA: u8>(
 
     //Search thru the registered instructions
     // and invoke the handler if found
-    for (hins, handler) in handlers {
-        if *hins == ins {
-            let handler = crate::PIC::new(handler).into_inner();
-            return handler(flags, apdu_buffer);
-        }
+    for hndl in handlers {
+        let handler = match hndl.rule {
+            HandlerRule::Instruction(hins) if hins == ins => hndl.handler(),
+            HandlerRule::Always => hndl.handler(),
+            _ => continue,
+        };
+
+        return handler(flags, apdu_buffer);
     }
 
     Err(ApduError::CommandNotAllowed)
