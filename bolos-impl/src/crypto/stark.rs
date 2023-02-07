@@ -275,7 +275,7 @@ mod bindings {
         let mut sig_len = match crv.domain_length() {
             Some(n) => 6 + 2 * (n + 1),
             None => sig_out.len(),
-        } as u32;
+        };
 
         let mut info = 0;
 
