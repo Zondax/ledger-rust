@@ -23,6 +23,8 @@ mod exceptions {
             include!("errors/exceptionsS.rs");
         } else if #[cfg(nanosplus)] {
             include!("errors/exceptionsSP.rs");
+        } else if #[cfg(stax)] {
+            include!("errors/exceptionsFS.rs");
         }
     }
 

@@ -19,8 +19,6 @@
 
 #include "wrapper.h"
 
-#include "bagl.h"
-
 #include "cx.h"
 
 #endif // WRAPPERX_SP_

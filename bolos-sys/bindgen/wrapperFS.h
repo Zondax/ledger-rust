@@ -1,5 +1,5 @@
-#ifndef WRAPPERX_H_
-#define WRAPPERX_H_
+#ifndef WRAPPERFS_H_
+#define WRAPPERFS_H_
 
 #include "defs.h"
 
@@ -17,12 +17,8 @@
 
 #define HAVE_UX_FLOW
 
-#define HAVE_BLE
-#define HAVE_BLE_APDU
-#define BLE_COMMAND_TIMEOUT_MS 2000
+#include "wrapper.h"
 
 #include "cx.h"
 
-#include "wrapper.h"
-
-#endif // WRAPPERX_H_
+#endif // WRAPPERFS_H_

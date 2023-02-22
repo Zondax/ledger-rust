@@ -10,6 +10,7 @@ pushd "$SCRIPT_DIR" || return
 : "${BOLOS_SDK_S_PATH:=nanos-secure-sdk}"
 : "${BOLOS_SDK_X_PATH:=nanox-secure-sdk}"
 : "${BOLOS_SDK_SP_PATH:=nanosplus-secure-sdk}"
+: "${BOLOS_SDK_FS_PATH:=stax-secure-sdk}"
 
 (./fetch_sdk.sh)
 
@@ -71,6 +72,22 @@ bindgen --use-core \
         -I"$BOLOS_SDK_SP_PATH"/lib_ux/include \
         -I"$BOLOS_SDK_SP_PATH"/lib_cxng/include \
         -I"$BOLOS_SDK_SP_PATH"/lib_bagl/include \
+        -I"$TMP_HEADERS_PATH"/include \
+        -I../bindgen/include \
+        -target thumbv8m.main-none-eabi \
+        -mcpu=cortex-m35p -mthumb
+
+echo "Cleaning up old Stax bindings and regenerating them"
+rm ../src/bindings/bindingsFS.rs || true
+bindgen --use-core \
+        --with-derive-default \
+        --ctypes-prefix cty \
+        -o ../src/bindings/bindingsFS.rs \
+        ../bindgen/wrapperFS.h -- \
+        -I"$BOLOS_SDK_FS_PATH"/include \
+        -I"$BOLOS_SDK_FS_PATH"/target/stax/include \
+        -I"$BOLOS_SDK_FS_PATH"/lib_ux/include \
+        -I"$BOLOS_SDK_FS_PATH"/lib_cxng/include \
         -I"$TMP_HEADERS_PATH"/include \
         -I../bindgen/include \
         -target thumbv8m.main-none-eabi \

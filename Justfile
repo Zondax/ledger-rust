@@ -17,6 +17,7 @@ link-ledger-sdk base-dir=justfile_directory() target-dir=invocation_directory() 
     ln -s $f {{base-dir}}/bolos-sys/sdk/nanosplus-secure-sdk {{target-dir}}/
     ln -s $f {{base-dir}}/bolos-sys/sdk/nanos-secure-sdk {{target-dir}}/
     ln -s $f {{base-dir}}/bolos-sys/sdk/nanox-secure-sdk {{target-dir}}/
+    ln -s $f {{base-dir}}/bolos-sys/sdk/stax-secure-sdk {{target-dir}}/
 
 alias fetch-sdk := fetch-bindings
 @fetch-bindings:

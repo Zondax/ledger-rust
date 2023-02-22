@@ -9,6 +9,45 @@ pub const USB_SEGMENT_SIZE: u32 = 64;
 pub const WEBUSB_URL_SIZE_B: u32 = 0;
 pub const WEBUSB_URL: &[u8; 1usize] = b"\0";
 pub const TARGET_ID: u32 = 856686596;
+pub const BAGL_NOFILL: u32 = 0;
+pub const BAGL_FILL: u32 = 1;
+pub const BAGL_OUTLINE: u32 = 2;
+pub const BAGL_NOICON: u32 = 3;
+pub const BAGL_FILL_CIRCLE_1_OCTANT: u32 = 1;
+pub const BAGL_FILL_CIRCLE_2_OCTANT: u32 = 2;
+pub const BAGL_FILL_CIRCLE_3_OCTANT: u32 = 4;
+pub const BAGL_FILL_CIRCLE_4_OCTANT: u32 = 8;
+pub const BAGL_FILL_CIRCLE_5_OCTANT: u32 = 16;
+pub const BAGL_FILL_CIRCLE_6_OCTANT: u32 = 32;
+pub const BAGL_FILL_CIRCLE_7_OCTANT: u32 = 64;
+pub const BAGL_FILL_CIRCLE_8_OCTANT: u32 = 128;
+pub const BAGL_FILL_CIRCLE: u32 = 255;
+pub const BAGL_FILL_CIRCLE_3PI2_2PI: u32 = 3;
+pub const BAGL_FILL_CIRCLE_PI_3PI2: u32 = 12;
+pub const BAGL_FILL_CIRCLE_0_PI2: u32 = 48;
+pub const BAGL_FILL_CIRCLE_PI2_PI: u32 = 192;
+pub const BAGL_TYPE_FLAGS_MASK: u32 = 128;
+pub const BAGL_FONT_ID_MASK: u32 = 4095;
+pub const BAGL_FONT_ALIGNMENT_HORIZONTAL_MASK: u32 = 49152;
+pub const BAGL_FONT_ALIGNMENT_LEFT: u32 = 0;
+pub const BAGL_FONT_ALIGNMENT_RIGHT: u32 = 16384;
+pub const BAGL_FONT_ALIGNMENT_CENTER: u32 = 32768;
+pub const BAGL_FONT_ALIGNMENT_VERTICAL_MASK: u32 = 12288;
+pub const BAGL_FONT_ALIGNMENT_TOP: u32 = 0;
+pub const BAGL_FONT_ALIGNMENT_BOTTOM: u32 = 4096;
+pub const BAGL_FONT_ALIGNMENT_MIDDLE: u32 = 8192;
+pub const BAGL_STROKE_FLAG_ONESHOT: u32 = 128;
+pub const BAGL_ENCODING_LATIN1: u32 = 0;
+pub const BAGL_ENCODING_DEFAULT: u32 = 0;
+pub const BAGL_FONT_SYMBOLS_0_CLEAR: [u8; 2usize] = [128u8, 0u8];
+pub const BAGL_FONT_SYMBOLS_0_DOT: [u8; 2usize] = [129u8, 0u8];
+pub const BAGL_FONT_SYMBOLS_0_LEFT: [u8; 2usize] = [130u8, 0u8];
+pub const BAGL_FONT_SYMBOLS_0_LIGHTNING: [u8; 2usize] = [131u8, 0u8];
+pub const BAGL_FONT_SYMBOLS_0_MINIRIGHT: [u8; 2usize] = [132u8, 0u8];
+pub const BAGL_FONT_SYMBOLS_0_DASHBOARD: [u8; 2usize] = [133u8, 0u8];
+pub const BAGL_FONT_SYMBOLS_0_SETTINGS: [u8; 2usize] = [134u8, 0u8];
+pub const BAGL_FONT_SYMBOLS_0_EXIT: [u8; 2usize] = [135u8, 0u8];
+pub const BAGL_FONT_SYMBOLS_1_CARET: [u8; 2usize] = [160u8, 0u8];
 pub const ENDORSEMENT_MAX_ASN1_LENGTH: u32 = 72;
 pub const OS_PARSE_BERTLV_OFFSET_COMPARE_WITH_BUFFER: u32 = 2147483648;
 pub const OS_PARSE_BERTLV_OFFSET_GET_LENGTH: u32 = 1073741824;
@@ -661,45 +700,6 @@ pub const SEPROXYHAL_TAG_SCREEN_ANIMATION_STATUS_VERTICAL_SPLIT_SLIDE: u32 = 0;
 pub const SEPROXYHAL_TAG_BOOTLOADER_CAPDU_STATUS: u32 = 106;
 pub const IO_CACHE: u32 = 1;
 pub const NO_TIMEOUT: u32 = 0;
-pub const BAGL_NOFILL: u32 = 0;
-pub const BAGL_FILL: u32 = 1;
-pub const BAGL_OUTLINE: u32 = 2;
-pub const BAGL_NOICON: u32 = 3;
-pub const BAGL_FILL_CIRCLE_1_OCTANT: u32 = 1;
-pub const BAGL_FILL_CIRCLE_2_OCTANT: u32 = 2;
-pub const BAGL_FILL_CIRCLE_3_OCTANT: u32 = 4;
-pub const BAGL_FILL_CIRCLE_4_OCTANT: u32 = 8;
-pub const BAGL_FILL_CIRCLE_5_OCTANT: u32 = 16;
-pub const BAGL_FILL_CIRCLE_6_OCTANT: u32 = 32;
-pub const BAGL_FILL_CIRCLE_7_OCTANT: u32 = 64;
-pub const BAGL_FILL_CIRCLE_8_OCTANT: u32 = 128;
-pub const BAGL_FILL_CIRCLE: u32 = 255;
-pub const BAGL_FILL_CIRCLE_3PI2_2PI: u32 = 3;
-pub const BAGL_FILL_CIRCLE_PI_3PI2: u32 = 12;
-pub const BAGL_FILL_CIRCLE_0_PI2: u32 = 48;
-pub const BAGL_FILL_CIRCLE_PI2_PI: u32 = 192;
-pub const BAGL_TYPE_FLAGS_MASK: u32 = 128;
-pub const BAGL_FONT_ID_MASK: u32 = 4095;
-pub const BAGL_FONT_ALIGNMENT_HORIZONTAL_MASK: u32 = 49152;
-pub const BAGL_FONT_ALIGNMENT_LEFT: u32 = 0;
-pub const BAGL_FONT_ALIGNMENT_RIGHT: u32 = 16384;
-pub const BAGL_FONT_ALIGNMENT_CENTER: u32 = 32768;
-pub const BAGL_FONT_ALIGNMENT_VERTICAL_MASK: u32 = 12288;
-pub const BAGL_FONT_ALIGNMENT_TOP: u32 = 0;
-pub const BAGL_FONT_ALIGNMENT_BOTTOM: u32 = 4096;
-pub const BAGL_FONT_ALIGNMENT_MIDDLE: u32 = 8192;
-pub const BAGL_STROKE_FLAG_ONESHOT: u32 = 128;
-pub const BAGL_ENCODING_LATIN1: u32 = 0;
-pub const BAGL_ENCODING_DEFAULT: u32 = 0;
-pub const BAGL_FONT_SYMBOLS_0_CLEAR: [u8; 2usize] = [128u8, 0u8];
-pub const BAGL_FONT_SYMBOLS_0_DOT: [u8; 2usize] = [129u8, 0u8];
-pub const BAGL_FONT_SYMBOLS_0_LEFT: [u8; 2usize] = [130u8, 0u8];
-pub const BAGL_FONT_SYMBOLS_0_LIGHTNING: [u8; 2usize] = [131u8, 0u8];
-pub const BAGL_FONT_SYMBOLS_0_MINIRIGHT: [u8; 2usize] = [132u8, 0u8];
-pub const BAGL_FONT_SYMBOLS_0_DASHBOARD: [u8; 2usize] = [133u8, 0u8];
-pub const BAGL_FONT_SYMBOLS_0_SETTINGS: [u8; 2usize] = [134u8, 0u8];
-pub const BAGL_FONT_SYMBOLS_0_EXIT: [u8; 2usize] = [135u8, 0u8];
-pub const BAGL_FONT_SYMBOLS_1_CARET: [u8; 2usize] = [160u8, 0u8];
 pub const CX_AES_BLOCK_SIZE: u32 = 16;
 pub const CX_DES_BLOCK_SIZE: u32 = 8;
 pub const CX_RIPEMD160_SIZE: u32 = 20;
@@ -708,6 +708,724 @@ pub const CX_SHA384_SIZE: u32 = 48;
 pub const CX_SHA512_SIZE: u32 = 64;
 pub const MAX_IV_LENGTH: u32 = 16;
 pub const MAX_BLOCK_LENGTH: u32 = 16;
+pub const bagl_components_type_e__BAGL_NONE: bagl_components_type_e_ = 0;
+pub const bagl_components_type_e__BAGL_BUTTON: bagl_components_type_e_ = 1;
+pub const bagl_components_type_e__BAGL_LABEL: bagl_components_type_e_ = 2;
+pub const bagl_components_type_e__BAGL_RECTANGLE: bagl_components_type_e_ = 3;
+pub const bagl_components_type_e__BAGL_LINE: bagl_components_type_e_ = 4;
+pub const bagl_components_type_e__BAGL_ICON: bagl_components_type_e_ = 5;
+pub const bagl_components_type_e__BAGL_CIRCLE: bagl_components_type_e_ = 6;
+pub const bagl_components_type_e__BAGL_LABELINE: bagl_components_type_e_ = 7;
+pub const bagl_components_type_e__BAGL_FLAG_TOUCHABLE: bagl_components_type_e_ = 128;
+pub type bagl_components_type_e_ = cty::c_uint;
+pub use self::bagl_components_type_e_ as bagl_components_type_e;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct bagl_component_t {
+    pub type_: bagl_components_type_e,
+    pub userid: cty::c_uchar,
+    pub x: cty::c_short,
+    pub y: cty::c_short,
+    pub width: cty::c_ushort,
+    pub height: cty::c_ushort,
+    pub stroke: cty::c_uchar,
+    pub radius: cty::c_uchar,
+    pub fill: cty::c_uchar,
+    pub fgcolor: cty::c_uint,
+    pub bgcolor: cty::c_uint,
+    pub font_id: cty::c_ushort,
+    pub icon_id: cty::c_uchar,
+}
+#[test]
+fn bindgen_test_layout_bagl_component_t() {
+    const UNINIT: ::core::mem::MaybeUninit<bagl_component_t> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<bagl_component_t>(),
+        32usize,
+        concat!("Size of: ", stringify!(bagl_component_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<bagl_component_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(bagl_component_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).type_) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_component_t),
+            "::",
+            stringify!(type_)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).userid) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_component_t),
+            "::",
+            stringify!(userid)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).x) as usize - ptr as usize },
+        6usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_component_t),
+            "::",
+            stringify!(x)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).y) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_component_t),
+            "::",
+            stringify!(y)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).width) as usize - ptr as usize },
+        10usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_component_t),
+            "::",
+            stringify!(width)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).height) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_component_t),
+            "::",
+            stringify!(height)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).stroke) as usize - ptr as usize },
+        14usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_component_t),
+            "::",
+            stringify!(stroke)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).radius) as usize - ptr as usize },
+        15usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_component_t),
+            "::",
+            stringify!(radius)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).fill) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_component_t),
+            "::",
+            stringify!(fill)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).fgcolor) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_component_t),
+            "::",
+            stringify!(fgcolor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bgcolor) as usize - ptr as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_component_t),
+            "::",
+            stringify!(bgcolor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).font_id) as usize - ptr as usize },
+        28usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_component_t),
+            "::",
+            stringify!(font_id)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).icon_id) as usize - ptr as usize },
+        30usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_component_t),
+            "::",
+            stringify!(icon_id)
+        )
+    );
+}
+impl Default for bagl_component_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " helper structure to help handling icons"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct bagl_icon_details_s {
+    pub width: cty::c_uint,
+    pub height: cty::c_uint,
+    pub bpp: cty::c_uint,
+    pub colors: *const cty::c_uint,
+    pub bitmap: *const cty::c_uchar,
+}
+#[test]
+fn bindgen_test_layout_bagl_icon_details_s() {
+    const UNINIT: ::core::mem::MaybeUninit<bagl_icon_details_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<bagl_icon_details_s>(),
+        20usize,
+        concat!("Size of: ", stringify!(bagl_icon_details_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<bagl_icon_details_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(bagl_icon_details_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).width) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_icon_details_s),
+            "::",
+            stringify!(width)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).height) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_icon_details_s),
+            "::",
+            stringify!(height)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bpp) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_icon_details_s),
+            "::",
+            stringify!(bpp)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).colors) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_icon_details_s),
+            "::",
+            stringify!(colors)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bitmap) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_icon_details_s),
+            "::",
+            stringify!(bitmap)
+        )
+    );
+}
+impl Default for bagl_icon_details_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " helper structure to help handling icons"]
+pub type bagl_icon_details_t = bagl_icon_details_s;
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct bagl_font_character_t {
+    pub char_width: cty::c_uchar,
+    pub bitmap_byte_count: cty::c_uchar,
+    pub bitmap_offset: cty::c_ushort,
+}
+#[test]
+fn bindgen_test_layout_bagl_font_character_t() {
+    const UNINIT: ::core::mem::MaybeUninit<bagl_font_character_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<bagl_font_character_t>(),
+        4usize,
+        concat!("Size of: ", stringify!(bagl_font_character_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<bagl_font_character_t>(),
+        2usize,
+        concat!("Alignment of ", stringify!(bagl_font_character_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).char_width) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_font_character_t),
+            "::",
+            stringify!(char_width)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bitmap_byte_count) as usize - ptr as usize },
+        1usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_font_character_t),
+            "::",
+            stringify!(bitmap_byte_count)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bitmap_offset) as usize - ptr as usize },
+        2usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_font_character_t),
+            "::",
+            stringify!(bitmap_offset)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct bagl_font_t {
+    pub font_id: cty::c_uint,
+    pub bpp: cty::c_uchar,
+    pub char_height: cty::c_uchar,
+    pub baseline_height: cty::c_uchar,
+    pub char_kerning: cty::c_uchar,
+    pub first_char: cty::c_ushort,
+    pub last_char: cty::c_ushort,
+    pub characters: *const bagl_font_character_t,
+    pub bitmap: *const cty::c_uchar,
+}
+#[test]
+fn bindgen_test_layout_bagl_font_t() {
+    const UNINIT: ::core::mem::MaybeUninit<bagl_font_t> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<bagl_font_t>(),
+        20usize,
+        concat!("Size of: ", stringify!(bagl_font_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<bagl_font_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(bagl_font_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).font_id) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_font_t),
+            "::",
+            stringify!(font_id)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bpp) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_font_t),
+            "::",
+            stringify!(bpp)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).char_height) as usize - ptr as usize },
+        5usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_font_t),
+            "::",
+            stringify!(char_height)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).baseline_height) as usize - ptr as usize },
+        6usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_font_t),
+            "::",
+            stringify!(baseline_height)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).char_kerning) as usize - ptr as usize },
+        7usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_font_t),
+            "::",
+            stringify!(char_kerning)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).first_char) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_font_t),
+            "::",
+            stringify!(first_char)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).last_char) as usize - ptr as usize },
+        10usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_font_t),
+            "::",
+            stringify!(last_char)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).characters) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_font_t),
+            "::",
+            stringify!(characters)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bitmap) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_font_t),
+            "::",
+            stringify!(bitmap)
+        )
+    );
+}
+impl Default for bagl_font_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+extern "C" {
+    pub static C_bagl_fonts: [*const bagl_font_t; 0usize];
+}
+extern "C" {
+    pub static C_bagl_fonts_count: cty::c_uint;
+}
+pub const bagl_font_id_e_BAGL_FONT_LUCIDA_CONSOLE_8PX: bagl_font_id_e = 0;
+pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_LIGHT_16_22PX: bagl_font_id_e = 1;
+pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_REGULAR_8_11PX: bagl_font_id_e = 2;
+pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_REGULAR_10_13PX: bagl_font_id_e = 3;
+pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_REGULAR_11_14PX: bagl_font_id_e = 4;
+pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_REGULAR_13_18PX: bagl_font_id_e = 5;
+pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_REGULAR_22_30PX: bagl_font_id_e = 6;
+pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_SEMIBOLD_8_11PX: bagl_font_id_e = 7;
+pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_EXTRABOLD_11px: bagl_font_id_e = 8;
+pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_LIGHT_16px: bagl_font_id_e = 9;
+pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_REGULAR_11px: bagl_font_id_e = 10;
+pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_SEMIBOLD_10_13PX: bagl_font_id_e = 11;
+pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_SEMIBOLD_11_16PX: bagl_font_id_e = 12;
+pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_SEMIBOLD_13_18PX: bagl_font_id_e = 13;
+pub const bagl_font_id_e_BAGL_FONT_SYMBOLS_0: bagl_font_id_e = 14;
+pub const bagl_font_id_e_BAGL_FONT_SYMBOLS_1: bagl_font_id_e = 15;
+pub const bagl_font_id_e_BAGL_FONT_LAST: bagl_font_id_e = 16;
+pub type bagl_font_id_e = cty::c_uint;
+pub const bagl_glyph_e_BAGL_GLYPH_NOGLYPH: bagl_glyph_e = 0;
+pub const bagl_glyph_e_BAGL_GLYPH_LOGO_LEDGER_100: bagl_glyph_e = 1;
+pub const bagl_glyph_e_BAGL_GLYPH_LOGO_LEDGER_BLUE_120: bagl_glyph_e = 2;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_GEARS_50: bagl_glyph_e = 3;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_CLEAR_16: bagl_glyph_e = 4;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_BACKSPACE_20: bagl_glyph_e = 5;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_CHECK: bagl_glyph_e = 6;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_CROSS: bagl_glyph_e = 7;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_CHECK_BADGE: bagl_glyph_e = 8;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_LEFT: bagl_glyph_e = 9;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_RIGHT: bagl_glyph_e = 10;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_UP: bagl_glyph_e = 11;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_DOWN: bagl_glyph_e = 12;
+pub const bagl_glyph_e_BAGL_GLYPH_LOGO_LEDGER_MINI: bagl_glyph_e = 13;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_CROSS_BADGE: bagl_glyph_e = 14;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_DASHBOARD_BADGE: bagl_glyph_e = 15;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_PLUS: bagl_glyph_e = 16;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_LESS: bagl_glyph_e = 17;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_TOGGLE_ON: bagl_glyph_e = 18;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_TOGGLE_OFF: bagl_glyph_e = 19;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_LOADING_BADGE: bagl_glyph_e = 20;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_COG_BADGE: bagl_glyph_e = 21;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_WARNING_BADGE: bagl_glyph_e = 22;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_DOWNLOAD_BADGE: bagl_glyph_e = 23;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_TRANSACTION_BADGE: bagl_glyph_e = 24;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_BITCOIN_BADGE: bagl_glyph_e = 25;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_ETHEREUM_BADGE: bagl_glyph_e = 26;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_EYE_BADGE: bagl_glyph_e = 27;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_PEOPLE_BADGE: bagl_glyph_e = 28;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_LOCK_BADGE: bagl_glyph_e = 29;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_BLUE_CABLE: bagl_glyph_e = 30;
+pub const bagl_glyph_e_BAGL_GLYPH_TEXT_WELCOME: bagl_glyph_e = 31;
+pub const bagl_glyph_e_BAGL_GLYPH_LOGO_LEDGER_BOOT: bagl_glyph_e = 32;
+pub const bagl_glyph_e_BAGL_GLYPH_BATT_LEFT: bagl_glyph_e = 33;
+pub const bagl_glyph_e_BAGL_GLYPH_BATT_RIGHT: bagl_glyph_e = 34;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_LIGHTNING: bagl_glyph_e = 35;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_PLUG: bagl_glyph_e = 36;
+pub const bagl_glyph_e_BAGL_GLYPH_BADGE_DOWNLOAD_BLUE: bagl_glyph_e = 37;
+pub const bagl_glyph_e_BAGL_GLYPH_BADGE_WARNING_BLUE: bagl_glyph_e = 38;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_LOADER_BLUE: bagl_glyph_e = 39;
+pub const bagl_glyph_e_BAGL_GLYPH_BADGE_CHECKMARK_BLUE: bagl_glyph_e = 40;
+pub const bagl_glyph_e_BAGL_GLYPH_BADGE_WRENCH_BLUE: bagl_glyph_e = 41;
+pub const bagl_glyph_e_BAGL_GLYPH_BADGE_ERROR_BLUE: bagl_glyph_e = 42;
+pub const bagl_glyph_e_BAGL_GLYPH_BADGE_POWER_BLUE: bagl_glyph_e = 43;
+pub const bagl_glyph_e_BAGL_GLYPH_BADGE_CRITICAL_BLUE: bagl_glyph_e = 44;
+pub const bagl_glyph_e_BAGL_GLYPH_BADGE_ASSISTANCE_BLUE: bagl_glyph_e = 45;
+pub const bagl_glyph_e_BAGL_GLYPH_BADGE_LOCK_BLUE: bagl_glyph_e = 46;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_CHECKMARK_BLUE: bagl_glyph_e = 47;
+pub const bagl_glyph_e_BAGL_GLYPH_APP_FIRMWARE_BLUE: bagl_glyph_e = 48;
+pub const bagl_glyph_e_BAGL_GLYPH_BADGE_BLUE: bagl_glyph_e = 49;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_BRIGHTNESS_LOW_BLUE: bagl_glyph_e = 50;
+pub const bagl_glyph_e_BAGL_GLYPH_ICON_BRIGHTNESS_HIGH_BLUE: bagl_glyph_e = 51;
+pub const bagl_glyph_e_NB_BAGL_GLYPH_ICON: bagl_glyph_e = 52;
+pub type bagl_glyph_e = cty::c_uint;
+extern "C" {
+    pub fn bagl_compute_line_width(
+        font_id: cty::c_ushort,
+        width: cty::c_ushort,
+        text: *const cty::c_void,
+        text_length: cty::c_uchar,
+        text_encoding: cty::c_uchar,
+    ) -> cty::c_ushort;
+}
+extern "C" {
+    pub fn bagl_draw_string(
+        font_id: cty::c_ushort,
+        color1: cty::c_uint,
+        color0: cty::c_uint,
+        x: cty::c_int,
+        y: cty::c_int,
+        width: cty::c_uint,
+        height: cty::c_uint,
+        text: *const cty::c_void,
+        text_length: cty::c_uint,
+        text_encoding: cty::c_uchar,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn bagl_draw_bg(color: cty::c_uint);
+}
+extern "C" {
+    pub fn bagl_draw_with_context(
+        component: *const bagl_component_t,
+        text: *const cty::c_void,
+        text_length: cty::c_ushort,
+        text_encoding: cty::c_uchar,
+    );
+}
+extern "C" {
+    pub fn bagl_draw(component: *const bagl_component_t);
+}
+extern "C" {
+    pub fn bagl_draw_glyph(
+        component: *const bagl_component_t,
+        icon_details: *const bagl_icon_details_t,
+    );
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct bagl_animated_s {
+    pub c: bagl_component_t,
+    pub text: *mut cty::c_void,
+    pub text_length: cty::c_ushort,
+    pub text_encoding: cty::c_uchar,
+    pub current_char_idx: cty::c_uint,
+    pub current_x: cty::c_uint,
+    pub next_ms: cty::c_uint,
+}
+#[test]
+fn bindgen_test_layout_bagl_animated_s() {
+    const UNINIT: ::core::mem::MaybeUninit<bagl_animated_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<bagl_animated_s>(),
+        52usize,
+        concat!("Size of: ", stringify!(bagl_animated_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<bagl_animated_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(bagl_animated_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).c) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_animated_s),
+            "::",
+            stringify!(c)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text) as usize - ptr as usize },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_animated_s),
+            "::",
+            stringify!(text)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text_length) as usize - ptr as usize },
+        36usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_animated_s),
+            "::",
+            stringify!(text_length)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text_encoding) as usize - ptr as usize },
+        38usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_animated_s),
+            "::",
+            stringify!(text_encoding)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).current_char_idx) as usize - ptr as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_animated_s),
+            "::",
+            stringify!(current_char_idx)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).current_x) as usize - ptr as usize },
+        44usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_animated_s),
+            "::",
+            stringify!(current_x)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).next_ms) as usize - ptr as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bagl_animated_s),
+            "::",
+            stringify!(next_ms)
+        )
+    );
+}
+impl Default for bagl_animated_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+pub type bagl_animated_t = bagl_animated_s;
+extern "C" {
+    pub fn bagl_animate(
+        anim: *mut bagl_animated_t,
+        timestamp_ms: cty::c_uint,
+        interval_ms: cty::c_uint,
+    );
+}
+extern "C" {
+    pub fn bagl_hal_draw_bitmap_within_rect(
+        x: cty::c_int,
+        y: cty::c_int,
+        width: cty::c_uint,
+        height: cty::c_uint,
+        color_count: cty::c_uint,
+        colors: *const cty::c_uint,
+        bit_per_pixel: cty::c_uint,
+        bitmap: *const cty::c_uchar,
+        bitmap_length_bits: cty::c_uint,
+    );
+}
+extern "C" {
+    pub fn bagl_hal_draw_bitmap_continue(
+        bit_per_pixel: cty::c_uint,
+        bitmap: *const cty::c_uchar,
+        bitmap_length_bits: cty::c_uint,
+    );
+}
+extern "C" {
+    pub fn bagl_hal_draw_rect(
+        color: cty::c_uint,
+        x: cty::c_int,
+        y: cty::c_int,
+        width: cty::c_uint,
+        height: cty::c_uint,
+    );
+}
+extern "C" {
+    pub fn bagl_action(component: *const bagl_component_t, event_kind: cty::c_uchar);
+}
+extern "C" {
+    pub fn bagl_init();
+}
 extern "C" {
     pub fn os_endorsement_get_code_hash(buffer: *mut cty::c_uchar) -> cty::c_uint;
 }
@@ -7506,724 +8224,6 @@ extern "C" {
 extern "C" {
     #[doc = " Request transmission of an APDU from the G_io_apdu_buffer using the HID transport protocol"]
     pub fn io_usb_hid_send(sndfct: io_send_t, sndlength: cty::c_ushort);
-}
-pub const bagl_components_type_e__BAGL_NONE: bagl_components_type_e_ = 0;
-pub const bagl_components_type_e__BAGL_BUTTON: bagl_components_type_e_ = 1;
-pub const bagl_components_type_e__BAGL_LABEL: bagl_components_type_e_ = 2;
-pub const bagl_components_type_e__BAGL_RECTANGLE: bagl_components_type_e_ = 3;
-pub const bagl_components_type_e__BAGL_LINE: bagl_components_type_e_ = 4;
-pub const bagl_components_type_e__BAGL_ICON: bagl_components_type_e_ = 5;
-pub const bagl_components_type_e__BAGL_CIRCLE: bagl_components_type_e_ = 6;
-pub const bagl_components_type_e__BAGL_LABELINE: bagl_components_type_e_ = 7;
-pub const bagl_components_type_e__BAGL_FLAG_TOUCHABLE: bagl_components_type_e_ = 128;
-pub type bagl_components_type_e_ = cty::c_uint;
-pub use self::bagl_components_type_e_ as bagl_components_type_e;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct bagl_component_t {
-    pub type_: bagl_components_type_e,
-    pub userid: cty::c_uchar,
-    pub x: cty::c_short,
-    pub y: cty::c_short,
-    pub width: cty::c_ushort,
-    pub height: cty::c_ushort,
-    pub stroke: cty::c_uchar,
-    pub radius: cty::c_uchar,
-    pub fill: cty::c_uchar,
-    pub fgcolor: cty::c_uint,
-    pub bgcolor: cty::c_uint,
-    pub font_id: cty::c_ushort,
-    pub icon_id: cty::c_uchar,
-}
-#[test]
-fn bindgen_test_layout_bagl_component_t() {
-    const UNINIT: ::core::mem::MaybeUninit<bagl_component_t> = ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<bagl_component_t>(),
-        32usize,
-        concat!("Size of: ", stringify!(bagl_component_t))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<bagl_component_t>(),
-        4usize,
-        concat!("Alignment of ", stringify!(bagl_component_t))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).type_) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_component_t),
-            "::",
-            stringify!(type_)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).userid) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_component_t),
-            "::",
-            stringify!(userid)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).x) as usize - ptr as usize },
-        6usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_component_t),
-            "::",
-            stringify!(x)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).y) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_component_t),
-            "::",
-            stringify!(y)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).width) as usize - ptr as usize },
-        10usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_component_t),
-            "::",
-            stringify!(width)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).height) as usize - ptr as usize },
-        12usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_component_t),
-            "::",
-            stringify!(height)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).stroke) as usize - ptr as usize },
-        14usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_component_t),
-            "::",
-            stringify!(stroke)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).radius) as usize - ptr as usize },
-        15usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_component_t),
-            "::",
-            stringify!(radius)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).fill) as usize - ptr as usize },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_component_t),
-            "::",
-            stringify!(fill)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).fgcolor) as usize - ptr as usize },
-        20usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_component_t),
-            "::",
-            stringify!(fgcolor)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).bgcolor) as usize - ptr as usize },
-        24usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_component_t),
-            "::",
-            stringify!(bgcolor)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).font_id) as usize - ptr as usize },
-        28usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_component_t),
-            "::",
-            stringify!(font_id)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).icon_id) as usize - ptr as usize },
-        30usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_component_t),
-            "::",
-            stringify!(icon_id)
-        )
-    );
-}
-impl Default for bagl_component_t {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-#[doc = " helper structure to help handling icons"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct bagl_icon_details_s {
-    pub width: cty::c_uint,
-    pub height: cty::c_uint,
-    pub bpp: cty::c_uint,
-    pub colors: *const cty::c_uint,
-    pub bitmap: *const cty::c_uchar,
-}
-#[test]
-fn bindgen_test_layout_bagl_icon_details_s() {
-    const UNINIT: ::core::mem::MaybeUninit<bagl_icon_details_s> =
-        ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<bagl_icon_details_s>(),
-        20usize,
-        concat!("Size of: ", stringify!(bagl_icon_details_s))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<bagl_icon_details_s>(),
-        4usize,
-        concat!("Alignment of ", stringify!(bagl_icon_details_s))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).width) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_icon_details_s),
-            "::",
-            stringify!(width)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).height) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_icon_details_s),
-            "::",
-            stringify!(height)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).bpp) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_icon_details_s),
-            "::",
-            stringify!(bpp)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).colors) as usize - ptr as usize },
-        12usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_icon_details_s),
-            "::",
-            stringify!(colors)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).bitmap) as usize - ptr as usize },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_icon_details_s),
-            "::",
-            stringify!(bitmap)
-        )
-    );
-}
-impl Default for bagl_icon_details_s {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-#[doc = " helper structure to help handling icons"]
-pub type bagl_icon_details_t = bagl_icon_details_s;
-#[repr(C)]
-#[derive(Debug, Default, Copy, Clone)]
-pub struct bagl_font_character_t {
-    pub char_width: cty::c_uchar,
-    pub bitmap_byte_count: cty::c_uchar,
-    pub bitmap_offset: cty::c_ushort,
-}
-#[test]
-fn bindgen_test_layout_bagl_font_character_t() {
-    const UNINIT: ::core::mem::MaybeUninit<bagl_font_character_t> =
-        ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<bagl_font_character_t>(),
-        4usize,
-        concat!("Size of: ", stringify!(bagl_font_character_t))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<bagl_font_character_t>(),
-        2usize,
-        concat!("Alignment of ", stringify!(bagl_font_character_t))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).char_width) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_font_character_t),
-            "::",
-            stringify!(char_width)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).bitmap_byte_count) as usize - ptr as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_font_character_t),
-            "::",
-            stringify!(bitmap_byte_count)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).bitmap_offset) as usize - ptr as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_font_character_t),
-            "::",
-            stringify!(bitmap_offset)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct bagl_font_t {
-    pub font_id: cty::c_uint,
-    pub bpp: cty::c_uchar,
-    pub char_height: cty::c_uchar,
-    pub baseline_height: cty::c_uchar,
-    pub char_kerning: cty::c_uchar,
-    pub first_char: cty::c_ushort,
-    pub last_char: cty::c_ushort,
-    pub characters: *const bagl_font_character_t,
-    pub bitmap: *const cty::c_uchar,
-}
-#[test]
-fn bindgen_test_layout_bagl_font_t() {
-    const UNINIT: ::core::mem::MaybeUninit<bagl_font_t> = ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<bagl_font_t>(),
-        20usize,
-        concat!("Size of: ", stringify!(bagl_font_t))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<bagl_font_t>(),
-        4usize,
-        concat!("Alignment of ", stringify!(bagl_font_t))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).font_id) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_font_t),
-            "::",
-            stringify!(font_id)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).bpp) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_font_t),
-            "::",
-            stringify!(bpp)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).char_height) as usize - ptr as usize },
-        5usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_font_t),
-            "::",
-            stringify!(char_height)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).baseline_height) as usize - ptr as usize },
-        6usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_font_t),
-            "::",
-            stringify!(baseline_height)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).char_kerning) as usize - ptr as usize },
-        7usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_font_t),
-            "::",
-            stringify!(char_kerning)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).first_char) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_font_t),
-            "::",
-            stringify!(first_char)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).last_char) as usize - ptr as usize },
-        10usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_font_t),
-            "::",
-            stringify!(last_char)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).characters) as usize - ptr as usize },
-        12usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_font_t),
-            "::",
-            stringify!(characters)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).bitmap) as usize - ptr as usize },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_font_t),
-            "::",
-            stringify!(bitmap)
-        )
-    );
-}
-impl Default for bagl_font_t {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-extern "C" {
-    pub static C_bagl_fonts: [*const bagl_font_t; 0usize];
-}
-extern "C" {
-    pub static C_bagl_fonts_count: cty::c_uint;
-}
-pub const bagl_font_id_e_BAGL_FONT_LUCIDA_CONSOLE_8PX: bagl_font_id_e = 0;
-pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_LIGHT_16_22PX: bagl_font_id_e = 1;
-pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_REGULAR_8_11PX: bagl_font_id_e = 2;
-pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_REGULAR_10_13PX: bagl_font_id_e = 3;
-pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_REGULAR_11_14PX: bagl_font_id_e = 4;
-pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_REGULAR_13_18PX: bagl_font_id_e = 5;
-pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_REGULAR_22_30PX: bagl_font_id_e = 6;
-pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_SEMIBOLD_8_11PX: bagl_font_id_e = 7;
-pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_EXTRABOLD_11px: bagl_font_id_e = 8;
-pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_LIGHT_16px: bagl_font_id_e = 9;
-pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_REGULAR_11px: bagl_font_id_e = 10;
-pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_SEMIBOLD_10_13PX: bagl_font_id_e = 11;
-pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_SEMIBOLD_11_16PX: bagl_font_id_e = 12;
-pub const bagl_font_id_e_BAGL_FONT_OPEN_SANS_SEMIBOLD_13_18PX: bagl_font_id_e = 13;
-pub const bagl_font_id_e_BAGL_FONT_SYMBOLS_0: bagl_font_id_e = 14;
-pub const bagl_font_id_e_BAGL_FONT_SYMBOLS_1: bagl_font_id_e = 15;
-pub const bagl_font_id_e_BAGL_FONT_LAST: bagl_font_id_e = 16;
-pub type bagl_font_id_e = cty::c_uint;
-pub const bagl_glyph_e_BAGL_GLYPH_NOGLYPH: bagl_glyph_e = 0;
-pub const bagl_glyph_e_BAGL_GLYPH_LOGO_LEDGER_100: bagl_glyph_e = 1;
-pub const bagl_glyph_e_BAGL_GLYPH_LOGO_LEDGER_BLUE_120: bagl_glyph_e = 2;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_GEARS_50: bagl_glyph_e = 3;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_CLEAR_16: bagl_glyph_e = 4;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_BACKSPACE_20: bagl_glyph_e = 5;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_CHECK: bagl_glyph_e = 6;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_CROSS: bagl_glyph_e = 7;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_CHECK_BADGE: bagl_glyph_e = 8;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_LEFT: bagl_glyph_e = 9;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_RIGHT: bagl_glyph_e = 10;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_UP: bagl_glyph_e = 11;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_DOWN: bagl_glyph_e = 12;
-pub const bagl_glyph_e_BAGL_GLYPH_LOGO_LEDGER_MINI: bagl_glyph_e = 13;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_CROSS_BADGE: bagl_glyph_e = 14;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_DASHBOARD_BADGE: bagl_glyph_e = 15;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_PLUS: bagl_glyph_e = 16;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_LESS: bagl_glyph_e = 17;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_TOGGLE_ON: bagl_glyph_e = 18;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_TOGGLE_OFF: bagl_glyph_e = 19;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_LOADING_BADGE: bagl_glyph_e = 20;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_COG_BADGE: bagl_glyph_e = 21;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_WARNING_BADGE: bagl_glyph_e = 22;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_DOWNLOAD_BADGE: bagl_glyph_e = 23;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_TRANSACTION_BADGE: bagl_glyph_e = 24;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_BITCOIN_BADGE: bagl_glyph_e = 25;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_ETHEREUM_BADGE: bagl_glyph_e = 26;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_EYE_BADGE: bagl_glyph_e = 27;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_PEOPLE_BADGE: bagl_glyph_e = 28;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_LOCK_BADGE: bagl_glyph_e = 29;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_BLUE_CABLE: bagl_glyph_e = 30;
-pub const bagl_glyph_e_BAGL_GLYPH_TEXT_WELCOME: bagl_glyph_e = 31;
-pub const bagl_glyph_e_BAGL_GLYPH_LOGO_LEDGER_BOOT: bagl_glyph_e = 32;
-pub const bagl_glyph_e_BAGL_GLYPH_BATT_LEFT: bagl_glyph_e = 33;
-pub const bagl_glyph_e_BAGL_GLYPH_BATT_RIGHT: bagl_glyph_e = 34;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_LIGHTNING: bagl_glyph_e = 35;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_PLUG: bagl_glyph_e = 36;
-pub const bagl_glyph_e_BAGL_GLYPH_BADGE_DOWNLOAD_BLUE: bagl_glyph_e = 37;
-pub const bagl_glyph_e_BAGL_GLYPH_BADGE_WARNING_BLUE: bagl_glyph_e = 38;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_LOADER_BLUE: bagl_glyph_e = 39;
-pub const bagl_glyph_e_BAGL_GLYPH_BADGE_CHECKMARK_BLUE: bagl_glyph_e = 40;
-pub const bagl_glyph_e_BAGL_GLYPH_BADGE_WRENCH_BLUE: bagl_glyph_e = 41;
-pub const bagl_glyph_e_BAGL_GLYPH_BADGE_ERROR_BLUE: bagl_glyph_e = 42;
-pub const bagl_glyph_e_BAGL_GLYPH_BADGE_POWER_BLUE: bagl_glyph_e = 43;
-pub const bagl_glyph_e_BAGL_GLYPH_BADGE_CRITICAL_BLUE: bagl_glyph_e = 44;
-pub const bagl_glyph_e_BAGL_GLYPH_BADGE_ASSISTANCE_BLUE: bagl_glyph_e = 45;
-pub const bagl_glyph_e_BAGL_GLYPH_BADGE_LOCK_BLUE: bagl_glyph_e = 46;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_CHECKMARK_BLUE: bagl_glyph_e = 47;
-pub const bagl_glyph_e_BAGL_GLYPH_APP_FIRMWARE_BLUE: bagl_glyph_e = 48;
-pub const bagl_glyph_e_BAGL_GLYPH_BADGE_BLUE: bagl_glyph_e = 49;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_BRIGHTNESS_LOW_BLUE: bagl_glyph_e = 50;
-pub const bagl_glyph_e_BAGL_GLYPH_ICON_BRIGHTNESS_HIGH_BLUE: bagl_glyph_e = 51;
-pub const bagl_glyph_e_NB_BAGL_GLYPH_ICON: bagl_glyph_e = 52;
-pub type bagl_glyph_e = cty::c_uint;
-extern "C" {
-    pub fn bagl_compute_line_width(
-        font_id: cty::c_ushort,
-        width: cty::c_ushort,
-        text: *const cty::c_void,
-        text_length: cty::c_uchar,
-        text_encoding: cty::c_uchar,
-    ) -> cty::c_ushort;
-}
-extern "C" {
-    pub fn bagl_draw_string(
-        font_id: cty::c_ushort,
-        color1: cty::c_uint,
-        color0: cty::c_uint,
-        x: cty::c_int,
-        y: cty::c_int,
-        width: cty::c_uint,
-        height: cty::c_uint,
-        text: *const cty::c_void,
-        text_length: cty::c_uint,
-        text_encoding: cty::c_uchar,
-    ) -> cty::c_int;
-}
-extern "C" {
-    pub fn bagl_draw_bg(color: cty::c_uint);
-}
-extern "C" {
-    pub fn bagl_draw_with_context(
-        component: *const bagl_component_t,
-        text: *const cty::c_void,
-        text_length: cty::c_ushort,
-        text_encoding: cty::c_uchar,
-    );
-}
-extern "C" {
-    pub fn bagl_draw(component: *const bagl_component_t);
-}
-extern "C" {
-    pub fn bagl_draw_glyph(
-        component: *const bagl_component_t,
-        icon_details: *const bagl_icon_details_t,
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct bagl_animated_s {
-    pub c: bagl_component_t,
-    pub text: *mut cty::c_void,
-    pub text_length: cty::c_ushort,
-    pub text_encoding: cty::c_uchar,
-    pub current_char_idx: cty::c_uint,
-    pub current_x: cty::c_uint,
-    pub next_ms: cty::c_uint,
-}
-#[test]
-fn bindgen_test_layout_bagl_animated_s() {
-    const UNINIT: ::core::mem::MaybeUninit<bagl_animated_s> = ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<bagl_animated_s>(),
-        52usize,
-        concat!("Size of: ", stringify!(bagl_animated_s))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<bagl_animated_s>(),
-        4usize,
-        concat!("Alignment of ", stringify!(bagl_animated_s))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).c) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_animated_s),
-            "::",
-            stringify!(c)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).text) as usize - ptr as usize },
-        32usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_animated_s),
-            "::",
-            stringify!(text)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).text_length) as usize - ptr as usize },
-        36usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_animated_s),
-            "::",
-            stringify!(text_length)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).text_encoding) as usize - ptr as usize },
-        38usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_animated_s),
-            "::",
-            stringify!(text_encoding)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).current_char_idx) as usize - ptr as usize },
-        40usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_animated_s),
-            "::",
-            stringify!(current_char_idx)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).current_x) as usize - ptr as usize },
-        44usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_animated_s),
-            "::",
-            stringify!(current_x)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).next_ms) as usize - ptr as usize },
-        48usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bagl_animated_s),
-            "::",
-            stringify!(next_ms)
-        )
-    );
-}
-impl Default for bagl_animated_s {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-pub type bagl_animated_t = bagl_animated_s;
-extern "C" {
-    pub fn bagl_animate(
-        anim: *mut bagl_animated_t,
-        timestamp_ms: cty::c_uint,
-        interval_ms: cty::c_uint,
-    );
-}
-extern "C" {
-    pub fn bagl_hal_draw_bitmap_within_rect(
-        x: cty::c_int,
-        y: cty::c_int,
-        width: cty::c_uint,
-        height: cty::c_uint,
-        color_count: cty::c_uint,
-        colors: *const cty::c_uint,
-        bit_per_pixel: cty::c_uint,
-        bitmap: *const cty::c_uchar,
-        bitmap_length_bits: cty::c_uint,
-    );
-}
-extern "C" {
-    pub fn bagl_hal_draw_bitmap_continue(
-        bit_per_pixel: cty::c_uint,
-        bitmap: *const cty::c_uchar,
-        bitmap_length_bits: cty::c_uint,
-    );
-}
-extern "C" {
-    pub fn bagl_hal_draw_rect(
-        color: cty::c_uint,
-        x: cty::c_int,
-        y: cty::c_int,
-        width: cty::c_uint,
-        height: cty::c_uint,
-    );
-}
-extern "C" {
-    pub fn bagl_action(component: *const bagl_component_t, event_kind: cty::c_uchar);
-}
-extern "C" {
-    pub fn bagl_init();
 }
 #[doc = " @brief   AES key container.\n\n @details Such container should be initialized with #cx_aes_init_key_no_throw."]
 #[repr(C)]

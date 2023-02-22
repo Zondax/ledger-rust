@@ -14,6 +14,4 @@
 
 #include "wrapper.h"
 
-#include "bagl.h"
-
 #endif // WRAPPERS_H_
