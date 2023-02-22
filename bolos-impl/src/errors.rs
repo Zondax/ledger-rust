@@ -91,9 +91,6 @@ mod exceptions {
         unsafe {
             os_longjmp(exception);
         }
-        //this should never happen, and it's here for the
-        //never type
-        unreachable!("returned from longjmp");
     }
 }
 pub use exceptions::*;

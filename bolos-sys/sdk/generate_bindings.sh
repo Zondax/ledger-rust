@@ -1,52 +1,22 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR=$(dirname "$0")
+pushd "$SCRIPT_DIR" || return
 
 : "${TMP_HEADERS_PATH:=/tmp/bolos/arm-none-eabi}"
 : "${DOCKER_IMAGE:=zondax/builder-bolos:latest}"
 : "${GCC_BOLOS_PATH:=gcc-arm-none-eabi-10-2020-q4-major}"
 
-# Nano S
-: "${BOLOS_SDK_S_PATH:=$SCRIPT_DIR/nanos-secure-sdk}"
-: "${BOLOS_SDK_S_GIT:=https://github.com/LedgerHQ/nanos-secure-sdk}"
-: "${BOLOS_SDK_S_GIT_HASH:=026a1f5cf55e68f74062cb2795804f9b4554ea15}"
-# Nano X
-: "${BOLOS_SDK_X_PATH:=$SCRIPT_DIR/nanox-secure-sdk}"
-: "${BOLOS_SDK_X_GIT:=https://github.com/LedgerHQ/nanox-secure-sdk}"
-: "${BOLOS_SDK_X_GIT_HASH:=86324f6a73e269c04f6a3e3cf41f6569a8cc6c6b}"
-# Nano S+
-: "${BOLOS_SDK_SP_PATH:=$SCRIPT_DIR/nanosplus-secure-sdk}"
-: "${BOLOS_SDK_SP_GIT:=https://github.com/LedgerHQ/nanosplus-secure-sdk}"
-: "${BOLOS_SDK_SP_GIT_HASH:=c2a17ebe62395d7a7a36658bf4bec952c08d0df3}"
+: "${BOLOS_SDK_S_PATH:=nanos-secure-sdk}"
+: "${BOLOS_SDK_X_PATH:=nanox-secure-sdk}"
+: "${BOLOS_SDK_SP_PATH:=nanosplus-secure-sdk}"
 
-TMP_HEADERS=$(dirname $TMP_HEADERS_PATH)
+(./fetch_sdk.sh)
 
-echo "Checkout X SDK & update in $BOLOS_SDK_X_PATH from $BOLOS_SDK_X_GIT $BOLOS_SDK_X_GIT_HASH"
-git submodule add "$BOLOS_SDK_X_GIT" "$BOLOS_SDK_X_PATH" || true
-git submodule update --init "$BOLOS_SDK_X_PATH"
-pushd "$BOLOS_SDK_X_PATH" || exit
-git fetch origin
-git checkout $BOLOS_SDK_X_GIT_HASH
-popd || exit
-
-echo "Checkout S SDK & update in $BOLOS_SDK_S_PATH from $BOLOS_SDK_S_GIT $BOLOS_SDK_S_GIT_HASH"
-git submodule add -b "$BOLOS_SDK_S_GIT_HASH" "$BOLOS_SDK_S_GIT" "$BOLOS_SDK_S_PATH" || true
-git submodule update --init "$BOLOS_SDK_S_PATH"
-pushd "$BOLOS_SDK_S_PATH" || exit
-git fetch origin
-git checkout $BOLOS_SDK_S_GIT_HASH
-popd || exit
-
-echo "Checkout S+ SDK & update in $BOLOS_SDK_SP_PATH from $BOLOS_SDK_SP_GIT $BOLOS_SDK_SP_GIT_HASH"
-git submodule add -b "$BOLOS_SDK_SP_GIT_HASH" "$BOLOS_SDK_SP_GIT" "$BOLOS_SDK_SP_PATH" || true
-git submodule update --init "$BOLOS_SDK_SP_PATH"
-pushd "$BOLOS_SDK_SP_PATH" || exit
-git fetch origin
-git checkout $BOLOS_SDK_SP_GIT_HASH
-popd || exit
+TMP_HEADERS=$(dirname "$TMP_HEADERS_PATH")
 
 echo "Making sure $TMP_HEADERS_PATH exists"
-mkdir -p $TMP_HEADERS_PATH || true
+mkdir -p "$TMP_HEADERS_PATH" || true
 
 echo "Copying necessary header files..."
 docker run --rm \
@@ -56,7 +26,6 @@ docker run --rm \
     "cp -r /opt/bolos/$GCC_BOLOS_PATH/arm-none-eabi/include /shared/arm-none-eabi/"
 
 echo "Cleaning up old Nano X bindings and regenerating them"
-
 rm ../src/bindings/bindingsX.rs || true
 bindgen --use-core \
         --with-derive-default \
@@ -64,15 +33,16 @@ bindgen --use-core \
         -o ../src/bindings/bindingsX.rs \
         ../bindgen/wrapperX.h -- \
         -I"$BOLOS_SDK_X_PATH"/include \
+        -I"$BOLOS_SDK_X_PATH"/target/nanox/include \
         -I"$BOLOS_SDK_X_PATH"/lib_ux/include \
         -I"$BOLOS_SDK_X_PATH"/lib_cxng/include \
+        -I"$BOLOS_SDK_X_PATH"/lib_bagl/include \
         -I"$TMP_HEADERS_PATH"/include \
         -I../bindgen/include \
         -target thumbv6-none-eabi \
         -mcpu=cortex-m0 -mthumb
 
 echo "Cleaning up old Nano S bindings and regenerating them"
-
 rm ../src/bindings/bindingsS.rs || true
 bindgen --use-core \
         --with-derive-default \
@@ -80,15 +50,16 @@ bindgen --use-core \
         -o ../src/bindings/bindingsS.rs \
         ../bindgen/wrapperS.h -- \
         -I"$BOLOS_SDK_S_PATH"/include \
+        -I"$BOLOS_SDK_S_PATH"/target/nanos/include \
         -I"$BOLOS_SDK_S_PATH"/lib_ux/include \
         -I"$BOLOS_SDK_S_PATH"/lib_cxng/include \
+        -I"$BOLOS_SDK_S_PATH"/lib_bagl/include \
         -I"$TMP_HEADERS_PATH"/include \
         -I../bindgen/include \
         -target thumbv6-none-eabi \
         -mcpu=cortex-m0 -mthumb
 
 echo "Cleaning up old Nano S+ bindings and regenerating them"
-
 rm ../src/bindings/bindingsSP.rs || true
 bindgen --use-core \
         --with-derive-default \
@@ -96,11 +67,14 @@ bindgen --use-core \
         -o ../src/bindings/bindingsSP.rs \
         ../bindgen/wrapperSP.h -- \
         -I"$BOLOS_SDK_SP_PATH"/include \
+        -I"$BOLOS_SDK_SP_PATH"/target/nanos2/include \
         -I"$BOLOS_SDK_SP_PATH"/lib_ux/include \
         -I"$BOLOS_SDK_SP_PATH"/lib_cxng/include \
+        -I"$BOLOS_SDK_SP_PATH"/lib_bagl/include \
         -I"$TMP_HEADERS_PATH"/include \
         -I../bindgen/include \
         -target thumbv8m.main-none-eabi \
         -mcpu=cortex-m35p -mthumb
 
+popd || true
 echo "Done!"

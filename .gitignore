@@ -5,3 +5,5 @@ tmp/
 
 target/
 Cargo.lock
+
+bolos-sys/sdk/*-secure-sdk

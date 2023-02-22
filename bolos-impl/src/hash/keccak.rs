@@ -51,14 +51,7 @@ impl<const S: usize> Keccak<S> {
     fn init_state(state: *mut cx_sha3_t) -> Result<(), Error> {
         cfg_if! {
             if #[cfg(bolos_sdk)] {
-                let r = unsafe {
-                    crate::raw::cx_keccak_init_no_throw(
-                        state,
-                        (S * 8) as u32
-                    )
-                };
-
-                match r {
+                match unsafe { crate::raw::cx_keccak_init_no_throw(state, S * 8) } {
                     0 => {},
                     err => return Err(err.into()),
                 }

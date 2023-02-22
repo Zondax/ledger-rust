@@ -11,6 +11,9 @@
 #define HAVE_UX_LEGACY
 
 #include "cx.h"
+
 #include "wrapper.h"
+
+#include "bagl.h"
 
 #endif // WRAPPERS_H_
