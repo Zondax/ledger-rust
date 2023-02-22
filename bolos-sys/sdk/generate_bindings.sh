@@ -6,47 +6,47 @@ SCRIPT_DIR=$(dirname "$0")
 : "${DOCKER_IMAGE:=zondax/builder-bolos:latest}"
 : "${GCC_BOLOS_PATH:=gcc-arm-none-eabi-10-2020-q4-major}"
 
-# Nano S
+# match versions from the official builder https://github.com/LedgerHQ/ledger-app-builder/blob/master/lite/Dockerfile
+# Nano S (not unified for now)
 : "${BOLOS_SDK_S_PATH:=$SCRIPT_DIR/nanos-secure-sdk}"
 : "${BOLOS_SDK_S_GIT:=https://github.com/LedgerHQ/nanos-secure-sdk}"
-: "${BOLOS_SDK_S_GIT_HASH:=026a1f5cf55e68f74062cb2795804f9b4554ea15}"
+: "${BOLOS_SDK_S_GIT_HASH:=d37bdf1caf98ab2df4b8729c9cb8648ab21cd4b7}"
+
+# Unified SDK
+: "${BOLOS_SDK_PATH:=$SCRIPT_DIR/ledger-secure-sdk}"
+: "${BOLOS_SDK_GIT:=https://github.com/LedgerHQ/ledger-secure-sdk}"
+
 # Nano X
 : "${BOLOS_SDK_X_PATH:=$SCRIPT_DIR/nanox-secure-sdk}"
-: "${BOLOS_SDK_X_GIT:=https://github.com/LedgerHQ/nanox-secure-sdk}"
-: "${BOLOS_SDK_X_GIT_HASH:=86324f6a73e269c04f6a3e3cf41f6569a8cc6c6b}"
+: "${BOLOS_SDK_X_GIT_TAG:=v1.2.1}"
 # Nano S+
 : "${BOLOS_SDK_SP_PATH:=$SCRIPT_DIR/nanosplus-secure-sdk}"
-: "${BOLOS_SDK_SP_GIT:=https://github.com/LedgerHQ/nanosplus-secure-sdk}"
-: "${BOLOS_SDK_SP_GIT_HASH:=c2a17ebe62395d7a7a36658bf4bec952c08d0df3}"
+: "${BOLOS_SDK_SP_GIT_TAG:=v1.2.1}"
 
-TMP_HEADERS=$(dirname $TMP_HEADERS_PATH)
-
-echo "Checkout X SDK & update in $BOLOS_SDK_X_PATH from $BOLOS_SDK_X_GIT $BOLOS_SDK_X_GIT_HASH"
-git submodule add "$BOLOS_SDK_X_GIT" "$BOLOS_SDK_X_PATH" || true
-git submodule update --init "$BOLOS_SDK_X_PATH"
-pushd "$BOLOS_SDK_X_PATH" || exit
-git fetch origin
-git checkout $BOLOS_SDK_X_GIT_HASH
-popd || exit
+TMP_HEADERS=$(dirname "$TMP_HEADERS_PATH")
 
 echo "Checkout S SDK & update in $BOLOS_SDK_S_PATH from $BOLOS_SDK_S_GIT $BOLOS_SDK_S_GIT_HASH"
 git submodule add -b "$BOLOS_SDK_S_GIT_HASH" "$BOLOS_SDK_S_GIT" "$BOLOS_SDK_S_PATH" || true
 git submodule update --init "$BOLOS_SDK_S_PATH"
 pushd "$BOLOS_SDK_S_PATH" || exit
 git fetch origin
-git checkout $BOLOS_SDK_S_GIT_HASH
+git checkout "$BOLOS_SDK_S_GIT_HASH"
 popd || exit
 
-echo "Checkout S+ SDK & update in $BOLOS_SDK_SP_PATH from $BOLOS_SDK_SP_GIT $BOLOS_SDK_SP_GIT_HASH"
-git submodule add -b "$BOLOS_SDK_SP_GIT_HASH" "$BOLOS_SDK_SP_GIT" "$BOLOS_SDK_SP_PATH" || true
-git submodule update --init "$BOLOS_SDK_SP_PATH"
-pushd "$BOLOS_SDK_SP_PATH" || exit
-git fetch origin
-git checkout $BOLOS_SDK_SP_GIT_HASH
-popd || exit
+echo "Checkout Unified SDK & update in $BOLOS_SDK_PATH from $BOLOS_SDK_GIT"
+git submodule add "$BOLOS_SDK_GIT" "$BOLOS_SDK_PATH" || true
+git submodule update --init "$BOLOS_SDK_PATH"
+
+echo "Checkoux X SDK in $BOLOS_SDK_X_PATH from $BOLOS_SDK_GIT $BOLOS_SDK_X_GIT_TAG"
+git -C "$BOLOS_SDK_PATH" worktree add "$BOLOS_SDK_X_PATH" "$BOLOS_SDK_X_GIT_TAG"
+echo nanox > "$BOLOS_SDK_X_PATH"/.target
+
+echo "Checkoux S+ SDK in $BOLOS_SDK_SP_PATH from $BOLOS_SDK_GIT $BOLOS_SDK_SP_GIT_TAG"
+git -C "$BOLOS_SDK_PATH" worktree add "$BOLOS_SDK_S_PATH" "$BOLOS_SDK_SP_GIT_TAG"
+echo nanos2 > "$BOLOS_SDK_X_PATH"/.target
 
 echo "Making sure $TMP_HEADERS_PATH exists"
-mkdir -p $TMP_HEADERS_PATH || true
+mkdir -p "$TMP_HEADERS_PATH" || true
 
 echo "Copying necessary header files..."
 docker run --rm \
@@ -56,7 +56,6 @@ docker run --rm \
     "cp -r /opt/bolos/$GCC_BOLOS_PATH/arm-none-eabi/include /shared/arm-none-eabi/"
 
 echo "Cleaning up old Nano X bindings and regenerating them"
-
 rm ../src/bindings/bindingsX.rs || true
 bindgen --use-core \
         --with-derive-default \
@@ -72,7 +71,6 @@ bindgen --use-core \
         -mcpu=cortex-m0 -mthumb
 
 echo "Cleaning up old Nano S bindings and regenerating them"
-
 rm ../src/bindings/bindingsS.rs || true
 bindgen --use-core \
         --with-derive-default \
@@ -88,7 +86,6 @@ bindgen --use-core \
         -mcpu=cortex-m0 -mthumb
 
 echo "Cleaning up old Nano S+ bindings and regenerating them"
-
 rm ../src/bindings/bindingsSP.rs || true
 bindgen --use-core \
         --with-derive-default \
