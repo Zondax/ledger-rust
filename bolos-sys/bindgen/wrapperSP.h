@@ -3,8 +3,6 @@
 
 #include "defs.h"
 
-#include "bolos_version.h"
-
 // Taken from Makefile
 #define IO_SEPROXYHAL_BUFFER_SIZE_B 300
 #define HAVEGLO096
@@ -20,6 +18,9 @@
 #define HAVE_UX_FLOW
 
 #include "wrapper.h"
+
+#include "bagl.h"
+
 #include "cx.h"
 
 #endif // WRAPPERX_SP_
