@@ -7,7 +7,6 @@
 
 #define OS_IO_SEPROXYHAL
 
-#define HAVE_BAGL
 #define HAVE_SPRINTF
 
 #define HAVE_IO_USB
@@ -25,12 +24,8 @@
 
 #include "bolos_target.h"
 
-#ifndef TARGET_STAX
-#include "bagl.h"
-
 #include "os.h"
 #include "os_io_seproxyhal.h"
 #include "os_io_usb.h"
-#endif
 
 #endif // WRAPPER_H_

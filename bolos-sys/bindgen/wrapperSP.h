@@ -21,4 +21,6 @@
 
 #include "cx.h"
 
+#include "bagl.h"
+
 #endif // WRAPPERX_SP_

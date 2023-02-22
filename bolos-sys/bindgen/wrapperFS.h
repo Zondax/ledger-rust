@@ -3,22 +3,29 @@
 
 #include "defs.h"
 
-// Taken from Makefile
+// Taken from Makefile.defines
 #define IO_SEPROXYHAL_BUFFER_SIZE_B 300
-#define HAVEGLO096
 
-#define HAVE_BAGL
 #define BAGL_WIDTH 128
-#define BAGL_HEIGHT 64
-#define HAVE_BAGL_ELLIPSIS
-#define HAVE_BAGL_FONT_OPEN_SANS_REGULAR_11PX
-#define HAVE_BAGL_FONT_OPEN_SANS_EXTRABOLD_11PX
-#define HAVE_BAGL_FONT_OPEN_SANS_LIGHT_16PX
+#define BAGL_HEIGHT 32
+#define HAVE_BAGL_FONT_INTER_REGULAR_24PX
+#define HAVE_BAGL_FONT_INTER_SEMIBOLD_24PX
+#define HAVE_BAGL_FONT_INTER_REGULAR_32PX
+#define HAVE_BAGL_FONT_HMALPHAMONO_MEDIUM_32PX
+#define HAVE_NBGL
+#define HAVE_PIEZO_SOUND
+#define HAVE_SE_TOUCH
 
-#define HAVE_UX_FLOW
+#define NBGL_PAGE
+#define NBGL_USE_CASE
+
+#define HAVE_SEED_COOKIE
+#include "wrapper_ble.h"
 
 #include "wrapper.h"
 
 #include "cx.h"
+
+#include "wrapper_nbgl.h"
 
 #endif // WRAPPERFS_H_
