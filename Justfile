@@ -8,6 +8,14 @@ alias c := cargo
 cargo *args:
     cargo {{args}}
 
+# Create symlinks in the target dir for the Ledger SDKs
+[no-cd]
+link-ledger-sdk base-dir=justfile_directory() target-dir=invocation_directory(): fetch-bindings
+    ln -s {{base-dir}}/bolos-sys/sdk/ledger-secure-sdk {{target-dir}}/
+    ln -s {{base-dir}}/bolos-sys/sdk/nanosplus-secure-sdk {{target-dir}}/
+    ln -s {{base-dir}}/bolos-sys/sdk/nanos-secure-sdk {{target-dir}}/
+    ln -s {{base-dir}}/bolos-sys/sdk/nanox-secure-sdk {{target-dir}}/
+
 alias fetch-sdk := fetch-bindings
 @fetch-bindings:
     cd bolos-sys/sdk; ./fetch_sdk.sh
