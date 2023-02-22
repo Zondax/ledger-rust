@@ -35,7 +35,6 @@ bindgen --use-core \
         ../bindgen/wrapperX.h -- \
         -I"$BOLOS_SDK_X_PATH"/include \
         -I"$BOLOS_SDK_X_PATH"/target/nanox/include \
-        -I"$BOLOS_SDK_X_PATH"/lib_ux/include \
         -I"$BOLOS_SDK_X_PATH"/lib_cxng/include \
         -I"$BOLOS_SDK_X_PATH"/lib_bagl/include \
         -I"$TMP_HEADERS_PATH"/include \
@@ -69,7 +68,6 @@ bindgen --use-core \
         ../bindgen/wrapperSP.h -- \
         -I"$BOLOS_SDK_SP_PATH"/include \
         -I"$BOLOS_SDK_SP_PATH"/target/nanos2/include \
-        -I"$BOLOS_SDK_SP_PATH"/lib_ux/include \
         -I"$BOLOS_SDK_SP_PATH"/lib_cxng/include \
         -I"$BOLOS_SDK_SP_PATH"/lib_bagl/include \
         -I"$TMP_HEADERS_PATH"/include \
@@ -86,7 +84,8 @@ bindgen --use-core \
         ../bindgen/wrapperFS.h -- \
         -I"$BOLOS_SDK_FS_PATH"/include \
         -I"$BOLOS_SDK_FS_PATH"/target/stax/include \
-        -I"$BOLOS_SDK_FS_PATH"/lib_ux/include \
+        -I"$BOLOS_SDK_FS_PATH"/lib_ux_stax \
+        -I"$BOLOS_SDK_FS_PATH"/lib_nbgl/include \
         -I"$BOLOS_SDK_FS_PATH"/lib_cxng/include \
         -I"$TMP_HEADERS_PATH"/include \
         -I../bindgen/include \

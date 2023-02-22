@@ -2,13 +2,37 @@
 
 pub const IO_SEPROXYHAL_BUFFER_SIZE_B: u32 = 300;
 pub const BAGL_WIDTH: u32 = 128;
-pub const BAGL_HEIGHT: u32 = 64;
+pub const BAGL_HEIGHT: u32 = 32;
+pub const BLE_COMMAND_TIMEOUT_MS: u32 = 2000;
 pub const IO_USB_MAX_ENDPOINTS: u32 = 7;
 pub const IO_HID_EP_LENGTH: u32 = 64;
 pub const USB_SEGMENT_SIZE: u32 = 64;
 pub const WEBUSB_URL_SIZE_B: u32 = 0;
 pub const WEBUSB_URL: &[u8; 1usize] = b"\0";
 pub const TARGET_ID: u32 = 857735172;
+pub const ENDORSEMENT_MAX_ASN1_LENGTH: u32 = 72;
+pub const OS_PARSE_BERTLV_OFFSET_COMPARE_WITH_BUFFER: u32 = 2147483648;
+pub const OS_PARSE_BERTLV_OFFSET_GET_LENGTH: u32 = 1073741824;
+pub const APPLICATION_FLAG_MAIN: u32 = 1;
+pub const APPLICATION_FLAG_BOLOS_UPGRADE: u32 = 2;
+pub const APPLICATION_FLAG_SIGNED: u32 = 4;
+pub const APPLICATION_FLAG_BOLOS_UX: u32 = 8;
+pub const APPLICATION_FLAG_DERIVE_MASTER: u32 = 16;
+pub const APPLICATION_FLAG_SHARED_NVRAM: u32 = 32;
+pub const APPLICATION_FLAG_GLOBAL_PIN: u32 = 64;
+pub const APPLICATION_FLAG_DEBUG: u32 = 128;
+pub const APPLICATION_FLAG_AUTOBOOT: u32 = 256;
+pub const APPLICATION_FLAG_BOLOS_SETTINGS: u32 = 512;
+pub const APPLICATION_FLAG_CUSTOM_CA: u32 = 1024;
+pub const APPLICATION_FLAG_LIBRARY: u32 = 2048;
+pub const APPLICATION_FLAG_NO_RUN: u32 = 4096;
+pub const APPLICATION_FLAG_ISSUER: u32 = 16384;
+pub const APPLICATION_FLAG_ENABLED: u32 = 32768;
+pub const APPLICATION_FLAG_BACKGROUND_IMG: u32 = 65536;
+pub const APPLICATION_FLAG_AEM_PIN: u32 = 8;
+pub const APPLICATION_FLAGS_MASK: u32 = 65535;
+pub const APPLICATION_FLAG_NEG_MASK: u32 = 4294901760;
+pub const APPLICATION_FLAGS_SHIFT: u32 = 16;
 pub const _NEWLIB_VERSION_H__: u32 = 1;
 pub const _NEWLIB_VERSION: &[u8; 6usize] = b"3.3.0\0";
 pub const __NEWLIB__: u32 = 3;
@@ -65,6 +89,36 @@ pub const WINT_MIN: u32 = 0;
 pub const __bool_true_false_are_defined: u32 = 1;
 pub const true_: u32 = 1;
 pub const false_: u32 = 0;
+pub const BOLOS_TRUE: u32 = 170;
+pub const BOLOS_FALSE: u32 = 85;
+pub const BOLOS_UX_OK: u32 = 170;
+pub const BOLOS_UX_CANCEL: u32 = 85;
+pub const BOLOS_UX_ERROR: u32 = 214;
+pub const BOLOS_UX_IGNORE: u32 = 151;
+pub const BOLOS_UX_REDRAW: u32 = 105;
+pub const BOLOS_UX_CONTINUE: u32 = 0;
+pub const OS_FLAG_RECOVERY: u32 = 1;
+pub const OS_FLAG_SIGNED_MCU_CODE: u32 = 2;
+pub const OS_FLAG_ONBOARDED: u32 = 4;
+pub const OS_FLAG_ISSUER_TRUSTED: u32 = 8;
+pub const OS_FLAG_CUSTOMCA_TRUSTED: u32 = 16;
+pub const OS_FLAG_HSM_INITIALIZED: u32 = 32;
+pub const OS_FLAG_FACTORY_FILLED: u32 = 64;
+pub const OS_FLAG_PIN_VALIDATED: u32 = 128;
+pub const IMPL_IO_APDU_BUFFER_SIZE: u32 = 260;
+pub const IO_APDU_BUFFER_SIZE: u32 = 260;
+pub const CHANNEL_APDU: u32 = 0;
+pub const CHANNEL_KEYBOARD: u32 = 1;
+pub const CHANNEL_SPI: u32 = 2;
+pub const IO_RESET_AFTER_REPLIED: u32 = 128;
+pub const IO_RECEIVE_DATA: u32 = 64;
+pub const IO_RETURN_AFTER_TX: u32 = 32;
+pub const IO_ASYNCH_REPLY: u32 = 16;
+pub const IO_FINISHED: u32 = 8;
+pub const IO_FLAGS: u32 = 248;
+pub const BLE_SEGMENT_SIZE: u32 = 64;
+pub const NVM_ERASED_WORD_VALUE: u32 = 4294967295;
+pub const DEFAULT_PIN_RETRIES: u32 = 3;
 pub const CX_OK: u32 = 0;
 pub const CX_CARRY: u32 = 4294967073;
 pub const CX_LOCKED: u32 = 4294967169;
@@ -82,71 +136,121 @@ pub const CX_NO_RESIDUE: u32 = 4294967180;
 pub const CX_EC_INFINITE_POINT: u32 = 4294967105;
 pub const CX_EC_INVALID_POINT: u32 = 4294967202;
 pub const CX_EC_INVALID_CURVE: u32 = 4294967203;
-pub const CX_AES_BLOCK_SIZE: u32 = 16;
-pub const CX_AES_128_KEY_LEN: u32 = 16;
-pub const CX_DES_BLOCK_SIZE: u32 = 8;
-pub const CX_BN_WORD_ALIGNEMENT: u32 = 16;
-pub const CX_BN_FLAG_UNSET: u32 = 128;
-pub const CX_MAX_DOMAIN_LENGTH: u32 = 66;
-pub const CX_ECCINFO_PARITY_ODD: u32 = 1;
-pub const CX_ECCINFO_xGTn: u32 = 2;
-pub const CX_LAST: u32 = 1;
-pub const CX_SIG_MODE: u32 = 2;
-pub const CX_MASK_SIGCRYPT: u32 = 6;
-pub const CX_ENCRYPT: u32 = 4;
-pub const CX_DECRYPT: u32 = 0;
-pub const CX_SIGN: u32 = 6;
-pub const CX_VERIFY: u32 = 2;
-pub const CX_MASK_PAD: u32 = 56;
-pub const CX_PAD_NONE: u32 = 0;
-pub const CX_PAD_ISO9797M1: u32 = 8;
-pub const CX_PAD_ISO9797M2: u32 = 16;
-pub const CX_PAD_PKCS1_1o5: u32 = 24;
-pub const CX_PAD_PKCS1_PSS: u32 = 32;
-pub const CX_PAD_PKCS1_OAEP: u32 = 40;
-pub const CX_MASK_CHAIN: u32 = 448;
-pub const CX_CHAIN_ECB: u32 = 0;
-pub const CX_CHAIN_CBC: u32 = 64;
-pub const CX_CHAIN_CTR: u32 = 128;
-pub const CX_CHAIN_CFB: u32 = 192;
-pub const CX_CHAIN_OFB: u32 = 256;
-pub const CX_MASK_ECC_VARIANT: u32 = 448;
-pub const CX_NO_CANONICAL: u32 = 64;
-pub const CX_MASK_RND: u32 = 3584;
-pub const CX_RND_PRNG: u32 = 512;
-pub const CX_RND_TRNG: u32 = 1024;
-pub const CX_RND_RFC6979: u32 = 1536;
-pub const CX_RND_PROVIDED: u32 = 2048;
-pub const CX_MASK_EC: u32 = 28672;
-pub const CX_ECSCHNORR_BIP0340: u32 = 0;
-pub const CX_ECDH_POINT: u32 = 4096;
-pub const CX_ECDH_X: u32 = 8192;
-pub const CX_ECSCHNORR_ISO14888_XY: u32 = 12288;
-pub const CX_ECSCHNORR_ISO14888_X: u32 = 16384;
-pub const CX_ECSCHNORR_BSI03111: u32 = 20480;
-pub const CX_ECSCHNORR_LIBSECP: u32 = 24576;
-pub const CX_ECSCHNORR_Z: u32 = 28672;
-pub const CX_NO_REINIT: u32 = 32768;
-pub const APPLICATION_FLAG_MAIN: u32 = 1;
-pub const APPLICATION_FLAG_BOLOS_UPGRADE: u32 = 2;
-pub const APPLICATION_FLAG_SIGNED: u32 = 4;
-pub const APPLICATION_FLAG_BOLOS_UX: u32 = 8;
-pub const APPLICATION_FLAG_DERIVE_MASTER: u32 = 16;
-pub const APPLICATION_FLAG_SHARED_NVRAM: u32 = 32;
-pub const APPLICATION_FLAG_GLOBAL_PIN: u32 = 64;
-pub const APPLICATION_FLAG_DEBUG: u32 = 128;
-pub const APPLICATION_FLAG_AUTOBOOT: u32 = 256;
-pub const APPLICATION_FLAG_BOLOS_SETTINGS: u32 = 512;
-pub const APPLICATION_FLAG_CUSTOM_CA: u32 = 1024;
-pub const APPLICATION_FLAG_LIBRARY: u32 = 2048;
-pub const APPLICATION_FLAG_NO_RUN: u32 = 4096;
-pub const APPLICATION_FLAG_ISSUER: u32 = 16384;
-pub const APPLICATION_FLAG_ENABLED: u32 = 32768;
-pub const APPLICATION_FLAG_BACKGROUND_IMG: u32 = 65536;
-pub const APPLICATION_FLAG_AEM_PIN: u32 = 8;
-pub const APPLICATION_FLAGS_MASK: u32 = 65535;
-pub const APPLICATION_FLAG_NEG_MASK: u32 = 4294901760;
-pub const APPLICATION_FLAGS_SHIFT: u32 = 16;
+pub const __NEWLIB_H__: u32 = 1;
+pub const _WANT_IO_C99_FORMATS: u32 = 1;
+pub const _WANT_IO_LONG_LONG: u32 = 1;
+pub const _WANT_REGISTER_FINI: u32 = 1;
+pub const _REENT_CHECK_VERIFY: u32 = 1;
+pub const _MB_LEN_MAX: u32 = 1;
+pub const HAVE_INITFINI_ARRAY: u32 = 1;
+pub const _ATEXIT_DYNAMIC_ALLOC: u32 = 1;
+pub const _HAVE_LONG_DOUBLE: u32 = 1;
+pub const _HAVE_CC_INHIBIT_LOOP_TO_LIBCALL: u32 = 1;
+pub const _LDBL_EQ_DBL: u32 = 1;
+pub const _FVWRITE_IN_STREAMIO: u32 = 1;
+pub const _FSEEK_OPTIMIZATION: u32 = 1;
+pub const _WIDE_ORIENT: u32 = 1;
+pub const _UNBUF_STREAM_OPT: u32 = 1;
+pub const _RETARGETABLE_LOCKING: u32 = 1;
+pub const __OBSOLETE_MATH_DEFAULT: u32 = 1;
+pub const __OBSOLETE_MATH: u32 = 1;
+pub const __RAND_MAX: u32 = 2147483647;
+pub const __GNUCLIKE_ASM: u32 = 3;
+pub const __GNUCLIKE___TYPEOF: u32 = 1;
+pub const __GNUCLIKE___OFFSETOF: u32 = 1;
+pub const __GNUCLIKE___SECTION: u32 = 1;
+pub const __GNUCLIKE_CTOR_SECTION_HANDLING: u32 = 1;
+pub const __GNUCLIKE_BUILTIN_CONSTANT_P: u32 = 1;
+pub const __GNUCLIKE_BUILTIN_VARARGS: u32 = 1;
+pub const __GNUCLIKE_BUILTIN_STDARG: u32 = 1;
+pub const __GNUCLIKE_BUILTIN_VAALIST: u32 = 1;
+pub const __GNUC_VA_LIST_COMPATIBILITY: u32 = 1;
+pub const __GNUCLIKE_BUILTIN_NEXT_ARG: u32 = 1;
+pub const __GNUCLIKE_BUILTIN_MEMCPY: u32 = 1;
+pub const __CC_SUPPORTS_INLINE: u32 = 1;
+pub const __CC_SUPPORTS___INLINE: u32 = 1;
+pub const __CC_SUPPORTS___INLINE__: u32 = 1;
+pub const __CC_SUPPORTS___FUNC__: u32 = 1;
+pub const __CC_SUPPORTS_WARNING: u32 = 1;
+pub const __CC_SUPPORTS_VARADIC_XXX: u32 = 1;
+pub const __CC_SUPPORTS_DYNAMIC_ARRAY_INIT: u32 = 1;
+pub const __GNUC_VA_LIST: u32 = 1;
+pub const _NULL: u32 = 0;
+pub const _ATEXIT_SIZE: u32 = 32;
+pub const _RAND48_SEED_0: u32 = 13070;
+pub const _RAND48_SEED_1: u32 = 43981;
+pub const _RAND48_SEED_2: u32 = 4660;
+pub const _RAND48_MULT_0: u32 = 58989;
+pub const _RAND48_MULT_1: u32 = 57068;
+pub const _RAND48_MULT_2: u32 = 5;
+pub const _RAND48_ADD: u32 = 11;
+pub const _REENT_EMERGENCY_SIZE: u32 = 25;
+pub const _REENT_ASCTIME_SIZE: u32 = 26;
+pub const _REENT_SIGNAL_SIZE: u32 = 24;
+pub const _N_LISTS: u32 = 30;
+pub const __BIT_TYPES_DEFINED__: u32 = 1;
+pub const _LITTLE_ENDIAN: u32 = 1234;
+pub const _BIG_ENDIAN: u32 = 4321;
+pub const _PDP_ENDIAN: u32 = 3412;
+pub const _BYTE_ORDER: u32 = 1234;
+pub const _QUAD_HIGHWORD: u32 = 1;
+pub const _QUAD_LOWWORD: u32 = 0;
+pub const LITTLE_ENDIAN: u32 = 1234;
+pub const BIG_ENDIAN: u32 = 4321;
+pub const PDP_ENDIAN: u32 = 3412;
+pub const BYTE_ORDER: u32 = 1234;
+pub const FD_SETSIZE: u32 = 64;
+pub const SCHED_OTHER: u32 = 0;
+pub const SCHED_FIFO: u32 = 1;
+pub const SCHED_RR: u32 = 2;
+pub const PTHREAD_SCOPE_PROCESS: u32 = 0;
+pub const PTHREAD_SCOPE_SYSTEM: u32 = 1;
+pub const PTHREAD_INHERIT_SCHED: u32 = 1;
+pub const PTHREAD_EXPLICIT_SCHED: u32 = 2;
+pub const PTHREAD_CREATE_DETACHED: u32 = 0;
+pub const PTHREAD_CREATE_JOINABLE: u32 = 1;
+pub const __SLBF: u32 = 1;
+pub const __SNBF: u32 = 2;
+pub const __SRD: u32 = 4;
+pub const __SWR: u32 = 8;
+pub const __SRW: u32 = 16;
+pub const __SEOF: u32 = 32;
+pub const __SERR: u32 = 64;
+pub const __SMBF: u32 = 128;
+pub const __SAPP: u32 = 256;
+pub const __SSTR: u32 = 512;
+pub const __SOPT: u32 = 1024;
+pub const __SNPT: u32 = 2048;
+pub const __SOFF: u32 = 4096;
+pub const __SORD: u32 = 8192;
+pub const __SL64: u32 = 32768;
+pub const __SNLK: u32 = 1;
+pub const __SWID: u32 = 8192;
+pub const _IOFBF: u32 = 0;
+pub const _IOLBF: u32 = 1;
+pub const _IONBF: u32 = 2;
+pub const EOF: i32 = -1;
+pub const BUFSIZ: u32 = 1024;
+pub const FOPEN_MAX: u32 = 20;
+pub const FILENAME_MAX: u32 = 1024;
+pub const L_tmpnam: u32 = 1024;
+pub const P_tmpdir: &[u8; 5usize] = b"/tmp\0";
+pub const SEEK_SET: u32 = 0;
+pub const SEEK_CUR: u32 = 1;
+pub const SEEK_END: u32 = 2;
+pub const TMP_MAX: u32 = 26;
+pub const L_ctermid: u32 = 16;
+pub const BOLOS_APPNAME_MAX_SIZE_B: u32 = 32;
+pub const BOLOS_APPVERSION_MAX_SIZE_B: u32 = 16;
+pub const BOLOS_TAG_APPNAME: u32 = 1;
+pub const BOLOS_TAG_APPVERSION: u32 = 2;
+pub const BOLOS_TAG_ICON: u32 = 3;
+pub const BOLOS_TAG_DERIVEPATH: u32 = 4;
+pub const BOLOS_TAG_DATA_SIZE: u32 = 5;
+pub const BOLOS_TAG_DEPENDENCY: u32 = 6;
+pub const BOLOS_TAG_USER_TAG: u32 = 32;
+pub const OS_REGISTRY_GET_TAG_OFFSET_COMPARE_WITH_BUFFER: u32 = 2147483648;
+pub const OS_REGISTRY_GET_TAG_OFFSET_GET_LENGTH: u32 = 1073741824;
 pub const ERR_IOL_RANGE: u32 = 4096;
 pub const ERR_TSK_RANGE: u32 = 8192;
 pub const ERR_CRY_RANGE: u32 = 12288;
@@ -173,6 +277,7 @@ pub const ERR_IOL_OFW: u32 = 4352;
 pub const ERR_IOL_HDR: u32 = 4608;
 pub const ERR_IOL_STA: u32 = 4864;
 pub const ERR_IOL_RST: u32 = 5120;
+pub const ERR_IOL_BLE: u32 = 5376;
 pub const ERR_TSK_STC: u32 = 8448;
 pub const ERR_TSK_OWN: u32 = 8704;
 pub const ERR_TSK_OFW: u32 = 8960;
@@ -217,15 +322,465 @@ pub const EXCEPTION_IO_HEADER: u32 = 16;
 pub const EXCEPTION_IO_STATE: u32 = 17;
 pub const EXCEPTION_CXPORT: u32 = 18;
 pub const EXCEPTION_SYSTEM: u32 = 19;
-pub const OS_PARSE_BERTLV_OFFSET_COMPARE_WITH_BUFFER: u32 = 2147483648;
-pub const OS_PARSE_BERTLV_OFFSET_GET_LENGTH: u32 = 1073741824;
+pub const CX_LAST: u32 = 1;
+pub const CX_SIG_MODE: u32 = 2;
+pub const CX_MASK_SIGCRYPT: u32 = 6;
+pub const CX_ENCRYPT: u32 = 4;
+pub const CX_DECRYPT: u32 = 0;
+pub const CX_SIGN: u32 = 6;
+pub const CX_VERIFY: u32 = 2;
+pub const CX_MASK_PAD: u32 = 56;
+pub const CX_PAD_NONE: u32 = 0;
+pub const CX_PAD_ISO9797M1: u32 = 8;
+pub const CX_PAD_ISO9797M2: u32 = 16;
+pub const CX_PAD_PKCS1_1o5: u32 = 24;
+pub const CX_PAD_PKCS1_PSS: u32 = 32;
+pub const CX_PAD_PKCS1_OAEP: u32 = 40;
+pub const CX_MASK_CHAIN: u32 = 448;
+pub const CX_CHAIN_ECB: u32 = 0;
+pub const CX_CHAIN_CBC: u32 = 64;
+pub const CX_CHAIN_CTR: u32 = 128;
+pub const CX_CHAIN_CFB: u32 = 192;
+pub const CX_CHAIN_OFB: u32 = 256;
+pub const CX_MASK_ECC_VARIANT: u32 = 448;
+pub const CX_NO_CANONICAL: u32 = 64;
+pub const CX_MASK_RND: u32 = 3584;
+pub const CX_RND_PRNG: u32 = 512;
+pub const CX_RND_TRNG: u32 = 1024;
+pub const CX_RND_RFC6979: u32 = 1536;
+pub const CX_RND_PROVIDED: u32 = 2048;
+pub const CX_MASK_EC: u32 = 28672;
+pub const CX_ECSCHNORR_BIP0340: u32 = 0;
+pub const CX_ECDH_POINT: u32 = 4096;
+pub const CX_ECDH_X: u32 = 8192;
+pub const CX_ECSCHNORR_ISO14888_XY: u32 = 12288;
+pub const CX_ECSCHNORR_ISO14888_X: u32 = 16384;
+pub const CX_ECSCHNORR_BSI03111: u32 = 20480;
+pub const CX_ECSCHNORR_LIBSECP: u32 = 24576;
+pub const CX_ECSCHNORR_Z: u32 = 28672;
+pub const CX_NO_REINIT: u32 = 32768;
 pub const CX_HASH_MAX_BLOCK_COUNT: u32 = 65535;
+pub const CX_BN_WORD_ALIGNEMENT: u32 = 16;
+pub const CX_BN_FLAG_UNSET: u32 = 128;
+pub const CX_MAX_DOMAIN_LENGTH: u32 = 66;
+pub const CX_ECCINFO_PARITY_ODD: u32 = 1;
+pub const CX_ECCINFO_xGTn: u32 = 2;
+pub const BOLOS_UX_ONBOARDING_ALGORITHM_BIP39: u32 = 1;
+pub const BOLOS_UX_ONBOARDING_ALGORITHM_ELECTRUM: u32 = 2;
+pub const BOLOS_MASTER_SEED_LEN: u32 = 32;
+pub const HDW_NORMAL: u32 = 0;
+pub const HDW_ED25519_SLIP10: u32 = 1;
+pub const HDW_SLIP21: u32 = 2;
+pub const OS_SETTING_FEATURES_NFC_ENABLED: u32 = 1;
+pub const OS_SETTING_FEATURES_NO_PIN_SHUFFLE: u32 = 2;
+pub const OS_SETTING_FEATURES_BATT_IN_SIDE: u32 = 4;
+pub const SYSCALL_get_api_level_ID: u32 = 1;
+pub const SYSCALL_halt_ID: u32 = 2;
+pub const SYSCALL_nvm_write_ID: u32 = 50331651;
+pub const SYSCALL_nvm_erase_ID: u32 = 33554721;
+pub const SYSCALL_cx_aes_set_key_hw_ID: u32 = 33554610;
+pub const SYSCALL_cx_aes_reset_hw_ID: u32 = 179;
+pub const SYSCALL_cx_aes_block_hw_ID: u32 = 33554612;
+pub const SYSCALL_cx_des_set_key_hw_ID: u32 = 33554607;
+pub const SYSCALL_cx_des_reset_hw_ID: u32 = 176;
+pub const SYSCALL_cx_des_block_hw_ID: u32 = 33554609;
+pub const SYSCALL_cx_bn_lock_ID: u32 = 33554706;
+pub const SYSCALL_cx_bn_unlock_ID: u32 = 182;
+pub const SYSCALL_cx_bn_is_locked_ID: u32 = 183;
+pub const SYSCALL_cx_bn_alloc_ID: u32 = 33554707;
+pub const SYSCALL_cx_bn_alloc_init_ID: u32 = 67109140;
+pub const SYSCALL_cx_bn_destroy_ID: u32 = 16777404;
+pub const SYSCALL_cx_bn_nbytes_ID: u32 = 33554701;
+pub const SYSCALL_cx_bn_init_ID: u32 = 50331925;
+pub const SYSCALL_cx_bn_rand_ID: u32 = 16777450;
+pub const SYSCALL_cx_bn_copy_ID: u32 = 33554624;
+pub const SYSCALL_cx_bn_set_u32_ID: u32 = 33554625;
+pub const SYSCALL_cx_bn_get_u32_ID: u32 = 33554667;
+pub const SYSCALL_cx_bn_export_ID: u32 = 50331843;
+pub const SYSCALL_cx_bn_cmp_ID: u32 = 50331844;
+pub const SYSCALL_cx_bn_cmp_u32_ID: u32 = 50331845;
+pub const SYSCALL_cx_bn_is_odd_ID: u32 = 33554712;
+pub const SYSCALL_cx_bn_xor_ID: u32 = 50331848;
+pub const SYSCALL_cx_bn_or_ID: u32 = 50331849;
+pub const SYSCALL_cx_bn_and_ID: u32 = 50331850;
+pub const SYSCALL_cx_bn_tst_bit_ID: u32 = 50331851;
+pub const SYSCALL_cx_bn_set_bit_ID: u32 = 33554636;
+pub const SYSCALL_cx_bn_clr_bit_ID: u32 = 33554637;
+pub const SYSCALL_cx_bn_shr_ID: u32 = 33554638;
+pub const SYSCALL_cx_bn_shl_ID: u32 = 33554716;
+pub const SYSCALL_cx_bn_cnt_bits_ID: u32 = 33554668;
+pub const SYSCALL_cx_bn_add_ID: u32 = 50331929;
+pub const SYSCALL_cx_bn_sub_ID: u32 = 50331930;
+pub const SYSCALL_cx_bn_mul_ID: u32 = 50331858;
+pub const SYSCALL_cx_bn_mod_add_ID: u32 = 67109075;
+pub const SYSCALL_cx_bn_mod_sub_ID: u32 = 67109076;
+pub const SYSCALL_cx_bn_mod_mul_ID: u32 = 67109077;
+pub const SYSCALL_cx_bn_reduce_ID: u32 = 50331862;
+pub const SYSCALL_cx_bn_mod_sqrt_ID: u32 = 67109149;
+pub const SYSCALL_cx_bn_mod_pow_bn_ID: u32 = 67109079;
+pub const SYSCALL_cx_bn_mod_pow_ID: u32 = 83886317;
+pub const SYSCALL_cx_bn_mod_pow2_ID: u32 = 83886318;
+pub const SYSCALL_cx_bn_mod_invert_nprime_ID: u32 = 50331866;
+pub const SYSCALL_cx_bn_mod_u32_invert_ID: u32 = 50331926;
+pub const SYSCALL_cx_bn_is_prime_ID: u32 = 33554671;
+pub const SYSCALL_cx_bn_next_prime_ID: u32 = 16777456;
+pub const SYSCALL_cx_bn_rng_ID: u32 = 33554909;
+pub const SYSCALL_cx_bn_gf2_n_mul_ID: u32 = 83886150;
+pub const SYSCALL_cx_mont_alloc_ID: u32 = 33554652;
+pub const SYSCALL_cx_mont_init_ID: u32 = 33554653;
+pub const SYSCALL_cx_mont_init2_ID: u32 = 50331870;
+pub const SYSCALL_cx_mont_to_montgomery_ID: u32 = 50331871;
+pub const SYSCALL_cx_mont_from_montgomery_ID: u32 = 50331872;
+pub const SYSCALL_cx_mont_mul_ID: u32 = 67109089;
+pub const SYSCALL_cx_mont_pow_ID: u32 = 83886306;
+pub const SYSCALL_cx_mont_pow_bn_ID: u32 = 67109091;
+pub const SYSCALL_cx_mont_invert_nprime_ID: u32 = 50331876;
+pub const SYSCALL_cx_ecdomain_size_ID: u32 = 33554734;
+pub const SYSCALL_cx_ecdomain_parameters_length_ID: u32 = 33554735;
+pub const SYSCALL_cx_ecdomain_parameter_ID: u32 = 67109168;
+pub const SYSCALL_cx_ecdomain_parameter_bn_ID: u32 = 50331953;
+pub const SYSCALL_cx_ecdomain_generator_ID: u32 = 67109170;
+pub const SYSCALL_cx_ecdomain_generator_bn_ID: u32 = 33554739;
+pub const SYSCALL_cx_ecpoint_alloc_ID: u32 = 33554673;
+pub const SYSCALL_cx_ecpoint_destroy_ID: u32 = 16777458;
+pub const SYSCALL_cx_ecpoint_init_ID: u32 = 83886323;
+pub const SYSCALL_cx_ecpoint_init_bn_ID: u32 = 50331892;
+pub const SYSCALL_cx_ecpoint_export_ID: u32 = 83886325;
+pub const SYSCALL_cx_ecpoint_export_bn_ID: u32 = 50331894;
+pub const SYSCALL_cx_ecpoint_compress_ID: u32 = 67109164;
+pub const SYSCALL_cx_ecpoint_decompress_ID: u32 = 67109165;
+pub const SYSCALL_cx_ecpoint_add_ID: u32 = 50331918;
+pub const SYSCALL_cx_ecpoint_neg_ID: u32 = 16777487;
+pub const SYSCALL_cx_ecpoint_scalarmul_ID: u32 = 50331920;
+pub const SYSCALL_cx_ecpoint_scalarmul_bn_ID: u32 = 33554705;
+pub const SYSCALL_cx_ecpoint_rnd_scalarmul_ID: u32 = 50331943;
+pub const SYSCALL_cx_ecpoint_rnd_scalarmul_bn_ID: u32 = 33554728;
+pub const SYSCALL_cx_ecpoint_double_scalarmul_ID: u32 = 117440840;
+pub const SYSCALL_cx_ecpoint_double_scalarmul_bn_ID: u32 = 83886410;
+pub const SYSCALL_cx_ecpoint_cmp_ID: u32 = 50331899;
+pub const SYSCALL_cx_ecpoint_is_on_curve_ID: u32 = 33554684;
+pub const SYSCALL_cx_ecpoint_is_at_infinity_ID: u32 = 33554763;
+pub const SYSCALL_cx_crc32_hw_ID: u32 = 33554690;
+pub const SYSCALL_cx_get_random_bytes_ID: u32 = 33554695;
+pub const SYSCALL_cx_trng_get_random_data_ID: u32 = 33554694;
+pub const SYSCALL_os_perso_erase_all_ID: u32 = 75;
+pub const SYSCALL_os_perso_set_seed_ID: u32 = 67108942;
+pub const SYSCALL_os_perso_derive_and_set_seed_ID: u32 = 117440591;
+pub const SYSCALL_os_perso_set_words_ID: u32 = 33554512;
+pub const SYSCALL_os_perso_finalize_ID: u32 = 81;
+pub const SYSCALL_os_perso_is_pin_set_ID: u32 = 158;
+pub const SYSCALL_os_perso_isonboarded_ID: u32 = 159;
+pub const SYSCALL_os_perso_setonboardingstatus_ID: u32 = 50331796;
+pub const SYSCALL_os_perso_derive_node_bip32_ID: u32 = 83886163;
+pub const SYSCALL_os_perso_derive_node_with_seed_key_ID: u32 = 134217894;
+pub const SYSCALL_os_perso_derive_eip2333_ID: u32 = 67109031;
+pub const SYSCALL_os_perso_seed_cookie_ID: u32 = 16777384;
+pub const SYSCALL_os_endorsement_get_code_hash_ID: u32 = 16777301;
+pub const SYSCALL_os_endorsement_get_public_key_ID: u32 = 50331734;
+pub const SYSCALL_os_endorsement_get_public_key_certificate_ID: u32 = 50331735;
+pub const SYSCALL_os_endorsement_key1_get_app_secret_ID: u32 = 16777304;
+pub const SYSCALL_os_endorsement_key1_sign_data_ID: u32 = 50331737;
+pub const SYSCALL_os_endorsement_key2_derive_sign_data_ID: u32 = 50331738;
+pub const SYSCALL_os_perso_set_pin_ID: u32 = 67108940;
+pub const SYSCALL_os_perso_set_current_identity_pin_ID: u32 = 33554509;
+pub const SYSCALL_os_global_pin_is_validated_ID: u32 = 160;
+pub const SYSCALL_os_global_pin_check_ID: u32 = 33554593;
+pub const SYSCALL_os_global_pin_invalidate_ID: u32 = 93;
+pub const SYSCALL_os_global_pin_retries_ID: u32 = 94;
+pub const SYSCALL_os_registry_count_ID: u32 = 95;
+pub const SYSCALL_os_registry_get_ID: u32 = 33554722;
+pub const SYSCALL_os_ux_ID: u32 = 16777316;
+pub const SYSCALL_os_ux_result_ID: u32 = 16777317;
+pub const SYSCALL_os_lib_call_ID: u32 = 16777319;
+pub const SYSCALL_os_lib_end_ID: u32 = 104;
+pub const SYSCALL_os_flags_ID: u32 = 106;
+pub const SYSCALL_os_version_ID: u32 = 33554539;
+pub const SYSCALL_os_serial_ID: u32 = 33554540;
+pub const SYSCALL_os_seph_features_ID: u32 = 110;
+pub const SYSCALL_os_seph_version_ID: u32 = 33554543;
+pub const SYSCALL_os_bootloader_version_ID: u32 = 33554547;
+pub const SYSCALL_os_setting_get_ID: u32 = 50331760;
+pub const SYSCALL_os_setting_set_ID: u32 = 50331761;
+pub const SYSCALL_os_get_memory_info_ID: u32 = 16777330;
+pub const SYSCALL_os_registry_get_tag_ID: u32 = 100663587;
+pub const SYSCALL_os_registry_get_current_app_tag_ID: u32 = 50331764;
+pub const SYSCALL_os_registry_delete_app_and_dependees_ID: u32 = 16777508;
+pub const SYSCALL_os_registry_delete_all_apps_ID: u32 = 293;
+pub const SYSCALL_os_sched_exec_ID: u32 = 16777510;
+pub const SYSCALL_os_sched_exit_ID: u32 = 16777370;
+pub const SYSCALL_os_sched_is_running_ID: u32 = 16777371;
+pub const SYSCALL_os_sched_create_ID: u32 = 117440795;
+pub const SYSCALL_os_sched_kill_ID: u32 = 16777336;
+pub const SYSCALL_io_seph_send_ID: u32 = 33554563;
+pub const SYSCALL_io_seph_is_status_sent_ID: u32 = 132;
+pub const SYSCALL_io_seph_recv_ID: u32 = 50331781;
+pub const SYSCALL_nvm_write_page_ID: u32 = 16777482;
+pub const SYSCALL_nvm_erase_page_ID: u32 = 16777526;
+pub const SYSCALL_try_context_get_ID: u32 = 135;
+pub const SYSCALL_try_context_set_ID: u32 = 16777483;
+pub const SYSCALL_os_sched_last_status_ID: u32 = 16777372;
+pub const SYSCALL_os_sched_yield_ID: u32 = 16777373;
+pub const SYSCALL_os_sched_switch_ID: u32 = 33554590;
+pub const SYSCALL_os_sched_current_task_ID: u32 = 139;
+pub const SYSCALL_os_allow_protected_flash_ID: u32 = 142;
+pub const SYSCALL_os_deny_protected_flash_ID: u32 = 145;
+pub const SYSCALL_os_allow_protected_ram_ID: u32 = 146;
+pub const SYSCALL_os_deny_protected_ram_ID: u32 = 147;
+pub const SYSCALL_os_customca_verify_ID: u32 = 50331792;
+pub const SYSCALL_os_ux_set_status_ID_IN: u32 = 33554740;
+pub const SYSCALL_os_ux_get_status_ID_IN: u32 = 16777525;
+pub const SYSCALL_nbgl_front_draw_rect_ID: u32 = 33161216;
+pub const SYSCALL_nbgl_front_draw_horizontal_line_ID: u32 = 66715649;
+pub const SYSCALL_nbgl_front_draw_img_ID: u32 = 83492866;
+pub const SYSCALL_nbgl_front_refresh_area_ID: u32 = 49938435;
+pub const SYSCALL_nbgl_front_draw_img_file_ID: u32 = 100270084;
+pub const SYSCALL_nbgl_side_draw_rect_ID: u32 = 33161221;
+pub const SYSCALL_nbgl_side_draw_horizontal_line_ID: u32 = 66715654;
+pub const SYSCALL_nbgl_side_draw_img_ID: u32 = 83492871;
+pub const SYSCALL_nbgl_side_refresh_area_ID: u32 = 33161224;
+pub const SYSCALL_nbgl_get_font_ID: u32 = 33161228;
+pub const SYSCALL_nbgl_screen_reinit_ID: u32 = 16384013;
+pub const SYSCALL_touch_get_last_info_ID: u32 = 33161227;
+pub const SYSCALL_set_touch_state_ID: u32 = 33161230;
+pub const CX_APILEVEL: u32 = 12;
+pub const CX_COMPAT_APILEVEL: u32 = 12;
+pub const CXPORT_ED_DES: u32 = 1;
+pub const CXPORT_ED_AES: u32 = 2;
+pub const CXPORT_ED_RSA: u32 = 4;
+pub const BLE_CMD_APDU: u32 = 5;
+pub const BLE_CHUNK_LENGTH: u32 = 20;
+pub const M24SR_CHUNK_LENGTH: u32 = 246;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT: u32 = 1;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_REQBLE: u32 = 1;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_RECOVERY: u32 = 2;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FLASHBACK: u32 = 4;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_BOOTMENU: u32 = 8;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FEATURE_USB: u32 = 1;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FEATURE_BLE: u32 = 2;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FEATURE_TOUCH: u32 = 4;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FEATURE_BUTTON_COUNT: u32 = 240;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FEATURE_BUTTON_COUNT_POS: u32 = 4;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FEATURE_SCREEN_MASK: u32 = 3840;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FEATURE_NO_SCREEN: u32 = 0;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FEATURE_SCREEN_BIG: u32 = 256;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FEATURE_SCREEN_SML: u32 = 512;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FEATURE_SCREEN_SSD1312: u32 = 768;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FEATURE_LEDRGB: u32 = 4096;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FEATURE_BATTERY: u32 = 8;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FEATURE_ISET_MASK: u32 = 4026531840;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FEATURE_ISET_BASIC: u32 = 0;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FEATURE_ISET_MCUSEC: u32 = 268435456;
+pub const SEPROXYHAL_TAG_SESSION_START_EVENT_FEATURE_ISET_MCUBL: u32 = 536870912;
+pub const SEPROXYHAL_TAG_BLE_SECURITY_DB_EVENT: u32 = 2;
+pub const SEPROXYHAL_TAG_BLE_SECURITY_DB_LOADED_EVENT: u32 = 0;
+pub const SEPROXYHAL_TAG_BLE_SECURITY_DB_DUMP_EVENT: u32 = 1;
+pub const SEPROXYHAL_TAG_BLE_WRITE_REQUEST_EVENT: u32 = 3;
+pub const SEPROXYHAL_TAG_BLE_READ_REQUEST_EVENT: u32 = 4;
+pub const SEPROXYHAL_TAG_BUTTON_PUSH_EVENT: u32 = 5;
+pub const SEPROXYHAL_TAG_BUTTON_PUSH_ID_MASK: u32 = 254;
+pub const SEPROXYHAL_TAG_BUTTON_PUSH_INTERVAL_MS: u32 = 100;
+pub const SEPROXYHAL_TAG_NFC_FIELD_DETECTION_EVENT: u32 = 6;
+pub const SEPROXYHAL_TAG_NFC_APDU_RECEIVED_EVENT: u32 = 7;
+pub const SEPROXYHAL_TAG_BATTERY_NOTIFICATION_EVENT: u32 = 8;
+pub const SEPROXYHAL_TAG_M24SR_GPO_CHANGE_EVENT: u32 = 9;
+pub const SEPROXYHAL_TAG_M24SR_RESPONSE_APDU_EVENT: u32 = 10;
+pub const SEPROXYHAL_TAG_BLE_NOTIFY_INDICATE_EVENT: u32 = 11;
+pub const SEPROXYHAL_TAG_FINGER_EVENT: u32 = 12;
+pub const SEPROXYHAL_TAG_FINGER_EVENT_TOUCH: u32 = 1;
+pub const SEPROXYHAL_TAG_FINGER_EVENT_RELEASE: u32 = 2;
+pub const SEPROXYHAL_TAG_DISPLAY_PROCESSED_EVENT: u32 = 13;
+pub const SEPROXYHAL_TAG_TICKER_EVENT: u32 = 14;
+pub const SEPROXYHAL_TAG_USB_EVENT: u32 = 15;
+pub const SEPROXYHAL_TAG_USB_EVENT_RESET: u32 = 1;
+pub const SEPROXYHAL_TAG_USB_EVENT_SOF: u32 = 2;
+pub const SEPROXYHAL_TAG_USB_EVENT_SUSPENDED: u32 = 4;
+pub const SEPROXYHAL_TAG_USB_EVENT_RESUMED: u32 = 8;
+pub const SEPROXYHAL_TAG_USB_EP_XFER_EVENT: u32 = 16;
+pub const SEPROXYHAL_TAG_USB_EP_XFER_SETUP: u32 = 1;
+pub const SEPROXYHAL_TAG_USB_EP_XFER_IN: u32 = 2;
+pub const SEPROXYHAL_TAG_USB_EP_XFER_OUT: u32 = 4;
+pub const SEPROXYHAL_TAG_BLE_CONNECTION_EVENT: u32 = 17;
+pub const SEPROXYHAL_TAG_UNSEC_CHUNK_EVENT: u32 = 18;
+pub const SEPROXYHAL_TAG_ACK_LINK_SPEED: u32 = 19;
+pub const SEPROXYHAL_TAG_BLUENRG_RECV_EVENT: u32 = 20;
+pub const SEPROXYHAL_TAG_STATUS_EVENT: u32 = 21;
+pub const SEPROXYHAL_TAG_STATUS_EVENT_FLAG_CHARGING: u32 = 1;
+pub const SEPROXYHAL_TAG_STATUS_EVENT_FLAG_USB_ON: u32 = 2;
+pub const SEPROXYHAL_TAG_STATUS_EVENT_FLAG_BLE_ON: u32 = 4;
+pub const SEPROXYHAL_TAG_STATUS_EVENT_FLAG_USB_POWERED: u32 = 8;
+pub const SEPROXYHAL_TAG_STATUS_EVENT_FLAG_CHARGING_ISSUE: u32 = 16;
+pub const SEPROXYHAL_TAG_STATUS_EVENT_FLAG_TEMPERATURE_ISSUE: u32 = 32;
+pub const SEPROXYHAL_TAG_STATUS_EVENT_FLAG_BATTERY_ISSUE: u32 = 64;
+pub const SEPROXYHAL_TAG_CAPDU_EVENT: u32 = 22;
+pub const SEPROXYHAL_TAG_I2C_EVENT: u32 = 23;
+pub const SEPROXYHAL_TAG_I2C_EVENT_KIND_READ: u32 = 1;
+pub const SEPROXYHAL_TAG_I2C_EVENT_KIND_WRITE: u32 = 2;
+pub const SEPROXYHAL_TAG_BLE_RECV_EVENT: u32 = 24;
+pub const SEPROXYHAL_TAG_BOOTLOADER_RAPDU_EVENT: u32 = 25;
+pub const SEPROXYHAL_TAG_UX_EVENT: u32 = 26;
+pub const SEPH_PROTOCOL_EVT_POWER_BUTTON_EVENT: u32 = 27;
+pub const SEPROXYHAL_TAG_UNSEC_CHUNK_READ: u32 = 50;
+pub const SEPROXYHAL_TAG_UNSEC_CHUNK_READ_EXT: u32 = 51;
+pub const SEPROXYHAL_TAG_BLE_SEND: u32 = 56;
+pub const SEPROXYHAL_TAG_SET_SCREEN_CONFIG: u32 = 62;
+pub const SEPROXYHAL_TAG_SET_LINK_PROP: u32 = 63;
+pub const SEPROXYHAL_TAG_BLUENRG_SEND: u32 = 64;
+pub const SEPROXYHAL_TAG_BLE_DEFINE_GENERIC_SETTING: u32 = 65;
+pub const SEPROXYHAL_TAG_BLE_DEFINE_SERVICE_SETTING: u32 = 66;
+pub const SEPROXYHAL_TAG_NFC_DEFINE_SERVICE_SETTING: u32 = 67;
+pub const SEPROXYHAL_TAG_BLE_RADIO_POWER: u32 = 68;
+pub const SEPROXYHAL_TAG_BLE_RADIO_POWER_ACTION_ON: u32 = 2;
+pub const SEPROXYHAL_TAG_BLE_RADIO_POWER_ACTION_DBWIPE: u32 = 4;
+pub const SEPROXYHAL_TAG_BLE_RADIO_POWER_FACTORY_TEST: u32 = 64;
+pub const SEPROXYHAL_TAG_NFC_RADIO_POWER: u32 = 69;
+pub const SEPROXYHAL_TAG_SE_POWER_OFF: u32 = 70;
+pub const SEPROXYHAL_TAG_BLE_SECURITY_DB: u32 = 72;
+pub const SEPROXYHAL_TAG_BLE_SECURITY_DB_CMD_READ: u32 = 1;
+pub const SEPROXYHAL_TAG_BLE_SECURITY_DB_CMD_WRITE: u32 = 2;
+pub const SEPROXYHAL_TAG_BATTERY_CHARGE: u32 = 73;
+pub const SEPROXYHAL_TAG_DEVICE_OFF: u32 = 75;
+pub const SEPROXYHAL_TAG_MORE_TIME: u32 = 76;
+pub const SEPROXYHAL_TAG_M24SR_C_APDU: u32 = 77;
+pub const SEPROXYHAL_TAG_SET_TICKER_INTERVAL: u32 = 78;
+pub const SEPROXYHAL_TAG_USB_CONFIG: u32 = 79;
+pub const SEPROXYHAL_TAG_USB_CONFIG_CONNECT: u32 = 1;
+pub const SEPROXYHAL_TAG_USB_CONFIG_DISCONNECT: u32 = 2;
+pub const SEPROXYHAL_TAG_USB_CONFIG_ADDR: u32 = 3;
+pub const SEPROXYHAL_TAG_USB_CONFIG_ENDPOINTS: u32 = 4;
+pub const SEPROXYHAL_TAG_USB_CONFIG_TYPE_DISABLED: u32 = 0;
+pub const SEPROXYHAL_TAG_USB_CONFIG_TYPE_CONTROL: u32 = 1;
+pub const SEPROXYHAL_TAG_USB_CONFIG_TYPE_INTERRUPT: u32 = 2;
+pub const SEPROXYHAL_TAG_USB_CONFIG_TYPE_BULK: u32 = 3;
+pub const SEPROXYHAL_TAG_USB_CONFIG_TYPE_ISOCHRONOUS: u32 = 4;
+pub const SEPROXYHAL_TAG_USB_EP_PREPARE: u32 = 80;
+pub const SEPROXYHAL_TAG_USB_EP_PREPARE_DIR_SETUP: u32 = 16;
+pub const SEPROXYHAL_TAG_USB_EP_PREPARE_DIR_IN: u32 = 32;
+pub const SEPROXYHAL_TAG_USB_EP_PREPARE_DIR_OUT: u32 = 48;
+pub const SEPROXYHAL_TAG_USB_EP_PREPARE_DIR_STALL: u32 = 64;
+pub const SEPROXYHAL_TAG_USB_EP_PREPARE_DIR_UNSTALL: u32 = 128;
+pub const SEPROXYHAL_TAG_SET_LED: u32 = 81;
+pub const SEPROXYHAL_TAG_REQUEST_STATUS: u32 = 82;
+pub const SEPROXYHAL_TAG_RAPDU: u32 = 83;
+pub const SEPROXYHAL_TAG_I2C_XFER: u32 = 84;
+pub const SEPROXYHAL_TAG_UX_CMD: u32 = 93;
+pub const SEPROXYHAL_TAG_UX_CMD_BLE_DISABLE_ADV: u32 = 0;
+pub const SEPROXYHAL_TAG_UX_CMD_BLE_ENABLE_ADV: u32 = 1;
+pub const SEPROXYHAL_TAG_UX_CMD_BLE_RESET_PAIRINGS: u32 = 2;
+pub const SEPROXYHAL_TAG_UX_CMD_REDISPLAY: u32 = 3;
+pub const SEPROXYHAL_TAG_UX_CMD_BLE_NAME_CHANGED: u32 = 4;
+pub const SEPROXYHAL_TAG_SET_TOUCH_STATE: u32 = 91;
+pub const SEPROXYHAL_TAG_PRINTF: u32 = 95;
+pub const SEPROXYHAL_TAG_DBG_SCREEN_DISPLAY_STATUS: u32 = 94;
+pub const SEPROXYHAL_TAG_PLAY_TUNE: u32 = 86;
+pub const SEPROXYHAL_TAG_STATUS_MASK: u32 = 96;
+pub const SEPROXYHAL_TAG_GENERAL_STATUS: u32 = 96;
+pub const SEPROXYHAL_TAG_GENERAL_STATUS_LAST_COMMAND: u32 = 0;
+pub const SEPROXYHAL_TAG_PAIRING_STATUS: u32 = 97;
+pub const SEPROXYHAL_TAG_BLE_READ_RESPONSE_STATUS: u32 = 98;
+pub const SEPROXYHAL_TAG_NFC_READ_RESPONSE_STATUS: u32 = 99;
+pub const SEPROXYHAL_TAG_BLE_NOTIFY_INDICATE_STATUS: u32 = 100;
+pub const SEPROXYHAL_TAG_SCREEN_DISPLAY_STATUS: u32 = 101;
+pub const SEPROXYHAL_TAG_PRINTF_STATUS: u32 = 102;
+pub const SEPROXYHAL_TAG_SET_LINK_SPEED: u32 = 103;
+pub const SEPROXYHAL_TAG_SCREEN_ANIMATION_STATUS: u32 = 104;
+pub const SEPROXYHAL_TAG_SCREEN_ANIMATION_STATUS_VERTICAL_SPLIT_SLIDE: u32 = 0;
+pub const SEPROXYHAL_TAG_BOOTLOADER_CAPDU_STATUS: u32 = 106;
+pub const IO_CACHE: u32 = 1;
+pub const NO_TIMEOUT: u32 = 0;
+pub const CX_AES_BLOCK_SIZE: u32 = 16;
+pub const CX_AES_128_KEY_LEN: u32 = 16;
+pub const CX_DES_BLOCK_SIZE: u32 = 8;
 pub const CX_RIPEMD160_SIZE: u32 = 20;
 pub const CX_SHA256_SIZE: u32 = 32;
 pub const CX_SHA384_SIZE: u32 = 48;
 pub const CX_SHA512_SIZE: u32 = 64;
 pub const MAX_IV_LENGTH: u32 = 16;
 pub const MAX_BLOCK_LENGTH: u32 = 16;
+pub const SCREEN_WIDTH: u32 = 400;
+pub const SCREEN_HEIGHT: u32 = 672;
+pub const NO_TRANSFORMATION: u32 = 0;
+pub const HORIZONTAL_MIRROR: u32 = 1;
+pub const VERTICAL_MIRROR: u32 = 2;
+pub const BOTH_MIRRORS: u32 = 3;
+pub const ROTATE_90_CLOCKWISE: u32 = 4;
+pub const INVALID_COLOR_MAP: u32 = 0;
+pub const GZLIB_UNCOMPRESSED_CHUNK: u32 = 2049;
+pub const BAGL_ENCODING_LATIN1: u32 = 0;
+pub const BAGL_ENCODING_UTF8: u32 = 1;
+pub const BAGL_ENCODING_DEFAULT: u32 = 1;
+pub const QR_V4_NB_PIX_SIZE: u32 = 33;
+pub const QR_V10_NB_PIX_SIZE: u32 = 57;
+pub const QR_MAX_PIX_SIZE: u32 = 57;
+pub const WIDTH_OFFSET: u32 = 0;
+pub const HEIGHT_OFFSET: u32 = 2;
+pub const BPP_COMPRESS_OFFSET: u32 = 4;
+pub const BUFFER_LEN_OFFSET: u32 = 5;
+pub const BUFFER_OFFSET: u32 = 8;
+pub const IMAGE_FILE_HEADER_SIZE: u32 = 8;
+pub const BACKSPACE_KEY: u32 = 8;
+pub const VALIDATE_KEY: u8 = 13u8;
+pub const KEYBOARD_KEY_HEIGHT: u32 = 56;
+pub const KEYPAD_KEY_HEIGHT: u32 = 104;
+pub const EXIT_PAGE: u32 = 255;
+pub const BORDER_MARGIN: u32 = 24;
+pub const BUTTON_DIAMETER: u32 = 80;
+pub const NO_MORE_OBJ_ERROR: i32 = -3;
+pub const NB_MAX_SUGGESTION_BUTTONS: u32 = 4;
+pub const NBGL_SERIALIZE_OK: u32 = 0;
+pub const NBGL_SERIALIZE_ERROR: u32 = 1;
+pub const SIDE_SCREEN_WIDTH: u32 = 96;
+pub const SHORT_TOUCH_DURATION: u32 = 0;
+pub const LONG_TOUCH_DURATION: u32 = 1500;
+pub const FIRST_USER_TOKEN: u32 = 20;
+pub const LAST_PAGE_FOR_REVIEW: u32 = 255;
+extern "C" {
+    pub fn os_endorsement_get_code_hash(buffer: *mut cty::c_uchar) -> cty::c_uint;
+}
+extern "C" {
+    pub fn os_endorsement_get_public_key(
+        index: cty::c_uchar,
+        buffer: *mut cty::c_uchar,
+        length: *mut cty::c_uchar,
+    ) -> cty::c_uint;
+}
+extern "C" {
+    pub fn os_endorsement_get_public_key_certificate(
+        index: cty::c_uchar,
+        buffer: *mut cty::c_uchar,
+        length: *mut cty::c_uchar,
+    ) -> cty::c_uint;
+}
+extern "C" {
+    pub fn os_endorsement_key1_get_app_secret(buffer: *mut cty::c_uchar) -> cty::c_uint;
+}
+extern "C" {
+    pub fn os_endorsement_key1_sign_data(
+        src: *mut cty::c_uchar,
+        srcLength: cty::c_uint,
+        signature: *mut cty::c_uchar,
+    ) -> cty::c_uint;
+}
+extern "C" {
+    pub fn os_endorsement_key2_derive_sign_data(
+        src: *mut cty::c_uchar,
+        srcLength: cty::c_uint,
+        signature: *mut cty::c_uchar,
+    ) -> cty::c_uint;
+}
+extern "C" {
+    pub fn halt();
+}
+extern "C" {
+    pub fn os_parse_bertlv(
+        mem: *mut cty::c_uchar,
+        mem_len: cty::c_uint,
+        tlv_instance_offset: *mut cty::c_uint,
+        tag: cty::c_uint,
+        offset: cty::c_uint,
+        buffer: *mut *mut cty::c_void,
+        maxlength: cty::c_uint,
+    ) -> cty::c_uint;
+}
 pub type __int8_t = cty::c_schar;
 pub type __uint8_t = cty::c_uchar;
 pub type __int16_t = cty::c_short;
@@ -264,6 +819,349 @@ pub type int_fast32_t = cty::c_int;
 pub type uint_fast32_t = cty::c_uint;
 pub type int_fast64_t = cty::c_longlong;
 pub type uint_fast64_t = cty::c_ulonglong;
+pub type bolos_bool_t = u8;
+pub type bolos_task_status_t = cty::c_uchar;
+pub const task_unsecure_id_e_TASK_BOLOS: task_unsecure_id_e = 0;
+pub const task_unsecure_id_e_TASK_SYSCALL: task_unsecure_id_e = 1;
+pub const task_unsecure_id_e_TASK_USERTASKS_START: task_unsecure_id_e = 2;
+pub const task_unsecure_id_e_TASK_USER: task_unsecure_id_e = 2;
+pub const task_unsecure_id_e_TASK_SUBTASKS_START: task_unsecure_id_e = 3;
+pub const task_unsecure_id_e_TASK_SUBTASK_0: task_unsecure_id_e = 3;
+pub const task_unsecure_id_e_TASK_BOLOS_UX: task_unsecure_id_e = 4;
+pub const task_unsecure_id_e_TASK_MAXCOUNT: task_unsecure_id_e = 5;
+pub type task_unsecure_id_e = cty::c_uint;
+extern "C" {
+    pub fn os_sched_exec(app_idx: cty::c_uint);
+}
+extern "C" {
+    pub fn os_sched_exit(exit_code: bolos_task_status_t) -> !;
+}
+extern "C" {
+    pub fn os_sched_is_running(task_idx: cty::c_uint) -> bolos_bool_t;
+}
+extern "C" {
+    #[doc = " Retrieve the last status issued by a task using either yield or exit."]
+    pub fn os_sched_last_status(task_idx: cty::c_uint) -> bolos_task_status_t;
+}
+extern "C" {
+    #[doc = " Current task is yielding the process to another task.\n Meta call for task_switch with 'the enxt' task idx.\n @param status is the current task status"]
+    pub fn os_sched_yield(status: bolos_task_status_t);
+}
+extern "C" {
+    #[doc = " Perform task switching\n @param task_idx is the task index to switch to\n @param status of the currently executed task\n @return the status of the previously running task"]
+    pub fn os_sched_switch(task_idx: cty::c_uint, status: bolos_task_status_t);
+}
+extern "C" {
+    #[doc = " Function that returns the currently running task identifier."]
+    pub fn os_sched_current_task() -> cty::c_uint;
+}
+extern "C" {
+    #[doc = " Create a new task with the given parameters and return its task identifier.\n The newly created task is chrooted in the given nvram/ram1/ram2 segments\n and its task pointer is set at the end of ram1 segment.\n The task is bound to the currently running application.\n The task identifiers are not guaranteed to be the same after a power cycle.\n At least valid main, nvram segment, ram0 segment and stack segment must be provided with.\n @param main The main function address to start the task with.\n @param nvram The nvram segment address start\n @param nvram_length The nvram segment length\n @param ram0 /ram0_length the first RAM segment description\n @param stack /stack_length the task's stack RAM segment description"]
+    pub fn os_sched_create(
+        main: *mut cty::c_void,
+        nvram: *mut cty::c_void,
+        nvram_length: cty::c_uint,
+        ram0: *mut cty::c_void,
+        ram0_length: cty::c_uint,
+        stack: *mut cty::c_void,
+        stack_length: cty::c_uint,
+    ) -> cty::c_uint;
+}
+extern "C" {
+    pub fn os_sched_kill(taskidx: cty::c_uint);
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct bolos_ux_asynch_callback_t {
+    pub asynchmodal_end_callback:
+        ::core::option::Option<unsafe extern "C" fn(ux_status: cty::c_uint)>,
+}
+#[test]
+fn bindgen_test_layout_bolos_ux_asynch_callback_t() {
+    const UNINIT: ::core::mem::MaybeUninit<bolos_ux_asynch_callback_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<bolos_ux_asynch_callback_t>(),
+        4usize,
+        concat!("Size of: ", stringify!(bolos_ux_asynch_callback_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<bolos_ux_asynch_callback_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(bolos_ux_asynch_callback_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).asynchmodal_end_callback) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bolos_ux_asynch_callback_t),
+            "::",
+            stringify!(asynchmodal_end_callback)
+        )
+    );
+}
+extern "C" {
+    pub static mut G_io_asynch_ux_callback: bolos_ux_asynch_callback_t;
+}
+extern "C" {
+    pub fn os_flags() -> cty::c_uint;
+}
+extern "C" {
+    pub fn os_version(version: *mut cty::c_uchar, maxlength: cty::c_uint) -> cty::c_uint;
+}
+extern "C" {
+    pub fn os_serial(serial: *mut cty::c_uchar, maxlength: cty::c_uint) -> cty::c_uint;
+}
+extern "C" {
+    pub fn os_seph_features() -> cty::c_uint;
+}
+extern "C" {
+    pub fn os_seph_version(version: *mut cty::c_uchar, maxlength: cty::c_uint) -> cty::c_uint;
+}
+extern "C" {
+    pub fn os_bootloader_version(version: *mut cty::c_uchar, maxlength: cty::c_uint)
+        -> cty::c_uint;
+}
+extern "C" {
+    pub fn os_get_sn(buffer: *mut cty::c_uchar) -> cty::c_uint;
+}
+extern "C" {
+    pub fn get_api_level() -> cty::c_uint;
+}
+extern "C" {
+    pub static mut G_io_apdu_buffer: [cty::c_uchar; 260usize];
+}
+extern "C" {
+    pub fn io_exchange(channel_and_flags: cty::c_uchar, tx_len: cty::c_ushort) -> cty::c_ushort;
+}
+pub const io_apdu_media_t_IO_APDU_MEDIA_NONE: io_apdu_media_t = 0;
+pub const io_apdu_media_t_IO_APDU_MEDIA_USB_HID: io_apdu_media_t = 1;
+pub const io_apdu_media_t_IO_APDU_MEDIA_BLE: io_apdu_media_t = 2;
+pub const io_apdu_media_t_IO_APDU_MEDIA_NFC: io_apdu_media_t = 3;
+pub const io_apdu_media_t_IO_APDU_MEDIA_USB_CCID: io_apdu_media_t = 4;
+pub const io_apdu_media_t_IO_APDU_MEDIA_USB_WEBUSB: io_apdu_media_t = 5;
+pub const io_apdu_media_t_IO_APDU_MEDIA_RAW: io_apdu_media_t = 6;
+pub const io_apdu_media_t_IO_APDU_MEDIA_U2F: io_apdu_media_t = 7;
+pub type io_apdu_media_t = cty::c_uint;
+extern "C" {
+    pub static mut G_io_usb_ep_buffer: [cty::c_uchar; 64usize];
+}
+extern "C" {
+    #[doc = " Return 1 when the event has been processed, 0 else"]
+    pub fn io_event(channel: cty::c_uchar) -> cty::c_uchar;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct io_touch_info_s {
+    pub x: u16,
+    pub y: u16,
+    pub state: u8,
+    pub w: u8,
+    pub h: u8,
+}
+#[test]
+fn bindgen_test_layout_io_touch_info_s() {
+    const UNINIT: ::core::mem::MaybeUninit<io_touch_info_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<io_touch_info_s>(),
+        8usize,
+        concat!("Size of: ", stringify!(io_touch_info_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<io_touch_info_s>(),
+        2usize,
+        concat!("Alignment of ", stringify!(io_touch_info_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).x) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_touch_info_s),
+            "::",
+            stringify!(x)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).y) as usize - ptr as usize },
+        2usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_touch_info_s),
+            "::",
+            stringify!(y)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).state) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_touch_info_s),
+            "::",
+            stringify!(state)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).w) as usize - ptr as usize },
+        5usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_touch_info_s),
+            "::",
+            stringify!(w)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).h) as usize - ptr as usize },
+        6usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_touch_info_s),
+            "::",
+            stringify!(h)
+        )
+    );
+}
+pub type io_touch_info_t = io_touch_info_s;
+extern "C" {
+    pub fn touch_get_last_info(info: *mut io_touch_info_t);
+}
+extern "C" {
+    pub fn touch_set_state(state: bool);
+}
+extern "C" {
+    #[doc = " Library call function.\n call_parameters[0] = library name string pointer (const)\n call_parameters[1] = library call identifier (0 = init, ...)\n call_parameters[2+] = called function parameters"]
+    pub fn os_lib_call(call_parameters: *mut cty::c_uint);
+}
+extern "C" {
+    pub fn os_lib_end();
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct meminfo_s {
+    pub free_nvram_size: cty::c_uint,
+    pub appMemory: cty::c_uint,
+    pub systemSize: cty::c_uint,
+    pub slots: cty::c_uint,
+}
+#[test]
+fn bindgen_test_layout_meminfo_s() {
+    const UNINIT: ::core::mem::MaybeUninit<meminfo_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<meminfo_s>(),
+        16usize,
+        concat!("Size of: ", stringify!(meminfo_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<meminfo_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(meminfo_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).free_nvram_size) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(meminfo_s),
+            "::",
+            stringify!(free_nvram_size)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).appMemory) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(meminfo_s),
+            "::",
+            stringify!(appMemory)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).systemSize) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(meminfo_s),
+            "::",
+            stringify!(systemSize)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).slots) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(meminfo_s),
+            "::",
+            stringify!(slots)
+        )
+    );
+}
+pub type meminfo_t = meminfo_s;
+extern "C" {
+    pub fn os_get_memory_info(meminfo: *mut meminfo_t);
+}
+extern "C" {
+    pub fn nvm_write(dst_adr: *mut cty::c_void, src_adr: *mut cty::c_void, src_len: cty::c_uint);
+}
+extern "C" {
+    pub fn nvm_erase(dst_adr: *mut cty::c_void, len: cty::c_uint);
+}
+extern "C" {
+    pub fn nvm_write_page(page_adr: cty::c_uint, force: bool);
+}
+extern "C" {
+    pub fn nvm_erase_page(page_adr: cty::c_uint);
+}
+extern "C" {
+    pub fn os_perso_erase_all();
+}
+extern "C" {
+    pub fn erase_all_except_user_config_apps();
+}
+extern "C" {
+    pub fn pic(linked_address: *mut cty::c_void) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn pic_internal(link_address: *mut cty::c_void) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn os_perso_set_pin(
+        identity: cty::c_uint,
+        pin: *const cty::c_uchar,
+        length: cty::c_uint,
+        update_crc: bool,
+    );
+}
+extern "C" {
+    pub fn os_perso_set_current_identity_pin(pin: *mut cty::c_uchar, length: cty::c_uint);
+}
+extern "C" {
+    pub fn os_global_pin_is_validated() -> bolos_bool_t;
+}
+extern "C" {
+    #[doc = " Validating the pin also setup the identity linked with this pin (normal or alternate)\n @return BOLOS_UX_OK if pin validated"]
+    pub fn os_global_pin_check(
+        pin_buffer: *mut cty::c_uchar,
+        pin_length: cty::c_uchar,
+    ) -> bolos_bool_t;
+}
+extern "C" {
+    pub fn os_global_pin_invalidate();
+}
+extern "C" {
+    pub fn os_global_pin_retries() -> cty::c_uint;
+}
+extern "C" {
+    #[doc = " This function checks whether a PIN is present\n @return BOLOS_TRUE if the CRC of N_secure_element_nvram_user_sensitive_data\n is correct and if a PIN value has been written"]
+    pub fn os_perso_is_pin_set() -> bolos_bool_t;
+}
 pub type wchar_t = cty::c_uint;
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone)]
@@ -308,121 +1206,3682 @@ fn bindgen_test_layout_max_align_t() {
 }
 #[doc = " Type of error code"]
 pub type cx_err_t = u32;
-#[doc = " @brief   AES key container.\n\n @details Such container should be initialized with #cx_aes_init_key_no_throw."]
+extern "C" {
+    pub fn cx_get_random_bytes(buffer: *mut cty::c_void, len: usize) -> cx_err_t;
+}
+pub type va_list = u32;
+pub type __gnuc_va_list = u32;
+pub type wint_t = cty::c_int;
+pub type __blkcnt_t = cty::c_long;
+pub type __blksize_t = cty::c_long;
+pub type __fsblkcnt_t = __uint64_t;
+pub type __fsfilcnt_t = __uint32_t;
+pub type _off_t = cty::c_long;
+pub type __pid_t = cty::c_int;
+pub type __dev_t = cty::c_short;
+pub type __uid_t = cty::c_ushort;
+pub type __gid_t = cty::c_ushort;
+pub type __id_t = __uint32_t;
+pub type __ino_t = cty::c_ushort;
+pub type __mode_t = __uint32_t;
+pub type _off64_t = cty::c_longlong;
+pub type __off_t = _off_t;
+pub type __loff_t = _off64_t;
+pub type __key_t = cty::c_long;
+pub type _fpos_t = cty::c_long;
+pub type __size_t = cty::c_uint;
+pub type _ssize_t = cty::c_int;
+pub type __ssize_t = _ssize_t;
 #[repr(C)]
-#[derive(Debug, Default, Copy, Clone)]
-pub struct cx_aes_key_s {
-    #[doc = "< key size"]
-    pub size: usize,
-    #[doc = "< key value"]
-    pub keys: [u8; 32usize],
+#[derive(Copy, Clone)]
+pub struct _mbstate_t {
+    pub __count: cty::c_int,
+    pub __value: _mbstate_t__bindgen_ty_1,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub union _mbstate_t__bindgen_ty_1 {
+    pub __wch: wint_t,
+    pub __wchb: [cty::c_uchar; 4usize],
 }
 #[test]
-fn bindgen_test_layout_cx_aes_key_s() {
-    const UNINIT: ::core::mem::MaybeUninit<cx_aes_key_s> = ::core::mem::MaybeUninit::uninit();
+fn bindgen_test_layout__mbstate_t__bindgen_ty_1() {
+    const UNINIT: ::core::mem::MaybeUninit<_mbstate_t__bindgen_ty_1> =
+        ::core::mem::MaybeUninit::uninit();
     let ptr = UNINIT.as_ptr();
     assert_eq!(
-        ::core::mem::size_of::<cx_aes_key_s>(),
+        ::core::mem::size_of::<_mbstate_t__bindgen_ty_1>(),
+        4usize,
+        concat!("Size of: ", stringify!(_mbstate_t__bindgen_ty_1))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<_mbstate_t__bindgen_ty_1>(),
+        4usize,
+        concat!("Alignment of ", stringify!(_mbstate_t__bindgen_ty_1))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).__wch) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_mbstate_t__bindgen_ty_1),
+            "::",
+            stringify!(__wch)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).__wchb) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_mbstate_t__bindgen_ty_1),
+            "::",
+            stringify!(__wchb)
+        )
+    );
+}
+impl Default for _mbstate_t__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[test]
+fn bindgen_test_layout__mbstate_t() {
+    const UNINIT: ::core::mem::MaybeUninit<_mbstate_t> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<_mbstate_t>(),
+        8usize,
+        concat!("Size of: ", stringify!(_mbstate_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<_mbstate_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(_mbstate_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).__count) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_mbstate_t),
+            "::",
+            stringify!(__count)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).__value) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_mbstate_t),
+            "::",
+            stringify!(__value)
+        )
+    );
+}
+impl Default for _mbstate_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+pub type _iconv_t = *mut cty::c_void;
+pub type __clock_t = cty::c_ulong;
+pub type __time_t = __int_least64_t;
+pub type __clockid_t = cty::c_ulong;
+pub type __timer_t = cty::c_ulong;
+pub type __sa_family_t = __uint8_t;
+pub type __socklen_t = __uint32_t;
+pub type __nl_item = cty::c_int;
+pub type __nlink_t = cty::c_ushort;
+pub type __suseconds_t = cty::c_long;
+pub type __useconds_t = cty::c_ulong;
+pub type __va_list = u32;
+pub type __ULong = cty::c_ulong;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct __lock {
+    _unused: [u8; 0],
+}
+pub type _LOCK_T = *mut __lock;
+extern "C" {
+    pub fn __retarget_lock_init(lock: *mut _LOCK_T);
+}
+extern "C" {
+    pub fn __retarget_lock_init_recursive(lock: *mut _LOCK_T);
+}
+extern "C" {
+    pub fn __retarget_lock_close(lock: _LOCK_T);
+}
+extern "C" {
+    pub fn __retarget_lock_close_recursive(lock: _LOCK_T);
+}
+extern "C" {
+    pub fn __retarget_lock_acquire(lock: _LOCK_T);
+}
+extern "C" {
+    pub fn __retarget_lock_acquire_recursive(lock: _LOCK_T);
+}
+extern "C" {
+    pub fn __retarget_lock_try_acquire(lock: _LOCK_T) -> cty::c_int;
+}
+extern "C" {
+    pub fn __retarget_lock_try_acquire_recursive(lock: _LOCK_T) -> cty::c_int;
+}
+extern "C" {
+    pub fn __retarget_lock_release(lock: _LOCK_T);
+}
+extern "C" {
+    pub fn __retarget_lock_release_recursive(lock: _LOCK_T);
+}
+pub type _flock_t = _LOCK_T;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct __locale_t {
+    _unused: [u8; 0],
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _Bigint {
+    pub _next: *mut _Bigint,
+    pub _k: cty::c_int,
+    pub _maxwds: cty::c_int,
+    pub _sign: cty::c_int,
+    pub _wds: cty::c_int,
+    pub _x: [__ULong; 1usize],
+}
+#[test]
+fn bindgen_test_layout__Bigint() {
+    const UNINIT: ::core::mem::MaybeUninit<_Bigint> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<_Bigint>(),
+        24usize,
+        concat!("Size of: ", stringify!(_Bigint))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<_Bigint>(),
+        4usize,
+        concat!("Alignment of ", stringify!(_Bigint))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._next) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_Bigint),
+            "::",
+            stringify!(_next)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._k) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_Bigint),
+            "::",
+            stringify!(_k)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._maxwds) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_Bigint),
+            "::",
+            stringify!(_maxwds)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._sign) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_Bigint),
+            "::",
+            stringify!(_sign)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._wds) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_Bigint),
+            "::",
+            stringify!(_wds)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._x) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_Bigint),
+            "::",
+            stringify!(_x)
+        )
+    );
+}
+impl Default for _Bigint {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct __tm {
+    pub __tm_sec: cty::c_int,
+    pub __tm_min: cty::c_int,
+    pub __tm_hour: cty::c_int,
+    pub __tm_mday: cty::c_int,
+    pub __tm_mon: cty::c_int,
+    pub __tm_year: cty::c_int,
+    pub __tm_wday: cty::c_int,
+    pub __tm_yday: cty::c_int,
+    pub __tm_isdst: cty::c_int,
+}
+#[test]
+fn bindgen_test_layout___tm() {
+    const UNINIT: ::core::mem::MaybeUninit<__tm> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<__tm>(),
         36usize,
-        concat!("Size of: ", stringify!(cx_aes_key_s))
+        concat!("Size of: ", stringify!(__tm))
     );
     assert_eq!(
-        ::core::mem::align_of::<cx_aes_key_s>(),
+        ::core::mem::align_of::<__tm>(),
         4usize,
-        concat!("Alignment of ", stringify!(cx_aes_key_s))
+        concat!("Alignment of ", stringify!(__tm))
     );
     assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).size) as usize - ptr as usize },
+        unsafe { ::core::ptr::addr_of!((*ptr).__tm_sec) as usize - ptr as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(cx_aes_key_s),
+            stringify!(__tm),
             "::",
-            stringify!(size)
+            stringify!(__tm_sec)
         )
     );
     assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).keys) as usize - ptr as usize },
+        unsafe { ::core::ptr::addr_of!((*ptr).__tm_min) as usize - ptr as usize },
         4usize,
         concat!(
             "Offset of field: ",
-            stringify!(cx_aes_key_s),
+            stringify!(__tm),
             "::",
-            stringify!(keys)
+            stringify!(__tm_min)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).__tm_hour) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__tm),
+            "::",
+            stringify!(__tm_hour)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).__tm_mday) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__tm),
+            "::",
+            stringify!(__tm_mday)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).__tm_mon) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__tm),
+            "::",
+            stringify!(__tm_mon)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).__tm_year) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__tm),
+            "::",
+            stringify!(__tm_year)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).__tm_wday) as usize - ptr as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__tm),
+            "::",
+            stringify!(__tm_wday)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).__tm_yday) as usize - ptr as usize },
+        28usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__tm),
+            "::",
+            stringify!(__tm_yday)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).__tm_isdst) as usize - ptr as usize },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__tm),
+            "::",
+            stringify!(__tm_isdst)
         )
     );
 }
-#[doc = " @brief   AES key container.\n\n @details Such container should be initialized with #cx_aes_init_key_no_throw."]
-pub type cx_aes_key_t = cx_aes_key_s;
-extern "C" {
-    #[doc = " @brief   Sets an AES key in hardware.\n\n @param[in] key AES key.\n\n @param[in] mode Operation for which the key will be used.\n\n @return         Error code:\n                 - CX_OK on success\n                 - CX_INVALID_PARAMETER"]
-    pub fn cx_aes_set_key_hw(key: *const cx_aes_key_t, mode: u32) -> cx_err_t;
-}
-extern "C" {
-    #[doc = " @brief   Resets the AES context."]
-    pub fn cx_aes_reset_hw();
-}
-extern "C" {
-    #[doc = " @brief   Encrypts or decrypts a block with AES.\n\n @param[in]  inblock  Pointer to the block.\n\n @param[out] outblock Buffer for the output.\n\n @return              Error code:\n                      - CX_OK on success\n                      - INVALID_PARAMETER"]
-    pub fn cx_aes_block_hw(inblock: *const cty::c_uchar, outblock: *mut cty::c_uchar) -> cx_err_t;
-}
-#[doc = " @brief   DES key container.\n\n  @details DES key container.\n           Such container should be initialized with **cx_des_init_key_no_throw**.\n           8 bytes (simple DES), 16 bytes (triple DES with 2 keys) and 24 bytes\n           (triple DES with 3 keys) are supported."]
 #[repr(C)]
-#[derive(Debug, Default, Copy, Clone)]
-pub struct cx_des_key_s {
-    #[doc = "< key size"]
-    pub size: u8,
-    #[doc = "< key value"]
-    pub keys: [u8; 24usize],
+#[derive(Debug, Copy, Clone)]
+pub struct _on_exit_args {
+    pub _fnargs: [*mut cty::c_void; 32usize],
+    pub _dso_handle: [*mut cty::c_void; 32usize],
+    pub _fntypes: __ULong,
+    pub _is_cxa: __ULong,
 }
 #[test]
-fn bindgen_test_layout_cx_des_key_s() {
-    const UNINIT: ::core::mem::MaybeUninit<cx_des_key_s> = ::core::mem::MaybeUninit::uninit();
+fn bindgen_test_layout__on_exit_args() {
+    const UNINIT: ::core::mem::MaybeUninit<_on_exit_args> = ::core::mem::MaybeUninit::uninit();
     let ptr = UNINIT.as_ptr();
     assert_eq!(
-        ::core::mem::size_of::<cx_des_key_s>(),
-        25usize,
-        concat!("Size of: ", stringify!(cx_des_key_s))
+        ::core::mem::size_of::<_on_exit_args>(),
+        264usize,
+        concat!("Size of: ", stringify!(_on_exit_args))
     );
     assert_eq!(
-        ::core::mem::align_of::<cx_des_key_s>(),
-        1usize,
-        concat!("Alignment of ", stringify!(cx_des_key_s))
+        ::core::mem::align_of::<_on_exit_args>(),
+        4usize,
+        concat!("Alignment of ", stringify!(_on_exit_args))
     );
     assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).size) as usize - ptr as usize },
+        unsafe { ::core::ptr::addr_of!((*ptr)._fnargs) as usize - ptr as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(cx_des_key_s),
+            stringify!(_on_exit_args),
             "::",
-            stringify!(size)
+            stringify!(_fnargs)
         )
     );
     assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).keys) as usize - ptr as usize },
-        1usize,
+        unsafe { ::core::ptr::addr_of!((*ptr)._dso_handle) as usize - ptr as usize },
+        128usize,
         concat!(
             "Offset of field: ",
-            stringify!(cx_des_key_s),
+            stringify!(_on_exit_args),
             "::",
-            stringify!(keys)
+            stringify!(_dso_handle)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._fntypes) as usize - ptr as usize },
+        256usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_on_exit_args),
+            "::",
+            stringify!(_fntypes)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._is_cxa) as usize - ptr as usize },
+        260usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_on_exit_args),
+            "::",
+            stringify!(_is_cxa)
         )
     );
 }
-#[doc = " @brief   DES key container.\n\n  @details DES key container.\n           Such container should be initialized with **cx_des_init_key_no_throw**.\n           8 bytes (simple DES), 16 bytes (triple DES with 2 keys) and 24 bytes\n           (triple DES with 3 keys) are supported."]
-pub type cx_des_key_t = cx_des_key_s;
-extern "C" {
-    #[doc = " @brief   Sets a DES key in hardware.\n\n @param[in] keys DES key.\n\n @param[in] mode Operation for which the key will be used.\n\n @return         Error code:\n                 - CX_OK on success\n                 - INVALID_PARAMETER"]
-    pub fn cx_des_set_key_hw(keys: *const cx_des_key_t, mode: u32) -> cx_err_t;
+impl Default for _on_exit_args {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _atexit {
+    pub _next: *mut _atexit,
+    pub _ind: cty::c_int,
+    pub _fns: [::core::option::Option<unsafe extern "C" fn()>; 32usize],
+    pub _on_exit_args: _on_exit_args,
+}
+#[test]
+fn bindgen_test_layout__atexit() {
+    const UNINIT: ::core::mem::MaybeUninit<_atexit> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<_atexit>(),
+        400usize,
+        concat!("Size of: ", stringify!(_atexit))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<_atexit>(),
+        4usize,
+        concat!("Alignment of ", stringify!(_atexit))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._next) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_atexit),
+            "::",
+            stringify!(_next)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._ind) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_atexit),
+            "::",
+            stringify!(_ind)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._fns) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_atexit),
+            "::",
+            stringify!(_fns)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._on_exit_args) as usize - ptr as usize },
+        136usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_atexit),
+            "::",
+            stringify!(_on_exit_args)
+        )
+    );
+}
+impl Default for _atexit {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct __sbuf {
+    pub _base: *mut cty::c_uchar,
+    pub _size: cty::c_int,
+}
+#[test]
+fn bindgen_test_layout___sbuf() {
+    const UNINIT: ::core::mem::MaybeUninit<__sbuf> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<__sbuf>(),
+        8usize,
+        concat!("Size of: ", stringify!(__sbuf))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<__sbuf>(),
+        4usize,
+        concat!("Alignment of ", stringify!(__sbuf))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._base) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sbuf),
+            "::",
+            stringify!(_base)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._size) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sbuf),
+            "::",
+            stringify!(_size)
+        )
+    );
+}
+impl Default for __sbuf {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct __sFILE {
+    pub _p: *mut cty::c_uchar,
+    pub _r: cty::c_int,
+    pub _w: cty::c_int,
+    pub _flags: cty::c_short,
+    pub _file: cty::c_short,
+    pub _bf: __sbuf,
+    pub _lbfsize: cty::c_int,
+    pub _cookie: *mut cty::c_void,
+    pub _read: ::core::option::Option<
+        unsafe extern "C" fn(
+            arg1: *mut _reent,
+            arg2: *mut cty::c_void,
+            arg3: *mut cty::c_char,
+            arg4: cty::c_int,
+        ) -> cty::c_int,
+    >,
+    pub _write: ::core::option::Option<
+        unsafe extern "C" fn(
+            arg1: *mut _reent,
+            arg2: *mut cty::c_void,
+            arg3: *const cty::c_char,
+            arg4: cty::c_int,
+        ) -> cty::c_int,
+    >,
+    pub _seek: ::core::option::Option<
+        unsafe extern "C" fn(
+            arg1: *mut _reent,
+            arg2: *mut cty::c_void,
+            arg3: _fpos_t,
+            arg4: cty::c_int,
+        ) -> _fpos_t,
+    >,
+    pub _close: ::core::option::Option<
+        unsafe extern "C" fn(arg1: *mut _reent, arg2: *mut cty::c_void) -> cty::c_int,
+    >,
+    pub _ub: __sbuf,
+    pub _up: *mut cty::c_uchar,
+    pub _ur: cty::c_int,
+    pub _ubuf: [cty::c_uchar; 3usize],
+    pub _nbuf: [cty::c_uchar; 1usize],
+    pub _lb: __sbuf,
+    pub _blksize: cty::c_int,
+    pub _offset: _off_t,
+    pub _data: *mut _reent,
+    pub _lock: _flock_t,
+    pub _mbstate: _mbstate_t,
+    pub _flags2: cty::c_int,
+}
+#[test]
+fn bindgen_test_layout___sFILE() {
+    const UNINIT: ::core::mem::MaybeUninit<__sFILE> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<__sFILE>(),
+        104usize,
+        concat!("Size of: ", stringify!(__sFILE))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<__sFILE>(),
+        4usize,
+        concat!("Alignment of ", stringify!(__sFILE))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._p) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_p)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._r) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_r)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._w) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_w)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._flags) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_flags)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._file) as usize - ptr as usize },
+        14usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_file)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._bf) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_bf)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._lbfsize) as usize - ptr as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_lbfsize)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._cookie) as usize - ptr as usize },
+        28usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_cookie)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._read) as usize - ptr as usize },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_read)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._write) as usize - ptr as usize },
+        36usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_write)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._seek) as usize - ptr as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_seek)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._close) as usize - ptr as usize },
+        44usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_close)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._ub) as usize - ptr as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_ub)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._up) as usize - ptr as usize },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_up)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._ur) as usize - ptr as usize },
+        60usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_ur)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._ubuf) as usize - ptr as usize },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_ubuf)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._nbuf) as usize - ptr as usize },
+        67usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_nbuf)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._lb) as usize - ptr as usize },
+        68usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_lb)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._blksize) as usize - ptr as usize },
+        76usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_blksize)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._offset) as usize - ptr as usize },
+        80usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_offset)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._data) as usize - ptr as usize },
+        84usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_data)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._lock) as usize - ptr as usize },
+        88usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_lock)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._mbstate) as usize - ptr as usize },
+        92usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_mbstate)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._flags2) as usize - ptr as usize },
+        100usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__sFILE),
+            "::",
+            stringify!(_flags2)
+        )
+    );
+}
+impl Default for __sFILE {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+pub type __FILE = __sFILE;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _glue {
+    pub _next: *mut _glue,
+    pub _niobs: cty::c_int,
+    pub _iobs: *mut __FILE,
+}
+#[test]
+fn bindgen_test_layout__glue() {
+    const UNINIT: ::core::mem::MaybeUninit<_glue> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<_glue>(),
+        12usize,
+        concat!("Size of: ", stringify!(_glue))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<_glue>(),
+        4usize,
+        concat!("Alignment of ", stringify!(_glue))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._next) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_glue),
+            "::",
+            stringify!(_next)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._niobs) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_glue),
+            "::",
+            stringify!(_niobs)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._iobs) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_glue),
+            "::",
+            stringify!(_iobs)
+        )
+    );
+}
+impl Default for _glue {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct _rand48 {
+    pub _seed: [cty::c_ushort; 3usize],
+    pub _mult: [cty::c_ushort; 3usize],
+    pub _add: cty::c_ushort,
+}
+#[test]
+fn bindgen_test_layout__rand48() {
+    const UNINIT: ::core::mem::MaybeUninit<_rand48> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<_rand48>(),
+        14usize,
+        concat!("Size of: ", stringify!(_rand48))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<_rand48>(),
+        2usize,
+        concat!("Alignment of ", stringify!(_rand48))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._seed) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_rand48),
+            "::",
+            stringify!(_seed)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._mult) as usize - ptr as usize },
+        6usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_rand48),
+            "::",
+            stringify!(_mult)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._add) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_rand48),
+            "::",
+            stringify!(_add)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct _reent {
+    pub _errno: cty::c_int,
+    pub _stdin: *mut __FILE,
+    pub _stdout: *mut __FILE,
+    pub _stderr: *mut __FILE,
+    pub _inc: cty::c_int,
+    pub _emergency: [cty::c_char; 25usize],
+    pub _unspecified_locale_info: cty::c_int,
+    pub _locale: *mut __locale_t,
+    pub __sdidinit: cty::c_int,
+    pub __cleanup: ::core::option::Option<unsafe extern "C" fn(arg1: *mut _reent)>,
+    pub _result: *mut _Bigint,
+    pub _result_k: cty::c_int,
+    pub _p5s: *mut _Bigint,
+    pub _freelist: *mut *mut _Bigint,
+    pub _cvtlen: cty::c_int,
+    pub _cvtbuf: *mut cty::c_char,
+    pub _new: _reent__bindgen_ty_1,
+    pub _atexit: *mut _atexit,
+    pub _atexit0: _atexit,
+    pub _sig_func: *mut ::core::option::Option<unsafe extern "C" fn(arg1: cty::c_int)>,
+    pub __sglue: _glue,
+    pub __sf: [__FILE; 3usize],
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub union _reent__bindgen_ty_1 {
+    pub _reent: _reent__bindgen_ty_1__bindgen_ty_1,
+    pub _unused: _reent__bindgen_ty_1__bindgen_ty_2,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct _reent__bindgen_ty_1__bindgen_ty_1 {
+    pub _unused_rand: cty::c_uint,
+    pub _strtok_last: *mut cty::c_char,
+    pub _asctime_buf: [cty::c_char; 26usize],
+    pub _localtime_buf: __tm,
+    pub _gamma_signgam: cty::c_int,
+    pub _rand_next: cty::c_ulonglong,
+    pub _r48: _rand48,
+    pub _mblen_state: _mbstate_t,
+    pub _mbtowc_state: _mbstate_t,
+    pub _wctomb_state: _mbstate_t,
+    pub _l64a_buf: [cty::c_char; 8usize],
+    pub _signal_buf: [cty::c_char; 24usize],
+    pub _getdate_err: cty::c_int,
+    pub _mbrlen_state: _mbstate_t,
+    pub _mbrtowc_state: _mbstate_t,
+    pub _mbsrtowcs_state: _mbstate_t,
+    pub _wcrtomb_state: _mbstate_t,
+    pub _wcsrtombs_state: _mbstate_t,
+    pub _h_errno: cty::c_int,
+}
+#[test]
+fn bindgen_test_layout__reent__bindgen_ty_1__bindgen_ty_1() {
+    const UNINIT: ::core::mem::MaybeUninit<_reent__bindgen_ty_1__bindgen_ty_1> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<_reent__bindgen_ty_1__bindgen_ty_1>(),
+        208usize,
+        concat!("Size of: ", stringify!(_reent__bindgen_ty_1__bindgen_ty_1))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<_reent__bindgen_ty_1__bindgen_ty_1>(),
+        8usize,
+        concat!(
+            "Alignment of ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._unused_rand) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_unused_rand)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._strtok_last) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_strtok_last)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._asctime_buf) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_asctime_buf)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._localtime_buf) as usize - ptr as usize },
+        36usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_localtime_buf)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._gamma_signgam) as usize - ptr as usize },
+        72usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_gamma_signgam)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._rand_next) as usize - ptr as usize },
+        80usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_rand_next)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._r48) as usize - ptr as usize },
+        88usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_r48)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._mblen_state) as usize - ptr as usize },
+        104usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_mblen_state)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._mbtowc_state) as usize - ptr as usize },
+        112usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_mbtowc_state)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._wctomb_state) as usize - ptr as usize },
+        120usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_wctomb_state)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._l64a_buf) as usize - ptr as usize },
+        128usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_l64a_buf)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._signal_buf) as usize - ptr as usize },
+        136usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_signal_buf)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._getdate_err) as usize - ptr as usize },
+        160usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_getdate_err)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._mbrlen_state) as usize - ptr as usize },
+        164usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_mbrlen_state)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._mbrtowc_state) as usize - ptr as usize },
+        172usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_mbrtowc_state)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._mbsrtowcs_state) as usize - ptr as usize },
+        180usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_mbsrtowcs_state)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._wcrtomb_state) as usize - ptr as usize },
+        188usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_wcrtomb_state)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._wcsrtombs_state) as usize - ptr as usize },
+        196usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_wcsrtombs_state)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._h_errno) as usize - ptr as usize },
+        204usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_h_errno)
+        )
+    );
+}
+impl Default for _reent__bindgen_ty_1__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _reent__bindgen_ty_1__bindgen_ty_2 {
+    pub _nextf: [*mut cty::c_uchar; 30usize],
+    pub _nmalloc: [cty::c_uint; 30usize],
+}
+#[test]
+fn bindgen_test_layout__reent__bindgen_ty_1__bindgen_ty_2() {
+    const UNINIT: ::core::mem::MaybeUninit<_reent__bindgen_ty_1__bindgen_ty_2> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<_reent__bindgen_ty_1__bindgen_ty_2>(),
+        240usize,
+        concat!("Size of: ", stringify!(_reent__bindgen_ty_1__bindgen_ty_2))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<_reent__bindgen_ty_1__bindgen_ty_2>(),
+        4usize,
+        concat!(
+            "Alignment of ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_2)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._nextf) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_2),
+            "::",
+            stringify!(_nextf)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._nmalloc) as usize - ptr as usize },
+        120usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1__bindgen_ty_2),
+            "::",
+            stringify!(_nmalloc)
+        )
+    );
+}
+impl Default for _reent__bindgen_ty_1__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[test]
+fn bindgen_test_layout__reent__bindgen_ty_1() {
+    const UNINIT: ::core::mem::MaybeUninit<_reent__bindgen_ty_1> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<_reent__bindgen_ty_1>(),
+        240usize,
+        concat!("Size of: ", stringify!(_reent__bindgen_ty_1))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<_reent__bindgen_ty_1>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_reent__bindgen_ty_1))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._reent) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1),
+            "::",
+            stringify!(_reent)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._unused) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent__bindgen_ty_1),
+            "::",
+            stringify!(_unused)
+        )
+    );
+}
+impl Default for _reent__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[test]
+fn bindgen_test_layout__reent() {
+    const UNINIT: ::core::mem::MaybeUninit<_reent> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<_reent>(),
+        1064usize,
+        concat!("Size of: ", stringify!(_reent))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<_reent>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_reent))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._errno) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_errno)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._stdin) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_stdin)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._stdout) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_stdout)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._stderr) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_stderr)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._inc) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_inc)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._emergency) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_emergency)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._unspecified_locale_info) as usize - ptr as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_unspecified_locale_info)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._locale) as usize - ptr as usize },
+        52usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_locale)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).__sdidinit) as usize - ptr as usize },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(__sdidinit)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).__cleanup) as usize - ptr as usize },
+        60usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(__cleanup)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._result) as usize - ptr as usize },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_result)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._result_k) as usize - ptr as usize },
+        68usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_result_k)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._p5s) as usize - ptr as usize },
+        72usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_p5s)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._freelist) as usize - ptr as usize },
+        76usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_freelist)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._cvtlen) as usize - ptr as usize },
+        80usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_cvtlen)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._cvtbuf) as usize - ptr as usize },
+        84usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_cvtbuf)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._new) as usize - ptr as usize },
+        88usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_new)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._atexit) as usize - ptr as usize },
+        328usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_atexit)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._atexit0) as usize - ptr as usize },
+        332usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_atexit0)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr)._sig_func) as usize - ptr as usize },
+        732usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(_sig_func)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).__sglue) as usize - ptr as usize },
+        736usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(__sglue)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).__sf) as usize - ptr as usize },
+        748usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_reent),
+            "::",
+            stringify!(__sf)
+        )
+    );
+}
+impl Default for _reent {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
 }
 extern "C" {
-    #[doc = " @brief   Resets the DES context."]
-    pub fn cx_des_reset_hw();
+    pub static mut _impure_ptr: *mut _reent;
 }
 extern "C" {
-    #[doc = " @brief   Encrypts or decrypts a block with DES.\n\n @param[in]  inblock  Pointer to the block.\n\n @param[out] outblock Buffer for the output."]
-    pub fn cx_des_block_hw(inblock: *const cty::c_uchar, outblock: *mut cty::c_uchar);
+    pub static _global_impure_ptr: *mut _reent;
+}
+extern "C" {
+    pub fn _reclaim_reent(arg1: *mut _reent);
+}
+pub type u_int8_t = __uint8_t;
+pub type u_int16_t = __uint16_t;
+pub type u_int32_t = __uint32_t;
+pub type u_int64_t = __uint64_t;
+pub type register_t = __intptr_t;
+pub type __sigset_t = cty::c_ulong;
+pub type suseconds_t = __suseconds_t;
+pub type time_t = __int_least64_t;
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct timeval {
+    pub tv_sec: time_t,
+    pub tv_usec: suseconds_t,
+}
+#[test]
+fn bindgen_test_layout_timeval() {
+    const UNINIT: ::core::mem::MaybeUninit<timeval> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<timeval>(),
+        16usize,
+        concat!("Size of: ", stringify!(timeval))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<timeval>(),
+        8usize,
+        concat!("Alignment of ", stringify!(timeval))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tv_sec) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(timeval),
+            "::",
+            stringify!(tv_sec)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tv_usec) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(timeval),
+            "::",
+            stringify!(tv_usec)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct timespec {
+    pub tv_sec: time_t,
+    pub tv_nsec: cty::c_long,
+}
+#[test]
+fn bindgen_test_layout_timespec() {
+    const UNINIT: ::core::mem::MaybeUninit<timespec> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<timespec>(),
+        16usize,
+        concat!("Size of: ", stringify!(timespec))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<timespec>(),
+        8usize,
+        concat!("Alignment of ", stringify!(timespec))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tv_sec) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(timespec),
+            "::",
+            stringify!(tv_sec)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tv_nsec) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(timespec),
+            "::",
+            stringify!(tv_nsec)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct itimerspec {
+    pub it_interval: timespec,
+    pub it_value: timespec,
+}
+#[test]
+fn bindgen_test_layout_itimerspec() {
+    const UNINIT: ::core::mem::MaybeUninit<itimerspec> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<itimerspec>(),
+        32usize,
+        concat!("Size of: ", stringify!(itimerspec))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<itimerspec>(),
+        8usize,
+        concat!("Alignment of ", stringify!(itimerspec))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).it_interval) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(itimerspec),
+            "::",
+            stringify!(it_interval)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).it_value) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(itimerspec),
+            "::",
+            stringify!(it_value)
+        )
+    );
+}
+pub type sigset_t = __sigset_t;
+pub type fd_mask = cty::c_ulong;
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct _types_fd_set {
+    pub fds_bits: [fd_mask; 2usize],
+}
+#[test]
+fn bindgen_test_layout__types_fd_set() {
+    const UNINIT: ::core::mem::MaybeUninit<_types_fd_set> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<_types_fd_set>(),
+        8usize,
+        concat!("Size of: ", stringify!(_types_fd_set))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<_types_fd_set>(),
+        4usize,
+        concat!("Alignment of ", stringify!(_types_fd_set))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).fds_bits) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_types_fd_set),
+            "::",
+            stringify!(fds_bits)
+        )
+    );
+}
+extern "C" {
+    pub fn select(
+        __n: cty::c_int,
+        __readfds: *mut _types_fd_set,
+        __writefds: *mut _types_fd_set,
+        __exceptfds: *mut _types_fd_set,
+        __timeout: *mut timeval,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pselect(
+        __n: cty::c_int,
+        __readfds: *mut _types_fd_set,
+        __writefds: *mut _types_fd_set,
+        __exceptfds: *mut _types_fd_set,
+        __timeout: *const timespec,
+        __set: *const sigset_t,
+    ) -> cty::c_int;
+}
+pub type in_addr_t = __uint32_t;
+pub type in_port_t = __uint16_t;
+pub type u_register_t = __uintptr_t;
+pub type u_char = cty::c_uchar;
+pub type u_short = cty::c_ushort;
+pub type u_int = cty::c_uint;
+pub type u_long = cty::c_ulong;
+pub type ushort = cty::c_ushort;
+pub type uint = cty::c_uint;
+pub type ulong = cty::c_ulong;
+pub type blkcnt_t = __blkcnt_t;
+pub type blksize_t = __blksize_t;
+pub type clock_t = cty::c_ulong;
+pub type daddr_t = cty::c_long;
+pub type caddr_t = *mut cty::c_char;
+pub type fsblkcnt_t = __fsblkcnt_t;
+pub type fsfilcnt_t = __fsfilcnt_t;
+pub type id_t = __id_t;
+pub type ino_t = __ino_t;
+pub type off_t = __off_t;
+pub type dev_t = __dev_t;
+pub type uid_t = __uid_t;
+pub type gid_t = __gid_t;
+pub type pid_t = __pid_t;
+pub type key_t = __key_t;
+pub type mode_t = __mode_t;
+pub type nlink_t = __nlink_t;
+pub type clockid_t = __clockid_t;
+pub type timer_t = __timer_t;
+pub type useconds_t = __useconds_t;
+pub type sbintime_t = __int64_t;
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct sched_param {
+    pub sched_priority: cty::c_int,
+}
+#[test]
+fn bindgen_test_layout_sched_param() {
+    const UNINIT: ::core::mem::MaybeUninit<sched_param> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<sched_param>(),
+        4usize,
+        concat!("Size of: ", stringify!(sched_param))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<sched_param>(),
+        4usize,
+        concat!("Alignment of ", stringify!(sched_param))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).sched_priority) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(sched_param),
+            "::",
+            stringify!(sched_priority)
+        )
+    );
+}
+pub type pthread_t = __uint32_t;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pthread_attr_t {
+    pub is_initialized: cty::c_int,
+    pub stackaddr: *mut cty::c_void,
+    pub stacksize: cty::c_int,
+    pub contentionscope: cty::c_int,
+    pub inheritsched: cty::c_int,
+    pub schedpolicy: cty::c_int,
+    pub schedparam: sched_param,
+    pub detachstate: cty::c_int,
+}
+#[test]
+fn bindgen_test_layout_pthread_attr_t() {
+    const UNINIT: ::core::mem::MaybeUninit<pthread_attr_t> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<pthread_attr_t>(),
+        32usize,
+        concat!("Size of: ", stringify!(pthread_attr_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<pthread_attr_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(pthread_attr_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).is_initialized) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pthread_attr_t),
+            "::",
+            stringify!(is_initialized)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).stackaddr) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pthread_attr_t),
+            "::",
+            stringify!(stackaddr)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).stacksize) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pthread_attr_t),
+            "::",
+            stringify!(stacksize)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).contentionscope) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pthread_attr_t),
+            "::",
+            stringify!(contentionscope)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).inheritsched) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pthread_attr_t),
+            "::",
+            stringify!(inheritsched)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).schedpolicy) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pthread_attr_t),
+            "::",
+            stringify!(schedpolicy)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).schedparam) as usize - ptr as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pthread_attr_t),
+            "::",
+            stringify!(schedparam)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).detachstate) as usize - ptr as usize },
+        28usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pthread_attr_t),
+            "::",
+            stringify!(detachstate)
+        )
+    );
+}
+impl Default for pthread_attr_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+pub type pthread_mutex_t = __uint32_t;
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct pthread_mutexattr_t {
+    pub is_initialized: cty::c_int,
+    pub recursive: cty::c_int,
+}
+#[test]
+fn bindgen_test_layout_pthread_mutexattr_t() {
+    const UNINIT: ::core::mem::MaybeUninit<pthread_mutexattr_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<pthread_mutexattr_t>(),
+        8usize,
+        concat!("Size of: ", stringify!(pthread_mutexattr_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<pthread_mutexattr_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(pthread_mutexattr_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).is_initialized) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pthread_mutexattr_t),
+            "::",
+            stringify!(is_initialized)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).recursive) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pthread_mutexattr_t),
+            "::",
+            stringify!(recursive)
+        )
+    );
+}
+pub type pthread_cond_t = __uint32_t;
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct pthread_condattr_t {
+    pub is_initialized: cty::c_int,
+    pub clock: clock_t,
+}
+#[test]
+fn bindgen_test_layout_pthread_condattr_t() {
+    const UNINIT: ::core::mem::MaybeUninit<pthread_condattr_t> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<pthread_condattr_t>(),
+        8usize,
+        concat!("Size of: ", stringify!(pthread_condattr_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<pthread_condattr_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(pthread_condattr_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).is_initialized) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pthread_condattr_t),
+            "::",
+            stringify!(is_initialized)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).clock) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pthread_condattr_t),
+            "::",
+            stringify!(clock)
+        )
+    );
+}
+pub type pthread_key_t = __uint32_t;
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct pthread_once_t {
+    pub is_initialized: cty::c_int,
+    pub init_executed: cty::c_int,
+}
+#[test]
+fn bindgen_test_layout_pthread_once_t() {
+    const UNINIT: ::core::mem::MaybeUninit<pthread_once_t> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<pthread_once_t>(),
+        8usize,
+        concat!("Size of: ", stringify!(pthread_once_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<pthread_once_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(pthread_once_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).is_initialized) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pthread_once_t),
+            "::",
+            stringify!(is_initialized)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).init_executed) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pthread_once_t),
+            "::",
+            stringify!(init_executed)
+        )
+    );
+}
+pub type FILE = __FILE;
+pub type fpos_t = _fpos_t;
+extern "C" {
+    pub fn ctermid(arg1: *mut cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn tmpfile() -> *mut FILE;
+}
+extern "C" {
+    pub fn tmpnam(arg1: *mut cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn tempnam(arg1: *const cty::c_char, arg2: *const cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn fclose(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn fflush(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn freopen(
+        arg1: *const cty::c_char,
+        arg2: *const cty::c_char,
+        arg3: *mut FILE,
+    ) -> *mut FILE;
+}
+extern "C" {
+    pub fn setbuf(arg1: *mut FILE, arg2: *mut cty::c_char);
+}
+extern "C" {
+    pub fn setvbuf(
+        arg1: *mut FILE,
+        arg2: *mut cty::c_char,
+        arg3: cty::c_int,
+        arg4: usize,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn fprintf(arg1: *mut FILE, arg2: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn fscanf(arg1: *mut FILE, arg2: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn printf(arg1: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn scanf(arg1: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn sscanf(arg1: *const cty::c_char, arg2: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn vfprintf(arg1: *mut FILE, arg2: *const cty::c_char, arg3: u32) -> cty::c_int;
+}
+extern "C" {
+    pub fn vprintf(arg1: *const cty::c_char, arg2: u32) -> cty::c_int;
+}
+extern "C" {
+    pub fn vsprintf(arg1: *mut cty::c_char, arg2: *const cty::c_char, arg3: u32) -> cty::c_int;
+}
+extern "C" {
+    pub fn fgetc(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn fgets(arg1: *mut cty::c_char, arg2: cty::c_int, arg3: *mut FILE) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn fputc(arg1: cty::c_int, arg2: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn fputs(arg1: *const cty::c_char, arg2: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn getc(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn getchar() -> cty::c_int;
+}
+extern "C" {
+    pub fn gets(arg1: *mut cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn putc(arg1: cty::c_int, arg2: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn putchar(arg1: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn puts(arg1: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn ungetc(arg1: cty::c_int, arg2: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn fread(
+        arg1: *mut cty::c_void,
+        _size: cty::c_uint,
+        _n: cty::c_uint,
+        arg2: *mut FILE,
+    ) -> cty::c_uint;
+}
+extern "C" {
+    pub fn fwrite(
+        arg1: *const cty::c_void,
+        _size: cty::c_uint,
+        _n: cty::c_uint,
+        arg2: *mut FILE,
+    ) -> cty::c_uint;
+}
+extern "C" {
+    pub fn fgetpos(arg1: *mut FILE, arg2: *mut fpos_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn fseek(arg1: *mut FILE, arg2: cty::c_long, arg3: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn fsetpos(arg1: *mut FILE, arg2: *const fpos_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn ftell(arg1: *mut FILE) -> cty::c_long;
+}
+extern "C" {
+    pub fn rewind(arg1: *mut FILE);
+}
+extern "C" {
+    pub fn clearerr(arg1: *mut FILE);
+}
+extern "C" {
+    pub fn feof(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn ferror(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn perror(arg1: *const cty::c_char);
+}
+extern "C" {
+    pub fn fopen(_name: *const cty::c_char, _type: *const cty::c_char) -> *mut FILE;
+}
+extern "C" {
+    pub fn sprintf(arg1: *mut cty::c_char, arg2: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn remove(arg1: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn rename(arg1: *const cty::c_char, arg2: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn fseeko(arg1: *mut FILE, arg2: off_t, arg3: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn ftello(arg1: *mut FILE) -> off_t;
+}
+extern "C" {
+    pub fn snprintf(
+        arg1: *mut cty::c_char,
+        arg2: cty::c_uint,
+        arg3: *const cty::c_char,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn vsnprintf(
+        arg1: *mut cty::c_char,
+        arg2: cty::c_uint,
+        arg3: *const cty::c_char,
+        arg4: u32,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn vfscanf(arg1: *mut FILE, arg2: *const cty::c_char, arg3: u32) -> cty::c_int;
+}
+extern "C" {
+    pub fn vscanf(arg1: *const cty::c_char, arg2: u32) -> cty::c_int;
+}
+extern "C" {
+    pub fn vsscanf(arg1: *const cty::c_char, arg2: *const cty::c_char, arg3: u32) -> cty::c_int;
+}
+extern "C" {
+    pub fn asiprintf(arg1: *mut *mut cty::c_char, arg2: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn asniprintf(
+        arg1: *mut cty::c_char,
+        arg2: *mut usize,
+        arg3: *const cty::c_char,
+        ...
+    ) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn asnprintf(
+        arg1: *mut cty::c_char,
+        arg2: *mut usize,
+        arg3: *const cty::c_char,
+        ...
+    ) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn diprintf(arg1: cty::c_int, arg2: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn fiprintf(arg1: *mut FILE, arg2: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn fiscanf(arg1: *mut FILE, arg2: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn iprintf(arg1: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn iscanf(arg1: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn siprintf(arg1: *mut cty::c_char, arg2: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn siscanf(arg1: *const cty::c_char, arg2: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn sniprintf(
+        arg1: *mut cty::c_char,
+        arg2: usize,
+        arg3: *const cty::c_char,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn vasiprintf(
+        arg1: *mut *mut cty::c_char,
+        arg2: *const cty::c_char,
+        arg3: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn vasniprintf(
+        arg1: *mut cty::c_char,
+        arg2: *mut usize,
+        arg3: *const cty::c_char,
+        arg4: __gnuc_va_list,
+    ) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn vasnprintf(
+        arg1: *mut cty::c_char,
+        arg2: *mut usize,
+        arg3: *const cty::c_char,
+        arg4: __gnuc_va_list,
+    ) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn vdiprintf(
+        arg1: cty::c_int,
+        arg2: *const cty::c_char,
+        arg3: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn vfiprintf(arg1: *mut FILE, arg2: *const cty::c_char, arg3: __gnuc_va_list)
+        -> cty::c_int;
+}
+extern "C" {
+    pub fn vfiscanf(arg1: *mut FILE, arg2: *const cty::c_char, arg3: __gnuc_va_list) -> cty::c_int;
+}
+extern "C" {
+    pub fn viprintf(arg1: *const cty::c_char, arg2: __gnuc_va_list) -> cty::c_int;
+}
+extern "C" {
+    pub fn viscanf(arg1: *const cty::c_char, arg2: __gnuc_va_list) -> cty::c_int;
+}
+extern "C" {
+    pub fn vsiprintf(
+        arg1: *mut cty::c_char,
+        arg2: *const cty::c_char,
+        arg3: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn vsiscanf(
+        arg1: *const cty::c_char,
+        arg2: *const cty::c_char,
+        arg3: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn vsniprintf(
+        arg1: *mut cty::c_char,
+        arg2: usize,
+        arg3: *const cty::c_char,
+        arg4: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn fdopen(arg1: cty::c_int, arg2: *const cty::c_char) -> *mut FILE;
+}
+extern "C" {
+    pub fn fileno(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn pclose(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn popen(arg1: *const cty::c_char, arg2: *const cty::c_char) -> *mut FILE;
+}
+extern "C" {
+    pub fn setbuffer(arg1: *mut FILE, arg2: *mut cty::c_char, arg3: cty::c_int);
+}
+extern "C" {
+    pub fn setlinebuf(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn getw(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn putw(arg1: cty::c_int, arg2: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn getc_unlocked(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn getchar_unlocked() -> cty::c_int;
+}
+extern "C" {
+    pub fn flockfile(arg1: *mut FILE);
+}
+extern "C" {
+    pub fn ftrylockfile(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn funlockfile(arg1: *mut FILE);
+}
+extern "C" {
+    pub fn putc_unlocked(arg1: cty::c_int, arg2: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn putchar_unlocked(arg1: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn dprintf(arg1: cty::c_int, arg2: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn fmemopen(arg1: *mut cty::c_void, arg2: usize, arg3: *const cty::c_char) -> *mut FILE;
+}
+extern "C" {
+    pub fn open_memstream(arg1: *mut *mut cty::c_char, arg2: *mut usize) -> *mut FILE;
+}
+extern "C" {
+    pub fn vdprintf(arg1: cty::c_int, arg2: *const cty::c_char, arg3: __gnuc_va_list)
+        -> cty::c_int;
+}
+extern "C" {
+    pub fn renameat(
+        arg1: cty::c_int,
+        arg2: *const cty::c_char,
+        arg3: cty::c_int,
+        arg4: *const cty::c_char,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _asiprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut *mut cty::c_char,
+        arg3: *const cty::c_char,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _asniprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_char,
+        arg3: *mut usize,
+        arg4: *const cty::c_char,
+        ...
+    ) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn _asnprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_char,
+        arg3: *mut usize,
+        arg4: *const cty::c_char,
+        ...
+    ) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn _asprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut *mut cty::c_char,
+        arg3: *const cty::c_char,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _diprintf_r(
+        arg1: *mut _reent,
+        arg2: cty::c_int,
+        arg3: *const cty::c_char,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _dprintf_r(
+        arg1: *mut _reent,
+        arg2: cty::c_int,
+        arg3: *const cty::c_char,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fclose_r(arg1: *mut _reent, arg2: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fcloseall_r(arg1: *mut _reent) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fdopen_r(arg1: *mut _reent, arg2: cty::c_int, arg3: *const cty::c_char) -> *mut FILE;
+}
+extern "C" {
+    pub fn _fflush_r(arg1: *mut _reent, arg2: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fgetc_r(arg1: *mut _reent, arg2: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fgetc_unlocked_r(arg1: *mut _reent, arg2: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fgets_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_char,
+        arg3: cty::c_int,
+        arg4: *mut FILE,
+    ) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn _fgets_unlocked_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_char,
+        arg3: cty::c_int,
+        arg4: *mut FILE,
+    ) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn _fgetpos_r(arg1: *mut _reent, arg2: *mut FILE, arg3: *mut fpos_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fsetpos_r(arg1: *mut _reent, arg2: *mut FILE, arg3: *const fpos_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fiprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut FILE,
+        arg3: *const cty::c_char,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fiscanf_r(
+        arg1: *mut _reent,
+        arg2: *mut FILE,
+        arg3: *const cty::c_char,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fmemopen_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_void,
+        arg3: usize,
+        arg4: *const cty::c_char,
+    ) -> *mut FILE;
+}
+extern "C" {
+    pub fn _fopen_r(
+        arg1: *mut _reent,
+        arg2: *const cty::c_char,
+        arg3: *const cty::c_char,
+    ) -> *mut FILE;
+}
+extern "C" {
+    pub fn _freopen_r(
+        arg1: *mut _reent,
+        arg2: *const cty::c_char,
+        arg3: *const cty::c_char,
+        arg4: *mut FILE,
+    ) -> *mut FILE;
+}
+extern "C" {
+    pub fn _fprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut FILE,
+        arg3: *const cty::c_char,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fpurge_r(arg1: *mut _reent, arg2: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fputc_r(arg1: *mut _reent, arg2: cty::c_int, arg3: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fputc_unlocked_r(arg1: *mut _reent, arg2: cty::c_int, arg3: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fputs_r(arg1: *mut _reent, arg2: *const cty::c_char, arg3: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fputs_unlocked_r(
+        arg1: *mut _reent,
+        arg2: *const cty::c_char,
+        arg3: *mut FILE,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fread_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_void,
+        _size: usize,
+        _n: usize,
+        arg3: *mut FILE,
+    ) -> usize;
+}
+extern "C" {
+    pub fn _fread_unlocked_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_void,
+        _size: usize,
+        _n: usize,
+        arg3: *mut FILE,
+    ) -> usize;
+}
+extern "C" {
+    pub fn _fscanf_r(
+        arg1: *mut _reent,
+        arg2: *mut FILE,
+        arg3: *const cty::c_char,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fseek_r(
+        arg1: *mut _reent,
+        arg2: *mut FILE,
+        arg3: cty::c_long,
+        arg4: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _fseeko_r(
+        arg1: *mut _reent,
+        arg2: *mut FILE,
+        arg3: _off_t,
+        arg4: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _ftell_r(arg1: *mut _reent, arg2: *mut FILE) -> cty::c_long;
+}
+extern "C" {
+    pub fn _ftello_r(arg1: *mut _reent, arg2: *mut FILE) -> _off_t;
+}
+extern "C" {
+    pub fn _rewind_r(arg1: *mut _reent, arg2: *mut FILE);
+}
+extern "C" {
+    pub fn _fwrite_r(
+        arg1: *mut _reent,
+        arg2: *const cty::c_void,
+        _size: usize,
+        _n: usize,
+        arg3: *mut FILE,
+    ) -> usize;
+}
+extern "C" {
+    pub fn _fwrite_unlocked_r(
+        arg1: *mut _reent,
+        arg2: *const cty::c_void,
+        _size: usize,
+        _n: usize,
+        arg3: *mut FILE,
+    ) -> usize;
+}
+extern "C" {
+    pub fn _getc_r(arg1: *mut _reent, arg2: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn _getc_unlocked_r(arg1: *mut _reent, arg2: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn _getchar_r(arg1: *mut _reent) -> cty::c_int;
+}
+extern "C" {
+    pub fn _getchar_unlocked_r(arg1: *mut _reent) -> cty::c_int;
+}
+extern "C" {
+    pub fn _gets_r(arg1: *mut _reent, arg2: *mut cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn _iprintf_r(arg1: *mut _reent, arg2: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn _iscanf_r(arg1: *mut _reent, arg2: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn _open_memstream_r(
+        arg1: *mut _reent,
+        arg2: *mut *mut cty::c_char,
+        arg3: *mut usize,
+    ) -> *mut FILE;
+}
+extern "C" {
+    pub fn _perror_r(arg1: *mut _reent, arg2: *const cty::c_char);
+}
+extern "C" {
+    pub fn _printf_r(arg1: *mut _reent, arg2: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn _putc_r(arg1: *mut _reent, arg2: cty::c_int, arg3: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn _putc_unlocked_r(arg1: *mut _reent, arg2: cty::c_int, arg3: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn _putchar_unlocked_r(arg1: *mut _reent, arg2: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn _putchar_r(arg1: *mut _reent, arg2: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn _puts_r(arg1: *mut _reent, arg2: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn _remove_r(arg1: *mut _reent, arg2: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn _rename_r(
+        arg1: *mut _reent,
+        _old: *const cty::c_char,
+        _new: *const cty::c_char,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _scanf_r(arg1: *mut _reent, arg2: *const cty::c_char, ...) -> cty::c_int;
+}
+extern "C" {
+    pub fn _siprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_char,
+        arg3: *const cty::c_char,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _siscanf_r(
+        arg1: *mut _reent,
+        arg2: *const cty::c_char,
+        arg3: *const cty::c_char,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _sniprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_char,
+        arg3: usize,
+        arg4: *const cty::c_char,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _snprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_char,
+        arg3: usize,
+        arg4: *const cty::c_char,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _sprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_char,
+        arg3: *const cty::c_char,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _sscanf_r(
+        arg1: *mut _reent,
+        arg2: *const cty::c_char,
+        arg3: *const cty::c_char,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _tempnam_r(
+        arg1: *mut _reent,
+        arg2: *const cty::c_char,
+        arg3: *const cty::c_char,
+    ) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn _tmpfile_r(arg1: *mut _reent) -> *mut FILE;
+}
+extern "C" {
+    pub fn _tmpnam_r(arg1: *mut _reent, arg2: *mut cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn _ungetc_r(arg1: *mut _reent, arg2: cty::c_int, arg3: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn _vasiprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut *mut cty::c_char,
+        arg3: *const cty::c_char,
+        arg4: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _vasniprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_char,
+        arg3: *mut usize,
+        arg4: *const cty::c_char,
+        arg5: __gnuc_va_list,
+    ) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn _vasnprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_char,
+        arg3: *mut usize,
+        arg4: *const cty::c_char,
+        arg5: __gnuc_va_list,
+    ) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn _vasprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut *mut cty::c_char,
+        arg3: *const cty::c_char,
+        arg4: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _vdiprintf_r(
+        arg1: *mut _reent,
+        arg2: cty::c_int,
+        arg3: *const cty::c_char,
+        arg4: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _vdprintf_r(
+        arg1: *mut _reent,
+        arg2: cty::c_int,
+        arg3: *const cty::c_char,
+        arg4: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _vfiprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut FILE,
+        arg3: *const cty::c_char,
+        arg4: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _vfiscanf_r(
+        arg1: *mut _reent,
+        arg2: *mut FILE,
+        arg3: *const cty::c_char,
+        arg4: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _vfprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut FILE,
+        arg3: *const cty::c_char,
+        arg4: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _vfscanf_r(
+        arg1: *mut _reent,
+        arg2: *mut FILE,
+        arg3: *const cty::c_char,
+        arg4: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _viprintf_r(
+        arg1: *mut _reent,
+        arg2: *const cty::c_char,
+        arg3: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _viscanf_r(
+        arg1: *mut _reent,
+        arg2: *const cty::c_char,
+        arg3: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _vprintf_r(
+        arg1: *mut _reent,
+        arg2: *const cty::c_char,
+        arg3: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _vscanf_r(
+        arg1: *mut _reent,
+        arg2: *const cty::c_char,
+        arg3: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _vsiprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_char,
+        arg3: *const cty::c_char,
+        arg4: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _vsiscanf_r(
+        arg1: *mut _reent,
+        arg2: *const cty::c_char,
+        arg3: *const cty::c_char,
+        arg4: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _vsniprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_char,
+        arg3: usize,
+        arg4: *const cty::c_char,
+        arg5: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _vsnprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_char,
+        arg3: usize,
+        arg4: *const cty::c_char,
+        arg5: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _vsprintf_r(
+        arg1: *mut _reent,
+        arg2: *mut cty::c_char,
+        arg3: *const cty::c_char,
+        arg4: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _vsscanf_r(
+        arg1: *mut _reent,
+        arg2: *const cty::c_char,
+        arg3: *const cty::c_char,
+        arg4: __gnuc_va_list,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn fpurge(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn __getdelim(
+        arg1: *mut *mut cty::c_char,
+        arg2: *mut usize,
+        arg3: cty::c_int,
+        arg4: *mut FILE,
+    ) -> isize;
+}
+extern "C" {
+    pub fn __getline(arg1: *mut *mut cty::c_char, arg2: *mut usize, arg3: *mut FILE) -> isize;
+}
+extern "C" {
+    pub fn clearerr_unlocked(arg1: *mut FILE);
+}
+extern "C" {
+    pub fn feof_unlocked(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn ferror_unlocked(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn fileno_unlocked(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn fflush_unlocked(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn fgetc_unlocked(arg1: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn fputc_unlocked(arg1: cty::c_int, arg2: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn fread_unlocked(
+        arg1: *mut cty::c_void,
+        _size: usize,
+        _n: usize,
+        arg2: *mut FILE,
+    ) -> usize;
+}
+extern "C" {
+    pub fn fwrite_unlocked(
+        arg1: *const cty::c_void,
+        _size: usize,
+        _n: usize,
+        arg2: *mut FILE,
+    ) -> usize;
+}
+extern "C" {
+    pub fn __srget_r(arg1: *mut _reent, arg2: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn __swbuf_r(arg1: *mut _reent, arg2: cty::c_int, arg3: *mut FILE) -> cty::c_int;
+}
+extern "C" {
+    pub fn funopen(
+        __cookie: *const cty::c_void,
+        __readfn: ::core::option::Option<
+            unsafe extern "C" fn(
+                __cookie: *mut cty::c_void,
+                __buf: *mut cty::c_char,
+                __n: cty::c_int,
+            ) -> cty::c_int,
+        >,
+        __writefn: ::core::option::Option<
+            unsafe extern "C" fn(
+                __cookie: *mut cty::c_void,
+                __buf: *const cty::c_char,
+                __n: cty::c_int,
+            ) -> cty::c_int,
+        >,
+        __seekfn: ::core::option::Option<
+            unsafe extern "C" fn(
+                __cookie: *mut cty::c_void,
+                __off: fpos_t,
+                __whence: cty::c_int,
+            ) -> fpos_t,
+        >,
+        __closefn: ::core::option::Option<
+            unsafe extern "C" fn(__cookie: *mut cty::c_void) -> cty::c_int,
+        >,
+    ) -> *mut FILE;
+}
+extern "C" {
+    pub fn _funopen_r(
+        arg1: *mut _reent,
+        __cookie: *const cty::c_void,
+        __readfn: ::core::option::Option<
+            unsafe extern "C" fn(
+                __cookie: *mut cty::c_void,
+                __buf: *mut cty::c_char,
+                __n: cty::c_int,
+            ) -> cty::c_int,
+        >,
+        __writefn: ::core::option::Option<
+            unsafe extern "C" fn(
+                __cookie: *mut cty::c_void,
+                __buf: *const cty::c_char,
+                __n: cty::c_int,
+            ) -> cty::c_int,
+        >,
+        __seekfn: ::core::option::Option<
+            unsafe extern "C" fn(
+                __cookie: *mut cty::c_void,
+                __off: fpos_t,
+                __whence: cty::c_int,
+            ) -> fpos_t,
+        >,
+        __closefn: ::core::option::Option<
+            unsafe extern "C" fn(__cookie: *mut cty::c_void) -> cty::c_int,
+        >,
+    ) -> *mut FILE;
+}
+pub type appmain_t = ::core::option::Option<unsafe extern "C" fn()>;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct application_s {
+    pub nvram_begin: *mut cty::c_uchar,
+    pub nvram_end: *mut cty::c_uchar,
+    pub main: appmain_t,
+    pub flags: u32,
+    pub code_length: cty::c_uint,
+    pub data_length: cty::c_uint,
+    pub params_length: cty::c_uint,
+    pub sha256_code_data: [cty::c_uchar; 32usize],
+    pub sha256_full: [cty::c_uchar; 32usize],
+}
+#[test]
+fn bindgen_test_layout_application_s() {
+    const UNINIT: ::core::mem::MaybeUninit<application_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<application_s>(),
+        92usize,
+        concat!("Size of: ", stringify!(application_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<application_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(application_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).nvram_begin) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(application_s),
+            "::",
+            stringify!(nvram_begin)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).nvram_end) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(application_s),
+            "::",
+            stringify!(nvram_end)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).main) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(application_s),
+            "::",
+            stringify!(main)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).flags) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(application_s),
+            "::",
+            stringify!(flags)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).code_length) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(application_s),
+            "::",
+            stringify!(code_length)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).data_length) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(application_s),
+            "::",
+            stringify!(data_length)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).params_length) as usize - ptr as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(application_s),
+            "::",
+            stringify!(params_length)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).sha256_code_data) as usize - ptr as usize },
+        28usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(application_s),
+            "::",
+            stringify!(sha256_code_data)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).sha256_full) as usize - ptr as usize },
+        60usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(application_s),
+            "::",
+            stringify!(sha256_full)
+        )
+    );
+}
+impl Default for application_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+pub type application_t = application_s;
+extern "C" {
+    #[doc = " @param appidx The application entry index in the registry (raw, not filtering ux or whatever). If the entry index correspond to the application being installed then RAM structure content is used instead of the NVRAM registry.\n @param tlvoffset The offset within the install parameters memory area, in bytes. Useful if tag is present multiple times. Can be null. The tlv offset is the offset of the tag in the install parameters area when a tag is matched. This way long tag can be read in multiple time without the need to play with the tlvoffset. Add +1 to skip to the next one when searching for multiple tag occurrences.\n @param tag The tag to be searched for\n @param value_offset The offset within the value for this occurrence of the tag. The OS_REGISTRY_GET_TAG_OFFSET_COMPARE_WITH_BUFFER or OS_REGISTRY_GET_TAG_OFFSET_GET_LENGTH can be ORed to perform meta operation on the TLV occurrence.\n @param buffer The user buffer for comparison or to retrieve the value of the tag at the given offset.\n @param maxlength Size of the buffer to be compared OR to be retrieved (trimmed depending the TLV effective length)."]
+    pub fn os_registry_get_tag(
+        app_idx: cty::c_uint,
+        tlvoffset: *mut cty::c_uint,
+        tag: cty::c_uint,
+        value_offset: cty::c_uint,
+        buffer: *mut cty::c_void,
+        maxlength: cty::c_uint,
+    ) -> cty::c_uint;
+}
+extern "C" {
+    pub fn os_registry_get_current_app_tag(
+        tag: cty::c_uint,
+        buffer: *mut cty::c_uchar,
+        maxlen: cty::c_uint,
+    ) -> cty::c_uint;
+}
+extern "C" {
+    #[doc = " This function deletes the application mentioned with its index, as well as all the applications depending on it.\n @param index The index of the the application to suppress."]
+    pub fn os_registry_delete_app_and_dependees(app_idx: cty::c_uint);
+}
+extern "C" {
+    #[doc = " This function deletes all the installed applications."]
+    pub fn os_registry_delete_all_apps();
+}
+extern "C" {
+    pub fn os_registry_count() -> cty::c_uint;
+}
+extern "C" {
+    pub fn os_registry_get(app_idx: cty::c_uint, out_application_entry: *mut application_t);
+}
+pub const generic_identifiers_ERR_GEN_ID_01: generic_identifiers = 1;
+pub const generic_identifiers_ERR_GEN_ID_02: generic_identifiers = 2;
+pub const generic_identifiers_ERR_GEN_ID_03: generic_identifiers = 3;
+pub const generic_identifiers_ERR_GEN_ID_04: generic_identifiers = 4;
+pub const generic_identifiers_ERR_GEN_ID_05: generic_identifiers = 5;
+pub const generic_identifiers_ERR_GEN_ID_06: generic_identifiers = 6;
+pub const generic_identifiers_ERR_GEN_ID_07: generic_identifiers = 7;
+pub const generic_identifiers_ERR_GEN_ID_08: generic_identifiers = 8;
+pub const generic_identifiers_ERR_GEN_ID_09: generic_identifiers = 9;
+pub const generic_identifiers_ERR_GEN_ID_0A: generic_identifiers = 10;
+pub const generic_identifiers_ERR_GEN_ID_0B: generic_identifiers = 11;
+pub const generic_identifiers_ERR_GEN_ID_0C: generic_identifiers = 12;
+pub const generic_identifiers_ERR_GEN_ID_0D: generic_identifiers = 13;
+pub const generic_identifiers_ERR_GEN_ID_0E: generic_identifiers = 14;
+pub const generic_identifiers_ERR_GEN_ID_0F: generic_identifiers = 15;
+pub const generic_identifiers_ERR_GEN_ID_10: generic_identifiers = 16;
+pub const generic_identifiers_ERR_GEN_ID_11: generic_identifiers = 17;
+pub const generic_identifiers_ERR_GEN_ID_12: generic_identifiers = 18;
+pub const generic_identifiers_ERR_GEN_ID_13: generic_identifiers = 19;
+pub const generic_identifiers_ERR_GEN_ID_14: generic_identifiers = 20;
+pub const generic_identifiers_ERR_GEN_ID_15: generic_identifiers = 21;
+pub const generic_identifiers_ERR_GEN_ID_16: generic_identifiers = 22;
+pub const generic_identifiers_ERR_GEN_ID_17: generic_identifiers = 23;
+pub const generic_identifiers_ERR_GEN_ID_18: generic_identifiers = 24;
+pub const generic_identifiers_ERR_GEN_ID_19: generic_identifiers = 25;
+pub const generic_identifiers_ERR_GEN_ID_1A: generic_identifiers = 26;
+pub const generic_identifiers_ERR_GEN_ID_1B: generic_identifiers = 27;
+pub const generic_identifiers_ERR_GEN_ID_1C: generic_identifiers = 28;
+pub const generic_identifiers_ERR_GEN_ID_1D: generic_identifiers = 29;
+pub const generic_identifiers_ERR_GEN_ID_1E: generic_identifiers = 30;
+pub const generic_identifiers_ERR_GEN_ID_1F: generic_identifiers = 31;
+pub const generic_identifiers_ERR_GEN_ID_20: generic_identifiers = 32;
+pub const generic_identifiers_ERR_GEN_ID_21: generic_identifiers = 33;
+pub const generic_identifiers_ERR_GEN_ID_22: generic_identifiers = 34;
+pub const generic_identifiers_ERR_GEN_ID_23: generic_identifiers = 35;
+pub const generic_identifiers_ERR_GEN_ID_24: generic_identifiers = 36;
+pub const generic_identifiers_ERR_GEN_ID_25: generic_identifiers = 37;
+pub const generic_identifiers_ERR_GEN_ID_26: generic_identifiers = 38;
+pub const generic_identifiers_ERR_GEN_ID_27: generic_identifiers = 39;
+pub const generic_identifiers_ERR_GEN_ID_28: generic_identifiers = 40;
+pub const generic_identifiers_ERR_GEN_ID_29: generic_identifiers = 41;
+pub const generic_identifiers_ERR_GEN_ID_2A: generic_identifiers = 42;
+pub const generic_identifiers_ERR_GEN_ID_2B: generic_identifiers = 43;
+pub const generic_identifiers_ERR_GEN_ID_2C: generic_identifiers = 44;
+pub const generic_identifiers_ERR_GEN_ID_2D: generic_identifiers = 45;
+pub const generic_identifiers_ERR_GEN_ID_2E: generic_identifiers = 46;
+pub const generic_identifiers_ERR_GEN_ID_2F: generic_identifiers = 47;
+pub const generic_identifiers_ERR_GEN_ID_30: generic_identifiers = 48;
+pub const generic_identifiers_ERR_GEN_ID_31: generic_identifiers = 49;
+pub const generic_identifiers_ERR_GEN_ID_32: generic_identifiers = 50;
+pub const generic_identifiers_ERR_GEN_ID_33: generic_identifiers = 51;
+pub const generic_identifiers_ERR_GEN_ID_34: generic_identifiers = 52;
+pub const generic_identifiers_ERR_GEN_ID_35: generic_identifiers = 53;
+pub const generic_identifiers_ERR_GEN_ID_36: generic_identifiers = 54;
+pub const generic_identifiers_ERR_GEN_ID_37: generic_identifiers = 55;
+pub type generic_identifiers = cty::c_uint;
+pub type bolos_err_t = u32;
+pub type exception_t = cty::c_ushort;
+pub type try_context_t = try_context_s;
+pub type jmp_buf = [cty::c_uint; 10usize];
+extern "C" {
+    pub fn longjmp(__jmpb: *mut cty::c_uint, __retval: cty::c_int) -> !;
+}
+extern "C" {
+    pub fn setjmp(__jmpb: *mut cty::c_uint) -> cty::c_int;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct try_context_s {
+    pub jmp_buf: jmp_buf,
+    pub previous: *mut try_context_t,
+    pub ex: exception_t,
+}
+#[test]
+fn bindgen_test_layout_try_context_s() {
+    const UNINIT: ::core::mem::MaybeUninit<try_context_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<try_context_s>(),
+        48usize,
+        concat!("Size of: ", stringify!(try_context_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<try_context_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(try_context_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).jmp_buf) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(try_context_s),
+            "::",
+            stringify!(jmp_buf)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).previous) as usize - ptr as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(try_context_s),
+            "::",
+            stringify!(previous)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).ex) as usize - ptr as usize },
+        44usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(try_context_s),
+            "::",
+            stringify!(ex)
+        )
+    );
+}
+impl Default for try_context_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+extern "C" {
+    pub fn try_context_get() -> *mut try_context_t;
+}
+extern "C" {
+    pub fn try_context_set(context: *mut try_context_t) -> *mut try_context_t;
+}
+extern "C" {
+    pub fn os_longjmp(exception: cty::c_uint) -> !;
+}
+pub type uint64bits_t = u64;
+#[doc = "< No message digest algorithm"]
+pub const cx_md_e_CX_NONE: cx_md_e = 0;
+#[doc = "< RIPEMD160 digest"]
+pub const cx_md_e_CX_RIPEMD160: cx_md_e = 1;
+#[doc = "< SHA224 digest"]
+pub const cx_md_e_CX_SHA224: cx_md_e = 2;
+#[doc = "< SHA256 digest"]
+pub const cx_md_e_CX_SHA256: cx_md_e = 3;
+#[doc = "< SHA384 digest"]
+pub const cx_md_e_CX_SHA384: cx_md_e = 4;
+#[doc = "< SHA512 digest"]
+pub const cx_md_e_CX_SHA512: cx_md_e = 5;
+#[doc = "< Keccak (pre-SHA3) digest"]
+pub const cx_md_e_CX_KECCAK: cx_md_e = 6;
+#[doc = "< SHA3 Digest"]
+pub const cx_md_e_CX_SHA3: cx_md_e = 7;
+#[doc = "< Keep compatibility"]
+pub const cx_md_e_DEPRECATED_0: cx_md_e = 8;
+#[doc = "< Blake digest"]
+pub const cx_md_e_CX_BLAKE2B: cx_md_e = 9;
+#[doc = "< SHAKE-128 digest"]
+pub const cx_md_e_CX_SHAKE128: cx_md_e = 10;
+#[doc = "< SHAKE-256 digest"]
+pub const cx_md_e_CX_SHAKE256: cx_md_e = 11;
+#[doc = "< SHA3-256 digest"]
+pub const cx_md_e_CX_SHA3_256: cx_md_e = 12;
+#[doc = "< SHA3-512 digest"]
+pub const cx_md_e_CX_SHA3_512: cx_md_e = 13;
+#[doc = " Message digest algorithm identifiers."]
+pub type cx_md_e = cty::c_uint;
+#[doc = " Message digest algorithm identifiers."]
+pub use self::cx_md_e as cx_md_t;
+#[doc = " @brief Common message digest context, used as abstract type."]
+pub type cx_hash_t = cx_hash_header_s;
+#[doc = " @brief Hash description."]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_hash_info_t {
+    #[doc = "< Message digest algorithm identifier"]
+    pub md_type: cx_md_t,
+    #[doc = "< Output size"]
+    pub output_size: usize,
+    #[doc = "< Block size"]
+    pub block_size: usize,
+    #[doc = "< Related size of the context hash"]
+    pub ctx_size: usize,
+    #[doc = "< Pointer to the initialization function"]
+    pub init_func: ::core::option::Option<unsafe extern "C" fn(ctx: *mut cx_hash_t) -> cx_err_t>,
+    #[doc = "< Pointer to the update function"]
+    pub update_func: ::core::option::Option<
+        unsafe extern "C" fn(ctx: *mut cx_hash_t, data: *const u8, len: usize) -> cx_err_t,
+    >,
+    #[doc = "< Pointer to the final function"]
+    pub finish_func: ::core::option::Option<
+        unsafe extern "C" fn(ctx: *mut cx_hash_t, digest: *mut u8) -> cx_err_t,
+    >,
+    #[doc = "< Pointer to the initialization function for extendable output"]
+    pub init_ex_func: ::core::option::Option<
+        unsafe extern "C" fn(ctx: *mut cx_hash_t, output_size: usize) -> cx_err_t,
+    >,
+    #[doc = "< Pointer to the output size function"]
+    pub output_size_func:
+        ::core::option::Option<unsafe extern "C" fn(ctx: *const cx_hash_t) -> usize>,
+}
+#[test]
+fn bindgen_test_layout_cx_hash_info_t() {
+    const UNINIT: ::core::mem::MaybeUninit<cx_hash_info_t> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<cx_hash_info_t>(),
+        36usize,
+        concat!("Size of: ", stringify!(cx_hash_info_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_hash_info_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(cx_hash_info_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).md_type) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_hash_info_t),
+            "::",
+            stringify!(md_type)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).output_size) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_hash_info_t),
+            "::",
+            stringify!(output_size)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).block_size) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_hash_info_t),
+            "::",
+            stringify!(block_size)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).ctx_size) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_hash_info_t),
+            "::",
+            stringify!(ctx_size)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).init_func) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_hash_info_t),
+            "::",
+            stringify!(init_func)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).update_func) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_hash_info_t),
+            "::",
+            stringify!(update_func)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).finish_func) as usize - ptr as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_hash_info_t),
+            "::",
+            stringify!(finish_func)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).init_ex_func) as usize - ptr as usize },
+        28usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_hash_info_t),
+            "::",
+            stringify!(init_ex_func)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).output_size_func) as usize - ptr as usize },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_hash_info_t),
+            "::",
+            stringify!(output_size_func)
+        )
+    );
+}
+impl Default for cx_hash_info_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief Common message digest context, used as abstract type."]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_hash_header_s {
+    #[doc = "< Hash description"]
+    pub info: *const cx_hash_info_t,
+    #[doc = "< Number of already processed blocks"]
+    pub counter: u32,
+}
+#[test]
+fn bindgen_test_layout_cx_hash_header_s() {
+    const UNINIT: ::core::mem::MaybeUninit<cx_hash_header_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<cx_hash_header_s>(),
+        8usize,
+        concat!("Size of: ", stringify!(cx_hash_header_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_hash_header_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(cx_hash_header_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).info) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_hash_header_s),
+            "::",
+            stringify!(info)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).counter) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_hash_header_s),
+            "::",
+            stringify!(counter)
+        )
+    );
+}
+impl Default for cx_hash_header_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+extern "C" {
+    pub fn cx_hash_get_size(ctx: *const cx_hash_t) -> usize;
+}
+extern "C" {
+    #[doc = " @brief   Hashes data according to the specified algorithm.\n\n @param[in]  hash    Pointer to the hash context.\n                     Shall be in RAM.\n                     Should be called with a cast.\n\n @param[in]  mode    Crypto flag. Supported flag: CX_LAST. If set:\n                       - the structure is not modified after finishing\n                       - if out is not NULL, the message digest is stored in out\n                       - the context is NOT automatically re-initialized.\n\n @param[in]  in      Input data to be hashed.\n\n @param[in]  len     Length of the input data.\n\n @param[out] out     Buffer where to store the message digest:\n                       - NULL (ignored) if CX_LAST is NOT set\n                       - message digest if CX_LAST is set\n\n @param[out] out_len The size of the output buffer or 0 if out is NULL.\n                     If buffer is too small to store the hash an error is returned.\n\n @return             Error code:\n                     - CX_OK on success\n                     - INVALID_PARAMETER\n                     - CX_INVALID_PARAMETER"]
+    pub fn cx_hash_no_throw(
+        hash: *mut cx_hash_t,
+        mode: u32,
+        in_: *const u8,
+        len: usize,
+        out: *mut u8,
+        out_len: usize,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Initializes a hash context.\n\n @param[out] hash    Pointer to the context to be initialized.\n                     The context shall be in RAM.\n\n @param[in]  hash_id Message digest algorithm identifier.\n\n @return             Error code:\n                     - CX_OK on success\n                     - CX_INVALID_PARAMETER"]
+    pub fn cx_hash_init(hash: *mut cx_hash_t, hash_id: cx_md_t) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Initializes a hash context.\n\n @details It initializes a hash context with a chosen output length\n          (typically for eXtendable Output Functions (XOF)).\n\n @param[out] hash        Pointer to the context to be initialized.\n                         The context shall be in RAM.\n\n @param [in] hash_id     Hash algorithm identifier. Typically:\n                           - CX_BLAKE2B\n                           - CX_SHAKE128\n                           - CX_SHAKE256\n\n @param [in] output_size Length of the output.\n\n @return                 Error code:\n                         - CX_OK on success\n                         - CX_INVALID_PARAMETER"]
+    pub fn cx_hash_init_ex(hash: *mut cx_hash_t, hash_id: cx_md_t, output_size: usize) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Adds more data to hash.\n\n @details A call to this function is equivalent to:\n          *cx_hash_no_throw(hash, 0, in, in_len, NULL, 0)*.\n\n @param[out] hash   Pointer to the hash context.\n\n @param[in]  in     Input data to add to the context.\n\n @param[in]  in_len Length of the input data.\n\n @return            Error code:\n                    - CX_OK on success\n                    - CX_INVALID_PARAMETER\n                    - INVALID_PARAMETER"]
+    pub fn cx_hash_update(hash: *mut cx_hash_t, in_: *const u8, in_len: usize) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Finalizes the hash.\n\n @details A call to this function is equivalent to:\n          *cx_hash_no_throw(hash, CX_LAST, NULL, 0, out, out_len)*.\n\n @param[in]  hash   Pointer to the hash context.\n\n @param[out] digest The message digest.\n\n @return            Error code:\n                    - CX_OK on success"]
+    pub fn cx_hash_final(hash: *mut cx_hash_t, digest: *mut u8) -> cx_err_t;
 }
 #[doc = " Index of a big number."]
 pub type cx_bn_t = u32;
@@ -1686,6 +6145,1908 @@ extern "C" {
     pub fn cx_ecpoint_is_at_infinity(R: *const cx_ecpoint_t, is_at_infinity: *mut bool)
         -> cx_err_t;
 }
+#[doc = " Elliptic Curve public key"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_ecfp_public_key_s {
+    #[doc = "< Curve identifier"]
+    pub curve: cx_curve_t,
+    #[doc = "< Public key length in bytes"]
+    pub W_len: usize,
+    #[doc = "< Public key value"]
+    pub W: [u8; 1usize],
+}
+#[test]
+fn bindgen_test_layout_cx_ecfp_public_key_s() {
+    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_public_key_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<cx_ecfp_public_key_s>(),
+        12usize,
+        concat!("Size of: ", stringify!(cx_ecfp_public_key_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_ecfp_public_key_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(cx_ecfp_public_key_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_public_key_s),
+            "::",
+            stringify!(curve)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).W_len) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_public_key_s),
+            "::",
+            stringify!(W_len)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).W) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_public_key_s),
+            "::",
+            stringify!(W)
+        )
+    );
+}
+impl Default for cx_ecfp_public_key_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " Elliptic Curve private key"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_ecfp_private_key_s {
+    #[doc = "< Curve identifier"]
+    pub curve: cx_curve_t,
+    #[doc = "< Private key length in bytes"]
+    pub d_len: usize,
+    #[doc = "< Private key value"]
+    pub d: [u8; 1usize],
+}
+#[test]
+fn bindgen_test_layout_cx_ecfp_private_key_s() {
+    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_private_key_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<cx_ecfp_private_key_s>(),
+        12usize,
+        concat!("Size of: ", stringify!(cx_ecfp_private_key_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_ecfp_private_key_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(cx_ecfp_private_key_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_private_key_s),
+            "::",
+            stringify!(curve)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).d_len) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_private_key_s),
+            "::",
+            stringify!(d_len)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).d) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_private_key_s),
+            "::",
+            stringify!(d)
+        )
+    );
+}
+impl Default for cx_ecfp_private_key_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " Up to 256-bit Elliptic Curve public key"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_ecfp_256_public_key_s {
+    #[doc = "< Curve identifier"]
+    pub curve: cx_curve_t,
+    #[doc = "< Public key length in bytes"]
+    pub W_len: usize,
+    #[doc = "< Public key value"]
+    pub W: [u8; 65usize],
+}
+#[test]
+fn bindgen_test_layout_cx_ecfp_256_public_key_s() {
+    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_256_public_key_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<cx_ecfp_256_public_key_s>(),
+        76usize,
+        concat!("Size of: ", stringify!(cx_ecfp_256_public_key_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_ecfp_256_public_key_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(cx_ecfp_256_public_key_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_256_public_key_s),
+            "::",
+            stringify!(curve)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).W_len) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_256_public_key_s),
+            "::",
+            stringify!(W_len)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).W) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_256_public_key_s),
+            "::",
+            stringify!(W)
+        )
+    );
+}
+impl Default for cx_ecfp_256_public_key_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " Up to 256-bit Elliptic Curve private key"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_ecfp_256_private_key_s {
+    #[doc = "< Curve identifier"]
+    pub curve: cx_curve_t,
+    #[doc = "< Private key length in bytes"]
+    pub d_len: usize,
+    #[doc = "< Private key value"]
+    pub d: [u8; 32usize],
+}
+#[test]
+fn bindgen_test_layout_cx_ecfp_256_private_key_s() {
+    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_256_private_key_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<cx_ecfp_256_private_key_s>(),
+        40usize,
+        concat!("Size of: ", stringify!(cx_ecfp_256_private_key_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_ecfp_256_private_key_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(cx_ecfp_256_private_key_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_256_private_key_s),
+            "::",
+            stringify!(curve)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).d_len) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_256_private_key_s),
+            "::",
+            stringify!(d_len)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).d) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_256_private_key_s),
+            "::",
+            stringify!(d)
+        )
+    );
+}
+impl Default for cx_ecfp_256_private_key_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " Up to 256-bit Elliptic Curve extended private key"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_ecfp_256_extended_private_key_s {
+    #[doc = "< Curve identifier"]
+    pub curve: cx_curve_t,
+    #[doc = "< Public key length in bytes"]
+    pub d_len: usize,
+    #[doc = "< Public key value"]
+    pub d: [u8; 64usize],
+}
+#[test]
+fn bindgen_test_layout_cx_ecfp_256_extended_private_key_s() {
+    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_256_extended_private_key_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<cx_ecfp_256_extended_private_key_s>(),
+        72usize,
+        concat!("Size of: ", stringify!(cx_ecfp_256_extended_private_key_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_ecfp_256_extended_private_key_s>(),
+        4usize,
+        concat!(
+            "Alignment of ",
+            stringify!(cx_ecfp_256_extended_private_key_s)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_256_extended_private_key_s),
+            "::",
+            stringify!(curve)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).d_len) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_256_extended_private_key_s),
+            "::",
+            stringify!(d_len)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).d) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_256_extended_private_key_s),
+            "::",
+            stringify!(d)
+        )
+    );
+}
+impl Default for cx_ecfp_256_extended_private_key_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " Up to 256-bit Elliptic Curve public key"]
+pub type cx_ecfp_256_public_key_t = cx_ecfp_256_public_key_s;
+#[doc = " Up to 256-bit Elliptic Curve private key"]
+pub type cx_ecfp_256_private_key_t = cx_ecfp_256_private_key_s;
+#[doc = " Up to 256-bit Elliptic Curve extended private key"]
+pub type cx_ecfp_256_extended_private_key_t = cx_ecfp_256_extended_private_key_s;
+#[doc = " Up to 256-bit Elliptic Curve public key"]
+pub type cx_ecfp_public_key_t = cx_ecfp_256_public_key_s;
+#[doc = " Up to 256-bit Elliptic Curve private key"]
+pub type cx_ecfp_private_key_t = cx_ecfp_256_private_key_s;
+#[doc = " Up to 384-bit Elliptic Curve public key"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_ecfp_384_public_key_s {
+    #[doc = "< Curve identifier"]
+    pub curve: cx_curve_t,
+    #[doc = "< Public key length in bytes"]
+    pub W_len: usize,
+    #[doc = "< Public key value"]
+    pub W: [u8; 97usize],
+}
+#[test]
+fn bindgen_test_layout_cx_ecfp_384_public_key_s() {
+    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_384_public_key_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<cx_ecfp_384_public_key_s>(),
+        108usize,
+        concat!("Size of: ", stringify!(cx_ecfp_384_public_key_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_ecfp_384_public_key_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(cx_ecfp_384_public_key_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_384_public_key_s),
+            "::",
+            stringify!(curve)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).W_len) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_384_public_key_s),
+            "::",
+            stringify!(W_len)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).W) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_384_public_key_s),
+            "::",
+            stringify!(W)
+        )
+    );
+}
+impl Default for cx_ecfp_384_public_key_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " Up to 384-bit Elliptic Curve private key"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_ecfp_384_private_key_s {
+    #[doc = "< Curve identifier"]
+    pub curve: cx_curve_t,
+    #[doc = "< Private key length in bytes"]
+    pub d_len: usize,
+    #[doc = "< Private key value"]
+    pub d: [u8; 48usize],
+}
+#[test]
+fn bindgen_test_layout_cx_ecfp_384_private_key_s() {
+    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_384_private_key_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<cx_ecfp_384_private_key_s>(),
+        56usize,
+        concat!("Size of: ", stringify!(cx_ecfp_384_private_key_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_ecfp_384_private_key_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(cx_ecfp_384_private_key_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_384_private_key_s),
+            "::",
+            stringify!(curve)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).d_len) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_384_private_key_s),
+            "::",
+            stringify!(d_len)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).d) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_384_private_key_s),
+            "::",
+            stringify!(d)
+        )
+    );
+}
+impl Default for cx_ecfp_384_private_key_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " Up to 384-bit Elliptic Curve private key"]
+pub type cx_ecfp_384_private_key_t = cx_ecfp_384_private_key_s;
+#[doc = " Up to 384-bit Elliptic Curve public key"]
+pub type cx_ecfp_384_public_key_t = cx_ecfp_384_public_key_s;
+#[doc = " Up to 512-bit Elliptic Curve public key"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_ecfp_512_public_key_s {
+    #[doc = "< Curve identifier"]
+    pub curve: cx_curve_t,
+    #[doc = "< Public key length in bytes"]
+    pub W_len: usize,
+    #[doc = "< Public key value"]
+    pub W: [u8; 129usize],
+}
+#[test]
+fn bindgen_test_layout_cx_ecfp_512_public_key_s() {
+    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_512_public_key_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<cx_ecfp_512_public_key_s>(),
+        140usize,
+        concat!("Size of: ", stringify!(cx_ecfp_512_public_key_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_ecfp_512_public_key_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(cx_ecfp_512_public_key_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_512_public_key_s),
+            "::",
+            stringify!(curve)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).W_len) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_512_public_key_s),
+            "::",
+            stringify!(W_len)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).W) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_512_public_key_s),
+            "::",
+            stringify!(W)
+        )
+    );
+}
+impl Default for cx_ecfp_512_public_key_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " Up to 512-bit Elliptic Curve private key"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_ecfp_512_private_key_s {
+    #[doc = "< Curve identifier"]
+    pub curve: cx_curve_t,
+    #[doc = "< Private key length in bytes"]
+    pub d_len: usize,
+    #[doc = "< Private key value"]
+    pub d: [u8; 64usize],
+}
+#[test]
+fn bindgen_test_layout_cx_ecfp_512_private_key_s() {
+    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_512_private_key_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<cx_ecfp_512_private_key_s>(),
+        72usize,
+        concat!("Size of: ", stringify!(cx_ecfp_512_private_key_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_ecfp_512_private_key_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(cx_ecfp_512_private_key_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_512_private_key_s),
+            "::",
+            stringify!(curve)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).d_len) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_512_private_key_s),
+            "::",
+            stringify!(d_len)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).d) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_512_private_key_s),
+            "::",
+            stringify!(d)
+        )
+    );
+}
+impl Default for cx_ecfp_512_private_key_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " Up to 512-bit Elliptic Curve extended private key"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_ecfp_512_extented_private_key_s {
+    #[doc = "< Curve identifier"]
+    pub curve: cx_curve_t,
+    #[doc = "< Private key length in bytes"]
+    pub d_len: usize,
+    #[doc = "< Private key value"]
+    pub d: [u8; 128usize],
+}
+#[test]
+fn bindgen_test_layout_cx_ecfp_512_extented_private_key_s() {
+    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_512_extented_private_key_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<cx_ecfp_512_extented_private_key_s>(),
+        136usize,
+        concat!("Size of: ", stringify!(cx_ecfp_512_extented_private_key_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_ecfp_512_extented_private_key_s>(),
+        4usize,
+        concat!(
+            "Alignment of ",
+            stringify!(cx_ecfp_512_extented_private_key_s)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_512_extented_private_key_s),
+            "::",
+            stringify!(curve)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).d_len) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_512_extented_private_key_s),
+            "::",
+            stringify!(d_len)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).d) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_512_extented_private_key_s),
+            "::",
+            stringify!(d)
+        )
+    );
+}
+impl Default for cx_ecfp_512_extented_private_key_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " Up to 512-bit Elliptic Curve public key"]
+pub type cx_ecfp_512_public_key_t = cx_ecfp_512_public_key_s;
+#[doc = " Up to 512-bit Elliptic Curve private key"]
+pub type cx_ecfp_512_private_key_t = cx_ecfp_512_private_key_s;
+#[doc = " Up to 512-bit Elliptic Curve extended private key"]
+pub type cx_ecfp_512_extented_private_key_t = cx_ecfp_512_extented_private_key_s;
+#[doc = " Up to 640-bit Elliptic Curve public key"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_ecfp_640_public_key_s {
+    #[doc = "< Curve identifier"]
+    pub curve: cx_curve_t,
+    #[doc = "< Public key length in bytes"]
+    pub W_len: usize,
+    #[doc = "< Public key value"]
+    pub W: [u8; 161usize],
+}
+#[test]
+fn bindgen_test_layout_cx_ecfp_640_public_key_s() {
+    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_640_public_key_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<cx_ecfp_640_public_key_s>(),
+        172usize,
+        concat!("Size of: ", stringify!(cx_ecfp_640_public_key_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_ecfp_640_public_key_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(cx_ecfp_640_public_key_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_640_public_key_s),
+            "::",
+            stringify!(curve)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).W_len) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_640_public_key_s),
+            "::",
+            stringify!(W_len)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).W) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_640_public_key_s),
+            "::",
+            stringify!(W)
+        )
+    );
+}
+impl Default for cx_ecfp_640_public_key_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " Up to 640-bit Elliptic Curve private key"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cx_ecfp_640_private_key_s {
+    #[doc = "< Curve identifier"]
+    pub curve: cx_curve_t,
+    #[doc = "< Private key length in bytes"]
+    pub d_len: usize,
+    #[doc = "< Private key value"]
+    pub d: [u8; 80usize],
+}
+#[test]
+fn bindgen_test_layout_cx_ecfp_640_private_key_s() {
+    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_640_private_key_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<cx_ecfp_640_private_key_s>(),
+        88usize,
+        concat!("Size of: ", stringify!(cx_ecfp_640_private_key_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_ecfp_640_private_key_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(cx_ecfp_640_private_key_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_640_private_key_s),
+            "::",
+            stringify!(curve)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).d_len) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_640_private_key_s),
+            "::",
+            stringify!(d_len)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).d) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_ecfp_640_private_key_s),
+            "::",
+            stringify!(d)
+        )
+    );
+}
+impl Default for cx_ecfp_640_private_key_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " Up to 640-bit Elliptic Curve public key"]
+pub type cx_ecfp_640_public_key_t = cx_ecfp_640_public_key_s;
+#[doc = " Up to 640-bit Elliptic Curve private key"]
+pub type cx_ecfp_640_private_key_t = cx_ecfp_640_private_key_s;
+extern "C" {
+    #[doc = " @brief   Adds two points of an elliptic curve.\n\n @param[in]  curve Curve identifier.\n\n @param[out] R     Resulting point encoded as **04 || x || y**.\n\n @param[in]  P     First operand: point on curve encoded as **04 || x || y**:\n                   *x* and *y* are encoded as big endian raw values\n                   and have a binary length equal to curve domain size.\n\n @param[in]  Q     Second operand: point on curve encoded as **04 || x || y**.\n\n @return           Error code:\n                   - CX_OK on success\n                   - CX_EC_INVALID_CURVE\n                   - CX_NOT_UNLOCKED\n                   - CX_INVALID_PARAMETER_SIZE\n                   - CX_EC_INVALID_CURVE\n                   - CX_MEMORY_FULL\n                   - CX_NOT_LOCKED\n                   - CX_INVALID_PARAMETER\n                   - CX_EC_INVALID_POINT\n                   - CX_EC_INFINITE_POINT"]
+    pub fn cx_ecfp_add_point_no_throw(
+        curve: cx_curve_t,
+        R: *mut u8,
+        P: *const u8,
+        Q: *const u8,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Performs a scalar multiplication over an elliptic curve.\n\n @param[in]      curve Curve identifier.\n\n @param[in, out] P     Point on curve encoded as **04 || x || y**:\n                       x and y are encoded as big endian raw values\n                       and have a binary length equal to curve domain size.\n                       This is also used for the result.\n\n @param[in]      k     Scalar encoded as big endian integer.\n\n @param[in]      k_len Length of the scalar. This should be equal to\n                       the curve domain length.\n\n @return               Error code:\n                       - CX_OK on success\n                       - CX_EC_INVALID_CURVE\n                       - CX_NOT_UNLOCKED\n                       - CX_EC_INVALID_CURVE\n                       - CX_MEMORY_FULL\n                       - CX_NOT_LOCKED\n                       - CX_INVALID_PARAMETER\n                       - CX_EC_INFINITE_POINT"]
+    pub fn cx_ecfp_scalar_mult_no_throw(
+        curve: cx_curve_t,
+        P: *mut u8,
+        k: *const u8,
+        k_len: usize,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Initializes a public key.\n\n @param[in]  curve   Curve identifier.\n\n @param[in]  rawkey  Pointer to a raw key value or NULL pointer\n                     The value shall be the public point encoded as:\n                      - **04 || x || y** for Weiertrass curves\n                      - **04 || x || y**  or **02 || y** (plus sign) for Twisted Edward curves\n                      - **04 || x || y**  or **02 || x** for Montgomery curves\n\n                     where *x* and *y* are encoded as big endian raw values and have a\n                     binary length equal to the curve domain size.\n\n @param[in]  key_len Length of the key.\n\n @param[out] key     Public key to initialize.\n\n @return             Error code:\n                     - CX_OK on success\n                     - CX_EC_INVALID_CURVE\n                     - INVALID_PARAMETER"]
+    pub fn cx_ecfp_init_public_key_no_throw(
+        curve: cx_curve_t,
+        rawkey: *const u8,
+        key_len: usize,
+        key: *mut cx_ecfp_public_key_t,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Initializes a private key.\n\n @details The key can be stored in non-volatile memory and\n          used for ECDSA or ECDH processing.\n\n @param[in]  curve   Curve identifier.\n\n @param[in]  rawkey  Pointer to a raw key value or NULL pointer.\n                     The value shall be in big endian order.\n\n @param[in]  key_len Length of the key.\n\n @param[out] pvkey   Private key to initialize.\n\n @return             Error code:\n                     - CX_OK on success\n                     - CX_EC_INVALID_CURVE\n                     - CX_INVALID_PARAMETER"]
+    pub fn cx_ecfp_init_private_key_no_throw(
+        curve: cx_curve_t,
+        rawkey: *const u8,
+        key_len: usize,
+        pvkey: *mut cx_ecfp_private_key_t,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Generates a key pair with SHA-512 hash function.\n\n @param[in]  curve       Curve identifier.\n\n @param[out] pubkey      Generated public key.\n\n @param[out] privkey     Generated private key.\n\n @param[in]  keepprivate If set, the private key is the one initialized\n                         with #cx_ecfp_init_private_key_no_throw. Otherwise,\n                         a new private key is generated.\n\n @return                 Error code:\n                         - CX_OK on success\n                         - CX_EC_INVALID_CURVE\n                         - CX_NOT_UNLOCKED\n                         - CX_INVALID_PARAMETER_SIZE\n                         - CX_MEMORY_FULL\n                         - CX_NOT_LOCKED\n                         - CX_INVALID_PARAMETER\n                         - CX_INTERNAL_ERROR\n                         - CX_EC_INVALID_POINT\n                         - CX_EC_INFINITE_POINT"]
+    pub fn cx_ecfp_generate_pair_no_throw(
+        curve: cx_curve_t,
+        pubkey: *mut cx_ecfp_public_key_t,
+        privkey: *mut cx_ecfp_private_key_t,
+        keepprivate: bool,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Generates a key pair.\n\n @param[in]  curve       Curve identifier.\n\n @param[out] pubkey      Generated public key.\n\n @param[out] privkey     Generated private key.\n\n @param[in]  keepprivate If set, the private key is the one initialized with\n                         #cx_ecfp_init_private_key_no_throw.\n                         Otherwise, a new private key is generated.\n\n @param[in]  hashID      Message digest algorithm identifier.\n\n @return                 Error code:\n                         - CX_OK on success\n                         - CX_EC_INVALID_CURVE\n                         - CX_NOT_UNLOCKED\n                         - CX_INVALID_PARAMETER_SIZE\n                         - CX_MEMORY_FULL\n                         - CX_NOT_LOCKED\n                         - CX_INVALID_PARAMETER\n                         - CX_INTERNAL_ERROR\n                         - CX_EC_INVALID_POINT\n                         - CX_EC_INFINITE_POINT"]
+    pub fn cx_ecfp_generate_pair2_no_throw(
+        curve: cx_curve_t,
+        pubkey: *mut cx_ecfp_public_key_t,
+        privkey: *mut cx_ecfp_private_key_t,
+        keepprivate: bool,
+        hashID: cx_md_t,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Retrieves an EDDSA public key.\n\n @details Retrieves (a,h) = (Kr, Kl), such that (Kr, Kl) = Hash(pv_key)\n          as specified at <a href=\"https://tools.ietf.org/html/rfc8032\"> RFC8032 </a>.\n\n @param[in]  pvkey  A private key fully initialized with #cx_ecfp_init_private_key_no_throw.\n\n @param[in]  hashID Message digest algorithm identifier used to compute the input data.\n                    SHA512, SHA3 and Keccak are supported.\n\n @param[out] pukey  Key container for retrieving the public key A.\n\n @param[out] a      Private scalar such that A = a.B.\n\n @param[in]  a_len  Length of the scalar a.\n\n @param[out] h      Signature prefix.\n\n @param[in]  h_len  Length of the prefix h.\n\n @return            Error code:\n                    - CX_OK on success\n                    - CX_EC_INVALID_CURVE\n                    - CX_NOT_UNLOCKED\n                    - CX_INVALID_PARAMETER_SIZE\n                    - CX_INVALID_PARAMETER\n                    - CX_NOT_LOCKED\n                    - CX_MEMORY_FULL\n                    - CX_EC_INVALID_POINT\n                    - CX_EC_INFINITE_POINT\n                    - CX_INTERNAL_ERROR\n"]
+    pub fn cx_eddsa_get_public_key_no_throw(
+        pvkey: *const cx_ecfp_private_key_t,
+        hashID: cx_md_t,
+        pukey: *mut cx_ecfp_public_key_t,
+        a: *mut u8,
+        a_len: usize,
+        h: *mut u8,
+        h_len: usize,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Compresses a point according to\n          <a href=\"https://tools.ietf.org/html/rfc8032\"> RFC8032 </a>.\n\n @param[in]      curve Curve identifier. The curve must be\n                       a Twisted Edwards curve.\n\n @param[in, out] p     Pointer to the point to compress.\n\n @param[in]      p_len Length of the point buffer.\n\n @return               Error code:\n                       - CX_OK on success\n                       - CX_EC_INVALID_CURVE\n                       - CX_NOT_UNLOCKED\n                       - CX_INVALID_PARAMETER_SIZE\n                       - CX_EC_INVALID_CURVE\n                       - CX_MEMORY_FULL\n                       - CX_NOT_LOCKED\n                       - CX_INVALID_PARAMETER\n                       - CX_EC_INFINITE_POINT"]
+    pub fn cx_edwards_compress_point_no_throw(
+        curve: cx_curve_t,
+        p: *mut u8,
+        p_len: usize,
+    ) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Decompresses a point according to\n          <a href=\"https://tools.ietf.org/html/rfc8032\"> RFC8032 </a>.\n\n @param[in]      curve Curve identifier. The curve must be\n                       a Twisted Edwards curve.\n\n @param[in, out] p     Pointer to the point to decompress.\n\n @param[in]      p_len Length of the point buffer.\n\n @return               Error code:\n                       - CX_OK on success\n                       - CX_EC_INVALID_CURVE\n                       - CX_NOT_UNLOCKED\n                       - CX_INVALID_PARAMETER_SIZE\n                       - CX_EC_INVALID_CURVE\n                       - CX_MEMORY_FULL\n                       - CX_NOT_LOCKED\n                       - CX_INVALID_PARAMETER\n                       - CX_EC_INFINITE_POINT\n                       - CX_NO_RESIDUE\n                       - INVALID_PARAMETER"]
+    pub fn cx_edwards_decompress_point_no_throw(
+        curve: cx_curve_t,
+        p: *mut u8,
+        p_len: usize,
+    ) -> cx_err_t;
+}
+pub const os_action_t_SET_SEED: os_action_t = 0;
+pub const os_action_t_GET_SEED: os_action_t = 1;
+pub const os_action_t_SET_STATE: os_action_t = 2;
+pub const os_action_t_GET_STATE: os_action_t = 3;
+pub type os_action_t = cty::c_uint;
+extern "C" {
+    #[doc = " Set the persisted seed if none yet, else override the volatile seed (in RAM)"]
+    pub fn os_perso_set_seed(
+        identity: cty::c_uint,
+        algorithm: cty::c_uint,
+        seed: *mut cty::c_uchar,
+        length: cty::c_uint,
+    );
+}
+extern "C" {
+    pub fn os_perso_derive_and_set_seed(
+        identity: cty::c_uchar,
+        prefix: *const cty::c_char,
+        prefix_length: cty::c_uint,
+        passphrase: *const cty::c_char,
+        passphrase_length: cty::c_uint,
+        words: *const cty::c_char,
+        words_length: cty::c_uint,
+    );
+}
+extern "C" {
+    pub fn os_perso_set_words(words: *const cty::c_uchar, length: cty::c_uint);
+}
+extern "C" {
+    pub fn os_perso_finalize();
+}
+extern "C" {
+    pub fn os_perso_isonboarded() -> bolos_bool_t;
+}
+pub const ONBOARDING_STATUS_WELCOME: _bindgen_ty_1 = 0;
+pub const ONBOARDING_STATUS_WELCOME_STEP2: _bindgen_ty_1 = 1;
+pub const ONBOARDING_STATUS_WELCOME_STEP5: _bindgen_ty_1 = 2;
+pub const ONBOARDING_STATUS_WELCOME_STEP6: _bindgen_ty_1 = 3;
+pub const ONBOARDING_STATUS_WELCOME_REMEMBER: _bindgen_ty_1 = 4;
+pub const ONBOARDING_STATUS_SETUP_CHOICE: _bindgen_ty_1 = 5;
+pub const ONBOARDING_STATUS_PIN: _bindgen_ty_1 = 6;
+pub const ONBOARDING_STATUS_NEW_DEVICE: _bindgen_ty_1 = 7;
+pub const ONBOARDING_STATUS_NEW_DEVICE_CONFIRMING: _bindgen_ty_1 = 8;
+pub const ONBOARDING_STATUS_RESTORE_SEED: _bindgen_ty_1 = 9;
+pub const ONBOARDING_STATUS_SAFETY_WARNINGS: _bindgen_ty_1 = 10;
+pub const ONBOARDING_STATUS_READY: _bindgen_ty_1 = 11;
+pub const ONBOARDING_STATUS_CHOOSE_NAME: _bindgen_ty_1 = 12;
+pub const ONBOARDING_STATUS_PROTECT_RESTORE_SEED: _bindgen_ty_1 = 13;
+pub const ONBOARDING_STATUS_START_RESTORE_SEED: _bindgen_ty_1 = 14;
+pub type _bindgen_ty_1 = cty::c_uint;
+extern "C" {
+    pub fn os_perso_set_onboarding_status(
+        state: cty::c_uint,
+        count: cty::c_uint,
+        total: cty::c_uint,
+    );
+}
+extern "C" {
+    pub fn os_perso_derive_node_bip32(
+        curve: cx_curve_t,
+        path: *const cty::c_uint,
+        pathLength: cty::c_uint,
+        privateKey: *mut cty::c_uchar,
+        chain: *mut cty::c_uchar,
+    );
+}
+extern "C" {
+    pub fn os_perso_derive_node_with_seed_key(
+        mode: cty::c_uint,
+        curve: cx_curve_t,
+        path: *const cty::c_uint,
+        pathLength: cty::c_uint,
+        privateKey: *mut cty::c_uchar,
+        chain: *mut cty::c_uchar,
+        seed_key: *mut cty::c_uchar,
+        seed_key_length: cty::c_uint,
+    );
+}
+extern "C" {
+    pub fn os_perso_derive_eip2333(
+        curve: cx_curve_t,
+        path: *const cty::c_uint,
+        pathLength: cty::c_uint,
+        privateKey: *mut cty::c_uchar,
+    );
+}
+extern "C" {
+    pub fn os_perso_seed_cookie(seed_cookie: *mut cty::c_uchar) -> bolos_bool_t;
+}
+pub const os_setting_v0_e_OS_SETTING_BRIGHTNESS_V0: os_setting_v0_e = 0;
+pub const os_setting_v0_e_OS_SETTING_INVERT_V0: os_setting_v0_e = 1;
+pub const os_setting_v0_e_OS_SETTING_ROTATION_V0: os_setting_v0_e = 2;
+pub const os_setting_v0_e_OS_SETTING_MCU_UPGRADE_V0: os_setting_v0_e = 2;
+pub const os_setting_v0_e_OS_SETTING_AUTO_LOCK_DELAY_V0: os_setting_v0_e = 3;
+pub const os_setting_v0_e_OS_SETTING_SCREEN_LOCK_DELAY_V0: os_setting_v0_e = 4;
+pub const os_setting_v0_e_OS_SETTING_POWER_OFF_DELAY_V0: os_setting_v0_e = 5;
+pub const os_setting_v0_e_OS_SETTING_PLANEMODE_V0: os_setting_v0_e = 6;
+pub const os_setting_v0_e_OS_SETTING_PRIVACY_MODE_V0: os_setting_v0_e = 7;
+pub const os_setting_v0_e_OS_SETTING_LAST_INT_V0: os_setting_v0_e = 8;
+pub const os_setting_v0_e_OS_SETTING_SAVER_STRING_V0: os_setting_v0_e = 8;
+pub const os_setting_v0_e_OS_SETTING_DEVICENAME_V0: os_setting_v0_e = 9;
+pub const os_setting_v0_e_OS_SETTING_BLEMACADR_V0: os_setting_v0_e = 10;
+pub const os_setting_v0_e_OS_SETTING_LAST_V0: os_setting_v0_e = 11;
+pub type os_setting_v0_e = cty::c_uint;
+pub use self::os_setting_v0_e as os_setting_v0_t;
+pub const os_setting_v1_e_OS_SETTING_BRIGHTNESS_V1: os_setting_v1_e = 0;
+pub const os_setting_v1_e_OS_SETTING_INVERT_V1: os_setting_v1_e = 1;
+pub const os_setting_v1_e_OS_SETTING_ROTATION_V1: os_setting_v1_e = 2;
+pub const os_setting_v1_e_OS_SETTING_MCU_UPGRADE_V1: os_setting_v1_e = 2;
+pub const os_setting_v1_e_OS_SETTING_AUTO_LOCK_DELAY_V1: os_setting_v1_e = 3;
+pub const os_setting_v1_e_OS_SETTING_SCREEN_LOCK_DELAY_V1: os_setting_v1_e = 4;
+pub const os_setting_v1_e_OS_SETTING_POWER_OFF_DELAY_V1: os_setting_v1_e = 5;
+pub const os_setting_v1_e_OS_SETTING_PLANEMODE_V1: os_setting_v1_e = 6;
+pub const os_setting_v1_e_OS_SETTING_PRIVACY_MODE_V1: os_setting_v1_e = 7;
+pub const os_setting_v1_e_OS_SETTING_LANGUAGE_V1: os_setting_v1_e = 8;
+pub const os_setting_v1_e_OS_SETTING_LAST_INT_V1: os_setting_v1_e = 9;
+pub const os_setting_v1_e_OS_SETTING_SAVER_STRING_V1: os_setting_v1_e = 9;
+pub const os_setting_v1_e_OS_SETTING_DEVICENAME_V1: os_setting_v1_e = 10;
+pub const os_setting_v1_e_OS_SETTING_BLEMACADR_V1: os_setting_v1_e = 11;
+pub const os_setting_v1_e_OS_SETTING_LAST_V1: os_setting_v1_e = 12;
+pub type os_setting_v1_e = cty::c_uint;
+pub use self::os_setting_v1_e as os_setting_v1_t;
+pub const os_setting_e_OS_SETTING_BRIGHTNESS: os_setting_e = 0;
+pub const os_setting_e_OS_SETTING_INVERT: os_setting_e = 1;
+pub const os_setting_e_OS_SETTING_ROTATION: os_setting_e = 2;
+pub const os_setting_e_OS_SETTING_MCU_UPGRADE: os_setting_e = 2;
+pub const os_setting_e_OS_SETTING_AUTO_LOCK_DELAY: os_setting_e = 3;
+pub const os_setting_e_OS_SETTING_SCREEN_LOCK_DELAY: os_setting_e = 4;
+pub const os_setting_e_OS_SETTING_POWER_OFF_DELAY: os_setting_e = 5;
+pub const os_setting_e_OS_SETTING_PLANEMODE: os_setting_e = 6;
+pub const os_setting_e_OS_SETTING_PRIVACY_MODE: os_setting_e = 7;
+pub const os_setting_e_OS_SETTING_LANGUAGE: os_setting_e = 8;
+pub const os_setting_e_OS_SETTING_PIEZO_SOUND: os_setting_e = 9;
+pub const os_setting_e_OS_SETTING_LAST_INT: os_setting_e = 10;
+pub const os_setting_e_OS_SETTING_SAVER_STRING: os_setting_e = 10;
+pub const os_setting_e_OS_SETTING_DEVICENAME: os_setting_e = 11;
+pub const os_setting_e_OS_SETTING_BLEMACADR: os_setting_e = 12;
+pub const os_setting_e_OS_SETTING_NFC_TAG_CONTENT: os_setting_e = 13;
+pub const os_setting_e_OS_SETTING_FEATURES: os_setting_e = 14;
+pub const os_setting_e_OS_SETTING_LAST: os_setting_e = 15;
+pub type os_setting_e = cty::c_uint;
+pub use self::os_setting_e as os_setting_t;
+extern "C" {
+    #[doc = " Retrieve the value of a setting in a user specified buffer, with a max length, and return the effective returned length."]
+    pub fn os_setting_get(
+        setting_id: cty::c_uint,
+        value: *mut cty::c_uchar,
+        maxlen: cty::c_uint,
+    ) -> cty::c_uint;
+}
+extern "C" {
+    #[doc = " Define a setting's value from a user buffer and its length. In case of error, a throw is executed."]
+    pub fn os_setting_set(setting_id: cty::c_uint, value: *mut cty::c_uchar, length: cty::c_uint);
+}
+extern "C" {
+    pub fn os_setting_get_default_device_name(
+        buffer: *mut cty::c_uchar,
+        maxlength: cty::c_uint,
+    ) -> cty::c_uint;
+}
+extern "C" {
+    pub fn u4be_encode(buffer: *mut cty::c_uchar, offset: cty::c_uint, value: cty::c_uint);
+}
+extern "C" {
+    pub fn u4le_encode(buffer: *mut cty::c_uchar, offset: cty::c_uint, value: cty::c_uint);
+}
+extern "C" {
+    pub fn bytes_to_hex(
+        out: *mut cty::c_char,
+        outl: usize,
+        value: *const cty::c_void,
+        len: usize,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn bytes_to_lowercase_hex(
+        out: *mut cty::c_char,
+        outl: usize,
+        value: *const cty::c_void,
+        len: usize,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn os_memset4(dst: *mut cty::c_void, initval: cty::c_uint, nbintval: cty::c_uint);
+}
+extern "C" {
+    pub fn os_xor(
+        dst: *mut cty::c_void,
+        src1: *mut cty::c_void,
+        src2: *mut cty::c_void,
+        length: cty::c_uint,
+    );
+}
+extern "C" {
+    pub fn os_secure_memcmp(
+        src1: *const cty::c_void,
+        src2: *const cty::c_void,
+        length: usize,
+    ) -> cty::c_char;
+}
+extern "C" {
+    pub fn os_memmove(
+        dest: *mut cty::c_void,
+        src: *const cty::c_void,
+        n: usize,
+    ) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn os_memcpy(dest: *mut cty::c_void, src: *const cty::c_void, n: usize)
+        -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn os_memcmp(s1: *const cty::c_void, s2: *const cty::c_void, n: usize) -> cty::c_int;
+}
+extern "C" {
+    pub fn os_memset(s: *mut cty::c_void, c: cty::c_int, n: usize) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn app_main();
+}
+extern "C" {
+    pub fn os_boot();
+}
+extern "C" {
+    #[doc = " Function takes 0 for first call. Returns 0 when timeout has occurred. Returned value is passed as argument for next call, acting as a timeout context."]
+    pub fn io_timeout(last_timeout: cty::c_ushort) -> cty::c_ushort;
+}
+pub const bolos_ux_e_BOLOS_UX_INITIALIZE: bolos_ux_e = 0;
+pub const bolos_ux_e_BOLOS_UX_EVENT: bolos_ux_e = 1;
+pub const bolos_ux_e_BOLOS_UX_KEYBOARD: bolos_ux_e = 2;
+pub const bolos_ux_e_BOLOS_UX_WAKE_UP: bolos_ux_e = 3;
+pub const bolos_ux_e_BOLOS_UX_STATUS_BAR: bolos_ux_e = 4;
+pub const bolos_ux_e_BOLOS_UX_VALIDATE_PIN: bolos_ux_e = 5;
+pub const bolos_ux_e_BOLOS_UX_ASYNCHMODAL_PAIRING_REQUEST: bolos_ux_e = 6;
+pub const bolos_ux_e_BOLOS_UX_ASYNCHMODAL_PAIRING_CANCEL: bolos_ux_e = 7;
+pub const bolos_ux_e_BOLOS_UX_LAST_ID: bolos_ux_e = 8;
+pub type bolos_ux_e = cty::c_uint;
+pub use self::bolos_ux_e as bolos_ux_t;
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct bolos_ux_params_s {
+    pub ux_id: bolos_ux_t,
+    pub len: cty::c_uint,
+    pub u: bolos_ux_params_s__bindgen_ty_1,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub union bolos_ux_params_s__bindgen_ty_1 {
+    pub pairing_request: bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1,
+    pub pairing_status: bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1 {
+    pub type_: bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1__bindgen_ty_1,
+    pub pairing_info_len: cty::c_uint,
+    pub pairing_info: [cty::c_char; 16usize],
+}
+pub const bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1_BOLOS_UX_ASYNCHMODAL_PAIRING_REQUEST_PASSKEY : bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1__bindgen_ty_1 = 0 ;
+pub const bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1_BOLOS_UX_ASYNCHMODAL_PAIRING_REQUEST_NUMCOMP : bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1__bindgen_ty_1 = 1 ;
+pub type bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1__bindgen_ty_1 = cty::c_uint;
+#[test]
+fn bindgen_test_layout_bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1() {
+    const UNINIT: ::core::mem::MaybeUninit<bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1>(),
+        24usize,
+        concat!(
+            "Size of: ",
+            stringify!(bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1)
+        )
+    );
+    assert_eq!(
+        ::core::mem::align_of::<bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1>(),
+        4usize,
+        concat!(
+            "Alignment of ",
+            stringify!(bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).type_) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(type_)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).pairing_info_len) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(pairing_info_len)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).pairing_info) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(pairing_info)
+        )
+    );
+}
+impl Default for bolos_ux_params_s__bindgen_ty_1__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2 {
+    pub pairing_ok: bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2__bindgen_ty_1,
+}
+pub const bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2_BOLOS_UX_ASYNCHMODAL_PAIRING_STATUS_CONFIRM_CODE_YES : bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2__bindgen_ty_1 = 0 ;
+pub const bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2_BOLOS_UX_ASYNCHMODAL_PAIRING_STATUS_CONFIRM_CODE_NO : bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2__bindgen_ty_1 = 1 ;
+pub const bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2_BOLOS_UX_ASYNCHMODAL_PAIRING_STATUS_ACCEPT_PASSKEY : bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2__bindgen_ty_1 = 2 ;
+pub const bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2_BOLOS_UX_ASYNCHMODAL_PAIRING_STATUS_CANCEL_PASSKEY : bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2__bindgen_ty_1 = 3 ;
+pub const bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2_BOLOS_UX_ASYNCHMODAL_PAIRING_STATUS_SUCCESS : bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2__bindgen_ty_1 = 4 ;
+pub const bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2_BOLOS_UX_ASYNCHMODAL_PAIRING_STATUS_TIMEOUT : bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2__bindgen_ty_1 = 5 ;
+pub const bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2_BOLOS_UX_ASYNCHMODAL_PAIRING_STATUS_FAILED : bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2__bindgen_ty_1 = 6 ;
+pub const bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2_BOLOS_UX_ASYNCHMODAL_PAIRING_STATUS_CANCELLED_FROM_REMOTE : bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2__bindgen_ty_1 = 7 ;
+pub type bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2__bindgen_ty_1 = cty::c_uint;
+#[test]
+fn bindgen_test_layout_bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2() {
+    const UNINIT: ::core::mem::MaybeUninit<bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2>(),
+        4usize,
+        concat!(
+            "Size of: ",
+            stringify!(bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2)
+        )
+    );
+    assert_eq!(
+        ::core::mem::align_of::<bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2>(),
+        4usize,
+        concat!(
+            "Alignment of ",
+            stringify!(bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).pairing_ok) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2),
+            "::",
+            stringify!(pairing_ok)
+        )
+    );
+}
+impl Default for bolos_ux_params_s__bindgen_ty_1__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[test]
+fn bindgen_test_layout_bolos_ux_params_s__bindgen_ty_1() {
+    const UNINIT: ::core::mem::MaybeUninit<bolos_ux_params_s__bindgen_ty_1> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<bolos_ux_params_s__bindgen_ty_1>(),
+        24usize,
+        concat!("Size of: ", stringify!(bolos_ux_params_s__bindgen_ty_1))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<bolos_ux_params_s__bindgen_ty_1>(),
+        4usize,
+        concat!("Alignment of ", stringify!(bolos_ux_params_s__bindgen_ty_1))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).pairing_request) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bolos_ux_params_s__bindgen_ty_1),
+            "::",
+            stringify!(pairing_request)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).pairing_status) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bolos_ux_params_s__bindgen_ty_1),
+            "::",
+            stringify!(pairing_status)
+        )
+    );
+}
+impl Default for bolos_ux_params_s__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[test]
+fn bindgen_test_layout_bolos_ux_params_s() {
+    const UNINIT: ::core::mem::MaybeUninit<bolos_ux_params_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<bolos_ux_params_s>(),
+        32usize,
+        concat!("Size of: ", stringify!(bolos_ux_params_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<bolos_ux_params_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(bolos_ux_params_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).ux_id) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bolos_ux_params_s),
+            "::",
+            stringify!(ux_id)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).len) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bolos_ux_params_s),
+            "::",
+            stringify!(len)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).u) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bolos_ux_params_s),
+            "::",
+            stringify!(u)
+        )
+    );
+}
+impl Default for bolos_ux_params_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+pub type bolos_ux_params_t = bolos_ux_params_s;
+extern "C" {
+    pub fn os_ux(params: *mut bolos_ux_params_t) -> cty::c_uint;
+}
+extern "C" {
+    pub fn os_ux_result(params: *mut bolos_ux_params_t);
+}
+extern "C" {
+    pub fn os_ux_blocking(params: *mut bolos_ux_params_t) -> cty::c_uint;
+}
+extern "C" {
+    pub fn os_ux_set_status(ux_id: cty::c_uint, status: cty::c_uint);
+}
+extern "C" {
+    pub fn os_ux_get_status(ux_id: cty::c_uint) -> cty::c_uint;
+}
+extern "C" {
+    pub static mut G_io_seproxyhal_spi_buffer: [cty::c_uchar; 300usize];
+}
+extern "C" {
+    pub fn io_seph_send(buffer: *const cty::c_uchar, length: cty::c_ushort);
+}
+extern "C" {
+    pub fn io_seph_is_status_sent() -> cty::c_uint;
+}
+extern "C" {
+    pub fn io_seph_recv(
+        buffer: *mut cty::c_uchar,
+        maxlength: cty::c_ushort,
+        flags: cty::c_uint,
+    ) -> cty::c_ushort;
+}
+extern "C" {
+    pub fn io_seph_init();
+}
+extern "C" {
+    pub fn io_seproxyhal_init();
+}
+extern "C" {
+    pub fn io_seproxyhal_init_ux();
+}
+extern "C" {
+    pub fn io_seproxyhal_init_button();
+}
+extern "C" {
+    pub fn io_exchange_al(channel_and_flags: cty::c_uchar, tx_len: cty::c_ushort) -> cty::c_ushort;
+}
+extern "C" {
+    pub fn os_io_seproxyhal_get_app_name_and_version() -> cty::c_uint;
+}
+extern "C" {
+    pub fn BLE_power(powered: cty::c_uchar, discovered_name: *const cty::c_char);
+}
+extern "C" {
+    pub fn USB_power(enabled: cty::c_uchar);
+}
+extern "C" {
+    pub fn io_seproxyhal_handle_usb_event();
+}
+extern "C" {
+    pub fn io_seproxyhal_handle_usb_ep_xfer_event();
+}
+extern "C" {
+    pub fn io_seproxyhal_get_ep_rx_size(epnum: u8) -> u16;
+}
+extern "C" {
+    pub fn io_seproxyhal_handle_event() -> cty::c_uint;
+}
+extern "C" {
+    pub fn io_seproxyhal_general_status();
+}
+extern "C" {
+    pub fn os_io_seproxyhal_general_status_processing();
+}
+extern "C" {
+    pub fn io_usb_send_apdu_data(buffer: *mut cty::c_uchar, length: cty::c_ushort);
+}
+extern "C" {
+    pub fn io_usb_send_apdu_data_ep0x83(buffer: *mut cty::c_uchar, length: cty::c_ushort);
+}
+extern "C" {
+    pub fn io_usb_send_ep(
+        ep: cty::c_uint,
+        buffer: *mut cty::c_uchar,
+        length: cty::c_ushort,
+        timeout: cty::c_uint,
+    );
+}
+extern "C" {
+    pub fn io_usb_ccid_reply(buffer: *mut cty::c_uchar, length: cty::c_ushort);
+}
+extern "C" {
+    pub fn io_set_timeout(timeout: cty::c_uint);
+}
+pub const io_apdu_state_e_APDU_IDLE: io_apdu_state_e = 0;
+pub const io_apdu_state_e_APDU_BLE: io_apdu_state_e = 1;
+pub const io_apdu_state_e_APDU_BLE_WAIT_NOTIFY: io_apdu_state_e = 2;
+pub const io_apdu_state_e_APDU_NFC_M24SR: io_apdu_state_e = 3;
+pub const io_apdu_state_e_APDU_NFC_M24SR_SELECT: io_apdu_state_e = 4;
+pub const io_apdu_state_e_APDU_NFC_M24SR_FIRST: io_apdu_state_e = 5;
+pub const io_apdu_state_e_APDU_NFC_M24SR_RAPDU: io_apdu_state_e = 6;
+pub const io_apdu_state_e_APDU_USB_HID: io_apdu_state_e = 7;
+pub const io_apdu_state_e_APDU_USB_CCID: io_apdu_state_e = 8;
+pub const io_apdu_state_e_APDU_U2F: io_apdu_state_e = 9;
+pub const io_apdu_state_e_APDU_RAW: io_apdu_state_e = 10;
+pub const io_apdu_state_e_APDU_USB_WEBUSB: io_apdu_state_e = 11;
+pub type io_apdu_state_e = cty::c_uint;
+#[doc = " Global type that enables to map memory onto the application zone instead of over the os for os side"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct io_seph_s {
+    pub apdu_state: io_apdu_state_e,
+    pub apdu_length: cty::c_ushort,
+    pub io_flags: cty::c_ushort,
+    pub apdu_media: io_apdu_media_t,
+    pub ms: cty::c_uint,
+    pub usb_ep_xfer_len: [cty::c_uchar; 7usize],
+    pub usb_ep_timeouts: [io_seph_s__bindgen_ty_1; 7usize],
+    pub ble_xfer_timeout: cty::c_ushort,
+    pub plane_mode: cty::c_uint,
+    pub ble_ready: cty::c_uchar,
+    pub name_changed: cty::c_uchar,
+    pub enabling_advertising: cty::c_uchar,
+    pub disabling_advertising: cty::c_uchar,
+    pub transfer_mode: cty::c_uchar,
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct io_seph_s__bindgen_ty_1 {
+    pub timeout: cty::c_ushort,
+}
+#[test]
+fn bindgen_test_layout_io_seph_s__bindgen_ty_1() {
+    const UNINIT: ::core::mem::MaybeUninit<io_seph_s__bindgen_ty_1> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<io_seph_s__bindgen_ty_1>(),
+        2usize,
+        concat!("Size of: ", stringify!(io_seph_s__bindgen_ty_1))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<io_seph_s__bindgen_ty_1>(),
+        2usize,
+        concat!("Alignment of ", stringify!(io_seph_s__bindgen_ty_1))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).timeout) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_seph_s__bindgen_ty_1),
+            "::",
+            stringify!(timeout)
+        )
+    );
+}
+#[test]
+fn bindgen_test_layout_io_seph_s() {
+    const UNINIT: ::core::mem::MaybeUninit<io_seph_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<io_seph_s>(),
+        52usize,
+        concat!("Size of: ", stringify!(io_seph_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<io_seph_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(io_seph_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).apdu_state) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_seph_s),
+            "::",
+            stringify!(apdu_state)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).apdu_length) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_seph_s),
+            "::",
+            stringify!(apdu_length)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).io_flags) as usize - ptr as usize },
+        6usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_seph_s),
+            "::",
+            stringify!(io_flags)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).apdu_media) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_seph_s),
+            "::",
+            stringify!(apdu_media)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).ms) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_seph_s),
+            "::",
+            stringify!(ms)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).usb_ep_xfer_len) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_seph_s),
+            "::",
+            stringify!(usb_ep_xfer_len)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).usb_ep_timeouts) as usize - ptr as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_seph_s),
+            "::",
+            stringify!(usb_ep_timeouts)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).ble_xfer_timeout) as usize - ptr as usize },
+        38usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_seph_s),
+            "::",
+            stringify!(ble_xfer_timeout)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).plane_mode) as usize - ptr as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_seph_s),
+            "::",
+            stringify!(plane_mode)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).ble_ready) as usize - ptr as usize },
+        44usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_seph_s),
+            "::",
+            stringify!(ble_ready)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).name_changed) as usize - ptr as usize },
+        45usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_seph_s),
+            "::",
+            stringify!(name_changed)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).enabling_advertising) as usize - ptr as usize },
+        46usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_seph_s),
+            "::",
+            stringify!(enabling_advertising)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).disabling_advertising) as usize - ptr as usize },
+        47usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_seph_s),
+            "::",
+            stringify!(disabling_advertising)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).transfer_mode) as usize - ptr as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(io_seph_s),
+            "::",
+            stringify!(transfer_mode)
+        )
+    );
+}
+impl Default for io_seph_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " Global type that enables to map memory onto the application zone instead of over the os for os side"]
+pub type io_seph_app_t = io_seph_s;
+extern "C" {
+    pub static mut G_io_app: io_seph_app_t;
+}
+extern "C" {
+    pub fn io_seproxyhal_setup_ticker(interval_ms: cty::c_uint);
+}
+extern "C" {
+    pub fn io_seproxyhal_power_off();
+}
+extern "C" {
+    pub fn io_seproxyhal_se_reset();
+}
+extern "C" {
+    pub fn io_seproxyhal_disable_io();
+}
+pub const tune_index_e_TUNE_RESERVED: tune_index_e = 0;
+pub const tune_index_e_TUNE_BOOT: tune_index_e = 1;
+pub const tune_index_e_TUNE_CHARGING: tune_index_e = 2;
+pub const tune_index_e_TUNE_LEDGER_MOMENT: tune_index_e = 3;
+pub const tune_index_e_TUNE_ERROR: tune_index_e = 4;
+pub const tune_index_e_TUNE_NEUTRAL: tune_index_e = 5;
+pub const tune_index_e_TUNE_LOCK: tune_index_e = 6;
+pub const tune_index_e_TUNE_SUCCESS: tune_index_e = 7;
+pub const tune_index_e_TUNE_LOOK_AT_ME: tune_index_e = 8;
+pub const tune_index_e_TUNE_TAP_CASUAL: tune_index_e = 9;
+pub const tune_index_e_TUNE_TAP_NEXT: tune_index_e = 10;
+pub const tune_index_e_NB_TUNES: tune_index_e = 11;
+pub type tune_index_e = cty::c_uint;
+extern "C" {
+    pub fn io_seproxyhal_play_tune(tune_index: tune_index_e);
+}
+extern "C" {
+    pub fn io_seph_ble_enable(enable: cty::c_uchar);
+}
+extern "C" {
+    pub fn io_seph_ble_clear_bond_db();
+}
+extern "C" {
+    pub fn io_seph_ble_name_changed();
+}
+extern "C" {
+    pub fn io_seph_ux_redisplay();
+}
+extern "C" {
+    #[doc = " Function to ensure a I/O channel is not timeouting waiting for operations after a long time without SEPH packet exchanges"]
+    pub fn io_seproxyhal_io_heartbeat();
+}
+extern "C" {
+    pub fn os_io_seph_recv_and_process(dont_process_ux_events: cty::c_uint) -> cty::c_uint;
+}
+pub type io_send_t =
+    ::core::option::Option<unsafe extern "C" fn(buffer: *mut cty::c_uchar, length: cty::c_ushort)>;
+pub type io_recv_t = ::core::option::Option<
+    unsafe extern "C" fn(buffer: *mut cty::c_uchar, maxlenth: cty::c_ushort) -> cty::c_ushort,
+>;
+pub const io_usb_hid_receive_status_e_IO_USB_APDU_RESET: io_usb_hid_receive_status_e = 0;
+pub const io_usb_hid_receive_status_e_IO_USB_APDU_MORE_DATA: io_usb_hid_receive_status_e = 1;
+pub const io_usb_hid_receive_status_e_IO_USB_APDU_RECEIVED: io_usb_hid_receive_status_e = 2;
+pub type io_usb_hid_receive_status_e = cty::c_uint;
+pub use self::io_usb_hid_receive_status_e as io_usb_hid_receive_status_t;
+extern "C" {
+    pub static mut G_io_usb_hid_total_length: cty::c_uint;
+}
+extern "C" {
+    pub fn io_usb_hid_init();
+}
+extern "C" {
+    #[doc = " Receive next HID transport packet, returns IO_USB_APDU_RECEIVED when a complete APDU has been received in the G_io_apdu_buffer\n To be called typically upon USB OUT event"]
+    pub fn io_usb_hid_receive(
+        sndfct: io_send_t,
+        buffer: *mut cty::c_uchar,
+        l: cty::c_ushort,
+    ) -> io_usb_hid_receive_status_t;
+}
+extern "C" {
+    #[doc = " Mark the last chunk transmitted as sent.\n To be called typically upon USB IN ACK event"]
+    pub fn io_usb_hid_sent(sndfct: io_send_t);
+}
+extern "C" {
+    #[doc = " Request transmission of an APDU from the G_io_apdu_buffer using the HID transport protocol"]
+    pub fn io_usb_hid_send(sndfct: io_send_t, sndlength: cty::c_ushort);
+}
+#[doc = " @brief   AES key container.\n\n @details Such container should be initialized with #cx_aes_init_key_no_throw."]
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct cx_aes_key_s {
+    #[doc = "< key size"]
+    pub size: usize,
+    #[doc = "< key value"]
+    pub keys: [u8; 32usize],
+}
+#[test]
+fn bindgen_test_layout_cx_aes_key_s() {
+    const UNINIT: ::core::mem::MaybeUninit<cx_aes_key_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<cx_aes_key_s>(),
+        36usize,
+        concat!("Size of: ", stringify!(cx_aes_key_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_aes_key_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(cx_aes_key_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).size) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_aes_key_s),
+            "::",
+            stringify!(size)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).keys) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_aes_key_s),
+            "::",
+            stringify!(keys)
+        )
+    );
+}
+#[doc = " @brief   AES key container.\n\n @details Such container should be initialized with #cx_aes_init_key_no_throw."]
+pub type cx_aes_key_t = cx_aes_key_s;
+extern "C" {
+    #[doc = " @brief   Sets an AES key in hardware.\n\n @param[in] key AES key.\n\n @param[in] mode Operation for which the key will be used.\n\n @return         Error code:\n                 - CX_OK on success\n                 - CX_INVALID_PARAMETER"]
+    pub fn cx_aes_set_key_hw(key: *const cx_aes_key_t, mode: u32) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Resets the AES context."]
+    pub fn cx_aes_reset_hw();
+}
+extern "C" {
+    #[doc = " @brief   Encrypts or decrypts a block with AES.\n\n @param[in]  inblock  Pointer to the block.\n\n @param[out] outblock Buffer for the output.\n\n @return              Error code:\n                      - CX_OK on success\n                      - INVALID_PARAMETER"]
+    pub fn cx_aes_block_hw(inblock: *const cty::c_uchar, outblock: *mut cty::c_uchar) -> cx_err_t;
+}
+#[doc = " @brief   DES key container.\n\n  @details DES key container.\n           Such container should be initialized with **cx_des_init_key_no_throw**.\n           8 bytes (simple DES), 16 bytes (triple DES with 2 keys) and 24 bytes\n           (triple DES with 3 keys) are supported."]
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct cx_des_key_s {
+    #[doc = "< key size"]
+    pub size: u8,
+    #[doc = "< key value"]
+    pub keys: [u8; 24usize],
+}
+#[test]
+fn bindgen_test_layout_cx_des_key_s() {
+    const UNINIT: ::core::mem::MaybeUninit<cx_des_key_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<cx_des_key_s>(),
+        25usize,
+        concat!("Size of: ", stringify!(cx_des_key_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<cx_des_key_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(cx_des_key_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).size) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_des_key_s),
+            "::",
+            stringify!(size)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).keys) as usize - ptr as usize },
+        1usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(cx_des_key_s),
+            "::",
+            stringify!(keys)
+        )
+    );
+}
+#[doc = " @brief   DES key container.\n\n  @details DES key container.\n           Such container should be initialized with **cx_des_init_key_no_throw**.\n           8 bytes (simple DES), 16 bytes (triple DES with 2 keys) and 24 bytes\n           (triple DES with 3 keys) are supported."]
+pub type cx_des_key_t = cx_des_key_s;
+extern "C" {
+    #[doc = " @brief   Sets a DES key in hardware.\n\n @param[in] keys DES key.\n\n @param[in] mode Operation for which the key will be used.\n\n @return         Error code:\n                 - CX_OK on success\n                 - INVALID_PARAMETER"]
+    pub fn cx_des_set_key_hw(keys: *const cx_des_key_t, mode: u32) -> cx_err_t;
+}
+extern "C" {
+    #[doc = " @brief   Resets the DES context."]
+    pub fn cx_des_reset_hw();
+}
+extern "C" {
+    #[doc = " @brief   Encrypts or decrypts a block with DES.\n\n @param[in]  inblock  Pointer to the block.\n\n @param[out] outblock Buffer for the output."]
+    pub fn cx_des_block_hw(inblock: *const cty::c_uchar, outblock: *mut cty::c_uchar);
+}
 extern "C" {
     #[doc = " @brief Calculates a 32-bit cyclic redundancy check.\n\n @param[in] buf Pointer to the buffer to check.\n\n @param[in] len Length of the buffer.\n\n @return        Result of the 32-bit CRC calculation.\n"]
     pub fn cx_crc32_hw(buf: *const cty::c_void, len: usize) -> u32;
@@ -1699,415 +8060,6 @@ extern "C" {
 }
 extern "C" {
     pub fn cx_trng_init();
-}
-pub type uint64bits_t = u64;
-pub const generic_identifiers_ERR_GEN_ID_01: generic_identifiers = 1;
-pub const generic_identifiers_ERR_GEN_ID_02: generic_identifiers = 2;
-pub const generic_identifiers_ERR_GEN_ID_03: generic_identifiers = 3;
-pub const generic_identifiers_ERR_GEN_ID_04: generic_identifiers = 4;
-pub const generic_identifiers_ERR_GEN_ID_05: generic_identifiers = 5;
-pub const generic_identifiers_ERR_GEN_ID_06: generic_identifiers = 6;
-pub const generic_identifiers_ERR_GEN_ID_07: generic_identifiers = 7;
-pub const generic_identifiers_ERR_GEN_ID_08: generic_identifiers = 8;
-pub const generic_identifiers_ERR_GEN_ID_09: generic_identifiers = 9;
-pub const generic_identifiers_ERR_GEN_ID_0A: generic_identifiers = 10;
-pub const generic_identifiers_ERR_GEN_ID_0B: generic_identifiers = 11;
-pub const generic_identifiers_ERR_GEN_ID_0C: generic_identifiers = 12;
-pub const generic_identifiers_ERR_GEN_ID_0D: generic_identifiers = 13;
-pub const generic_identifiers_ERR_GEN_ID_0E: generic_identifiers = 14;
-pub const generic_identifiers_ERR_GEN_ID_0F: generic_identifiers = 15;
-pub const generic_identifiers_ERR_GEN_ID_10: generic_identifiers = 16;
-pub const generic_identifiers_ERR_GEN_ID_11: generic_identifiers = 17;
-pub const generic_identifiers_ERR_GEN_ID_12: generic_identifiers = 18;
-pub const generic_identifiers_ERR_GEN_ID_13: generic_identifiers = 19;
-pub const generic_identifiers_ERR_GEN_ID_14: generic_identifiers = 20;
-pub const generic_identifiers_ERR_GEN_ID_15: generic_identifiers = 21;
-pub const generic_identifiers_ERR_GEN_ID_16: generic_identifiers = 22;
-pub const generic_identifiers_ERR_GEN_ID_17: generic_identifiers = 23;
-pub const generic_identifiers_ERR_GEN_ID_18: generic_identifiers = 24;
-pub const generic_identifiers_ERR_GEN_ID_19: generic_identifiers = 25;
-pub const generic_identifiers_ERR_GEN_ID_1A: generic_identifiers = 26;
-pub const generic_identifiers_ERR_GEN_ID_1B: generic_identifiers = 27;
-pub const generic_identifiers_ERR_GEN_ID_1C: generic_identifiers = 28;
-pub const generic_identifiers_ERR_GEN_ID_1D: generic_identifiers = 29;
-pub const generic_identifiers_ERR_GEN_ID_1E: generic_identifiers = 30;
-pub const generic_identifiers_ERR_GEN_ID_1F: generic_identifiers = 31;
-pub const generic_identifiers_ERR_GEN_ID_20: generic_identifiers = 32;
-pub const generic_identifiers_ERR_GEN_ID_21: generic_identifiers = 33;
-pub const generic_identifiers_ERR_GEN_ID_22: generic_identifiers = 34;
-pub const generic_identifiers_ERR_GEN_ID_23: generic_identifiers = 35;
-pub const generic_identifiers_ERR_GEN_ID_24: generic_identifiers = 36;
-pub const generic_identifiers_ERR_GEN_ID_25: generic_identifiers = 37;
-pub const generic_identifiers_ERR_GEN_ID_26: generic_identifiers = 38;
-pub const generic_identifiers_ERR_GEN_ID_27: generic_identifiers = 39;
-pub const generic_identifiers_ERR_GEN_ID_28: generic_identifiers = 40;
-pub const generic_identifiers_ERR_GEN_ID_29: generic_identifiers = 41;
-pub const generic_identifiers_ERR_GEN_ID_2A: generic_identifiers = 42;
-pub const generic_identifiers_ERR_GEN_ID_2B: generic_identifiers = 43;
-pub const generic_identifiers_ERR_GEN_ID_2C: generic_identifiers = 44;
-pub const generic_identifiers_ERR_GEN_ID_2D: generic_identifiers = 45;
-pub const generic_identifiers_ERR_GEN_ID_2E: generic_identifiers = 46;
-pub const generic_identifiers_ERR_GEN_ID_2F: generic_identifiers = 47;
-pub const generic_identifiers_ERR_GEN_ID_30: generic_identifiers = 48;
-pub const generic_identifiers_ERR_GEN_ID_31: generic_identifiers = 49;
-pub const generic_identifiers_ERR_GEN_ID_32: generic_identifiers = 50;
-pub const generic_identifiers_ERR_GEN_ID_33: generic_identifiers = 51;
-pub const generic_identifiers_ERR_GEN_ID_34: generic_identifiers = 52;
-pub const generic_identifiers_ERR_GEN_ID_35: generic_identifiers = 53;
-pub const generic_identifiers_ERR_GEN_ID_36: generic_identifiers = 54;
-pub const generic_identifiers_ERR_GEN_ID_37: generic_identifiers = 55;
-pub type generic_identifiers = cty::c_uint;
-pub type bolos_err_t = u32;
-pub type exception_t = cty::c_ushort;
-pub type try_context_t = try_context_s;
-pub type jmp_buf = [cty::c_uint; 10usize];
-extern "C" {
-    pub fn longjmp(__jmpb: *mut cty::c_uint, __retval: cty::c_int) -> !;
-}
-extern "C" {
-    pub fn setjmp(__jmpb: *mut cty::c_uint) -> cty::c_int;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct try_context_s {
-    pub jmp_buf: jmp_buf,
-    pub previous: *mut try_context_t,
-    pub ex: exception_t,
-}
-#[test]
-fn bindgen_test_layout_try_context_s() {
-    const UNINIT: ::core::mem::MaybeUninit<try_context_s> = ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<try_context_s>(),
-        48usize,
-        concat!("Size of: ", stringify!(try_context_s))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<try_context_s>(),
-        4usize,
-        concat!("Alignment of ", stringify!(try_context_s))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).jmp_buf) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(try_context_s),
-            "::",
-            stringify!(jmp_buf)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).previous) as usize - ptr as usize },
-        40usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(try_context_s),
-            "::",
-            stringify!(previous)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).ex) as usize - ptr as usize },
-        44usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(try_context_s),
-            "::",
-            stringify!(ex)
-        )
-    );
-}
-impl Default for try_context_s {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-extern "C" {
-    pub fn try_context_get() -> *mut try_context_t;
-}
-extern "C" {
-    pub fn try_context_set(context: *mut try_context_t) -> *mut try_context_t;
-}
-extern "C" {
-    pub fn os_longjmp(exception: cty::c_uint) -> !;
-}
-extern "C" {
-    pub fn os_parse_bertlv(
-        mem: *mut cty::c_uchar,
-        mem_len: cty::c_uint,
-        tlv_instance_offset: *mut cty::c_uint,
-        tag: cty::c_uint,
-        offset: cty::c_uint,
-        buffer: *mut *mut cty::c_void,
-        maxlength: cty::c_uint,
-    ) -> cty::c_uint;
-}
-#[doc = "< No message digest algorithm"]
-pub const cx_md_e_CX_NONE: cx_md_e = 0;
-#[doc = "< RIPEMD160 digest"]
-pub const cx_md_e_CX_RIPEMD160: cx_md_e = 1;
-#[doc = "< SHA224 digest"]
-pub const cx_md_e_CX_SHA224: cx_md_e = 2;
-#[doc = "< SHA256 digest"]
-pub const cx_md_e_CX_SHA256: cx_md_e = 3;
-#[doc = "< SHA384 digest"]
-pub const cx_md_e_CX_SHA384: cx_md_e = 4;
-#[doc = "< SHA512 digest"]
-pub const cx_md_e_CX_SHA512: cx_md_e = 5;
-#[doc = "< Keccak (pre-SHA3) digest"]
-pub const cx_md_e_CX_KECCAK: cx_md_e = 6;
-#[doc = "< SHA3 Digest"]
-pub const cx_md_e_CX_SHA3: cx_md_e = 7;
-#[doc = "< Keep compatibility"]
-pub const cx_md_e_DEPRECATED_0: cx_md_e = 8;
-#[doc = "< Blake digest"]
-pub const cx_md_e_CX_BLAKE2B: cx_md_e = 9;
-#[doc = "< SHAKE-128 digest"]
-pub const cx_md_e_CX_SHAKE128: cx_md_e = 10;
-#[doc = "< SHAKE-256 digest"]
-pub const cx_md_e_CX_SHAKE256: cx_md_e = 11;
-#[doc = "< SHA3-256 digest"]
-pub const cx_md_e_CX_SHA3_256: cx_md_e = 12;
-#[doc = "< SHA3-512 digest"]
-pub const cx_md_e_CX_SHA3_512: cx_md_e = 13;
-#[doc = " Message digest algorithm identifiers."]
-pub type cx_md_e = cty::c_uint;
-#[doc = " Message digest algorithm identifiers."]
-pub use self::cx_md_e as cx_md_t;
-#[doc = " @brief Common message digest context, used as abstract type."]
-pub type cx_hash_t = cx_hash_header_s;
-#[doc = " @brief Hash description."]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct cx_hash_info_t {
-    #[doc = "< Message digest algorithm identifier"]
-    pub md_type: cx_md_t,
-    #[doc = "< Output size"]
-    pub output_size: usize,
-    #[doc = "< Block size"]
-    pub block_size: usize,
-    #[doc = "< Related size of the context hash"]
-    pub ctx_size: usize,
-    #[doc = "< Pointer to the initialization function"]
-    pub init_func: ::core::option::Option<unsafe extern "C" fn(ctx: *mut cx_hash_t) -> cx_err_t>,
-    #[doc = "< Pointer to the update function"]
-    pub update_func: ::core::option::Option<
-        unsafe extern "C" fn(ctx: *mut cx_hash_t, data: *const u8, len: usize) -> cx_err_t,
-    >,
-    #[doc = "< Pointer to the final function"]
-    pub finish_func: ::core::option::Option<
-        unsafe extern "C" fn(ctx: *mut cx_hash_t, digest: *mut u8) -> cx_err_t,
-    >,
-    #[doc = "< Pointer to the initialization function for extendable output"]
-    pub init_ex_func: ::core::option::Option<
-        unsafe extern "C" fn(ctx: *mut cx_hash_t, output_size: usize) -> cx_err_t,
-    >,
-    #[doc = "< Pointer to the output size function"]
-    pub output_size_func:
-        ::core::option::Option<unsafe extern "C" fn(ctx: *const cx_hash_t) -> usize>,
-}
-#[test]
-fn bindgen_test_layout_cx_hash_info_t() {
-    const UNINIT: ::core::mem::MaybeUninit<cx_hash_info_t> = ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<cx_hash_info_t>(),
-        36usize,
-        concat!("Size of: ", stringify!(cx_hash_info_t))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<cx_hash_info_t>(),
-        4usize,
-        concat!("Alignment of ", stringify!(cx_hash_info_t))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).md_type) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_hash_info_t),
-            "::",
-            stringify!(md_type)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).output_size) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_hash_info_t),
-            "::",
-            stringify!(output_size)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).block_size) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_hash_info_t),
-            "::",
-            stringify!(block_size)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).ctx_size) as usize - ptr as usize },
-        12usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_hash_info_t),
-            "::",
-            stringify!(ctx_size)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).init_func) as usize - ptr as usize },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_hash_info_t),
-            "::",
-            stringify!(init_func)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).update_func) as usize - ptr as usize },
-        20usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_hash_info_t),
-            "::",
-            stringify!(update_func)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).finish_func) as usize - ptr as usize },
-        24usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_hash_info_t),
-            "::",
-            stringify!(finish_func)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).init_ex_func) as usize - ptr as usize },
-        28usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_hash_info_t),
-            "::",
-            stringify!(init_ex_func)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).output_size_func) as usize - ptr as usize },
-        32usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_hash_info_t),
-            "::",
-            stringify!(output_size_func)
-        )
-    );
-}
-impl Default for cx_hash_info_t {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-#[doc = " @brief Common message digest context, used as abstract type."]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct cx_hash_header_s {
-    #[doc = "< Hash description"]
-    pub info: *const cx_hash_info_t,
-    #[doc = "< Number of already processed blocks"]
-    pub counter: u32,
-}
-#[test]
-fn bindgen_test_layout_cx_hash_header_s() {
-    const UNINIT: ::core::mem::MaybeUninit<cx_hash_header_s> = ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<cx_hash_header_s>(),
-        8usize,
-        concat!("Size of: ", stringify!(cx_hash_header_s))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<cx_hash_header_s>(),
-        4usize,
-        concat!("Alignment of ", stringify!(cx_hash_header_s))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).info) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_hash_header_s),
-            "::",
-            stringify!(info)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).counter) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_hash_header_s),
-            "::",
-            stringify!(counter)
-        )
-    );
-}
-impl Default for cx_hash_header_s {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-extern "C" {
-    pub fn cx_hash_get_size(ctx: *const cx_hash_t) -> usize;
-}
-extern "C" {
-    #[doc = " @brief   Hashes data according to the specified algorithm.\n\n @param[in]  hash    Pointer to the hash context.\n                     Shall be in RAM.\n                     Should be called with a cast.\n\n @param[in]  mode    Crypto flag. Supported flag: CX_LAST. If set:\n                       - the structure is not modified after finishing\n                       - if out is not NULL, the message digest is stored in out\n                       - the context is NOT automatically re-initialized.\n\n @param[in]  in      Input data to be hashed.\n\n @param[in]  len     Length of the input data.\n\n @param[out] out     Buffer where to store the message digest:\n                       - NULL (ignored) if CX_LAST is NOT set\n                       - message digest if CX_LAST is set\n\n @param[out] out_len The size of the output buffer or 0 if out is NULL.\n                     If buffer is too small to store the hash an error is returned.\n\n @return             Error code:\n                     - CX_OK on success\n                     - INVALID_PARAMETER\n                     - CX_INVALID_PARAMETER"]
-    pub fn cx_hash_no_throw(
-        hash: *mut cx_hash_t,
-        mode: u32,
-        in_: *const u8,
-        len: usize,
-        out: *mut u8,
-        out_len: usize,
-    ) -> cx_err_t;
-}
-extern "C" {
-    #[doc = " @brief   Initializes a hash context.\n\n @param[out] hash    Pointer to the context to be initialized.\n                     The context shall be in RAM.\n\n @param[in]  hash_id Message digest algorithm identifier.\n\n @return             Error code:\n                     - CX_OK on success\n                     - CX_INVALID_PARAMETER"]
-    pub fn cx_hash_init(hash: *mut cx_hash_t, hash_id: cx_md_t) -> cx_err_t;
-}
-extern "C" {
-    #[doc = " @brief   Initializes a hash context.\n\n @details It initializes a hash context with a chosen output length\n          (typically for eXtendable Output Functions (XOF)).\n\n @param[out] hash        Pointer to the context to be initialized.\n                         The context shall be in RAM.\n\n @param [in] hash_id     Hash algorithm identifier. Typically:\n                           - CX_BLAKE2B\n                           - CX_SHAKE128\n                           - CX_SHAKE256\n\n @param [in] output_size Length of the output.\n\n @return                 Error code:\n                         - CX_OK on success\n                         - CX_INVALID_PARAMETER"]
-    pub fn cx_hash_init_ex(hash: *mut cx_hash_t, hash_id: cx_md_t, output_size: usize) -> cx_err_t;
-}
-extern "C" {
-    #[doc = " @brief   Adds more data to hash.\n\n @details A call to this function is equivalent to:\n          *cx_hash_no_throw(hash, 0, in, in_len, NULL, 0)*.\n\n @param[out] hash   Pointer to the hash context.\n\n @param[in]  in     Input data to add to the context.\n\n @param[in]  in_len Length of the input data.\n\n @return            Error code:\n                    - CX_OK on success\n                    - CX_INVALID_PARAMETER\n                    - INVALID_PARAMETER"]
-    pub fn cx_hash_update(hash: *mut cx_hash_t, in_: *const u8, in_len: usize) -> cx_err_t;
-}
-extern "C" {
-    #[doc = " @brief   Finalizes the hash.\n\n @details A call to this function is equivalent to:\n          *cx_hash_no_throw(hash, CX_LAST, NULL, 0, out, out_len)*.\n\n @param[in]  hash   Pointer to the hash context.\n\n @param[out] digest The message digest.\n\n @return            Error code:\n                    - CX_OK on success"]
-    pub fn cx_hash_final(hash: *mut cx_hash_t, digest: *mut u8) -> cx_err_t;
 }
 #[doc = " @brief RIPEMD-160 context."]
 #[repr(C)]
@@ -3569,911 +9521,6 @@ extern "C" {
 extern "C" {
     pub fn add_one_and_zeros_padding(output: *mut u8, out_len: usize, data_len: usize);
 }
-#[doc = " Elliptic Curve public key"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct cx_ecfp_public_key_s {
-    #[doc = "< Curve identifier"]
-    pub curve: cx_curve_t,
-    #[doc = "< Public key length in bytes"]
-    pub W_len: usize,
-    #[doc = "< Public key value"]
-    pub W: [u8; 1usize],
-}
-#[test]
-fn bindgen_test_layout_cx_ecfp_public_key_s() {
-    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_public_key_s> =
-        ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<cx_ecfp_public_key_s>(),
-        12usize,
-        concat!("Size of: ", stringify!(cx_ecfp_public_key_s))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<cx_ecfp_public_key_s>(),
-        4usize,
-        concat!("Alignment of ", stringify!(cx_ecfp_public_key_s))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_public_key_s),
-            "::",
-            stringify!(curve)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).W_len) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_public_key_s),
-            "::",
-            stringify!(W_len)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).W) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_public_key_s),
-            "::",
-            stringify!(W)
-        )
-    );
-}
-impl Default for cx_ecfp_public_key_s {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-#[doc = " Elliptic Curve private key"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct cx_ecfp_private_key_s {
-    #[doc = "< Curve identifier"]
-    pub curve: cx_curve_t,
-    #[doc = "< Private key length in bytes"]
-    pub d_len: usize,
-    #[doc = "< Private key value"]
-    pub d: [u8; 1usize],
-}
-#[test]
-fn bindgen_test_layout_cx_ecfp_private_key_s() {
-    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_private_key_s> =
-        ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<cx_ecfp_private_key_s>(),
-        12usize,
-        concat!("Size of: ", stringify!(cx_ecfp_private_key_s))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<cx_ecfp_private_key_s>(),
-        4usize,
-        concat!("Alignment of ", stringify!(cx_ecfp_private_key_s))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_private_key_s),
-            "::",
-            stringify!(curve)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).d_len) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_private_key_s),
-            "::",
-            stringify!(d_len)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).d) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_private_key_s),
-            "::",
-            stringify!(d)
-        )
-    );
-}
-impl Default for cx_ecfp_private_key_s {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-#[doc = " Up to 256-bit Elliptic Curve public key"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct cx_ecfp_256_public_key_s {
-    #[doc = "< Curve identifier"]
-    pub curve: cx_curve_t,
-    #[doc = "< Public key length in bytes"]
-    pub W_len: usize,
-    #[doc = "< Public key value"]
-    pub W: [u8; 65usize],
-}
-#[test]
-fn bindgen_test_layout_cx_ecfp_256_public_key_s() {
-    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_256_public_key_s> =
-        ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<cx_ecfp_256_public_key_s>(),
-        76usize,
-        concat!("Size of: ", stringify!(cx_ecfp_256_public_key_s))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<cx_ecfp_256_public_key_s>(),
-        4usize,
-        concat!("Alignment of ", stringify!(cx_ecfp_256_public_key_s))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_256_public_key_s),
-            "::",
-            stringify!(curve)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).W_len) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_256_public_key_s),
-            "::",
-            stringify!(W_len)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).W) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_256_public_key_s),
-            "::",
-            stringify!(W)
-        )
-    );
-}
-impl Default for cx_ecfp_256_public_key_s {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-#[doc = " Up to 256-bit Elliptic Curve private key"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct cx_ecfp_256_private_key_s {
-    #[doc = "< Curve identifier"]
-    pub curve: cx_curve_t,
-    #[doc = "< Private key length in bytes"]
-    pub d_len: usize,
-    #[doc = "< Private key value"]
-    pub d: [u8; 32usize],
-}
-#[test]
-fn bindgen_test_layout_cx_ecfp_256_private_key_s() {
-    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_256_private_key_s> =
-        ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<cx_ecfp_256_private_key_s>(),
-        40usize,
-        concat!("Size of: ", stringify!(cx_ecfp_256_private_key_s))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<cx_ecfp_256_private_key_s>(),
-        4usize,
-        concat!("Alignment of ", stringify!(cx_ecfp_256_private_key_s))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_256_private_key_s),
-            "::",
-            stringify!(curve)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).d_len) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_256_private_key_s),
-            "::",
-            stringify!(d_len)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).d) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_256_private_key_s),
-            "::",
-            stringify!(d)
-        )
-    );
-}
-impl Default for cx_ecfp_256_private_key_s {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-#[doc = " Up to 256-bit Elliptic Curve extended private key"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct cx_ecfp_256_extended_private_key_s {
-    #[doc = "< Curve identifier"]
-    pub curve: cx_curve_t,
-    #[doc = "< Public key length in bytes"]
-    pub d_len: usize,
-    #[doc = "< Public key value"]
-    pub d: [u8; 64usize],
-}
-#[test]
-fn bindgen_test_layout_cx_ecfp_256_extended_private_key_s() {
-    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_256_extended_private_key_s> =
-        ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<cx_ecfp_256_extended_private_key_s>(),
-        72usize,
-        concat!("Size of: ", stringify!(cx_ecfp_256_extended_private_key_s))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<cx_ecfp_256_extended_private_key_s>(),
-        4usize,
-        concat!(
-            "Alignment of ",
-            stringify!(cx_ecfp_256_extended_private_key_s)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_256_extended_private_key_s),
-            "::",
-            stringify!(curve)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).d_len) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_256_extended_private_key_s),
-            "::",
-            stringify!(d_len)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).d) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_256_extended_private_key_s),
-            "::",
-            stringify!(d)
-        )
-    );
-}
-impl Default for cx_ecfp_256_extended_private_key_s {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-#[doc = " Up to 256-bit Elliptic Curve public key"]
-pub type cx_ecfp_256_public_key_t = cx_ecfp_256_public_key_s;
-#[doc = " Up to 256-bit Elliptic Curve private key"]
-pub type cx_ecfp_256_private_key_t = cx_ecfp_256_private_key_s;
-#[doc = " Up to 256-bit Elliptic Curve extended private key"]
-pub type cx_ecfp_256_extended_private_key_t = cx_ecfp_256_extended_private_key_s;
-#[doc = " Up to 256-bit Elliptic Curve public key"]
-pub type cx_ecfp_public_key_t = cx_ecfp_256_public_key_s;
-#[doc = " Up to 256-bit Elliptic Curve private key"]
-pub type cx_ecfp_private_key_t = cx_ecfp_256_private_key_s;
-#[doc = " Up to 384-bit Elliptic Curve public key"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct cx_ecfp_384_public_key_s {
-    #[doc = "< Curve identifier"]
-    pub curve: cx_curve_t,
-    #[doc = "< Public key length in bytes"]
-    pub W_len: usize,
-    #[doc = "< Public key value"]
-    pub W: [u8; 97usize],
-}
-#[test]
-fn bindgen_test_layout_cx_ecfp_384_public_key_s() {
-    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_384_public_key_s> =
-        ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<cx_ecfp_384_public_key_s>(),
-        108usize,
-        concat!("Size of: ", stringify!(cx_ecfp_384_public_key_s))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<cx_ecfp_384_public_key_s>(),
-        4usize,
-        concat!("Alignment of ", stringify!(cx_ecfp_384_public_key_s))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_384_public_key_s),
-            "::",
-            stringify!(curve)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).W_len) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_384_public_key_s),
-            "::",
-            stringify!(W_len)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).W) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_384_public_key_s),
-            "::",
-            stringify!(W)
-        )
-    );
-}
-impl Default for cx_ecfp_384_public_key_s {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-#[doc = " Up to 384-bit Elliptic Curve private key"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct cx_ecfp_384_private_key_s {
-    #[doc = "< Curve identifier"]
-    pub curve: cx_curve_t,
-    #[doc = "< Private key length in bytes"]
-    pub d_len: usize,
-    #[doc = "< Private key value"]
-    pub d: [u8; 48usize],
-}
-#[test]
-fn bindgen_test_layout_cx_ecfp_384_private_key_s() {
-    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_384_private_key_s> =
-        ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<cx_ecfp_384_private_key_s>(),
-        56usize,
-        concat!("Size of: ", stringify!(cx_ecfp_384_private_key_s))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<cx_ecfp_384_private_key_s>(),
-        4usize,
-        concat!("Alignment of ", stringify!(cx_ecfp_384_private_key_s))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_384_private_key_s),
-            "::",
-            stringify!(curve)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).d_len) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_384_private_key_s),
-            "::",
-            stringify!(d_len)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).d) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_384_private_key_s),
-            "::",
-            stringify!(d)
-        )
-    );
-}
-impl Default for cx_ecfp_384_private_key_s {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-#[doc = " Up to 384-bit Elliptic Curve private key"]
-pub type cx_ecfp_384_private_key_t = cx_ecfp_384_private_key_s;
-#[doc = " Up to 384-bit Elliptic Curve public key"]
-pub type cx_ecfp_384_public_key_t = cx_ecfp_384_public_key_s;
-#[doc = " Up to 512-bit Elliptic Curve public key"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct cx_ecfp_512_public_key_s {
-    #[doc = "< Curve identifier"]
-    pub curve: cx_curve_t,
-    #[doc = "< Public key length in bytes"]
-    pub W_len: usize,
-    #[doc = "< Public key value"]
-    pub W: [u8; 129usize],
-}
-#[test]
-fn bindgen_test_layout_cx_ecfp_512_public_key_s() {
-    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_512_public_key_s> =
-        ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<cx_ecfp_512_public_key_s>(),
-        140usize,
-        concat!("Size of: ", stringify!(cx_ecfp_512_public_key_s))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<cx_ecfp_512_public_key_s>(),
-        4usize,
-        concat!("Alignment of ", stringify!(cx_ecfp_512_public_key_s))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_512_public_key_s),
-            "::",
-            stringify!(curve)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).W_len) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_512_public_key_s),
-            "::",
-            stringify!(W_len)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).W) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_512_public_key_s),
-            "::",
-            stringify!(W)
-        )
-    );
-}
-impl Default for cx_ecfp_512_public_key_s {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-#[doc = " Up to 512-bit Elliptic Curve private key"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct cx_ecfp_512_private_key_s {
-    #[doc = "< Curve identifier"]
-    pub curve: cx_curve_t,
-    #[doc = "< Private key length in bytes"]
-    pub d_len: usize,
-    #[doc = "< Private key value"]
-    pub d: [u8; 64usize],
-}
-#[test]
-fn bindgen_test_layout_cx_ecfp_512_private_key_s() {
-    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_512_private_key_s> =
-        ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<cx_ecfp_512_private_key_s>(),
-        72usize,
-        concat!("Size of: ", stringify!(cx_ecfp_512_private_key_s))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<cx_ecfp_512_private_key_s>(),
-        4usize,
-        concat!("Alignment of ", stringify!(cx_ecfp_512_private_key_s))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_512_private_key_s),
-            "::",
-            stringify!(curve)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).d_len) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_512_private_key_s),
-            "::",
-            stringify!(d_len)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).d) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_512_private_key_s),
-            "::",
-            stringify!(d)
-        )
-    );
-}
-impl Default for cx_ecfp_512_private_key_s {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-#[doc = " Up to 512-bit Elliptic Curve extended private key"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct cx_ecfp_512_extented_private_key_s {
-    #[doc = "< Curve identifier"]
-    pub curve: cx_curve_t,
-    #[doc = "< Private key length in bytes"]
-    pub d_len: usize,
-    #[doc = "< Private key value"]
-    pub d: [u8; 128usize],
-}
-#[test]
-fn bindgen_test_layout_cx_ecfp_512_extented_private_key_s() {
-    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_512_extented_private_key_s> =
-        ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<cx_ecfp_512_extented_private_key_s>(),
-        136usize,
-        concat!("Size of: ", stringify!(cx_ecfp_512_extented_private_key_s))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<cx_ecfp_512_extented_private_key_s>(),
-        4usize,
-        concat!(
-            "Alignment of ",
-            stringify!(cx_ecfp_512_extented_private_key_s)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_512_extented_private_key_s),
-            "::",
-            stringify!(curve)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).d_len) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_512_extented_private_key_s),
-            "::",
-            stringify!(d_len)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).d) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_512_extented_private_key_s),
-            "::",
-            stringify!(d)
-        )
-    );
-}
-impl Default for cx_ecfp_512_extented_private_key_s {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-#[doc = " Up to 512-bit Elliptic Curve public key"]
-pub type cx_ecfp_512_public_key_t = cx_ecfp_512_public_key_s;
-#[doc = " Up to 512-bit Elliptic Curve private key"]
-pub type cx_ecfp_512_private_key_t = cx_ecfp_512_private_key_s;
-#[doc = " Up to 512-bit Elliptic Curve extended private key"]
-pub type cx_ecfp_512_extented_private_key_t = cx_ecfp_512_extented_private_key_s;
-#[doc = " Up to 640-bit Elliptic Curve public key"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct cx_ecfp_640_public_key_s {
-    #[doc = "< Curve identifier"]
-    pub curve: cx_curve_t,
-    #[doc = "< Public key length in bytes"]
-    pub W_len: usize,
-    #[doc = "< Public key value"]
-    pub W: [u8; 161usize],
-}
-#[test]
-fn bindgen_test_layout_cx_ecfp_640_public_key_s() {
-    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_640_public_key_s> =
-        ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<cx_ecfp_640_public_key_s>(),
-        172usize,
-        concat!("Size of: ", stringify!(cx_ecfp_640_public_key_s))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<cx_ecfp_640_public_key_s>(),
-        4usize,
-        concat!("Alignment of ", stringify!(cx_ecfp_640_public_key_s))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_640_public_key_s),
-            "::",
-            stringify!(curve)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).W_len) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_640_public_key_s),
-            "::",
-            stringify!(W_len)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).W) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_640_public_key_s),
-            "::",
-            stringify!(W)
-        )
-    );
-}
-impl Default for cx_ecfp_640_public_key_s {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-#[doc = " Up to 640-bit Elliptic Curve private key"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct cx_ecfp_640_private_key_s {
-    #[doc = "< Curve identifier"]
-    pub curve: cx_curve_t,
-    #[doc = "< Private key length in bytes"]
-    pub d_len: usize,
-    #[doc = "< Private key value"]
-    pub d: [u8; 80usize],
-}
-#[test]
-fn bindgen_test_layout_cx_ecfp_640_private_key_s() {
-    const UNINIT: ::core::mem::MaybeUninit<cx_ecfp_640_private_key_s> =
-        ::core::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::core::mem::size_of::<cx_ecfp_640_private_key_s>(),
-        88usize,
-        concat!("Size of: ", stringify!(cx_ecfp_640_private_key_s))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<cx_ecfp_640_private_key_s>(),
-        4usize,
-        concat!("Alignment of ", stringify!(cx_ecfp_640_private_key_s))
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).curve) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_640_private_key_s),
-            "::",
-            stringify!(curve)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).d_len) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_640_private_key_s),
-            "::",
-            stringify!(d_len)
-        )
-    );
-    assert_eq!(
-        unsafe { ::core::ptr::addr_of!((*ptr).d) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(cx_ecfp_640_private_key_s),
-            "::",
-            stringify!(d)
-        )
-    );
-}
-impl Default for cx_ecfp_640_private_key_s {
-    fn default() -> Self {
-        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-#[doc = " Up to 640-bit Elliptic Curve public key"]
-pub type cx_ecfp_640_public_key_t = cx_ecfp_640_public_key_s;
-#[doc = " Up to 640-bit Elliptic Curve private key"]
-pub type cx_ecfp_640_private_key_t = cx_ecfp_640_private_key_s;
-extern "C" {
-    #[doc = " @brief   Adds two points of an elliptic curve.\n\n @param[in]  curve Curve identifier.\n\n @param[out] R     Resulting point encoded as **04 || x || y**.\n\n @param[in]  P     First operand: point on curve encoded as **04 || x || y**:\n                   *x* and *y* are encoded as big endian raw values\n                   and have a binary length equal to curve domain size.\n\n @param[in]  Q     Second operand: point on curve encoded as **04 || x || y**.\n\n @return           Error code:\n                   - CX_OK on success\n                   - CX_EC_INVALID_CURVE\n                   - CX_NOT_UNLOCKED\n                   - CX_INVALID_PARAMETER_SIZE\n                   - CX_EC_INVALID_CURVE\n                   - CX_MEMORY_FULL\n                   - CX_NOT_LOCKED\n                   - CX_INVALID_PARAMETER\n                   - CX_EC_INVALID_POINT\n                   - CX_EC_INFINITE_POINT"]
-    pub fn cx_ecfp_add_point_no_throw(
-        curve: cx_curve_t,
-        R: *mut u8,
-        P: *const u8,
-        Q: *const u8,
-    ) -> cx_err_t;
-}
-extern "C" {
-    #[doc = " @brief   Performs a scalar multiplication over an elliptic curve.\n\n @param[in]      curve Curve identifier.\n\n @param[in, out] P     Point on curve encoded as **04 || x || y**:\n                       x and y are encoded as big endian raw values\n                       and have a binary length equal to curve domain size.\n                       This is also used for the result.\n\n @param[in]      k     Scalar encoded as big endian integer.\n\n @param[in]      k_len Length of the scalar. This should be equal to\n                       the curve domain length.\n\n @return               Error code:\n                       - CX_OK on success\n                       - CX_EC_INVALID_CURVE\n                       - CX_NOT_UNLOCKED\n                       - CX_EC_INVALID_CURVE\n                       - CX_MEMORY_FULL\n                       - CX_NOT_LOCKED\n                       - CX_INVALID_PARAMETER\n                       - CX_EC_INFINITE_POINT"]
-    pub fn cx_ecfp_scalar_mult_no_throw(
-        curve: cx_curve_t,
-        P: *mut u8,
-        k: *const u8,
-        k_len: usize,
-    ) -> cx_err_t;
-}
-extern "C" {
-    #[doc = " @brief   Initializes a public key.\n\n @param[in]  curve   Curve identifier.\n\n @param[in]  rawkey  Pointer to a raw key value or NULL pointer\n                     The value shall be the public point encoded as:\n                      - **04 || x || y** for Weiertrass curves\n                      - **04 || x || y**  or **02 || y** (plus sign) for Twisted Edward curves\n                      - **04 || x || y**  or **02 || x** for Montgomery curves\n\n                     where *x* and *y* are encoded as big endian raw values and have a\n                     binary length equal to the curve domain size.\n\n @param[in]  key_len Length of the key.\n\n @param[out] key     Public key to initialize.\n\n @return             Error code:\n                     - CX_OK on success\n                     - CX_EC_INVALID_CURVE\n                     - INVALID_PARAMETER"]
-    pub fn cx_ecfp_init_public_key_no_throw(
-        curve: cx_curve_t,
-        rawkey: *const u8,
-        key_len: usize,
-        key: *mut cx_ecfp_public_key_t,
-    ) -> cx_err_t;
-}
-extern "C" {
-    #[doc = " @brief   Initializes a private key.\n\n @details The key can be stored in non-volatile memory and\n          used for ECDSA or ECDH processing.\n\n @param[in]  curve   Curve identifier.\n\n @param[in]  rawkey  Pointer to a raw key value or NULL pointer.\n                     The value shall be in big endian order.\n\n @param[in]  key_len Length of the key.\n\n @param[out] pvkey   Private key to initialize.\n\n @return             Error code:\n                     - CX_OK on success\n                     - CX_EC_INVALID_CURVE\n                     - CX_INVALID_PARAMETER"]
-    pub fn cx_ecfp_init_private_key_no_throw(
-        curve: cx_curve_t,
-        rawkey: *const u8,
-        key_len: usize,
-        pvkey: *mut cx_ecfp_private_key_t,
-    ) -> cx_err_t;
-}
-extern "C" {
-    #[doc = " @brief   Generates a key pair with SHA-512 hash function.\n\n @param[in]  curve       Curve identifier.\n\n @param[out] pubkey      Generated public key.\n\n @param[out] privkey     Generated private key.\n\n @param[in]  keepprivate If set, the private key is the one initialized\n                         with #cx_ecfp_init_private_key_no_throw. Otherwise,\n                         a new private key is generated.\n\n @return                 Error code:\n                         - CX_OK on success\n                         - CX_EC_INVALID_CURVE\n                         - CX_NOT_UNLOCKED\n                         - CX_INVALID_PARAMETER_SIZE\n                         - CX_MEMORY_FULL\n                         - CX_NOT_LOCKED\n                         - CX_INVALID_PARAMETER\n                         - CX_INTERNAL_ERROR\n                         - CX_EC_INVALID_POINT\n                         - CX_EC_INFINITE_POINT"]
-    pub fn cx_ecfp_generate_pair_no_throw(
-        curve: cx_curve_t,
-        pubkey: *mut cx_ecfp_public_key_t,
-        privkey: *mut cx_ecfp_private_key_t,
-        keepprivate: bool,
-    ) -> cx_err_t;
-}
-extern "C" {
-    #[doc = " @brief   Generates a key pair.\n\n @param[in]  curve       Curve identifier.\n\n @param[out] pubkey      Generated public key.\n\n @param[out] privkey     Generated private key.\n\n @param[in]  keepprivate If set, the private key is the one initialized with\n                         #cx_ecfp_init_private_key_no_throw.\n                         Otherwise, a new private key is generated.\n\n @param[in]  hashID      Message digest algorithm identifier.\n\n @return                 Error code:\n                         - CX_OK on success\n                         - CX_EC_INVALID_CURVE\n                         - CX_NOT_UNLOCKED\n                         - CX_INVALID_PARAMETER_SIZE\n                         - CX_MEMORY_FULL\n                         - CX_NOT_LOCKED\n                         - CX_INVALID_PARAMETER\n                         - CX_INTERNAL_ERROR\n                         - CX_EC_INVALID_POINT\n                         - CX_EC_INFINITE_POINT"]
-    pub fn cx_ecfp_generate_pair2_no_throw(
-        curve: cx_curve_t,
-        pubkey: *mut cx_ecfp_public_key_t,
-        privkey: *mut cx_ecfp_private_key_t,
-        keepprivate: bool,
-        hashID: cx_md_t,
-    ) -> cx_err_t;
-}
-extern "C" {
-    #[doc = " @brief   Retrieves an EDDSA public key.\n\n @details Retrieves (a,h) = (Kr, Kl), such that (Kr, Kl) = Hash(pv_key)\n          as specified at <a href=\"https://tools.ietf.org/html/rfc8032\"> RFC8032 </a>.\n\n @param[in]  pvkey  A private key fully initialized with #cx_ecfp_init_private_key_no_throw.\n\n @param[in]  hashID Message digest algorithm identifier used to compute the input data.\n                    SHA512, SHA3 and Keccak are supported.\n\n @param[out] pukey  Key container for retrieving the public key A.\n\n @param[out] a      Private scalar such that A = a.B.\n\n @param[in]  a_len  Length of the scalar a.\n\n @param[out] h      Signature prefix.\n\n @param[in]  h_len  Length of the prefix h.\n\n @return            Error code:\n                    - CX_OK on success\n                    - CX_EC_INVALID_CURVE\n                    - CX_NOT_UNLOCKED\n                    - CX_INVALID_PARAMETER_SIZE\n                    - CX_INVALID_PARAMETER\n                    - CX_NOT_LOCKED\n                    - CX_MEMORY_FULL\n                    - CX_EC_INVALID_POINT\n                    - CX_EC_INFINITE_POINT\n                    - CX_INTERNAL_ERROR\n"]
-    pub fn cx_eddsa_get_public_key_no_throw(
-        pvkey: *const cx_ecfp_private_key_t,
-        hashID: cx_md_t,
-        pukey: *mut cx_ecfp_public_key_t,
-        a: *mut u8,
-        a_len: usize,
-        h: *mut u8,
-        h_len: usize,
-    ) -> cx_err_t;
-}
-extern "C" {
-    #[doc = " @brief   Compresses a point according to\n          <a href=\"https://tools.ietf.org/html/rfc8032\"> RFC8032 </a>.\n\n @param[in]      curve Curve identifier. The curve must be\n                       a Twisted Edwards curve.\n\n @param[in, out] p     Pointer to the point to compress.\n\n @param[in]      p_len Length of the point buffer.\n\n @return               Error code:\n                       - CX_OK on success\n                       - CX_EC_INVALID_CURVE\n                       - CX_NOT_UNLOCKED\n                       - CX_INVALID_PARAMETER_SIZE\n                       - CX_EC_INVALID_CURVE\n                       - CX_MEMORY_FULL\n                       - CX_NOT_LOCKED\n                       - CX_INVALID_PARAMETER\n                       - CX_EC_INFINITE_POINT"]
-    pub fn cx_edwards_compress_point_no_throw(
-        curve: cx_curve_t,
-        p: *mut u8,
-        p_len: usize,
-    ) -> cx_err_t;
-}
-extern "C" {
-    #[doc = " @brief   Decompresses a point according to\n          <a href=\"https://tools.ietf.org/html/rfc8032\"> RFC8032 </a>.\n\n @param[in]      curve Curve identifier. The curve must be\n                       a Twisted Edwards curve.\n\n @param[in, out] p     Pointer to the point to decompress.\n\n @param[in]      p_len Length of the point buffer.\n\n @return               Error code:\n                       - CX_OK on success\n                       - CX_EC_INVALID_CURVE\n                       - CX_NOT_UNLOCKED\n                       - CX_INVALID_PARAMETER_SIZE\n                       - CX_EC_INVALID_CURVE\n                       - CX_MEMORY_FULL\n                       - CX_NOT_LOCKED\n                       - CX_INVALID_PARAMETER\n                       - CX_EC_INFINITE_POINT\n                       - CX_NO_RESIDUE\n                       - INVALID_PARAMETER"]
-    pub fn cx_edwards_decompress_point_no_throw(
-        curve: cx_curve_t,
-        p: *mut u8,
-        p_len: usize,
-    ) -> cx_err_t;
-}
 extern "C" {
     #[doc = " @brief   Signs a message digest according to ECDSA specification\n\n @param[in]  pvkey    Private key.\n                      Shall be initialized with #cx_ecfp_init_private_key_no_throw.\n\n @param[in]  mode     Crypto mode flags.\n                      Supported flags:\n                        - CX_RND_TRNG\n                        - CX_RND_RFC6979\n\n @param[in]  hashID   Message digest algorithm identifier.\n                      This parameter is mandatory with the flag CX_RND_RFC6979.\n\n @param[in]  hash     Digest of the message to be signed.\n                      The length of *hash* must be shorter than the group order size.\n                      Otherwise it is truncated.\n\n @param[in]  hash_len Length of the digest in octets.\n\n @param[out] sig      Buffer where to store the signature.\n                      The signature is encoded in TLV:  **30 || L || 02 || Lr || r || 02 || Ls || s**\n\n @param[in]  sig_len  Length of the buffer in octets.\n\n @param[out] info     Set with CX_ECCINFO_PARITY_ODD if the y-coordinate is odd when computing **[k].G**.\n\n @return              Error code:\n                      - CX_OK on success\n                      - CX_EC_INVALID_CURVE\n                      - CX_INVALID_PARAMETER\n                      - CX_INTERNAL_ERROR\n                      - CX_NOT_UNLOCKED\n                      - CX_INVALID_PARAMETER_SIZE\n                      - CX_MEMORY_FULL\n                      - CX_NOT_LOCKED\n                      - CX_EC_INVALID_POINT\n                      - CX_EC_INFINITE_POINT\n                      - CX_INVALID_PARAMETER_VALUE"]
     pub fn cx_ecdsa_sign_no_throw(
@@ -4526,4 +9573,6058 @@ extern "C" {
 extern "C" {
     #[doc = " @brief   Decodes the curve point coordinates.\n\n @param[in, out] coord A pointer to the point encoded coordinates.\n\n @param[in]      len   Length of the encoded coordinates.\n\n @return               Sign of the x-coordinate."]
     pub fn cx_decode_coord(coord: *mut u8, len: cty::c_int) -> cty::c_int;
+}
+pub const LOW_LOGGER: _bindgen_ty_2 = 0;
+pub const DRAW_LOGGER: _bindgen_ty_2 = 1;
+pub const OBJ_LOGGER: _bindgen_ty_2 = 2;
+pub const OBJ_POOL_LOGGER: _bindgen_ty_2 = 3;
+pub const SCREEN_LOGGER: _bindgen_ty_2 = 4;
+pub const LAYOUT_LOGGER: _bindgen_ty_2 = 5;
+pub const PAGE_LOGGER: _bindgen_ty_2 = 6;
+pub const TOUCH_LOGGER: _bindgen_ty_2 = 7;
+pub const APP_LOGGER: _bindgen_ty_2 = 8;
+pub const UX_LOGGER: _bindgen_ty_2 = 9;
+pub const MISC_LOGGER: _bindgen_ty_2 = 10;
+#[doc = "      DEFINES"]
+pub type _bindgen_ty_2 = cty::c_uint;
+extern "C" {
+    #[doc = " GLOBAL PROTOTYPES"]
+    pub static mut gLogger: cty::c_ulong;
+}
+pub const color_t_BLACK: color_t = 0;
+pub const color_t_DARK_GRAY: color_t = 1;
+pub const color_t_LIGHT_GRAY: color_t = 2;
+pub const color_t_WHITE: color_t = 3;
+pub const color_t_NB_NBGL_COLOR: color_t = 4;
+pub type color_t = cty::c_uint;
+#[doc = "< 1 bit per pixel"]
+pub const nbgl_bpp_t_NBGL_BPP_1: nbgl_bpp_t = 0;
+#[doc = "< 2 bits per pixel"]
+pub const nbgl_bpp_t_NBGL_BPP_2: nbgl_bpp_t = 1;
+#[doc = "< 4 bits per pixel"]
+pub const nbgl_bpp_t_NBGL_BPP_4: nbgl_bpp_t = 2;
+#[doc = "< Number of NBGL_BPP enums"]
+pub const nbgl_bpp_t_NB_NBGL_BPP: nbgl_bpp_t = 3;
+#[doc = " @brief Enum to represent the number of bits per pixel (BPP)\n"]
+pub type nbgl_bpp_t = cty::c_uint;
+#[doc = "< no compression, raw data"]
+pub const nbgl_compression_t_NBGL_NO_COMPRESSION: nbgl_compression_t = 0;
+#[doc = "< gzlib compression"]
+pub const nbgl_compression_t_NBGL_GZLIB_COMPRESSION: nbgl_compression_t = 1;
+#[doc = "< Number of NBGL_COMPRESSION enums"]
+pub const nbgl_compression_t_NB_NBGL_COMPRESSION: nbgl_compression_t = 2;
+#[doc = " @brief Enum to represent the compression\n"]
+pub type nbgl_compression_t = cty::c_uint;
+#[doc = " @brief Represents a rectangle area of the screen\n"]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_area_s {
+    #[doc = "< horizontal position of the upper left point of the area"]
+    pub x0: u16,
+    #[doc = "< vertical position of the upper left point of the area"]
+    pub y0: u16,
+    #[doc = "< width of the area, in pixels"]
+    pub width: u16,
+    #[doc = "< height of the area, in pixels"]
+    pub height: u16,
+    #[doc = "< color (usually background) to be applied"]
+    pub backgroundColor: color_t,
+    #[doc = "< bits per pixel for this area"]
+    pub bpp: nbgl_bpp_t,
+}
+#[test]
+fn bindgen_test_layout_nbgl_area_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_area_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_area_s>(),
+        16usize,
+        concat!("Size of: ", stringify!(nbgl_area_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_area_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_area_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).x0) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_area_s),
+            "::",
+            stringify!(x0)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).y0) as usize - ptr as usize },
+        2usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_area_s),
+            "::",
+            stringify!(y0)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).width) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_area_s),
+            "::",
+            stringify!(width)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).height) as usize - ptr as usize },
+        6usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_area_s),
+            "::",
+            stringify!(height)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).backgroundColor) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_area_s),
+            "::",
+            stringify!(backgroundColor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bpp) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_area_s),
+            "::",
+            stringify!(bpp)
+        )
+    );
+}
+impl Default for nbgl_area_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief Represents a rectangle area of the screen\n"]
+pub type nbgl_area_t = nbgl_area_s;
+#[doc = "< to be used for normal refresh"]
+pub const nbgl_refresh_mode_t_FULL_COLOR_REFRESH: nbgl_refresh_mode_t = 0;
+#[doc = "< to be used for small partial refresh (radio buttons, switches)"]
+pub const nbgl_refresh_mode_t_FULL_COLOR_PARTIAL_REFRESH: nbgl_refresh_mode_t = 1;
+#[doc = "< to be used for pure B&W area, when contrast is important"]
+pub const nbgl_refresh_mode_t_BLACK_AND_WHITE_REFRESH: nbgl_refresh_mode_t = 2;
+#[doc = "< to be used for pure B&W area, when contrast is not priority"]
+pub const nbgl_refresh_mode_t_BLACK_AND_WHITE_FAST_REFRESH: nbgl_refresh_mode_t = 3;
+pub const nbgl_refresh_mode_t_NB_REFRESH_MODES: nbgl_refresh_mode_t = 4;
+#[doc = " @brief different modes of refresh for @ref nbgl_refreshSpecial()\n"]
+pub type nbgl_refresh_mode_t = cty::c_uint;
+#[doc = "< 4 pixels"]
+pub const nbgl_radius_t_RADIUS_4_PIXELS: nbgl_radius_t = 0;
+#[doc = "< 8 pixels"]
+pub const nbgl_radius_t_RADIUS_8_PIXELS: nbgl_radius_t = 1;
+#[doc = "< 16 pixels"]
+pub const nbgl_radius_t_RADIUS_16_PIXELS: nbgl_radius_t = 2;
+#[doc = "< 20 pixels"]
+pub const nbgl_radius_t_RADIUS_20_PIXELS: nbgl_radius_t = 3;
+#[doc = "< 24 pixels"]
+pub const nbgl_radius_t_RADIUS_24_PIXELS: nbgl_radius_t = 4;
+#[doc = "< 32 pixels"]
+pub const nbgl_radius_t_RADIUS_32_PIXELS: nbgl_radius_t = 5;
+#[doc = "< 40 pixels"]
+pub const nbgl_radius_t_RADIUS_40_PIXELS: nbgl_radius_t = 6;
+#[doc = "< 40 pixels"]
+pub const nbgl_radius_t_RADIUS_48_PIXELS: nbgl_radius_t = 7;
+#[doc = "< no radius (square angle)"]
+pub const nbgl_radius_t_RADIUS_0_PIXELS: nbgl_radius_t = 255;
+#[doc = " @brief possible radius for objects\n"]
+pub type nbgl_radius_t = cty::c_uint;
+#[doc = " @brief Represents the transformation to be applied on the bitmap before rendering\n This is a bitfield using masks as @ref HORIZONTAL_MIRROR"]
+pub type nbgl_transformation_t = u8;
+#[doc = " @brief Represents the color_map to be used for 2BPP image, or the foreground color for 1BPP image\n @note colors are encoded on 2 bits, so a 8 bits stores the 4 colors for a 2BPP image\n @note not used for 4BPP image"]
+pub type nbgl_color_map_t = u8;
+#[doc = " @brief Represents all information about an icon\n"]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_icon_details_s {
+    #[doc = "< width of the icon, in pixels"]
+    pub width: u16,
+    #[doc = "< height of the icon, in pixels"]
+    pub height: u16,
+    #[doc = "< bits per pixel for this area"]
+    pub bpp: nbgl_bpp_t,
+    #[doc = "< if true, the bitmap buffer contains an image file"]
+    pub isFile: bool,
+    #[doc = "< buffer containing pixel values"]
+    pub bitmap: *const u8,
+}
+#[test]
+fn bindgen_test_layout_nbgl_icon_details_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_icon_details_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_icon_details_s>(),
+        13usize,
+        concat!("Size of: ", stringify!(nbgl_icon_details_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_icon_details_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_icon_details_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).width) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_icon_details_s),
+            "::",
+            stringify!(width)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).height) as usize - ptr as usize },
+        2usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_icon_details_s),
+            "::",
+            stringify!(height)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bpp) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_icon_details_s),
+            "::",
+            stringify!(bpp)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).isFile) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_icon_details_s),
+            "::",
+            stringify!(isFile)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bitmap) as usize - ptr as usize },
+        9usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_icon_details_s),
+            "::",
+            stringify!(bitmap)
+        )
+    );
+}
+impl Default for nbgl_icon_details_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief Represents all information about an icon\n"]
+pub type nbgl_icon_details_t = nbgl_icon_details_s;
+#[doc = " @brief structure defining an ASCII character (except the bitmap)\n"]
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct nbgl_font_character_t {
+    #[doc = "< width of character in pixels"]
+    pub char_width: u8,
+    #[doc = "< number of bytes used in chars buffer for this character"]
+    pub bitmap_byte_count: u8,
+    #[doc = "< offset of this character in chars buffer"]
+    pub bitmap_offset: u16,
+}
+#[test]
+fn bindgen_test_layout_nbgl_font_character_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_font_character_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_font_character_t>(),
+        4usize,
+        concat!("Size of: ", stringify!(nbgl_font_character_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_font_character_t>(),
+        2usize,
+        concat!("Alignment of ", stringify!(nbgl_font_character_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).char_width) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_character_t),
+            "::",
+            stringify!(char_width)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bitmap_byte_count) as usize - ptr as usize },
+        1usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_character_t),
+            "::",
+            stringify!(bitmap_byte_count)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bitmap_offset) as usize - ptr as usize },
+        2usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_character_t),
+            "::",
+            stringify!(bitmap_offset)
+        )
+    );
+}
+#[doc = " @brief structure defining an ASCII font\n"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_font_t {
+    #[doc = "< ID of the font, from @ref nbgl_font_id_e"]
+    pub font_id: u8,
+    #[doc = "< number of bits per pixels"]
+    pub bpp: u8,
+    #[doc = "< height of all characters in pixels"]
+    pub char_height: u8,
+    #[doc = "< baseline of all characters in pixels"]
+    pub baseline_height: u8,
+    #[doc = "< height of a line for all characters in pixels"]
+    pub line_height: u8,
+    #[doc = "< kerning for the font"]
+    pub char_kerning: u8,
+    #[doc = "< ASCII code of the first character in \\b bitmap and in \\b characters fields"]
+    pub first_char: u8,
+    #[doc = "< ASCII code of the last character in \\b bitmap and in \\b characters fields"]
+    pub last_char: u8,
+    #[doc = "< array containing definitions of all characters"]
+    pub characters: *const nbgl_font_character_t,
+    #[doc = "< array containing bitmaps of all characters"]
+    pub bitmap: *const u8,
+}
+#[test]
+fn bindgen_test_layout_nbgl_font_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_font_t> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_font_t>(),
+        16usize,
+        concat!("Size of: ", stringify!(nbgl_font_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_font_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_font_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).font_id) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_t),
+            "::",
+            stringify!(font_id)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bpp) as usize - ptr as usize },
+        1usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_t),
+            "::",
+            stringify!(bpp)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).char_height) as usize - ptr as usize },
+        2usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_t),
+            "::",
+            stringify!(char_height)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).baseline_height) as usize - ptr as usize },
+        3usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_t),
+            "::",
+            stringify!(baseline_height)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).line_height) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_t),
+            "::",
+            stringify!(line_height)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).char_kerning) as usize - ptr as usize },
+        5usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_t),
+            "::",
+            stringify!(char_kerning)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).first_char) as usize - ptr as usize },
+        6usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_t),
+            "::",
+            stringify!(first_char)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).last_char) as usize - ptr as usize },
+        7usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_t),
+            "::",
+            stringify!(last_char)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).characters) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_t),
+            "::",
+            stringify!(characters)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bitmap) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_t),
+            "::",
+            stringify!(bitmap)
+        )
+    );
+}
+impl Default for nbgl_font_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief structure defining a unicode character (except the bitmap)\n"]
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct nbgl_font_unicode_character_t {
+    #[doc = "< unicode = plane value from 0 to 16 then 16-bit code."]
+    pub char_unicode: u32,
+    #[doc = "< width of character in pixels"]
+    pub char_width: u8,
+    #[doc = "< number of bytes used in chars buffer for this character"]
+    pub bitmap_byte_count: u8,
+    #[doc = "< offset of this character in chars buffer"]
+    pub bitmap_offset: u16,
+}
+#[test]
+fn bindgen_test_layout_nbgl_font_unicode_character_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_font_unicode_character_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_font_unicode_character_t>(),
+        8usize,
+        concat!("Size of: ", stringify!(nbgl_font_unicode_character_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_font_unicode_character_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_font_unicode_character_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).char_unicode) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_unicode_character_t),
+            "::",
+            stringify!(char_unicode)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).char_width) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_unicode_character_t),
+            "::",
+            stringify!(char_width)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bitmap_byte_count) as usize - ptr as usize },
+        5usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_unicode_character_t),
+            "::",
+            stringify!(bitmap_byte_count)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bitmap_offset) as usize - ptr as usize },
+        6usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_unicode_character_t),
+            "::",
+            stringify!(bitmap_offset)
+        )
+    );
+}
+#[doc = " @brief structure defining a unicode font\n"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_font_unicode_t {
+    #[doc = "< ID of the font, from @ref nbgl_font_id_e"]
+    pub font_id: u8,
+    #[doc = "< number of bits per pixels"]
+    pub bpp: u8,
+    #[doc = "< height of all characters in pixels"]
+    pub char_height: u8,
+    #[doc = "< baseline of all characters in pixels"]
+    pub baseline_height: u8,
+    #[doc = "< height of a line for all characters in pixels"]
+    pub line_height: u8,
+    #[doc = "< kerning for the font"]
+    pub char_kerning: u8,
+    #[doc = "< unicode of the first character in \\b bitmap and in \\b characters fields"]
+    pub first_unicode_char: u32,
+    #[doc = "< unicode of the first character in \\b bitmap and in \\b characters fields"]
+    pub last_unicode_char: u32,
+    #[doc = "< array containing definitions of all characters"]
+    pub characters: *const nbgl_font_unicode_character_t,
+    #[doc = "< array containing bitmaps of all characters"]
+    pub bitmap: *const u8,
+}
+#[test]
+fn bindgen_test_layout_nbgl_font_unicode_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_font_unicode_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_font_unicode_t>(),
+        24usize,
+        concat!("Size of: ", stringify!(nbgl_font_unicode_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_font_unicode_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_font_unicode_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).font_id) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_unicode_t),
+            "::",
+            stringify!(font_id)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bpp) as usize - ptr as usize },
+        1usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_unicode_t),
+            "::",
+            stringify!(bpp)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).char_height) as usize - ptr as usize },
+        2usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_unicode_t),
+            "::",
+            stringify!(char_height)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).baseline_height) as usize - ptr as usize },
+        3usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_unicode_t),
+            "::",
+            stringify!(baseline_height)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).line_height) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_unicode_t),
+            "::",
+            stringify!(line_height)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).char_kerning) as usize - ptr as usize },
+        5usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_unicode_t),
+            "::",
+            stringify!(char_kerning)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).first_unicode_char) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_unicode_t),
+            "::",
+            stringify!(first_unicode_char)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).last_unicode_char) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_unicode_t),
+            "::",
+            stringify!(last_unicode_char)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).characters) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_unicode_t),
+            "::",
+            stringify!(characters)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bitmap) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_font_unicode_t),
+            "::",
+            stringify!(bitmap)
+        )
+    );
+}
+impl Default for nbgl_font_unicode_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+pub const nbgl_font_id_e_BAGL_FONT_INTER_REGULAR_24px: nbgl_font_id_e = 0;
+pub const nbgl_font_id_e_BAGL_FONT_INTER_SEMIBOLD_24px: nbgl_font_id_e = 1;
+pub const nbgl_font_id_e_BAGL_FONT_INTER_REGULAR_32px: nbgl_font_id_e = 2;
+pub const nbgl_font_id_e_BAGL_FONT_HM_ALPHA_MONO_MEDIUM_32px: nbgl_font_id_e = 3;
+pub const nbgl_font_id_e_BAGL_FONT_LAST: nbgl_font_id_e = 4;
+pub type nbgl_font_id_e = cty::c_uint;
+extern "C" {
+    #[doc = " GLOBAL PROTOTYPES"]
+    pub fn nbgl_font_getFont(fontId: cty::c_uint) -> *const nbgl_font_t;
+}
+extern "C" {
+    pub fn nbgl_getFont(fontId: nbgl_font_id_e) -> *const nbgl_font_t;
+}
+extern "C" {
+    pub fn nbgl_getSingleLineTextWidth(fontId: nbgl_font_id_e, text: *const cty::c_char) -> u16;
+}
+extern "C" {
+    pub fn nbgl_getSingleLineTextWidthInLen(
+        fontId: nbgl_font_id_e,
+        text: *const cty::c_char,
+        maxLen: u16,
+    ) -> u16;
+}
+extern "C" {
+    pub fn nbgl_getTextWidth(fontId: nbgl_font_id_e, text: *const cty::c_char) -> u16;
+}
+extern "C" {
+    pub fn nbgl_getCharWidth(fontId: nbgl_font_id_e, text: *const cty::c_char) -> u16;
+}
+extern "C" {
+    pub fn nbgl_getFontHeight(fontId: nbgl_font_id_e) -> u8;
+}
+extern "C" {
+    pub fn nbgl_getFontLineHeight(fontId: nbgl_font_id_e) -> u8;
+}
+extern "C" {
+    pub fn nbgl_getTextNbLines(text: *const cty::c_char) -> u16;
+}
+extern "C" {
+    pub fn nbgl_getTextHeight(fontId: nbgl_font_id_e, text: *const cty::c_char) -> u16;
+}
+extern "C" {
+    pub fn nbgl_getTextLength(text: *const cty::c_char) -> u16;
+}
+extern "C" {
+    pub fn nbgl_getTextMaxLenAndWidth(
+        fontId: nbgl_font_id_e,
+        text: *const cty::c_char,
+        maxWidth: u16,
+        len: *mut u16,
+        width: *mut u16,
+        wrapping: bool,
+    );
+}
+extern "C" {
+    pub fn nbgl_getTextNbLinesInWidth(
+        fontId: nbgl_font_id_e,
+        text: *const cty::c_char,
+        maxWidth: u16,
+        wrapping: bool,
+    ) -> u16;
+}
+extern "C" {
+    pub fn nbgl_getTextHeightInWidth(
+        fontId: nbgl_font_id_e,
+        text: *const cty::c_char,
+        maxWidth: u16,
+        wrapping: bool,
+    ) -> u16;
+}
+extern "C" {
+    pub fn nbgl_getTextMaxLenAndWidthFromEnd(
+        fontId: nbgl_font_id_e,
+        text: *const cty::c_char,
+        maxWidth: u16,
+        len: *mut u16,
+        width: *mut u16,
+    ) -> bool;
+}
+extern "C" {
+    pub fn nbgl_getTextMaxLenInNbLines(
+        fontId: nbgl_font_id_e,
+        text: *const cty::c_char,
+        maxWidth: u16,
+        maxNbLines: u16,
+        len: *mut u16,
+    ) -> bool;
+}
+extern "C" {
+    pub fn nbgl_textWrapOnNbLines(
+        fontId: nbgl_font_id_e,
+        text: *const cty::c_char,
+        maxWidth: u16,
+        nbLines: u8,
+    );
+}
+extern "C" {
+    pub fn nbgl_popUnicodeChar(
+        text: *mut *mut u8,
+        text_length: *mut u16,
+        is_unicode: *mut bool,
+    ) -> u32;
+}
+extern "C" {
+    pub fn nbgl_getUnicodeFont(
+        font_id: nbgl_font_id_e,
+        unicode_characters: *mut *mut nbgl_font_unicode_character_t,
+        unicode_bitmap: *mut *mut u8,
+    ) -> *const nbgl_font_unicode_t;
+}
+extern "C" {
+    pub fn nbgl_getUnicodeFontCharacter(
+        unicode: u32,
+        unicode_characters: *mut nbgl_font_unicode_character_t,
+    ) -> *const nbgl_font_unicode_character_t;
+}
+extern "C" {
+    #[doc = " GLOBAL PROTOTYPES"]
+    pub fn nbgl_drawRoundedRect(area: *mut nbgl_area_t, radius: nbgl_radius_t, innerColor: color_t);
+}
+extern "C" {
+    pub fn nbgl_drawRoundedBorderedRect(
+        area: *mut nbgl_area_t,
+        radius: nbgl_radius_t,
+        stroke: u8,
+        innerColor: color_t,
+        borderColor: color_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_drawText(
+        area: *mut nbgl_area_t,
+        text: *const cty::c_char,
+        textLen: u16,
+        fontId: nbgl_font_id_e,
+        fontColor: color_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_drawQrCode(
+        area: *mut nbgl_area_t,
+        version: u8,
+        text: *const cty::c_char,
+        backgroundColor: color_t,
+    );
+}
+extern "C" {
+    #[doc = " GLOBAL PROTOTYPES"]
+    pub fn nbgl_frontDrawRect(area: *mut nbgl_area_t);
+}
+extern "C" {
+    pub fn nbgl_frontDrawHorizontalLine(area: *mut nbgl_area_t, mask: u8, lineColor: color_t);
+}
+extern "C" {
+    pub fn nbgl_frontDrawImage(
+        area: *mut nbgl_area_t,
+        buffer: *mut u8,
+        transformation: nbgl_transformation_t,
+        colorMap: nbgl_color_map_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_frontDrawImageFile(
+        area: *mut nbgl_area_t,
+        buffer: *mut u8,
+        colorMap: nbgl_color_map_t,
+        uzlib_chunk_buffer: *mut u8,
+    );
+}
+extern "C" {
+    pub fn nbgl_frontRefreshArea(area: *mut nbgl_area_t, mode: nbgl_refresh_mode_t);
+}
+#[doc = "< Main screen"]
+pub const nbgl_obj_type_t_SCREEN: nbgl_obj_type_t = 0;
+#[doc = "< Empty container"]
+pub const nbgl_obj_type_t_CONTAINER: nbgl_obj_type_t = 1;
+#[doc = "< Container with special border"]
+pub const nbgl_obj_type_t_PANEL: nbgl_obj_type_t = 2;
+#[doc = "< Bitmap (x and width must be multiple of 4)"]
+pub const nbgl_obj_type_t_IMAGE: nbgl_obj_type_t = 3;
+#[doc = "< Vertical or Horizontal line"]
+pub const nbgl_obj_type_t_LINE: nbgl_obj_type_t = 4;
+#[doc = "< Area to contain text line(s)"]
+pub const nbgl_obj_type_t_TEXT_AREA: nbgl_obj_type_t = 5;
+#[doc = "< Rounded rectangle button with icon and/or text"]
+pub const nbgl_obj_type_t_BUTTON: nbgl_obj_type_t = 6;
+#[doc = "< Switch to turn on/off something"]
+pub const nbgl_obj_type_t_SWITCH: nbgl_obj_type_t = 7;
+#[doc = "< horizontal bar to indicate position within pages"]
+pub const nbgl_obj_type_t_PAGE_INDICATOR: nbgl_obj_type_t = 8;
+#[doc = "< horizontal bar to indicate progression of something (between 0% and 100%)"]
+pub const nbgl_obj_type_t_PROGRESS_BAR: nbgl_obj_type_t = 9;
+#[doc = "< Indicator to inform whether something is on or off"]
+pub const nbgl_obj_type_t_RADIO_BUTTON: nbgl_obj_type_t = 10;
+#[doc = "< QR Code"]
+pub const nbgl_obj_type_t_QR_CODE: nbgl_obj_type_t = 11;
+#[doc = "< Keyboard"]
+pub const nbgl_obj_type_t_KEYBOARD: nbgl_obj_type_t = 12;
+#[doc = "< Keypad"]
+pub const nbgl_obj_type_t_KEYPAD: nbgl_obj_type_t = 13;
+#[doc = "< Spinner"]
+pub const nbgl_obj_type_t_SPINNER: nbgl_obj_type_t = 14;
+#[doc = "< Image file (with Ledger compression)"]
+pub const nbgl_obj_type_t_IMAGE_FILE: nbgl_obj_type_t = 15;
+#[doc = " @brief All types of graphical objects.\n"]
+pub type nbgl_obj_type_t = cty::c_uint;
+#[doc = "< used when parent container layout is used"]
+pub const nbgl_aligment_t_NO_ALIGNMENT: nbgl_aligment_t = 0;
+pub const nbgl_aligment_t_TOP_LEFT: nbgl_aligment_t = 1;
+pub const nbgl_aligment_t_TOP_MIDDLE: nbgl_aligment_t = 2;
+pub const nbgl_aligment_t_TOP_RIGHT: nbgl_aligment_t = 3;
+pub const nbgl_aligment_t_MID_LEFT: nbgl_aligment_t = 4;
+pub const nbgl_aligment_t_CENTER: nbgl_aligment_t = 5;
+pub const nbgl_aligment_t_MID_RIGHT: nbgl_aligment_t = 6;
+pub const nbgl_aligment_t_BOTTOM_LEFT: nbgl_aligment_t = 7;
+pub const nbgl_aligment_t_BOTTOM_MIDDLE: nbgl_aligment_t = 8;
+pub const nbgl_aligment_t_BOTTOM_RIGHT: nbgl_aligment_t = 9;
+#[doc = "< on outside left"]
+pub const nbgl_aligment_t_LEFT_TOP: nbgl_aligment_t = 10;
+#[doc = "< on outside left"]
+pub const nbgl_aligment_t_LEFT_BOTTOM: nbgl_aligment_t = 11;
+#[doc = "< on outside right"]
+pub const nbgl_aligment_t_RIGHT_TOP: nbgl_aligment_t = 12;
+#[doc = "< on outside right"]
+pub const nbgl_aligment_t_RIGHT_BOTTOM: nbgl_aligment_t = 13;
+#[doc = " @brief All types of alignments.\n"]
+pub type nbgl_aligment_t = cty::c_uint;
+pub const nbgl_state_t_OFF_STATE: nbgl_state_t = 0;
+pub const nbgl_state_t_ON_STATE: nbgl_state_t = 1;
+#[doc = " @brief to represent a boolean state."]
+pub type nbgl_state_t = cty::c_uint;
+#[doc = "< from top to bottom"]
+pub const nbgl_direction_t_VERTICAL: nbgl_direction_t = 0;
+#[doc = "< from left to right"]
+pub const nbgl_direction_t_HORIZONTAL: nbgl_direction_t = 1;
+#[doc = " @brief Directions for layout or lines\n"]
+pub type nbgl_direction_t = cty::c_uint;
+#[doc = "< no border"]
+pub const nbgl_style_t_NO_STYLE: nbgl_style_t = 0;
+#[doc = "< Ledger style border, only for @ref TEXT_AREA"]
+pub const nbgl_style_t_LEDGER_BORDER: nbgl_style_t = 1;
+#[doc = " @brief possible styles for text area border\n"]
+pub type nbgl_style_t = cty::c_uint;
+#[doc = "< QRCode V4, can encode text len up to 114 chars"]
+pub const nbgl_qrcode_version_t_QRCODE_V4: nbgl_qrcode_version_t = 0;
+#[doc = "< QRCode V10, can encode text len up to 1500 chars"]
+pub const nbgl_qrcode_version_t_QRCODE_V10: nbgl_qrcode_version_t = 1;
+#[doc = " @brief possible modes for QR Code\n @note if text len <= 114 chars, V4 can be used, otherwise use V10\n"]
+pub type nbgl_qrcode_version_t = cty::c_uint;
+#[doc = "< the finger has been released from the screen"]
+pub const nbgl_touchState_t_RELEASED: nbgl_touchState_t = 0;
+#[doc = "< the finger is currently pressing the screen"]
+pub const nbgl_touchState_t_PRESSED: nbgl_touchState_t = 1;
+#[doc = " @brief the 2 possible states of a finger on the Touchscreen\n"]
+pub type nbgl_touchState_t = cty::c_uint;
+#[doc = "< corresponding to an object touched and released at least SHORT_TOUCH_DURATION ms later but less than LONG_TOUCH_DURATION ms"]
+pub const nbgl_touchType_t_TOUCHED: nbgl_touchType_t = 0;
+#[doc = "< corresponding to an object touched and released at least LONG_TOUCH_DURATION ms later."]
+pub const nbgl_touchType_t_LONG_TOUCHED: nbgl_touchType_t = 1;
+#[doc = "< corresponding to an object that is currently touched"]
+pub const nbgl_touchType_t_TOUCHING: nbgl_touchType_t = 2;
+#[doc = "< corresponding to an object that was touched but that has lost the focus (the finger has moved)"]
+pub const nbgl_touchType_t_OUT_OF_TOUCH: nbgl_touchType_t = 3;
+#[doc = "< corresponding to an object that was not touched and where the finger has been pressed."]
+pub const nbgl_touchType_t_TOUCH_PRESSED: nbgl_touchType_t = 4;
+#[doc = "< corresponding to an object that was touched and where the finger has been released."]
+pub const nbgl_touchType_t_TOUCH_RELEASED: nbgl_touchType_t = 5;
+#[doc = "< corresponding to a change of state of the object (indirect event)"]
+pub const nbgl_touchType_t_VALUE_CHANGED: nbgl_touchType_t = 6;
+#[doc = " @brief The different types of Touchscreen events\n"]
+pub type nbgl_touchType_t = cty::c_uint;
+pub const nbgl_panelStyle_t_PLAIN_COLOR_PANEL: nbgl_panelStyle_t = 0;
+#[doc = "< with a thin border in borderColor, with rounded corners"]
+pub const nbgl_panelStyle_t_ROUNDED_BORDER_PANEL: nbgl_panelStyle_t = 1;
+#[doc = " @brief The different styles of panels (temporary)\n"]
+pub type nbgl_panelStyle_t = cty::c_uint;
+#[doc = " @brief The low level Touchscreen event, coming from driver\n"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_touchStatePosition_t {
+    #[doc = "< state of the touch event, e.g @ref PRESSED or @ref RELEASED"]
+    pub state: nbgl_touchState_t,
+    #[doc = "< horizontal position of the touch (or for a @ref RELEASED the last touched point)"]
+    pub x: i16,
+    #[doc = "< vertical position of the touch (or for a @ref RELEASED the last touched point)"]
+    pub y: i16,
+}
+#[test]
+fn bindgen_test_layout_nbgl_touchStatePosition_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_touchStatePosition_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_touchStatePosition_t>(),
+        8usize,
+        concat!("Size of: ", stringify!(nbgl_touchStatePosition_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_touchStatePosition_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_touchStatePosition_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).state) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_touchStatePosition_t),
+            "::",
+            stringify!(state)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).x) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_touchStatePosition_t),
+            "::",
+            stringify!(x)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).y) as usize - ptr as usize },
+        6usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_touchStatePosition_t),
+            "::",
+            stringify!(y)
+        )
+    );
+}
+impl Default for nbgl_touchStatePosition_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief prototype of function to be called when a touch event is received by an object\n @param obj the concerned object\n @param eventType type of touch event"]
+pub type nbgl_touchCallback_t = ::core::option::Option<
+    unsafe extern "C" fn(obj: *mut cty::c_void, eventType: nbgl_touchType_t),
+>;
+#[doc = " @brief Common structure for all graphical objects\n\n @note this type must never be instantiated"]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_obj_s {
+    #[doc = "< type of the graphical object, must be explicitly set"]
+    pub type_: nbgl_obj_type_t,
+    #[doc = "< horizontal position of top-left corner relative to parent's top-left corner"]
+    pub rel_x0: i16,
+    #[doc = "< vertical position of top-left corner relative to parent's top-left corner, must be multiple of 4"]
+    pub rel_y0: i16,
+    #[doc = "< parent of this object"]
+    pub parent: *mut nbgl_obj_s,
+    #[doc = "< object to align to (parent by default)"]
+    pub alignTo: *mut nbgl_obj_s,
+    #[doc = "< type of alignment"]
+    pub alignment: nbgl_aligment_t,
+    #[doc = "< horizontal margin when aligning"]
+    pub alignmentMarginX: i16,
+    #[doc = "< vertical margin when aligning"]
+    pub alignmentMarginY: i16,
+    #[doc = "< bit mask to tell engine which touch events are handled by this object"]
+    pub touchMask: u8,
+    #[doc = "< function to be called on events defined in @ref touchMask"]
+    pub touchCallback: nbgl_touchCallback_t,
+}
+#[test]
+fn bindgen_test_layout_nbgl_obj_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_obj_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_obj_s>(),
+        29usize,
+        concat!("Size of: ", stringify!(nbgl_obj_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_obj_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_obj_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).type_) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_obj_s),
+            "::",
+            stringify!(type_)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).rel_x0) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_obj_s),
+            "::",
+            stringify!(rel_x0)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).rel_y0) as usize - ptr as usize },
+        6usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_obj_s),
+            "::",
+            stringify!(rel_y0)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).parent) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_obj_s),
+            "::",
+            stringify!(parent)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).alignTo) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_obj_s),
+            "::",
+            stringify!(alignTo)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).alignment) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_obj_s),
+            "::",
+            stringify!(alignment)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).alignmentMarginX) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_obj_s),
+            "::",
+            stringify!(alignmentMarginX)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).alignmentMarginY) as usize - ptr as usize },
+        22usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_obj_s),
+            "::",
+            stringify!(alignmentMarginY)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).touchMask) as usize - ptr as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_obj_s),
+            "::",
+            stringify!(touchMask)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).touchCallback) as usize - ptr as usize },
+        25usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_obj_s),
+            "::",
+            stringify!(touchCallback)
+        )
+    );
+}
+impl Default for nbgl_obj_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief Common structure for all graphical objects\n\n @note this type must never be instantiated"]
+pub type nbgl_obj_t = nbgl_obj_s;
+#[doc = " @brief struct to represent a container (@ref CONTAINER type)\n\n @note the main screen is a kind of container\n"]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_container_s {
+    #[doc = "< layout of children inside this object"]
+    pub layout: nbgl_direction_t,
+    pub nbChildren: u8,
+    #[doc = "< if set to true, a paint will be done with background color"]
+    pub forceClean: bool,
+    #[doc = "< children of this object (nbChildren size)"]
+    pub children: *mut *mut nbgl_obj_s,
+}
+#[test]
+fn bindgen_test_layout_nbgl_container_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_container_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_container_s>(),
+        10usize,
+        concat!("Size of: ", stringify!(nbgl_container_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_container_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_container_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).layout) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_container_s),
+            "::",
+            stringify!(layout)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).nbChildren) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_container_s),
+            "::",
+            stringify!(nbChildren)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).forceClean) as usize - ptr as usize },
+        5usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_container_s),
+            "::",
+            stringify!(forceClean)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).children) as usize - ptr as usize },
+        6usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_container_s),
+            "::",
+            stringify!(children)
+        )
+    );
+}
+impl Default for nbgl_container_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief struct to represent a container (@ref CONTAINER type)\n\n @note the main screen is a kind of container\n"]
+pub type nbgl_container_t = nbgl_container_s;
+#[doc = " @brief struct to represent a panel (@ref PANEL type)\n @note inherits from container\n"]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_panel_s {
+    #[doc = "<  color of the border of the panel"]
+    pub borderColor: color_t,
+}
+#[test]
+fn bindgen_test_layout_nbgl_panel_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_panel_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_panel_s>(),
+        4usize,
+        concat!("Size of: ", stringify!(nbgl_panel_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_panel_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_panel_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).borderColor) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_panel_s),
+            "::",
+            stringify!(borderColor)
+        )
+    );
+}
+impl Default for nbgl_panel_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief struct to represent a panel (@ref PANEL type)\n @note inherits from container\n"]
+pub type nbgl_panel_t = nbgl_panel_s;
+#[doc = " @brief struct to represent a vertical or horizontal line\n"]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_line_s {
+    #[doc = "< direction of the line, e.g @ref VERTICAL or @ref HORIZONTAL"]
+    pub direction: nbgl_direction_t,
+    #[doc = "< color of the line"]
+    pub lineColor: color_t,
+    #[doc = "< thickness of the line in pixel, maybe different from height for horizontal line"]
+    pub thickness: u8,
+    #[doc = "< the object height being always 4, with a y0 multiple of 4, this offset is use to move the line within these 4 pixels"]
+    pub offset: u8,
+}
+#[test]
+fn bindgen_test_layout_nbgl_line_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_line_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_line_s>(),
+        10usize,
+        concat!("Size of: ", stringify!(nbgl_line_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_line_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_line_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).direction) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_line_s),
+            "::",
+            stringify!(direction)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).lineColor) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_line_s),
+            "::",
+            stringify!(lineColor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).thickness) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_line_s),
+            "::",
+            stringify!(thickness)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).offset) as usize - ptr as usize },
+        9usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_line_s),
+            "::",
+            stringify!(offset)
+        )
+    );
+}
+impl Default for nbgl_line_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief struct to represent a vertical or horizontal line\n"]
+pub type nbgl_line_t = nbgl_line_s;
+#[doc = " @brief prototype of function to be called when a @ref IMAGE object is drawned, and no buffer was provided\n @param token provided token in @ref IMAGE object\n @return the icn details to be drawned in image object"]
+pub type onImageDrawCallback_t =
+    ::core::option::Option<unsafe extern "C" fn(token: u8) -> *mut nbgl_icon_details_t>;
+#[doc = " @brief  struct to represent an image (@ref IMAGE type)\n"]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_image_s {
+    #[doc = "< color set to '1' bits, for 1PBB images. '0' are set to background color."]
+    pub foregroundColor: color_t,
+    #[doc = "< buffer containing bitmap, with exact same size as object (width*height*bpp/8 bytes)"]
+    pub buffer: *const nbgl_icon_details_t,
+    #[doc = "< function called if buffer is NULL, with above token as parameter. Can be NULL"]
+    pub onDrawCallback: onImageDrawCallback_t,
+    #[doc = "< token to use as param of onDrawCallback"]
+    pub token: u8,
+}
+#[test]
+fn bindgen_test_layout_nbgl_image_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_image_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_image_s>(),
+        13usize,
+        concat!("Size of: ", stringify!(nbgl_image_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_image_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_image_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).foregroundColor) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_image_s),
+            "::",
+            stringify!(foregroundColor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).buffer) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_image_s),
+            "::",
+            stringify!(buffer)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).onDrawCallback) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_image_s),
+            "::",
+            stringify!(onDrawCallback)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).token) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_image_s),
+            "::",
+            stringify!(token)
+        )
+    );
+}
+impl Default for nbgl_image_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief  struct to represent an image (@ref IMAGE type)\n"]
+pub type nbgl_image_t = nbgl_image_s;
+#[doc = " @brief  struct to represent an image file object (@ref IMAGE_FILE type)\n The source of the data is an image file with header. width and height are given in this header\n"]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_image_file_s {
+    #[doc = "< buffer containing image file"]
+    pub buffer: *const u8,
+}
+#[test]
+fn bindgen_test_layout_nbgl_image_file_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_image_file_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_image_file_s>(),
+        4usize,
+        concat!("Size of: ", stringify!(nbgl_image_file_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_image_file_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_image_file_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).buffer) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_image_file_s),
+            "::",
+            stringify!(buffer)
+        )
+    );
+}
+impl Default for nbgl_image_file_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief  struct to represent an image file object (@ref IMAGE_FILE type)\n The source of the data is an image file with header. width and height are given in this header\n"]
+pub type nbgl_image_file_t = nbgl_image_file_s;
+#[doc = " @brief  struct to represent a QR code (@ref QR_CODE type), whose size is fixed\n"]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_qrcode_s {
+    #[doc = "< color set to '1' bits, for 1PBB images. '0' are set to background color."]
+    pub foregroundColor: color_t,
+    #[doc = "< requested version, if V10, size will be fixed to 228*228, if V4, size will be fixed to 132*132"]
+    pub version: nbgl_qrcode_version_t,
+    #[doc = "< text single line (NULL terminated)"]
+    pub text: *mut cty::c_char,
+}
+#[test]
+fn bindgen_test_layout_nbgl_qrcode_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_qrcode_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_qrcode_s>(),
+        12usize,
+        concat!("Size of: ", stringify!(nbgl_qrcode_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_qrcode_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_qrcode_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).foregroundColor) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_qrcode_s),
+            "::",
+            stringify!(foregroundColor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).version) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_qrcode_s),
+            "::",
+            stringify!(version)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_qrcode_s),
+            "::",
+            stringify!(text)
+        )
+    );
+}
+impl Default for nbgl_qrcode_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief  struct to represent a QR code (@ref QR_CODE type), whose size is fixed\n"]
+pub type nbgl_qrcode_t = nbgl_qrcode_s;
+#[doc = " @brief struct to represent a radio button (@ref RADIO_BUTTON type)\n\n @note size is fixed\n"]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_radio_s {
+    #[doc = "< color set to to inner circle, when active."]
+    pub activeColor: color_t,
+    #[doc = "< color set to border."]
+    pub borderColor: color_t,
+    #[doc = "< state of the radio button. Active is when state == @ref ON_STATE"]
+    pub state: nbgl_state_t,
+}
+#[test]
+fn bindgen_test_layout_nbgl_radio_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_radio_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_radio_s>(),
+        12usize,
+        concat!("Size of: ", stringify!(nbgl_radio_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_radio_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_radio_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).activeColor) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_radio_s),
+            "::",
+            stringify!(activeColor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).borderColor) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_radio_s),
+            "::",
+            stringify!(borderColor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).state) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_radio_s),
+            "::",
+            stringify!(state)
+        )
+    );
+}
+impl Default for nbgl_radio_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief struct to represent a radio button (@ref RADIO_BUTTON type)\n\n @note size is fixed\n"]
+pub type nbgl_radio_t = nbgl_radio_s;
+#[doc = " @brief struct to represent a switch (size is fixed) (@ref SWITCH type)\n"]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_switch_s {
+    #[doc = "< color set to border and knob, when ON (knob on the right)."]
+    pub onColor: color_t,
+    #[doc = "< color set to border and knob, when OFF (knob on the left)."]
+    pub offColor: color_t,
+    #[doc = "< state of the switch."]
+    pub state: nbgl_state_t,
+}
+#[test]
+fn bindgen_test_layout_nbgl_switch_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_switch_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_switch_s>(),
+        12usize,
+        concat!("Size of: ", stringify!(nbgl_switch_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_switch_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_switch_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).onColor) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_switch_s),
+            "::",
+            stringify!(onColor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).offColor) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_switch_s),
+            "::",
+            stringify!(offColor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).state) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_switch_s),
+            "::",
+            stringify!(state)
+        )
+    );
+}
+impl Default for nbgl_switch_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief struct to represent a switch (size is fixed) (@ref SWITCH type)\n"]
+pub type nbgl_switch_t = nbgl_switch_s;
+#[doc = " @brief  struct to represent a progress bar (@ref PROGRESS_BAR type)\n @note if withBorder, the stroke of the border is fixed (3 pixels)"]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_progress_bar_s {
+    #[doc = "< if set to true, a border in black surround the whole object"]
+    pub withBorder: bool,
+    #[doc = "< state of the progress, in % (from 0 to 100)."]
+    pub state: u8,
+    #[doc = "< color of the inner progress bar and border (if applicable)"]
+    pub foregroundColor: color_t,
+}
+#[test]
+fn bindgen_test_layout_nbgl_progress_bar_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_progress_bar_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_progress_bar_s>(),
+        6usize,
+        concat!("Size of: ", stringify!(nbgl_progress_bar_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_progress_bar_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_progress_bar_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).withBorder) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_progress_bar_s),
+            "::",
+            stringify!(withBorder)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).state) as usize - ptr as usize },
+        1usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_progress_bar_s),
+            "::",
+            stringify!(state)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).foregroundColor) as usize - ptr as usize },
+        2usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_progress_bar_s),
+            "::",
+            stringify!(foregroundColor)
+        )
+    );
+}
+impl Default for nbgl_progress_bar_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief  struct to represent a progress bar (@ref PROGRESS_BAR type)\n @note if withBorder, the stroke of the border is fixed (3 pixels)"]
+pub type nbgl_progress_bar_t = nbgl_progress_bar_s;
+#[doc = " @brief  struct to represent a navigation bar (@ref PAGE_INDICATOR type)\n There can be up to 5 page indicators, whose shape is fixed.\n If there are more than 5 pages, the middle indicator will be \"...\"\n\n @note height is fixed"]
+#[repr(C, packed)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct nbgl_navigation_bar_s {
+    #[doc = "< number of pages."]
+    pub nbPages: u8,
+    #[doc = "< index of active page (from 0 to nbPages-1)."]
+    pub activePage: u8,
+}
+#[test]
+fn bindgen_test_layout_nbgl_navigation_bar_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_navigation_bar_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_navigation_bar_s>(),
+        2usize,
+        concat!("Size of: ", stringify!(nbgl_navigation_bar_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_navigation_bar_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_navigation_bar_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).nbPages) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_navigation_bar_s),
+            "::",
+            stringify!(nbPages)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).activePage) as usize - ptr as usize },
+        1usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_navigation_bar_s),
+            "::",
+            stringify!(activePage)
+        )
+    );
+}
+#[doc = " @brief  struct to represent a navigation bar (@ref PAGE_INDICATOR type)\n There can be up to 5 page indicators, whose shape is fixed.\n If there are more than 5 pages, the middle indicator will be \"...\"\n\n @note height is fixed"]
+pub type nbgl_page_indicator_t = nbgl_navigation_bar_s;
+#[doc = " @brief prototype of function to be called when a @ref TEXT_AREA object is drawned, and no text was provided\n @param token provided token in @ref TEXT_AREA object\n @return an ASCII string (null terminated) to be drawned in text area"]
+pub type onTextDrawCallback_t =
+    ::core::option::Option<unsafe extern "C" fn(token: u8) -> *mut cty::c_char>;
+#[doc = " @brief struct to represent a button (@ref BUTTON type)\n that can contain a text and/or an icon\n @note border width is fixed (2 pixels)\n"]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_button_s {
+    #[doc = "< color set inside of the button"]
+    pub innerColor: color_t,
+    #[doc = "< color set to button's border"]
+    pub borderColor: color_t,
+    #[doc = "< color set to '1' bits in icon, and text. '0' are set to innerColor color."]
+    pub foregroundColor: color_t,
+    #[doc = "< radius of the corners, must be a multiple of 4."]
+    pub radius: nbgl_radius_t,
+    #[doc = "< id of the font to use, if any"]
+    pub fontId: nbgl_font_id_e,
+    #[doc = "< if set to true, means the following 'text' field is considered as a"]
+    pub localized: bool,
+    #[doc = "< single line UTF-8 text (NULL terminated)"]
+    pub text: *mut cty::c_char,
+    #[doc = "< function called if not NULL, with above token as parameter to get the text of the button"]
+    pub onDrawCallback: onTextDrawCallback_t,
+    #[doc = "< token to use as param of onDrawCallback"]
+    pub token: u8,
+    #[doc = "< buffer containing icons bitmap. Set to NULL when no icon"]
+    pub icon: *const nbgl_icon_details_t,
+}
+#[test]
+fn bindgen_test_layout_nbgl_button_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_button_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_button_s>(),
+        34usize,
+        concat!("Size of: ", stringify!(nbgl_button_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_button_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_button_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).innerColor) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_button_s),
+            "::",
+            stringify!(innerColor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).borderColor) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_button_s),
+            "::",
+            stringify!(borderColor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).foregroundColor) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_button_s),
+            "::",
+            stringify!(foregroundColor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).radius) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_button_s),
+            "::",
+            stringify!(radius)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).fontId) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_button_s),
+            "::",
+            stringify!(fontId)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).localized) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_button_s),
+            "::",
+            stringify!(localized)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text) as usize - ptr as usize },
+        21usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_button_s),
+            "::",
+            stringify!(text)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).onDrawCallback) as usize - ptr as usize },
+        25usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_button_s),
+            "::",
+            stringify!(onDrawCallback)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).token) as usize - ptr as usize },
+        29usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_button_s),
+            "::",
+            stringify!(token)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).icon) as usize - ptr as usize },
+        30usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_button_s),
+            "::",
+            stringify!(icon)
+        )
+    );
+}
+impl Default for nbgl_button_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief struct to represent a button (@ref BUTTON type)\n that can contain a text and/or an icon\n @note border width is fixed (2 pixels)\n"]
+pub type nbgl_button_t = nbgl_button_s;
+#[doc = " @brief struct to represent a text area (@ref TEXT_AREA type)\n"]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_text_area_s {
+    #[doc = "< color set to '1' bits in text. '0' are set to backgroundColor color."]
+    pub textColor: color_t,
+    #[doc = "< alignment of text within the area"]
+    pub textAlignment: nbgl_aligment_t,
+    #[doc = "< to define the style of border"]
+    pub style: nbgl_style_t,
+    #[doc = "< id of the font to use"]
+    pub fontId: nbgl_font_id_e,
+    #[doc = "< if set to true, use textId instead of text"]
+    pub localized: bool,
+    #[doc = "< if set to true, replace beginning of line by ... to keep it single line"]
+    pub autoHideLongLine: bool,
+    #[doc = "< if set to true, break lines on ' ' when possible"]
+    pub wrapping: bool,
+    #[doc = "< if >0, replace end (3 last chars) of line (nbMaxLines-1) by \"...\" and stop display here"]
+    pub nbMaxLines: u8,
+    #[doc = "< ASCII text to draw (NULL terminated). Can be NULL."]
+    pub text: *mut cty::c_char,
+    #[doc = "< function called if not NULL to get the text of the text area"]
+    pub onDrawCallback: onTextDrawCallback_t,
+    #[doc = "< token to use as param of onDrawCallback"]
+    pub token: u8,
+}
+#[test]
+fn bindgen_test_layout_nbgl_text_area_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_text_area_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_text_area_s>(),
+        29usize,
+        concat!("Size of: ", stringify!(nbgl_text_area_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_text_area_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_text_area_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).textColor) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_text_area_s),
+            "::",
+            stringify!(textColor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).textAlignment) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_text_area_s),
+            "::",
+            stringify!(textAlignment)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).style) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_text_area_s),
+            "::",
+            stringify!(style)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).fontId) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_text_area_s),
+            "::",
+            stringify!(fontId)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).localized) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_text_area_s),
+            "::",
+            stringify!(localized)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).autoHideLongLine) as usize - ptr as usize },
+        17usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_text_area_s),
+            "::",
+            stringify!(autoHideLongLine)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).wrapping) as usize - ptr as usize },
+        18usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_text_area_s),
+            "::",
+            stringify!(wrapping)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).nbMaxLines) as usize - ptr as usize },
+        19usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_text_area_s),
+            "::",
+            stringify!(nbMaxLines)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_text_area_s),
+            "::",
+            stringify!(text)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).onDrawCallback) as usize - ptr as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_text_area_s),
+            "::",
+            stringify!(onDrawCallback)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).token) as usize - ptr as usize },
+        28usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_text_area_s),
+            "::",
+            stringify!(token)
+        )
+    );
+}
+impl Default for nbgl_text_area_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief struct to represent a text area (@ref TEXT_AREA type)\n"]
+pub type nbgl_text_area_t = nbgl_text_area_s;
+#[doc = " @brief struct to represent a \"spinner\", represented by the Ledger corners, in gray, with one of the corners in black (@ref SPINNER type)\n"]
+#[repr(C, packed)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct nbgl_spinner_s {
+    #[doc = "< position of the spinner (from 0 to 3). If set to 0xFF, the spinner is entirely black"]
+    pub position: u8,
+}
+#[test]
+fn bindgen_test_layout_nbgl_spinner_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_spinner_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_spinner_s>(),
+        1usize,
+        concat!("Size of: ", stringify!(nbgl_spinner_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_spinner_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_spinner_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).position) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_spinner_s),
+            "::",
+            stringify!(position)
+        )
+    );
+}
+#[doc = " @brief struct to represent a \"spinner\", represented by the Ledger corners, in gray, with one of the corners in black (@ref SPINNER type)\n"]
+pub type nbgl_spinner_t = nbgl_spinner_s;
+#[doc = " @brief prototype of function to be called when a valid key is pressed on keyboard\n Backspace is equal to 0x8 (ASCII code), Validate (for Keypad) is equal to 15 ('\\\\r')\n @param touchedKey char typed on keyboard"]
+pub type keyboardCallback_t = ::core::option::Option<unsafe extern "C" fn(touchedKey: cty::c_char)>;
+#[doc = "< letters mode"]
+pub const keyboardMode_t_MODE_LETTERS: keyboardMode_t = 0;
+#[doc = "< digits and some special characters mode"]
+pub const keyboardMode_t_MODE_DIGITS: keyboardMode_t = 1;
+#[doc = "< extended special characters mode"]
+pub const keyboardMode_t_MODE_SPECIAL: keyboardMode_t = 2;
+#[doc = " @brief Mode in which to open/set the keyboard\n"]
+pub type keyboardMode_t = cty::c_uint;
+#[doc = "< lower case mode"]
+pub const keyboardCase_t_LOWER_CASE: keyboardCase_t = 0;
+#[doc = "< upper case mode for one character"]
+pub const keyboardCase_t_UPPER_CASE: keyboardCase_t = 1;
+#[doc = "< locked upper case mode"]
+pub const keyboardCase_t_LOCKED_UPPER_CASE: keyboardCase_t = 2;
+#[doc = " @brief Letters casing in which to open/set the keyboard\n"]
+pub type keyboardCase_t = cty::c_uint;
+#[doc = " @brief struct to represent a keyboard (@ref KEYBOARD type)\n"]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_keyboard_s {
+    #[doc = "< color set to letters."]
+    pub textColor: color_t,
+    #[doc = "< color set to key borders"]
+    pub borderColor: color_t,
+    #[doc = "< if true, only display letter keys and Backspace"]
+    pub lettersOnly: bool,
+    #[doc = "< keyboard casing mode (lower, upper once or upper locked)"]
+    pub casing: keyboardCase_t,
+    #[doc = "< keyboard mode to start with"]
+    pub mode: keyboardMode_t,
+    #[doc = "< mask used to disable some keys in letters only mod. The 26 LSB bits of mask are used, for the 26 letters of a QWERTY keyboard. Bit[0] for Q, Bit[1] for W and so on"]
+    pub keyMask: u32,
+    #[doc = "< function called when an active key is pressed"]
+    pub callback: keyboardCallback_t,
+}
+#[test]
+fn bindgen_test_layout_nbgl_keyboard_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_keyboard_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_keyboard_s>(),
+        25usize,
+        concat!("Size of: ", stringify!(nbgl_keyboard_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_keyboard_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_keyboard_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).textColor) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_keyboard_s),
+            "::",
+            stringify!(textColor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).borderColor) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_keyboard_s),
+            "::",
+            stringify!(borderColor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).lettersOnly) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_keyboard_s),
+            "::",
+            stringify!(lettersOnly)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).casing) as usize - ptr as usize },
+        9usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_keyboard_s),
+            "::",
+            stringify!(casing)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).mode) as usize - ptr as usize },
+        13usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_keyboard_s),
+            "::",
+            stringify!(mode)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).keyMask) as usize - ptr as usize },
+        17usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_keyboard_s),
+            "::",
+            stringify!(keyMask)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).callback) as usize - ptr as usize },
+        21usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_keyboard_s),
+            "::",
+            stringify!(callback)
+        )
+    );
+}
+impl Default for nbgl_keyboard_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief struct to represent a keyboard (@ref KEYBOARD type)\n"]
+pub type nbgl_keyboard_t = nbgl_keyboard_s;
+#[doc = " @brief struct to represent a keypad (@ref KEYPAD type)\n"]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_keypad_s {
+    #[doc = "< color set to digits."]
+    pub textColor: color_t,
+    #[doc = "< color set to key borders"]
+    pub borderColor: color_t,
+    #[doc = "< if true, Backspace key is enabled"]
+    pub enableBackspace: bool,
+    #[doc = "< if true, Validate key is enabled"]
+    pub enableValidate: bool,
+    #[doc = "< if true, Digit keys are enabled"]
+    pub enableDigits: bool,
+    #[doc = "< if true, Digit keys are shuffled"]
+    pub shuffled: bool,
+    #[doc = "< array of digits indexes, 4 bits per digit"]
+    pub digitIndexes: [u8; 5usize],
+    #[doc = "< function called when an active key is pressed"]
+    pub callback: keyboardCallback_t,
+}
+#[test]
+fn bindgen_test_layout_nbgl_keypad_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_keypad_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_keypad_s>(),
+        21usize,
+        concat!("Size of: ", stringify!(nbgl_keypad_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_keypad_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_keypad_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).textColor) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_keypad_s),
+            "::",
+            stringify!(textColor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).borderColor) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_keypad_s),
+            "::",
+            stringify!(borderColor)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).enableBackspace) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_keypad_s),
+            "::",
+            stringify!(enableBackspace)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).enableValidate) as usize - ptr as usize },
+        9usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_keypad_s),
+            "::",
+            stringify!(enableValidate)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).enableDigits) as usize - ptr as usize },
+        10usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_keypad_s),
+            "::",
+            stringify!(enableDigits)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).shuffled) as usize - ptr as usize },
+        11usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_keypad_s),
+            "::",
+            stringify!(shuffled)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).digitIndexes) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_keypad_s),
+            "::",
+            stringify!(digitIndexes)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).callback) as usize - ptr as usize },
+        17usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_keypad_s),
+            "::",
+            stringify!(callback)
+        )
+    );
+}
+impl Default for nbgl_keypad_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief struct to represent a keypad (@ref KEYPAD type)\n"]
+pub type nbgl_keypad_t = nbgl_keypad_s;
+extern "C" {
+    #[doc = " GLOBAL PROTOTYPES"]
+    pub fn nbgl_redrawObject(obj: *mut nbgl_obj_t, prevObj: *mut nbgl_obj_t, computePosition: bool);
+}
+extern "C" {
+    pub fn nbgl_refresh();
+}
+extern "C" {
+    pub fn nbgl_refreshSpecial(mode: nbgl_refresh_mode_t);
+}
+extern "C" {
+    pub fn nbgl_refreshIsNeeded() -> bool;
+}
+extern "C" {
+    pub fn nbgl_refreshReset();
+}
+extern "C" {
+    pub fn nbgl_objInit();
+}
+extern "C" {
+    pub fn nbgl_objPoolRelease(layer: u8);
+}
+extern "C" {
+    pub fn nbgl_objPoolGet(type_: nbgl_obj_type_t, layer: u8) -> *mut nbgl_obj_t;
+}
+extern "C" {
+    pub fn nbgl_objPoolGetPrevious(obj: *mut nbgl_obj_t, layer: u8) -> *mut nbgl_obj_t;
+}
+extern "C" {
+    pub fn nbgl_objPoolGetArray(
+        type_: nbgl_obj_type_t,
+        nbObjs: u8,
+        layer: u8,
+        objArray: *mut *mut nbgl_obj_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_objPoolGetNbUsed(layer: u8) -> u8;
+}
+extern "C" {
+    pub fn nbgl_containerPoolRelease(layer: u8);
+}
+extern "C" {
+    pub fn nbgl_containerPoolGet(nbObjs: u8, layer: u8) -> *mut *mut nbgl_obj_t;
+}
+extern "C" {
+    pub fn nbgl_containerPoolGetNbUsed(layer: u8) -> u8;
+}
+extern "C" {
+    pub fn nbgl_navigationPopulate(
+        nbPages: u8,
+        activePage: u8,
+        withExitKey: bool,
+        callback: nbgl_touchCallback_t,
+        layer: u8,
+    ) -> *mut nbgl_container_t;
+}
+extern "C" {
+    pub fn nbgl_navigationGetActivePage() -> u8;
+}
+extern "C" {
+    pub fn nbgl_bottomButtonPopulate(
+        icon: *const nbgl_icon_details_t,
+        callback: nbgl_touchCallback_t,
+        separationLine: bool,
+        layer: u8,
+    ) -> *mut nbgl_container_t;
+}
+extern "C" {
+    pub fn nbgl_objDrawKeyboard(kbd: *mut nbgl_keyboard_t);
+}
+extern "C" {
+    pub fn nbgl_objDrawKeypad(kbd: *mut nbgl_keypad_t);
+}
+#[doc = " @brief prototype of function to be called when a timer on screen is fired"]
+pub type nbgl_tickerCallback_t = ::core::option::Option<unsafe extern "C" fn()>;
+#[doc = " @brief struct to configure a screen layer\n"]
+#[repr(C, packed)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct nbgl_screenTickerConfiguration_s {
+    #[doc = "< callback called when ticker timer is fired. Set to NULL for no ticker"]
+    pub tickerCallback: nbgl_tickerCallback_t,
+    #[doc = "< timer initial value, in ms (should be multiple of 100 ms). Set to 0 for no ticker"]
+    pub tickerValue: u32,
+    #[doc = "< for periodic timers, the intervale in ms to rearm the timer (should be multiple of 100 ms). Set to 0 for one-shot timers"]
+    pub tickerIntervale: u32,
+}
+#[test]
+fn bindgen_test_layout_nbgl_screenTickerConfiguration_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_screenTickerConfiguration_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_screenTickerConfiguration_s>(),
+        12usize,
+        concat!("Size of: ", stringify!(nbgl_screenTickerConfiguration_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_screenTickerConfiguration_s>(),
+        1usize,
+        concat!(
+            "Alignment of ",
+            stringify!(nbgl_screenTickerConfiguration_s)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tickerCallback) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_screenTickerConfiguration_s),
+            "::",
+            stringify!(tickerCallback)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tickerValue) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_screenTickerConfiguration_s),
+            "::",
+            stringify!(tickerValue)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tickerIntervale) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_screenTickerConfiguration_s),
+            "::",
+            stringify!(tickerIntervale)
+        )
+    );
+}
+#[doc = " @brief struct to configure a screen layer\n"]
+pub type nbgl_screenTickerConfiguration_t = nbgl_screenTickerConfiguration_s;
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_screen_s {
+    #[doc = "< pointer to screen on top of this one (or NULL is this screen is top of stack)"]
+    pub next: *mut nbgl_screen_s,
+    #[doc = "< pointer to screen on bottom of this one (or NULL is this screen is bottom of stack)"]
+    pub previous: *mut nbgl_screen_s,
+}
+#[test]
+fn bindgen_test_layout_nbgl_screen_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_screen_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_screen_s>(),
+        8usize,
+        concat!("Size of: ", stringify!(nbgl_screen_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_screen_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_screen_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).next) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_screen_s),
+            "::",
+            stringify!(next)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).previous) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_screen_s),
+            "::",
+            stringify!(previous)
+        )
+    );
+}
+impl Default for nbgl_screen_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+pub type nbgl_screen_t = nbgl_screen_s;
+extern "C" {
+    #[doc = " GLOBAL PROTOTYPES"]
+    pub fn nbgl_screen_reinit() -> cty::c_uint;
+}
+extern "C" {
+    pub fn nbgl_screenRedraw();
+}
+extern "C" {
+    pub fn nbgl_screenGetTop() -> *mut nbgl_obj_t;
+}
+extern "C" {
+    pub fn nbgl_screenGetCurrentStackSize() -> u8;
+}
+extern "C" {
+    pub fn nbgl_screenContainsObj(obj: *mut nbgl_obj_t) -> bool;
+}
+extern "C" {
+    pub fn nbgl_screenSet(
+        elements: *mut *mut *mut nbgl_obj_t,
+        nbElements: u8,
+        ticker: *mut nbgl_screenTickerConfiguration_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_screenUpdateNbElements(screenIndex: u8, nbElements: u8) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_screenUpdateBackgroundColor(screenIndex: u8, color: color_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_screenUpdateTicker(
+        screenIndex: u8,
+        ticker: *mut nbgl_screenTickerConfiguration_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_screenGetElements(screenIndex: u8) -> *mut *mut nbgl_obj_t;
+}
+extern "C" {
+    pub fn nbgl_screenRelease() -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_screenPush(
+        elements: *mut *mut *mut nbgl_obj_t,
+        nbElements: u8,
+        ticker: *mut nbgl_screenTickerConfiguration_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_screenPop(screenIndex: u8) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_screenReset() -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_screenHandler(intervaleMs: u32);
+}
+#[doc = " @brief prototype of function to be called an object is touched\n @param token integer passed when registering callback\n @param index when the object touched is a list of radio buttons, gives the index of the activated button"]
+pub type nbgl_layoutTouchCallback_t =
+    ::core::option::Option<unsafe extern "C" fn(token: cty::c_int, index: u8)>;
+#[doc = " @brief type shared externally\n"]
+pub type nbgl_layout_t = *mut cty::c_void;
+#[doc = " @brief This structure contains info to build a navigation bar at the bottom of the screen\n @note this widget is incompatible with a footer.\n"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_layoutNavigationBar_t {
+    #[doc = "< the token that will be used as argument of the callback"]
+    pub token: u8,
+    #[doc = "< number of pages. (if 0, no navigation)"]
+    pub nbPages: u8,
+    #[doc = "< index of active page (from 0 to nbPages-1)."]
+    pub activePage: u8,
+    #[doc = "< if set to true, an exit button is drawn, either on the left of navigation keys or in the center if no navigation"]
+    pub withExitKey: bool,
+    #[doc = "< if set to true, an horizontal line is drawn on top of bar in light gray"]
+    pub withSeparationLine: bool,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played when pressing keys)"]
+    pub tuneId: tune_index_e,
+}
+#[test]
+fn bindgen_test_layout_nbgl_layoutNavigationBar_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_layoutNavigationBar_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_layoutNavigationBar_t>(),
+        12usize,
+        concat!("Size of: ", stringify!(nbgl_layoutNavigationBar_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_layoutNavigationBar_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_layoutNavigationBar_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).token) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutNavigationBar_t),
+            "::",
+            stringify!(token)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).nbPages) as usize - ptr as usize },
+        1usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutNavigationBar_t),
+            "::",
+            stringify!(nbPages)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).activePage) as usize - ptr as usize },
+        2usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutNavigationBar_t),
+            "::",
+            stringify!(activePage)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).withExitKey) as usize - ptr as usize },
+        3usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutNavigationBar_t),
+            "::",
+            stringify!(withExitKey)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).withSeparationLine) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutNavigationBar_t),
+            "::",
+            stringify!(withSeparationLine)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tuneId) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutNavigationBar_t),
+            "::",
+            stringify!(tuneId)
+        )
+    );
+}
+impl Default for nbgl_layoutNavigationBar_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief Structure containing all information when creating a layout. This structure must be passed as argument to @ref nbgl_layoutGet\n @note It shall not be used\n"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_layoutDescription_s {
+    #[doc = "< if true, puts the layout on top of screen stack (modal). Otherwise puts on background (for apps)"]
+    pub modal: bool,
+    #[doc = "< if true, draws a light gray left border on the whole height of the screen"]
+    pub withLeftBorder: bool,
+    #[doc = "< Light gray text used when main container is \"tapable\""]
+    pub tapActionText: *mut cty::c_char,
+    #[doc = "< the token that will be used as argument of the onActionCallback when main container is \"tapped\""]
+    pub tapActionToken: u8,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played when tapping on main container"]
+    pub tapTuneId: tune_index_e,
+    #[doc = "< the callback to be called on any action on the layout"]
+    pub onActionCallback: nbgl_layoutTouchCallback_t,
+    pub ticker: nbgl_screenTickerConfiguration_t,
+}
+#[test]
+fn bindgen_test_layout_nbgl_layoutDescription_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_layoutDescription_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_layoutDescription_s>(),
+        32usize,
+        concat!("Size of: ", stringify!(nbgl_layoutDescription_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_layoutDescription_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_layoutDescription_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).modal) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutDescription_s),
+            "::",
+            stringify!(modal)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).withLeftBorder) as usize - ptr as usize },
+        1usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutDescription_s),
+            "::",
+            stringify!(withLeftBorder)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tapActionText) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutDescription_s),
+            "::",
+            stringify!(tapActionText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tapActionToken) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutDescription_s),
+            "::",
+            stringify!(tapActionToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tapTuneId) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutDescription_s),
+            "::",
+            stringify!(tapTuneId)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).onActionCallback) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutDescription_s),
+            "::",
+            stringify!(onActionCallback)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).ticker) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutDescription_s),
+            "::",
+            stringify!(ticker)
+        )
+    );
+}
+impl Default for nbgl_layoutDescription_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief Structure containing all information when creating a layout. This structure must be passed as argument to @ref nbgl_layoutGet\n @note It shall not be used\n"]
+pub type nbgl_layoutDescription_t = nbgl_layoutDescription_s;
+#[doc = " @brief This structure contains info to build a clickable \"bar\" with a text and an icon\n"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_layoutBar_t {
+    #[doc = "< a buffer containing the 1BPP icon for icon on left (can be NULL)"]
+    pub iconLeft: *const nbgl_icon_details_t,
+    #[doc = "< text (can be NULL)"]
+    pub text: *mut cty::c_char,
+    #[doc = "< a buffer containing the 1BPP icon for icon 2 (can be NULL). Dimensions must be the same as iconLeft"]
+    pub iconRight: *const nbgl_icon_details_t,
+    #[doc = "< sub text (can be NULL)"]
+    pub subText: *mut cty::c_char,
+    #[doc = "< the token that will be used as argument of the callback"]
+    pub token: u8,
+    #[doc = "< if set to true, the bar is grayed-out and cannot be touched"]
+    pub inactive: bool,
+    #[doc = "< if set to true, the text is centered horizontaly in the bar"]
+    pub centered: bool,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played"]
+    pub tuneId: tune_index_e,
+}
+#[test]
+fn bindgen_test_layout_nbgl_layoutBar_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_layoutBar_t> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_layoutBar_t>(),
+        24usize,
+        concat!("Size of: ", stringify!(nbgl_layoutBar_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_layoutBar_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_layoutBar_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).iconLeft) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutBar_t),
+            "::",
+            stringify!(iconLeft)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutBar_t),
+            "::",
+            stringify!(text)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).iconRight) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutBar_t),
+            "::",
+            stringify!(iconRight)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).subText) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutBar_t),
+            "::",
+            stringify!(subText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).token) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutBar_t),
+            "::",
+            stringify!(token)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).inactive) as usize - ptr as usize },
+        17usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutBar_t),
+            "::",
+            stringify!(inactive)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).centered) as usize - ptr as usize },
+        18usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutBar_t),
+            "::",
+            stringify!(centered)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tuneId) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutBar_t),
+            "::",
+            stringify!(tuneId)
+        )
+    );
+}
+impl Default for nbgl_layoutBar_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief This structure contains info to build a switch (on the right) with a description (on the left), with a\n potential sub-description (in gray)\n"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_layoutSwitch_t {
+    #[doc = "< main text for the switch"]
+    pub text: *mut cty::c_char,
+    #[doc = "< description under main text (NULL terminated, single line, may be null)"]
+    pub subText: *mut cty::c_char,
+    #[doc = "< initial state of the switch"]
+    pub initState: nbgl_state_t,
+    #[doc = "< the token that will be used as argument of the callback"]
+    pub token: u8,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played"]
+    pub tuneId: tune_index_e,
+}
+#[test]
+fn bindgen_test_layout_nbgl_layoutSwitch_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_layoutSwitch_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_layoutSwitch_t>(),
+        20usize,
+        concat!("Size of: ", stringify!(nbgl_layoutSwitch_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_layoutSwitch_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_layoutSwitch_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutSwitch_t),
+            "::",
+            stringify!(text)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).subText) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutSwitch_t),
+            "::",
+            stringify!(subText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).initState) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutSwitch_t),
+            "::",
+            stringify!(initState)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).token) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutSwitch_t),
+            "::",
+            stringify!(token)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tuneId) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutSwitch_t),
+            "::",
+            stringify!(tuneId)
+        )
+    );
+}
+impl Default for nbgl_layoutSwitch_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief This structure contains a list of names to build a list of radio\n buttons (on the right part of screen), with for each a description (names array)\n The chosen item index is provided is the \"index\" argument of the callback"]
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct nbgl_layoutRadioChoice_t {
+    pub __bindgen_anon_1: nbgl_layoutRadioChoice_t__bindgen_ty_1,
+    #[doc = "< if set to true, use nameIds and not names"]
+    pub localized: bool,
+    #[doc = "< number of choices"]
+    pub nbChoices: u8,
+    #[doc = "< index of the current choice"]
+    pub initChoice: u8,
+    #[doc = "< the token that will be used as argument of the callback"]
+    pub token: u8,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played when selecting a radio button)"]
+    pub tuneId: tune_index_e,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub union nbgl_layoutRadioChoice_t__bindgen_ty_1 {
+    #[doc = "< array of strings giving the choices (nbChoices)"]
+    pub names: *mut *mut cty::c_char,
+}
+#[test]
+fn bindgen_test_layout_nbgl_layoutRadioChoice_t__bindgen_ty_1() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_layoutRadioChoice_t__bindgen_ty_1> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_layoutRadioChoice_t__bindgen_ty_1>(),
+        4usize,
+        concat!(
+            "Size of: ",
+            stringify!(nbgl_layoutRadioChoice_t__bindgen_ty_1)
+        )
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_layoutRadioChoice_t__bindgen_ty_1>(),
+        4usize,
+        concat!(
+            "Alignment of ",
+            stringify!(nbgl_layoutRadioChoice_t__bindgen_ty_1)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).names) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutRadioChoice_t__bindgen_ty_1),
+            "::",
+            stringify!(names)
+        )
+    );
+}
+impl Default for nbgl_layoutRadioChoice_t__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[test]
+fn bindgen_test_layout_nbgl_layoutRadioChoice_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_layoutRadioChoice_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_layoutRadioChoice_t>(),
+        12usize,
+        concat!("Size of: ", stringify!(nbgl_layoutRadioChoice_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_layoutRadioChoice_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_layoutRadioChoice_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).localized) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutRadioChoice_t),
+            "::",
+            stringify!(localized)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).nbChoices) as usize - ptr as usize },
+        5usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutRadioChoice_t),
+            "::",
+            stringify!(nbChoices)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).initChoice) as usize - ptr as usize },
+        6usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutRadioChoice_t),
+            "::",
+            stringify!(initChoice)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).token) as usize - ptr as usize },
+        7usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutRadioChoice_t),
+            "::",
+            stringify!(token)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tuneId) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutRadioChoice_t),
+            "::",
+            stringify!(tuneId)
+        )
+    );
+}
+impl Default for nbgl_layoutRadioChoice_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief This structure contains a  [tag,value] pair"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_layoutTagValue_t {
+    #[doc = "< string giving the tag name"]
+    pub item: *mut cty::c_char,
+    #[doc = "< string giving the value name"]
+    pub value: *mut cty::c_char,
+}
+#[test]
+fn bindgen_test_layout_nbgl_layoutTagValue_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_layoutTagValue_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_layoutTagValue_t>(),
+        8usize,
+        concat!("Size of: ", stringify!(nbgl_layoutTagValue_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_layoutTagValue_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_layoutTagValue_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).item) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutTagValue_t),
+            "::",
+            stringify!(item)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).value) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutTagValue_t),
+            "::",
+            stringify!(value)
+        )
+    );
+}
+impl Default for nbgl_layoutTagValue_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief prototype of tag/value pair retrieval callback\n @param pairIndex index of the tag/value pair to retrieve (from 0 (to nbPairs-1))\n @return a pointer on a static tag/value pair"]
+pub type nbgl_tagValueCallback_t =
+    ::core::option::Option<unsafe extern "C" fn(pairIndex: u8) -> *mut nbgl_layoutTagValue_t>;
+#[doc = " @brief This structure contains a list of [tag,value] pairs"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_layoutTagValueList_t {
+    #[doc = "< array of [tag,value] pairs (nbPairs items). If NULL, callback is used instead"]
+    pub pairs: *mut nbgl_layoutTagValue_t,
+    #[doc = "< function to call to retrieve a given pair"]
+    pub callback: nbgl_tagValueCallback_t,
+    #[doc = "< number of pairs in pairs array (or max number of pairs to retrieve with callback)"]
+    pub nbPairs: u8,
+    #[doc = "< index of the first pair to get with callback"]
+    pub startIndex: u8,
+    #[doc = "< if > 0, set the max number of lines for value field. And the last line is ended with \"...\" instead of the 3 last chars"]
+    pub nbMaxLinesForValue: u8,
+    #[doc = "< the token that will be used as argument of the callback if icon in any tag/value pair is touched (index is the index of the pair in pairs[])"]
+    pub token: u8,
+    #[doc = "< if set to true, a 24px font is used for value text, otherwise a 32px font is used"]
+    pub smallCaseForValue: bool,
+    #[doc = "< if set to true, value text will be wrapped on ' ' to avoid cutting words"]
+    pub wrapping: bool,
+}
+#[test]
+fn bindgen_test_layout_nbgl_layoutTagValueList_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_layoutTagValueList_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_layoutTagValueList_t>(),
+        16usize,
+        concat!("Size of: ", stringify!(nbgl_layoutTagValueList_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_layoutTagValueList_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_layoutTagValueList_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).pairs) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutTagValueList_t),
+            "::",
+            stringify!(pairs)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).callback) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutTagValueList_t),
+            "::",
+            stringify!(callback)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).nbPairs) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutTagValueList_t),
+            "::",
+            stringify!(nbPairs)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).startIndex) as usize - ptr as usize },
+        9usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutTagValueList_t),
+            "::",
+            stringify!(startIndex)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).nbMaxLinesForValue) as usize - ptr as usize },
+        10usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutTagValueList_t),
+            "::",
+            stringify!(nbMaxLinesForValue)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).token) as usize - ptr as usize },
+        11usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutTagValueList_t),
+            "::",
+            stringify!(token)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).smallCaseForValue) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutTagValueList_t),
+            "::",
+            stringify!(smallCaseForValue)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).wrapping) as usize - ptr as usize },
+        13usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutTagValueList_t),
+            "::",
+            stringify!(wrapping)
+        )
+    );
+}
+impl Default for nbgl_layoutTagValueList_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = "< text in BLACK and large case (INTER 32px), subText in black in Inter24px"]
+pub const nbgl_centeredInfoStyle_t_LARGE_CASE_INFO: nbgl_centeredInfoStyle_t = 0;
+#[doc = "< text in BLACK and large case (INTER 32px), subText in black bold Inter24px, text3 in black Inter24px"]
+pub const nbgl_centeredInfoStyle_t_LARGE_CASE_BOLD_INFO: nbgl_centeredInfoStyle_t = 1;
+#[doc = "< only text, in BLACK and upper case (HM ALPHA MONO), with Ledger border"]
+pub const nbgl_centeredInfoStyle_t_LEDGER_INFO: nbgl_centeredInfoStyle_t = 2;
+#[doc = "< Icon in black, a potential text in black bold 24px under it, a potential text in dark gray (24px) under it, a potential text in black (24px) under it"]
+pub const nbgl_centeredInfoStyle_t_NORMAL_INFO: nbgl_centeredInfoStyle_t = 3;
+#[doc = "< A potential text in black 32px, a potential text in black (24px) under it, a small horizontal line under it, a potential icon under it, a potential text in black (24px) under it"]
+pub const nbgl_centeredInfoStyle_t_PLUGIN_INFO: nbgl_centeredInfoStyle_t = 4;
+#[doc = " @brief possible styles for Centered Info Area\n"]
+pub type nbgl_centeredInfoStyle_t = cty::c_uint;
+#[doc = " @brief This structure contains info to build a centered (vertically and horizontally) area, with a possible Icon,\n a possible text under it, and a possible sub-text gray under it.\n"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_layoutCenteredInfo_t {
+    #[doc = "< first text (can be null)"]
+    pub text1: *mut cty::c_char,
+    #[doc = "< second text (can be null)"]
+    pub text2: *mut cty::c_char,
+    #[doc = "< third text (can be null)"]
+    pub text3: *mut cty::c_char,
+    #[doc = "< a buffer containing the 1BPP icon"]
+    pub icon: *const nbgl_icon_details_t,
+    #[doc = "< if set to true, align only horizontaly"]
+    pub onTop: bool,
+    #[doc = "< style to apply to this info"]
+    pub style: nbgl_centeredInfoStyle_t,
+    #[doc = "< vertical shift to apply to this info (if >0, shift to bottom)"]
+    pub offsetY: i16,
+}
+#[test]
+fn bindgen_test_layout_nbgl_layoutCenteredInfo_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_layoutCenteredInfo_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_layoutCenteredInfo_t>(),
+        28usize,
+        concat!("Size of: ", stringify!(nbgl_layoutCenteredInfo_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_layoutCenteredInfo_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_layoutCenteredInfo_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text1) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutCenteredInfo_t),
+            "::",
+            stringify!(text1)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text2) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutCenteredInfo_t),
+            "::",
+            stringify!(text2)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text3) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutCenteredInfo_t),
+            "::",
+            stringify!(text3)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).icon) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutCenteredInfo_t),
+            "::",
+            stringify!(icon)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).onTop) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutCenteredInfo_t),
+            "::",
+            stringify!(onTop)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).style) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutCenteredInfo_t),
+            "::",
+            stringify!(style)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).offsetY) as usize - ptr as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutCenteredInfo_t),
+            "::",
+            stringify!(offsetY)
+        )
+    );
+}
+impl Default for nbgl_layoutCenteredInfo_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief This structure contains info to build a centered (vertically and horizontally) area, with a QR Code,\n a possible text (black, bold) under it, and a possible sub-text (black, regular) under it.\n"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_layoutQRCode_t {
+    #[doc = "< URL for QR code"]
+    pub url: *mut cty::c_char,
+    #[doc = "< first text (can be null)"]
+    pub text1: *mut cty::c_char,
+    #[doc = "< second text (can be null)"]
+    pub text2: *mut cty::c_char,
+    #[doc = "< if set to true, use 32px font for text1"]
+    pub largeText1: bool,
+}
+#[test]
+fn bindgen_test_layout_nbgl_layoutQRCode_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_layoutQRCode_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_layoutQRCode_t>(),
+        16usize,
+        concat!("Size of: ", stringify!(nbgl_layoutQRCode_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_layoutQRCode_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_layoutQRCode_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).url) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutQRCode_t),
+            "::",
+            stringify!(url)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text1) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutQRCode_t),
+            "::",
+            stringify!(text1)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text2) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutQRCode_t),
+            "::",
+            stringify!(text2)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).largeText1) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutQRCode_t),
+            "::",
+            stringify!(largeText1)
+        )
+    );
+}
+impl Default for nbgl_layoutQRCode_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = "< A rounded black background full width button on top of a footer"]
+pub const nbgl_layoutChoiceButtonsStyle_t_ROUNDED_AND_FOOTER_STYLE:
+    nbgl_layoutChoiceButtonsStyle_t = 0;
+#[doc = "< A rounded black background full width button on top of a rounded white background full width button"]
+pub const nbgl_layoutChoiceButtonsStyle_t_BOTH_ROUNDED_STYLE: nbgl_layoutChoiceButtonsStyle_t = 1;
+#[doc = " @brief The different styles for a pair of buttons\n"]
+pub type nbgl_layoutChoiceButtonsStyle_t = cty::c_uint;
+#[doc = " @brief This structure contains info to build a pair of buttons, one on top of the other.\n\n @note the pair of button is automatically put on bottom of screen"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_layoutChoiceButtons_t {
+    #[doc = "< up-button text (index 0)"]
+    pub topText: *mut cty::c_char,
+    #[doc = "< bottom-button text (index 1)"]
+    pub bottomText: *mut cty::c_char,
+    #[doc = "< the token that will be used as argument of the callback"]
+    pub token: u8,
+    #[doc = "< the style of the pair"]
+    pub style: nbgl_layoutChoiceButtonsStyle_t,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played"]
+    pub tuneId: tune_index_e,
+}
+#[test]
+fn bindgen_test_layout_nbgl_layoutChoiceButtons_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_layoutChoiceButtons_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_layoutChoiceButtons_t>(),
+        20usize,
+        concat!("Size of: ", stringify!(nbgl_layoutChoiceButtons_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_layoutChoiceButtons_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_layoutChoiceButtons_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).topText) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutChoiceButtons_t),
+            "::",
+            stringify!(topText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bottomText) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutChoiceButtons_t),
+            "::",
+            stringify!(bottomText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).token) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutChoiceButtons_t),
+            "::",
+            stringify!(token)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).style) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutChoiceButtons_t),
+            "::",
+            stringify!(style)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tuneId) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutChoiceButtons_t),
+            "::",
+            stringify!(tuneId)
+        )
+    );
+}
+impl Default for nbgl_layoutChoiceButtons_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = "< rounded bordered button, with text/icon in white, on black background"]
+pub const nbgl_layoutButtonStyle_t_BLACK_BACKGROUND: nbgl_layoutButtonStyle_t = 0;
+#[doc = "< rounded bordered button, with text/icon in black, on white background"]
+pub const nbgl_layoutButtonStyle_t_WHITE_BACKGROUND: nbgl_layoutButtonStyle_t = 1;
+#[doc = "< simple clickable text, in black"]
+pub const nbgl_layoutButtonStyle_t_NO_BORDER: nbgl_layoutButtonStyle_t = 2;
+#[doc = "< long press button, with progress indicator"]
+pub const nbgl_layoutButtonStyle_t_LONG_PRESS: nbgl_layoutButtonStyle_t = 3;
+#[doc = " @brief The different styles for a button\n"]
+pub type nbgl_layoutButtonStyle_t = cty::c_uint;
+#[doc = " @brief This structure contains info to build a single button"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_layoutButton_t {
+    #[doc = "< button text"]
+    pub text: *mut cty::c_char,
+    #[doc = "< a buffer containing the 1BPP icon for button1"]
+    pub icon: *const nbgl_icon_details_t,
+    #[doc = "< the token that will be used as argument of the callback"]
+    pub token: u8,
+    pub style: nbgl_layoutButtonStyle_t,
+    #[doc = "< if set to true, fit the width of button to text, otherwise full width"]
+    pub fittingContent: bool,
+    #[doc = "< if set to true, align on bottom of page, otherwise put on bottom of previous object"]
+    pub onBottom: bool,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played"]
+    pub tuneId: tune_index_e,
+}
+#[test]
+fn bindgen_test_layout_nbgl_layoutButton_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_layoutButton_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_layoutButton_t>(),
+        24usize,
+        concat!("Size of: ", stringify!(nbgl_layoutButton_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_layoutButton_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_layoutButton_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutButton_t),
+            "::",
+            stringify!(text)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).icon) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutButton_t),
+            "::",
+            stringify!(icon)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).token) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutButton_t),
+            "::",
+            stringify!(token)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).style) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutButton_t),
+            "::",
+            stringify!(style)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).fittingContent) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutButton_t),
+            "::",
+            stringify!(fittingContent)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).onBottom) as usize - ptr as usize },
+        17usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutButton_t),
+            "::",
+            stringify!(onBottom)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tuneId) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutButton_t),
+            "::",
+            stringify!(tuneId)
+        )
+    );
+}
+impl Default for nbgl_layoutButton_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief This structure contains info to build a progress bar with info. The progress bar itself is 120px width * 12px height\n"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_layoutProgressBar_t {
+    #[doc = "< percentage of completion, from 0 to 100."]
+    pub percentage: u8,
+    #[doc = "< text in black, on top of progress bar"]
+    pub text: *mut cty::c_char,
+    #[doc = "< text in gray, under progress bar"]
+    pub subText: *mut cty::c_char,
+}
+#[test]
+fn bindgen_test_layout_nbgl_layoutProgressBar_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_layoutProgressBar_t> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_layoutProgressBar_t>(),
+        12usize,
+        concat!("Size of: ", stringify!(nbgl_layoutProgressBar_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_layoutProgressBar_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_layoutProgressBar_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).percentage) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutProgressBar_t),
+            "::",
+            stringify!(percentage)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutProgressBar_t),
+            "::",
+            stringify!(text)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).subText) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutProgressBar_t),
+            "::",
+            stringify!(subText)
+        )
+    );
+}
+impl Default for nbgl_layoutProgressBar_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief This structure contains info to build a keyboard with @ref nbgl_layoutAddKeyboard()\n"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_layoutKbd_t {
+    #[doc = "< if true, only display letter keys and Backspace"]
+    pub lettersOnly: bool,
+    #[doc = "< keyboard casing mode (lower, upper once or upper locked)"]
+    pub casing: keyboardCase_t,
+    #[doc = "< keyboard mode to start with"]
+    pub mode: keyboardMode_t,
+    #[doc = "< mask used to disable some keys in letters only mod. The 26 LSB bits of mask are used, for the 26 letters of a QWERTY keyboard. Bit[0] for Q, Bit[1] for W and so on"]
+    pub keyMask: u32,
+    #[doc = "< function called when an active key is pressed"]
+    pub callback: keyboardCallback_t,
+}
+#[test]
+fn bindgen_test_layout_nbgl_layoutKbd_t() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_layoutKbd_t> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_layoutKbd_t>(),
+        20usize,
+        concat!("Size of: ", stringify!(nbgl_layoutKbd_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_layoutKbd_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_layoutKbd_t))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).lettersOnly) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutKbd_t),
+            "::",
+            stringify!(lettersOnly)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).casing) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutKbd_t),
+            "::",
+            stringify!(casing)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).mode) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutKbd_t),
+            "::",
+            stringify!(mode)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).keyMask) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutKbd_t),
+            "::",
+            stringify!(keyMask)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).callback) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_layoutKbd_t),
+            "::",
+            stringify!(callback)
+        )
+    );
+}
+impl Default for nbgl_layoutKbd_t {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+extern "C" {
+    #[doc = " GLOBAL PROTOTYPES"]
+    pub fn nbgl_layoutGet(description: *mut nbgl_layoutDescription_t) -> *mut nbgl_layout_t;
+}
+extern "C" {
+    pub fn nbgl_layoutAddTopRightButton(
+        layout: *mut nbgl_layout_t,
+        icon: *const nbgl_icon_details_t,
+        token: u8,
+        tuneId: tune_index_e,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddTouchableBar(
+        layout: *mut nbgl_layout_t,
+        barLayout: *mut nbgl_layoutBar_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddSwitch(
+        layout: *mut nbgl_layout_t,
+        switchLayout: *mut nbgl_layoutSwitch_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddText(
+        layout: *mut nbgl_layout_t,
+        text: *mut cty::c_char,
+        subText: *mut cty::c_char,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddRadioChoice(
+        layout: *mut nbgl_layout_t,
+        choices: *mut nbgl_layoutRadioChoice_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddCenteredInfo(
+        layout: *mut nbgl_layout_t,
+        info: *mut nbgl_layoutCenteredInfo_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddQRCode(
+        layout: *mut nbgl_layout_t,
+        info: *mut nbgl_layoutQRCode_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddChoiceButtons(
+        layout: *mut nbgl_layout_t,
+        info: *mut nbgl_layoutChoiceButtons_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddTagValueList(
+        layout: *mut nbgl_layout_t,
+        list: *mut nbgl_layoutTagValueList_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddProgressBar(
+        layout: *mut nbgl_layout_t,
+        barLayout: *mut nbgl_layoutProgressBar_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddLargeCaseText(
+        layout: *mut nbgl_layout_t,
+        text: *mut cty::c_char,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddSeparationLine(layout: *mut nbgl_layout_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddButton(
+        layout: *mut nbgl_layout_t,
+        buttonInfo: *mut nbgl_layoutButton_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddLongPressButton(
+        layout: *mut nbgl_layout_t,
+        text: *mut cty::c_char,
+        token: u8,
+        tuneId: tune_index_e,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddFooter(
+        layout: *mut nbgl_layout_t,
+        text: *mut cty::c_char,
+        token: u8,
+        tuneId: tune_index_e,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddSplitFooter(
+        layout: *mut nbgl_layout_t,
+        leftText: *mut cty::c_char,
+        leftToken: u8,
+        rightText: *mut cty::c_char,
+        rightToken: u8,
+        tuneId: tune_index_e,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddNavigationBar(
+        layout: *mut nbgl_layout_t,
+        info: *mut nbgl_layoutNavigationBar_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddBottomButton(
+        layout: *mut nbgl_layout_t,
+        icon: *const nbgl_icon_details_t,
+        token: u8,
+        separationLine: bool,
+        tuneId: tune_index_e,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddProgressIndicator(
+        layout: *mut nbgl_layout_t,
+        activePage: u8,
+        nbPages: u8,
+        withBack: bool,
+        backToken: u8,
+        tuneId: tune_index_e,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutAddSpinner(
+        layout: *mut nbgl_layout_t,
+        text: *mut cty::c_char,
+        fixed: bool,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutDraw(layout: *mut nbgl_layout_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn nbgl_layoutRelease(layout: *mut nbgl_layout_t) -> cty::c_int;
+}
+#[doc = "< no button."]
+pub const nbgl_pageButtonStyle_t_NO_BUTTON_STYLE: nbgl_pageButtonStyle_t = 0;
+#[doc = "< settings (wheel) icon in the button."]
+pub const nbgl_pageButtonStyle_t_SETTINGS_ICON: nbgl_pageButtonStyle_t = 1;
+#[doc = "< quit (X) icon in the button."]
+pub const nbgl_pageButtonStyle_t_QUIT_ICON: nbgl_pageButtonStyle_t = 2;
+#[doc = "< info (i) icon in the button."]
+pub const nbgl_pageButtonStyle_t_INFO_ICON: nbgl_pageButtonStyle_t = 3;
+#[doc = "< A full width button with \"Quit app\" text (only for bottom button)"]
+pub const nbgl_pageButtonStyle_t_QUIT_APP_TEXT: nbgl_pageButtonStyle_t = 4;
+#[doc = " @brief The different types of top-right / bottom button\n"]
+pub type nbgl_pageButtonStyle_t = cty::c_uint;
+#[doc = "< a centered info"]
+pub const nbgl_pageContentType_t_CENTERED_INFO: nbgl_pageContentType_t = 0;
+#[doc = "< a centered info and a long press button"]
+pub const nbgl_pageContentType_t_INFO_LONG_PRESS: nbgl_pageContentType_t = 1;
+#[doc = "< a centered info and a simple black button"]
+pub const nbgl_pageContentType_t_INFO_BUTTON: nbgl_pageContentType_t = 2;
+#[doc = "< list of tag/value pairs"]
+pub const nbgl_pageContentType_t_TAG_VALUE_LIST: nbgl_pageContentType_t = 3;
+#[doc = "< a tag/value pair and a small button to get details."]
+pub const nbgl_pageContentType_t_TAG_VALUE_DETAILS: nbgl_pageContentType_t = 4;
+#[doc = "< tag/value pairs and a black button/footer to confirm/cancel."]
+pub const nbgl_pageContentType_t_TAG_VALUE_CONFIRM: nbgl_pageContentType_t = 5;
+#[doc = "< list of switches with descriptions"]
+pub const nbgl_pageContentType_t_SWITCHES_LIST: nbgl_pageContentType_t = 6;
+#[doc = "< list of infos with titles"]
+pub const nbgl_pageContentType_t_INFOS_LIST: nbgl_pageContentType_t = 7;
+#[doc = "< list of choices through radio buttons"]
+pub const nbgl_pageContentType_t_CHOICES_LIST: nbgl_pageContentType_t = 8;
+#[doc = "< list of touchable bars (with > on the right to go to sub-pages)"]
+pub const nbgl_pageContentType_t_BARS_LIST: nbgl_pageContentType_t = 9;
+#[doc = " @brief The different types of predefined page contents\n"]
+pub type nbgl_pageContentType_t = cty::c_uint;
+#[doc = " @brief This structure contains a [item,value] pair and info about \"details\" button"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_pageTagValueDetails_s {
+    #[doc = "< list of tag/value pairs"]
+    pub tagValueList: nbgl_layoutTagValueList_t,
+    #[doc = "< icon to use in details button"]
+    pub detailsButtonIcon: *const nbgl_icon_details_t,
+    #[doc = "< this text is used for \"details\" button"]
+    pub detailsButtonText: *const cty::c_char,
+    #[doc = "< the token used as argument of the actionCallback when the \"details\" button is touched"]
+    pub detailsButtonToken: u8,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played when details button is touched"]
+    pub tuneId: tune_index_e,
+}
+#[test]
+fn bindgen_test_layout_nbgl_pageTagValueDetails_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_pageTagValueDetails_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_pageTagValueDetails_s>(),
+        32usize,
+        concat!("Size of: ", stringify!(nbgl_pageTagValueDetails_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_pageTagValueDetails_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_pageTagValueDetails_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tagValueList) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageTagValueDetails_s),
+            "::",
+            stringify!(tagValueList)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).detailsButtonIcon) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageTagValueDetails_s),
+            "::",
+            stringify!(detailsButtonIcon)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).detailsButtonText) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageTagValueDetails_s),
+            "::",
+            stringify!(detailsButtonText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).detailsButtonToken) as usize - ptr as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageTagValueDetails_s),
+            "::",
+            stringify!(detailsButtonToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tuneId) as usize - ptr as usize },
+        28usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageTagValueDetails_s),
+            "::",
+            stringify!(tuneId)
+        )
+    );
+}
+impl Default for nbgl_pageTagValueDetails_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief This structure contains a [item,value] pair and info about \"details\" button"]
+pub type nbgl_pageTagValueDetails_t = nbgl_pageTagValueDetails_s;
+#[doc = " @brief This structure contains [item,value] pair(s) and info about a potential \"details\" button, but also a black button + footer to confirm/cancel"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_pageTagValueConfirm_s {
+    #[doc = "< list of tag/value pairs"]
+    pub tagValueList: nbgl_layoutTagValueList_t,
+    #[doc = "< icon to use in details button"]
+    pub detailsButtonIcon: *const nbgl_icon_details_t,
+    #[doc = "< this text is used for \"details\" button (if NULL, no button)"]
+    pub detailsButtonText: *const cty::c_char,
+    #[doc = "< the token used as argument of the actionCallback when the \"details\" button is touched"]
+    pub detailsButtonToken: u8,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played when details button is touched"]
+    pub tuneId: tune_index_e,
+    #[doc = "< text of the confirmation button, if NULL \"It matches\" is used"]
+    pub confirmationText: *const cty::c_char,
+    #[doc = "< the text used for cancel action, if NULL \"It doesn't matches\" is used"]
+    pub cancelText: *const cty::c_char,
+    #[doc = "< the token used as argument of the onActionCallback"]
+    pub confirmationToken: u8,
+    #[doc = "< the token used as argument of the onActionCallback when the cancel button is pressed"]
+    pub cancelToken: u8,
+}
+#[test]
+fn bindgen_test_layout_nbgl_pageTagValueConfirm_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_pageTagValueConfirm_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_pageTagValueConfirm_s>(),
+        44usize,
+        concat!("Size of: ", stringify!(nbgl_pageTagValueConfirm_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_pageTagValueConfirm_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_pageTagValueConfirm_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tagValueList) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageTagValueConfirm_s),
+            "::",
+            stringify!(tagValueList)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).detailsButtonIcon) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageTagValueConfirm_s),
+            "::",
+            stringify!(detailsButtonIcon)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).detailsButtonText) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageTagValueConfirm_s),
+            "::",
+            stringify!(detailsButtonText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).detailsButtonToken) as usize - ptr as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageTagValueConfirm_s),
+            "::",
+            stringify!(detailsButtonToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tuneId) as usize - ptr as usize },
+        28usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageTagValueConfirm_s),
+            "::",
+            stringify!(tuneId)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).confirmationText) as usize - ptr as usize },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageTagValueConfirm_s),
+            "::",
+            stringify!(confirmationText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).cancelText) as usize - ptr as usize },
+        36usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageTagValueConfirm_s),
+            "::",
+            stringify!(cancelText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).confirmationToken) as usize - ptr as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageTagValueConfirm_s),
+            "::",
+            stringify!(confirmationToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).cancelToken) as usize - ptr as usize },
+        41usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageTagValueConfirm_s),
+            "::",
+            stringify!(cancelToken)
+        )
+    );
+}
+impl Default for nbgl_pageTagValueConfirm_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief This structure contains [item,value] pair(s) and info about a potential \"details\" button, but also a black button + footer to confirm/cancel"]
+pub type nbgl_pageTagValueConfirm_t = nbgl_pageTagValueConfirm_s;
+#[doc = " @brief This structure contains data to build a centered info + long press button page content"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_pageInfoLongPress_s {
+    #[doc = "< centered text in large case"]
+    pub text: *mut cty::c_char,
+    #[doc = "< a buffer containing the 1BPP icon"]
+    pub icon: *const nbgl_icon_details_t,
+    #[doc = "< text of the long press button"]
+    pub longPressText: *const cty::c_char,
+    #[doc = "< the token used as argument of the onActionCallback when button is long pressed"]
+    pub longPressToken: u8,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played when button is touched"]
+    pub tuneId: tune_index_e,
+}
+#[test]
+fn bindgen_test_layout_nbgl_pageInfoLongPress_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_pageInfoLongPress_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_pageInfoLongPress_s>(),
+        20usize,
+        concat!("Size of: ", stringify!(nbgl_pageInfoLongPress_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_pageInfoLongPress_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_pageInfoLongPress_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoLongPress_s),
+            "::",
+            stringify!(text)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).icon) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoLongPress_s),
+            "::",
+            stringify!(icon)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).longPressText) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoLongPress_s),
+            "::",
+            stringify!(longPressText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).longPressToken) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoLongPress_s),
+            "::",
+            stringify!(longPressToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tuneId) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoLongPress_s),
+            "::",
+            stringify!(tuneId)
+        )
+    );
+}
+impl Default for nbgl_pageInfoLongPress_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief This structure contains data to build a centered info + long press button page content"]
+pub type nbgl_pageInfoLongPress_t = nbgl_pageInfoLongPress_s;
+#[doc = " @brief This structure contains data to build a centered info + simple black button page content"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_pageInfoButton_s {
+    #[doc = "< centered text in large case"]
+    pub text: *mut cty::c_char,
+    #[doc = "< a buffer containing the 1BPP icon"]
+    pub icon: *const nbgl_icon_details_t,
+    #[doc = "< text of the long press button"]
+    pub buttonText: *const cty::c_char,
+    #[doc = "< the token used as argument of the onActionCallback when button is long pressed"]
+    pub buttonToken: u8,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played when button is touched"]
+    pub tuneId: tune_index_e,
+}
+#[test]
+fn bindgen_test_layout_nbgl_pageInfoButton_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_pageInfoButton_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_pageInfoButton_s>(),
+        20usize,
+        concat!("Size of: ", stringify!(nbgl_pageInfoButton_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_pageInfoButton_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_pageInfoButton_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).text) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoButton_s),
+            "::",
+            stringify!(text)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).icon) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoButton_s),
+            "::",
+            stringify!(icon)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).buttonText) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoButton_s),
+            "::",
+            stringify!(buttonText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).buttonToken) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoButton_s),
+            "::",
+            stringify!(buttonToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tuneId) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoButton_s),
+            "::",
+            stringify!(tuneId)
+        )
+    );
+}
+impl Default for nbgl_pageInfoButton_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief This structure contains data to build a centered info + simple black button page content"]
+pub type nbgl_pageInfoButton_t = nbgl_pageInfoButton_s;
+#[doc = " @brief This structure contains data to build a @ref SWITCHES_LIST page content"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_pageSwitchesList_s {
+    #[doc = "< array of switches (nbSwitches items)"]
+    pub switches: *mut nbgl_layoutSwitch_t,
+    #[doc = "< number of elements in switches and tokens array"]
+    pub nbSwitches: u8,
+}
+#[test]
+fn bindgen_test_layout_nbgl_pageSwitchesList_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_pageSwitchesList_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_pageSwitchesList_s>(),
+        8usize,
+        concat!("Size of: ", stringify!(nbgl_pageSwitchesList_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_pageSwitchesList_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_pageSwitchesList_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).switches) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageSwitchesList_s),
+            "::",
+            stringify!(switches)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).nbSwitches) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageSwitchesList_s),
+            "::",
+            stringify!(nbSwitches)
+        )
+    );
+}
+impl Default for nbgl_pageSwitchesList_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief This structure contains data to build a @ref SWITCHES_LIST page content"]
+pub type nbgl_pageSwitchesList_t = nbgl_pageSwitchesList_s;
+#[doc = " @brief This structure contains data to build a @ref INFOS_LIST page content"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_pageInfoList_s {
+    #[doc = "< array of types of infos (in black/bold)"]
+    pub infoTypes: *mut *const cty::c_char,
+    #[doc = "< array of contents of infos (in black)"]
+    pub infoContents: *mut *const cty::c_char,
+    #[doc = "< number of elements in infoTypes and infoContents array"]
+    pub nbInfos: u8,
+}
+#[test]
+fn bindgen_test_layout_nbgl_pageInfoList_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_pageInfoList_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_pageInfoList_s>(),
+        12usize,
+        concat!("Size of: ", stringify!(nbgl_pageInfoList_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_pageInfoList_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_pageInfoList_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).infoTypes) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoList_s),
+            "::",
+            stringify!(infoTypes)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).infoContents) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoList_s),
+            "::",
+            stringify!(infoContents)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).nbInfos) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoList_s),
+            "::",
+            stringify!(nbInfos)
+        )
+    );
+}
+impl Default for nbgl_pageInfoList_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief This structure contains data to build a @ref INFOS_LIST page content"]
+pub type nbgl_pageInfoList_t = nbgl_pageInfoList_s;
+#[doc = " @brief This structure contains data to build a @ref BARS_LIST page content"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_pageBarsList_s {
+    #[doc = "< array of texts for each bar (nbBars items, in black/bold)"]
+    pub barTexts: *mut *const cty::c_char,
+    #[doc = "< array of tokens, one for each bar (nbBars items)"]
+    pub tokens: *mut u8,
+    #[doc = "< number of elements in barTexts and tokens array"]
+    pub nbBars: u8,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played when a bar is touched"]
+    pub tuneId: tune_index_e,
+}
+#[test]
+fn bindgen_test_layout_nbgl_pageBarsList_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_pageBarsList_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_pageBarsList_s>(),
+        16usize,
+        concat!("Size of: ", stringify!(nbgl_pageBarsList_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_pageBarsList_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_pageBarsList_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).barTexts) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageBarsList_s),
+            "::",
+            stringify!(barTexts)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tokens) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageBarsList_s),
+            "::",
+            stringify!(tokens)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).nbBars) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageBarsList_s),
+            "::",
+            stringify!(nbBars)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tuneId) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageBarsList_s),
+            "::",
+            stringify!(tuneId)
+        )
+    );
+}
+impl Default for nbgl_pageBarsList_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief This structure contains data to build a @ref BARS_LIST page content"]
+pub type nbgl_pageBarsList_t = nbgl_pageBarsList_s;
+#[doc = " @brief This structure contains data to build a page in multi-pages mode (@ref nbgl_pageDrawGenericContent)"]
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct nbgl_pageContent_s {
+    #[doc = "< text for the title of the page (if NULL, no title)"]
+    pub title: *const cty::c_char,
+    #[doc = "< if set to true, the title is preceded by <- arrow to go back"]
+    pub isTouchableTitle: bool,
+    #[doc = "< if isTouchableTitle set to true, this is the token used when touching title"]
+    pub titleToken: u8,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played when title is touched"]
+    pub tuneId: tune_index_e,
+    #[doc = "< type of page content in the following union"]
+    pub type_: nbgl_pageContentType_t,
+    pub __bindgen_anon_1: nbgl_pageContent_s__bindgen_ty_1,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub union nbgl_pageContent_s__bindgen_ty_1 {
+    #[doc = "< @ref TAG_VALUE_LIST type"]
+    pub tagValueList: nbgl_layoutTagValueList_t,
+    #[doc = "< @ref CENTERED_INFO type"]
+    pub centeredInfo: nbgl_layoutCenteredInfo_t,
+    #[doc = "< @ref INFO_LONG_PRESS type"]
+    pub infoLongPress: nbgl_pageInfoLongPress_t,
+    #[doc = "< @ref INFO_BUTTON type"]
+    pub infoButton: nbgl_pageInfoButton_t,
+    #[doc = "< @ref TAG_VALUE_DETAILS type"]
+    pub tagValueDetails: nbgl_pageTagValueDetails_t,
+    #[doc = "< @ref TAG_VALUE_CONFIRM type"]
+    pub tagValueConfirm: nbgl_pageTagValueConfirm_t,
+    #[doc = "< @ref SWITCHES_LIST type"]
+    pub switchesList: nbgl_pageSwitchesList_t,
+    #[doc = "< @ref INFOS_LIST type"]
+    pub infosList: nbgl_pageInfoList_t,
+    #[doc = "< @ref CHOICES_LIST type"]
+    pub choicesList: nbgl_layoutRadioChoice_t,
+    #[doc = "< @ref BARS_LIST type"]
+    pub barsList: nbgl_pageBarsList_t,
+}
+#[test]
+fn bindgen_test_layout_nbgl_pageContent_s__bindgen_ty_1() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_pageContent_s__bindgen_ty_1> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_pageContent_s__bindgen_ty_1>(),
+        44usize,
+        concat!("Size of: ", stringify!(nbgl_pageContent_s__bindgen_ty_1))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_pageContent_s__bindgen_ty_1>(),
+        4usize,
+        concat!(
+            "Alignment of ",
+            stringify!(nbgl_pageContent_s__bindgen_ty_1)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tagValueList) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageContent_s__bindgen_ty_1),
+            "::",
+            stringify!(tagValueList)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).centeredInfo) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageContent_s__bindgen_ty_1),
+            "::",
+            stringify!(centeredInfo)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).infoLongPress) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageContent_s__bindgen_ty_1),
+            "::",
+            stringify!(infoLongPress)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).infoButton) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageContent_s__bindgen_ty_1),
+            "::",
+            stringify!(infoButton)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tagValueDetails) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageContent_s__bindgen_ty_1),
+            "::",
+            stringify!(tagValueDetails)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tagValueConfirm) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageContent_s__bindgen_ty_1),
+            "::",
+            stringify!(tagValueConfirm)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).switchesList) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageContent_s__bindgen_ty_1),
+            "::",
+            stringify!(switchesList)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).infosList) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageContent_s__bindgen_ty_1),
+            "::",
+            stringify!(infosList)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).choicesList) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageContent_s__bindgen_ty_1),
+            "::",
+            stringify!(choicesList)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).barsList) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageContent_s__bindgen_ty_1),
+            "::",
+            stringify!(barsList)
+        )
+    );
+}
+impl Default for nbgl_pageContent_s__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[test]
+fn bindgen_test_layout_nbgl_pageContent_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_pageContent_s> = ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_pageContent_s>(),
+        60usize,
+        concat!("Size of: ", stringify!(nbgl_pageContent_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_pageContent_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_pageContent_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).title) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageContent_s),
+            "::",
+            stringify!(title)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).isTouchableTitle) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageContent_s),
+            "::",
+            stringify!(isTouchableTitle)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).titleToken) as usize - ptr as usize },
+        5usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageContent_s),
+            "::",
+            stringify!(titleToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tuneId) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageContent_s),
+            "::",
+            stringify!(tuneId)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).type_) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageContent_s),
+            "::",
+            stringify!(type_)
+        )
+    );
+}
+impl Default for nbgl_pageContent_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief This structure contains data to build a page in multi-pages mode (@ref nbgl_pageDrawGenericContent)"]
+pub type nbgl_pageContent_t = nbgl_pageContent_s;
+#[doc = " @brief type shared externally\n"]
+pub type nbgl_page_t = *mut cty::c_void;
+#[doc = "< move forward with \"tap\" and possibly backward with top left arrow"]
+pub const nbgl_pageNavigationType_t_NAV_WITH_TAP: nbgl_pageNavigationType_t = 0;
+#[doc = "< move forward and backward with buttons in bottom nav bar"]
+pub const nbgl_pageNavigationType_t_NAV_WITH_BUTTONS: nbgl_pageNavigationType_t = 1;
+#[doc = " @brief The different types of navigation in a multi-screens page\n"]
+pub type nbgl_pageNavigationType_t = cty::c_uint;
+#[doc = " @brief Structure containing all information to create a navigation with \"tap\"\n"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_pageNavWithTap_s {
+    #[doc = "< if set to true, a back button (left arrow) is displayed in the top left corner (if page >=1)"]
+    pub backButton: bool,
+    #[doc = "< the token used as argument of the actionCallback when the back button is touched"]
+    pub backToken: u8,
+    #[doc = "< the token used as argument of the actionCallback when the main panel is \"tapped\""]
+    pub nextPageToken: u8,
+    #[doc = "< this text is used as indication for \"Tap to continue\", to navigate forward"]
+    pub nextPageText: *const cty::c_char,
+    #[doc = "< the text displayed in footer, used to quit"]
+    pub quitText: *const cty::c_char,
+    #[doc = "< if not NULL the text displayed in right part of footer, used for example to skip pages"]
+    pub skipText: *const cty::c_char,
+    #[doc = "< if skipText is NULL the token used when right part of footer is touched"]
+    pub skipToken: u8,
+}
+#[test]
+fn bindgen_test_layout_nbgl_pageNavWithTap_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_pageNavWithTap_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_pageNavWithTap_s>(),
+        20usize,
+        concat!("Size of: ", stringify!(nbgl_pageNavWithTap_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_pageNavWithTap_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_pageNavWithTap_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).backButton) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageNavWithTap_s),
+            "::",
+            stringify!(backButton)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).backToken) as usize - ptr as usize },
+        1usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageNavWithTap_s),
+            "::",
+            stringify!(backToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).nextPageToken) as usize - ptr as usize },
+        2usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageNavWithTap_s),
+            "::",
+            stringify!(nextPageToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).nextPageText) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageNavWithTap_s),
+            "::",
+            stringify!(nextPageText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).quitText) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageNavWithTap_s),
+            "::",
+            stringify!(quitText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).skipText) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageNavWithTap_s),
+            "::",
+            stringify!(skipText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).skipToken) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageNavWithTap_s),
+            "::",
+            stringify!(skipToken)
+        )
+    );
+}
+impl Default for nbgl_pageNavWithTap_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief Structure containing all information to create a navigation with \"tap\"\n"]
+pub type nbgl_pageNavWithTap_t = nbgl_pageNavWithTap_s;
+#[doc = " @brief Structure containing all information to create a navigation with buttons in bottom nav bar\n"]
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone)]
+pub struct nbgl_pageNavWithButtons_s {
+    #[doc = "< if set to true, a quit button (X) is displayed in the nav bar"]
+    pub quitButton: bool,
+    #[doc = "< the token used as argument of the actionCallback when the nav buttons are pressed (index param gives the page)"]
+    pub navToken: u8,
+}
+#[test]
+fn bindgen_test_layout_nbgl_pageNavWithButtons_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_pageNavWithButtons_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_pageNavWithButtons_s>(),
+        2usize,
+        concat!("Size of: ", stringify!(nbgl_pageNavWithButtons_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_pageNavWithButtons_s>(),
+        1usize,
+        concat!("Alignment of ", stringify!(nbgl_pageNavWithButtons_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).quitButton) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageNavWithButtons_s),
+            "::",
+            stringify!(quitButton)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).navToken) as usize - ptr as usize },
+        1usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageNavWithButtons_s),
+            "::",
+            stringify!(navToken)
+        )
+    );
+}
+#[doc = " @brief Structure containing all information to create a navigation with buttons in bottom nav bar\n"]
+pub type nbgl_pageNavWithButtons_t = nbgl_pageNavWithButtons_s;
+#[doc = " @brief Structure containing all specific information when creating a multi-screens page.\n"]
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct nbgl_pageMultiScreensDescription_s {
+    #[doc = "< the index of the page to display at start-up"]
+    pub activePage: u8,
+    #[doc = "< the number of pages to display (if <2, no navigation bar)"]
+    pub nbPages: u8,
+    #[doc = "< the token used as argument of the actionCallback when the footer is touched"]
+    pub quitToken: u8,
+    #[doc = "< type of navigation, it will tell which structure in the following union will be used"]
+    pub navType: nbgl_pageNavigationType_t,
+    #[doc = "< if set to true, display a progress indicator on top of the page"]
+    pub progressIndicator: bool,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played when next or back is pressed"]
+    pub tuneId: tune_index_e,
+    pub __bindgen_anon_1: nbgl_pageMultiScreensDescription_s__bindgen_ty_1,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub union nbgl_pageMultiScreensDescription_s__bindgen_ty_1 {
+    #[doc = "< structure used when navigation with \"tap\""]
+    pub navWithTap: nbgl_pageNavWithTap_t,
+    #[doc = "< structure used when navigation with buttons"]
+    pub navWithButtons: nbgl_pageNavWithButtons_t,
+}
+#[test]
+fn bindgen_test_layout_nbgl_pageMultiScreensDescription_s__bindgen_ty_1() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_pageMultiScreensDescription_s__bindgen_ty_1> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_pageMultiScreensDescription_s__bindgen_ty_1>(),
+        20usize,
+        concat!(
+            "Size of: ",
+            stringify!(nbgl_pageMultiScreensDescription_s__bindgen_ty_1)
+        )
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_pageMultiScreensDescription_s__bindgen_ty_1>(),
+        4usize,
+        concat!(
+            "Alignment of ",
+            stringify!(nbgl_pageMultiScreensDescription_s__bindgen_ty_1)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).navWithTap) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageMultiScreensDescription_s__bindgen_ty_1),
+            "::",
+            stringify!(navWithTap)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).navWithButtons) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageMultiScreensDescription_s__bindgen_ty_1),
+            "::",
+            stringify!(navWithButtons)
+        )
+    );
+}
+impl Default for nbgl_pageMultiScreensDescription_s__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[test]
+fn bindgen_test_layout_nbgl_pageMultiScreensDescription_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_pageMultiScreensDescription_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_pageMultiScreensDescription_s>(),
+        36usize,
+        concat!("Size of: ", stringify!(nbgl_pageMultiScreensDescription_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_pageMultiScreensDescription_s>(),
+        4usize,
+        concat!(
+            "Alignment of ",
+            stringify!(nbgl_pageMultiScreensDescription_s)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).activePage) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageMultiScreensDescription_s),
+            "::",
+            stringify!(activePage)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).nbPages) as usize - ptr as usize },
+        1usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageMultiScreensDescription_s),
+            "::",
+            stringify!(nbPages)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).quitToken) as usize - ptr as usize },
+        2usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageMultiScreensDescription_s),
+            "::",
+            stringify!(quitToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).navType) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageMultiScreensDescription_s),
+            "::",
+            stringify!(navType)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).progressIndicator) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageMultiScreensDescription_s),
+            "::",
+            stringify!(progressIndicator)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tuneId) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageMultiScreensDescription_s),
+            "::",
+            stringify!(tuneId)
+        )
+    );
+}
+impl Default for nbgl_pageMultiScreensDescription_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief Structure containing all specific information when creating a multi-screens page.\n"]
+pub type nbgl_pageNavigationInfo_t = nbgl_pageMultiScreensDescription_s;
+#[doc = " @brief Structure containing all specific information when creating a confirmation page."]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_pageConfirmationDescription_s {
+    #[doc = "< description of the centered info to be used"]
+    pub centeredInfo: nbgl_layoutCenteredInfo_t,
+    #[doc = "< text of the confirmation button"]
+    pub confirmationText: *const cty::c_char,
+    #[doc = "< the text used for cancel action, if NULL a simple X button is used"]
+    pub cancelText: *const cty::c_char,
+    #[doc = "< the token used as argument of the onActionCallback"]
+    pub confirmationToken: u8,
+    #[doc = "< the token used as argument of the onActionCallback when the cancel button is pressed"]
+    pub cancelToken: u8,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played when button is pressed"]
+    pub tuneId: tune_index_e,
+    #[doc = "< if true, page is open as a modal"]
+    pub modal: bool,
+}
+#[test]
+fn bindgen_test_layout_nbgl_pageConfirmationDescription_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_pageConfirmationDescription_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_pageConfirmationDescription_s>(),
+        48usize,
+        concat!("Size of: ", stringify!(nbgl_pageConfirmationDescription_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_pageConfirmationDescription_s>(),
+        4usize,
+        concat!(
+            "Alignment of ",
+            stringify!(nbgl_pageConfirmationDescription_s)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).centeredInfo) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageConfirmationDescription_s),
+            "::",
+            stringify!(centeredInfo)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).confirmationText) as usize - ptr as usize },
+        28usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageConfirmationDescription_s),
+            "::",
+            stringify!(confirmationText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).cancelText) as usize - ptr as usize },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageConfirmationDescription_s),
+            "::",
+            stringify!(cancelText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).confirmationToken) as usize - ptr as usize },
+        36usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageConfirmationDescription_s),
+            "::",
+            stringify!(confirmationToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).cancelToken) as usize - ptr as usize },
+        37usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageConfirmationDescription_s),
+            "::",
+            stringify!(cancelToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tuneId) as usize - ptr as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageConfirmationDescription_s),
+            "::",
+            stringify!(tuneId)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).modal) as usize - ptr as usize },
+        44usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageConfirmationDescription_s),
+            "::",
+            stringify!(modal)
+        )
+    );
+}
+impl Default for nbgl_pageConfirmationDescription_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief Structure containing all specific information when creating a confirmation page."]
+pub type nbgl_pageConfirmationDescription_t = nbgl_pageConfirmationDescription_s;
+#[doc = " @brief Structure containing all specific information when creating a address confirmation page.\n This page contains the address in a tag/value format, and a white button to dipsplay the same address as a QRCode in\n a modal window. At the bottom 2 buttons allow to confirm or invalidate the address"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_pageAddressConfirmationDescription_s {
+    #[doc = "< address to confirm"]
+    pub address: *const cty::c_char,
+    #[doc = "< text to display in \"QR code button\", if NULL \"Show as QR is used\""]
+    pub qrCodeButtonText: *const cty::c_char,
+    #[doc = "< text of the confirmation button, if NULL \"It matches\" is used"]
+    pub confirmationText: *const cty::c_char,
+    #[doc = "< the text used for cancel action, if NULL \"It doesn't matches\" is used"]
+    pub cancelText: *const cty::c_char,
+    #[doc = "< the token used as argument of the onActionCallback"]
+    pub confirmationToken: u8,
+    #[doc = "< the token used as argument of the onActionCallback when the cancel button is pressed"]
+    pub cancelToken: u8,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played when button is pressed"]
+    pub tuneId: tune_index_e,
+}
+#[test]
+fn bindgen_test_layout_nbgl_pageAddressConfirmationDescription_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_pageAddressConfirmationDescription_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_pageAddressConfirmationDescription_s>(),
+        24usize,
+        concat!(
+            "Size of: ",
+            stringify!(nbgl_pageAddressConfirmationDescription_s)
+        )
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_pageAddressConfirmationDescription_s>(),
+        4usize,
+        concat!(
+            "Alignment of ",
+            stringify!(nbgl_pageAddressConfirmationDescription_s)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).address) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageAddressConfirmationDescription_s),
+            "::",
+            stringify!(address)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).qrCodeButtonText) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageAddressConfirmationDescription_s),
+            "::",
+            stringify!(qrCodeButtonText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).confirmationText) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageAddressConfirmationDescription_s),
+            "::",
+            stringify!(confirmationText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).cancelText) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageAddressConfirmationDescription_s),
+            "::",
+            stringify!(cancelText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).confirmationToken) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageAddressConfirmationDescription_s),
+            "::",
+            stringify!(confirmationToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).cancelToken) as usize - ptr as usize },
+        17usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageAddressConfirmationDescription_s),
+            "::",
+            stringify!(cancelToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tuneId) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageAddressConfirmationDescription_s),
+            "::",
+            stringify!(tuneId)
+        )
+    );
+}
+impl Default for nbgl_pageAddressConfirmationDescription_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief Structure containing all specific information when creating a address confirmation page.\n This page contains the address in a tag/value format, and a white button to dipsplay the same address as a QRCode in\n a modal window. At the bottom 2 buttons allow to confirm or invalidate the address"]
+pub type nbgl_pageAddressConfirmationDescription_t = nbgl_pageAddressConfirmationDescription_s;
+#[doc = " @brief Structure containing all specific information when creating an information page."]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct nbgl_pageInfoDescription_s {
+    #[doc = "< description of the centered info to be used"]
+    pub centeredInfo: nbgl_layoutCenteredInfo_t,
+    #[doc = "< style to apply to the Top-Right button"]
+    pub topRightStyle: nbgl_pageButtonStyle_t,
+    #[doc = "< style to apply to the Bottom button"]
+    pub bottomButtonStyle: nbgl_pageButtonStyle_t,
+    #[doc = "< the token that will be used as argument of the onActionCallback"]
+    pub topRightToken: u8,
+    #[doc = "< the token that will be used as argument of the onActionCallback if action/bottom button is touched"]
+    pub bottomButtonsToken: u8,
+    #[doc = "< if not NULL, add a touchable footer"]
+    pub footerText: *const cty::c_char,
+    #[doc = "< the token that will be used as argument of the onActionCallback"]
+    pub footerToken: u8,
+    #[doc = "< if set to true, main area is \"tapable\", with this text as indication"]
+    pub tapActionText: *const cty::c_char,
+    #[doc = "< the token that will be used as argument of the onActionCallback"]
+    pub tapActionToken: u8,
+    #[doc = "< if not NULL a black \"action\" button is set under the centered info"]
+    pub actionButtonText: *const cty::c_char,
+    #[doc = "< if not @ref NBGL_NO_TUNE, a tune will be played when button/footer is pressed"]
+    pub tuneId: tune_index_e,
+}
+#[test]
+fn bindgen_test_layout_nbgl_pageInfoDescription_s() {
+    const UNINIT: ::core::mem::MaybeUninit<nbgl_pageInfoDescription_s> =
+        ::core::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::core::mem::size_of::<nbgl_pageInfoDescription_s>(),
+        64usize,
+        concat!("Size of: ", stringify!(nbgl_pageInfoDescription_s))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<nbgl_pageInfoDescription_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(nbgl_pageInfoDescription_s))
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).centeredInfo) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoDescription_s),
+            "::",
+            stringify!(centeredInfo)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).topRightStyle) as usize - ptr as usize },
+        28usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoDescription_s),
+            "::",
+            stringify!(topRightStyle)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bottomButtonStyle) as usize - ptr as usize },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoDescription_s),
+            "::",
+            stringify!(bottomButtonStyle)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).topRightToken) as usize - ptr as usize },
+        36usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoDescription_s),
+            "::",
+            stringify!(topRightToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).bottomButtonsToken) as usize - ptr as usize },
+        37usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoDescription_s),
+            "::",
+            stringify!(bottomButtonsToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).footerText) as usize - ptr as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoDescription_s),
+            "::",
+            stringify!(footerText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).footerToken) as usize - ptr as usize },
+        44usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoDescription_s),
+            "::",
+            stringify!(footerToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tapActionText) as usize - ptr as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoDescription_s),
+            "::",
+            stringify!(tapActionText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tapActionToken) as usize - ptr as usize },
+        52usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoDescription_s),
+            "::",
+            stringify!(tapActionToken)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).actionButtonText) as usize - ptr as usize },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoDescription_s),
+            "::",
+            stringify!(actionButtonText)
+        )
+    );
+    assert_eq!(
+        unsafe { ::core::ptr::addr_of!((*ptr).tuneId) as usize - ptr as usize },
+        60usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(nbgl_pageInfoDescription_s),
+            "::",
+            stringify!(tuneId)
+        )
+    );
+}
+impl Default for nbgl_pageInfoDescription_s {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[doc = " @brief Structure containing all specific information when creating an information page."]
+pub type nbgl_pageInfoDescription_t = nbgl_pageInfoDescription_s;
+extern "C" {
+    #[doc = " GLOBAL PROTOTYPES"]
+    pub fn nbgl_pageDrawLedgerInfo(
+        onActionCallback: nbgl_layoutTouchCallback_t,
+        ticker: *mut nbgl_screenTickerConfiguration_t,
+        text: *const cty::c_char,
+        tapActionToken: cty::c_int,
+    ) -> *mut nbgl_page_t;
+}
+extern "C" {
+    pub fn nbgl_pageDrawSpinner(
+        onActionCallback: nbgl_layoutTouchCallback_t,
+        text: *const cty::c_char,
+    ) -> *mut nbgl_page_t;
+}
+extern "C" {
+    pub fn nbgl_pageDrawInfo(
+        onActionCallback: nbgl_layoutTouchCallback_t,
+        ticker: *mut nbgl_screenTickerConfiguration_t,
+        info: *mut nbgl_pageInfoDescription_t,
+    ) -> *mut nbgl_page_t;
+}
+extern "C" {
+    pub fn nbgl_pageDrawConfirmation(
+        onActionCallback: nbgl_layoutTouchCallback_t,
+        info: *mut nbgl_pageConfirmationDescription_t,
+    ) -> *mut nbgl_page_t;
+}
+extern "C" {
+    pub fn nbgl_pageDrawGenericContentExt(
+        onActionCallback: nbgl_layoutTouchCallback_t,
+        nav: *mut nbgl_pageNavigationInfo_t,
+        content: *mut nbgl_pageContent_t,
+        modal: bool,
+    ) -> *mut nbgl_page_t;
+}
+extern "C" {
+    pub fn nbgl_pageDrawGenericContent(
+        onActionCallback: nbgl_layoutTouchCallback_t,
+        nav: *mut nbgl_pageNavigationInfo_t,
+        content: *mut nbgl_pageContent_t,
+    ) -> *mut nbgl_page_t;
+}
+extern "C" {
+    pub fn nbgl_pageRelease(arg1: *mut nbgl_page_t) -> cty::c_int;
+}
+pub const nbgl_serialized_event_type_e_NBGL_DRAW_OBJ: nbgl_serialized_event_type_e = 0;
+pub const nbgl_serialized_event_type_e_NBGL_REFRESH_AREA: nbgl_serialized_event_type_e = 1;
+pub type nbgl_serialized_event_type_e = cty::c_uint;
+extern "C" {
+    pub fn nbgl_serializeNbglEvent(
+        type_: nbgl_serialized_event_type_e,
+        obj: *mut nbgl_obj_t,
+        out: *mut u8,
+        w_cnt: *mut usize,
+        max_len: usize,
+    ) -> u8;
+}
+extern "C" {
+    #[doc = " GLOBAL PROTOTYPES"]
+    pub fn nbgl_sideDrawRect(area: *mut nbgl_area_t);
+}
+extern "C" {
+    pub fn nbgl_sideDrawHorizontalLine(area: *mut nbgl_area_t, mask: u8, lineColor: color_t);
+}
+extern "C" {
+    pub fn nbgl_sideDrawImage(
+        area: *mut nbgl_area_t,
+        buffer: *mut u8,
+        transformation: nbgl_transformation_t,
+        colorMap: nbgl_color_map_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_sideRefreshArea(area: *mut nbgl_area_t);
+}
+extern "C" {
+    #[doc = "      VARIABLES"]
+    pub static mut ramBuffer: [u8; 0usize];
+}
+extern "C" {
+    #[doc = " GLOBAL PROTOTYPES"]
+    pub fn nbgl_touchHandler(touchEvent: *mut nbgl_touchStatePosition_t, currentTimeMs: u32);
+}
+extern "C" {
+    pub fn nbgl_touchGetTouchedPosition(
+        obj: *mut nbgl_obj_t,
+        firstPos: *mut *mut nbgl_touchStatePosition_t,
+        lastPos: *mut *mut nbgl_touchStatePosition_t,
+    ) -> bool;
+}
+extern "C" {
+    pub fn nbgl_touchGetTouchDuration(obj: *mut nbgl_obj_t) -> u32;
+}
+#[doc = "      TYPEDEFS\n/\n/**\n @brief prototype of generic callback function"]
+pub type nbgl_callback_t = ::core::option::Option<unsafe extern "C" fn()>;
+#[doc = " @brief prototype of navigation callback function\n @param page page index (0->(nb_pages-1)) on which we go\n @param content content to fill (only type and union)\n @return true if the page content is valid, false if no more page"]
+pub type nbgl_navCallback_t = ::core::option::Option<
+    unsafe extern "C" fn(page: u8, content: *mut nbgl_pageContent_t) -> bool,
+>;
+#[doc = " @brief prototype of choice callback function\n @param confirm if true, means that the confirmation button has been pressed"]
+pub type nbgl_choiceCallback_t = ::core::option::Option<unsafe extern "C" fn(confirm: bool)>;
+extern "C" {
+    #[doc = " GLOBAL PROTOTYPES"]
+    pub fn nbgl_useCaseHome(
+        appName: *mut cty::c_char,
+        appIcon: *const nbgl_icon_details_t,
+        tagline: *mut cty::c_char,
+        withSettings: bool,
+        topRightCallback: nbgl_callback_t,
+        quitCallback: nbgl_callback_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_useCaseHomeExt(
+        appName: *mut cty::c_char,
+        appIcon: *const nbgl_icon_details_t,
+        tagline: *mut cty::c_char,
+        withSettings: bool,
+        actionButtonText: *mut cty::c_char,
+        actionCallback: nbgl_callback_t,
+        topRightCallback: nbgl_callback_t,
+        quitCallback: nbgl_callback_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_useCasePlugInHome(
+        plugInName: *mut cty::c_char,
+        appName: *mut cty::c_char,
+        appIcon: *const nbgl_icon_details_t,
+        tagline: *mut cty::c_char,
+        subTagline: *mut cty::c_char,
+        withSettings: bool,
+        topRightCallback: nbgl_callback_t,
+        quitCallback: nbgl_callback_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_useCaseSettings(
+        settingsTitle: *mut cty::c_char,
+        initPage: u8,
+        nbPages: u8,
+        touchableTitle: bool,
+        quitCallback: nbgl_callback_t,
+        navCallback: nbgl_navCallback_t,
+        controlsCallback: nbgl_layoutTouchCallback_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_useCaseChoice(
+        icon: *const nbgl_icon_details_t,
+        message: *mut cty::c_char,
+        subMessage: *mut cty::c_char,
+        confirmText: *mut cty::c_char,
+        rejectString: *mut cty::c_char,
+        callback: nbgl_choiceCallback_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_useCaseConfirm(
+        message: *mut cty::c_char,
+        subMessage: *mut cty::c_char,
+        confirmText: *mut cty::c_char,
+        rejectText: *mut cty::c_char,
+        callback: nbgl_callback_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_useCaseStatus(
+        message: *mut cty::c_char,
+        isSuccess: bool,
+        quitCallback: nbgl_callback_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_useCaseReviewStart(
+        icon: *const nbgl_icon_details_t,
+        reviewTitle: *mut cty::c_char,
+        reviewSubTitle: *mut cty::c_char,
+        rejectText: *mut cty::c_char,
+        continueCallback: nbgl_callback_t,
+        rejectCallback: nbgl_callback_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_useCaseRegularReview(
+        initPage: u8,
+        nbPages: u8,
+        rejectText: *mut cty::c_char,
+        buttonCallback: nbgl_layoutTouchCallback_t,
+        navCallback: nbgl_navCallback_t,
+        choiceCallback: nbgl_choiceCallback_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_useCaseForwardOnlyReview(
+        rejectText: *mut cty::c_char,
+        buttonCallback: nbgl_layoutTouchCallback_t,
+        navCallback: nbgl_navCallback_t,
+        choiceCallback: nbgl_choiceCallback_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_useCaseStaticReview(
+        tagValueList: *mut nbgl_layoutTagValueList_t,
+        infoLongPress: *mut nbgl_pageInfoLongPress_t,
+        rejectText: *mut cty::c_char,
+        callback: nbgl_choiceCallback_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_useCaseStaticReviewLight(
+        tagValueList: *mut nbgl_layoutTagValueList_t,
+        infoLongPress: *mut nbgl_pageInfoLongPress_t,
+        rejectText: *mut cty::c_char,
+        callback: nbgl_choiceCallback_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_useCaseViewDetails(tag: *mut cty::c_char, value: *mut cty::c_char, wrapping: bool);
+}
+extern "C" {
+    pub fn nbgl_useCaseAddressConfirmation(
+        address: *mut cty::c_char,
+        callback: nbgl_choiceCallback_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_useCaseAddressConfirmationExt(
+        address: *mut cty::c_char,
+        callback: nbgl_choiceCallback_t,
+        tagValueList: *mut nbgl_layoutTagValueList_t,
+    );
+}
+extern "C" {
+    pub fn nbgl_useCaseSpinner(text: *mut cty::c_char);
 }
