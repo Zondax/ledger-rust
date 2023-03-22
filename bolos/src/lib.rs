@@ -38,9 +38,6 @@ pub use lock::Lock;
 pub mod uploader;
 pub use uploader::Uploader;
 
-pub mod wrapper;
-pub use wrapper::ApduBufferRead;
-
 mod panic_traits;
 pub use panic_traits::LedgerUnwrap;
 
