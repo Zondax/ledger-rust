@@ -18,4 +18,5 @@ mod wrapper;
 pub use wrapper::*;
 
 mod encode;
-pub use encode::{bech32, convert_bits, ConvertBitsError};
+pub use encode::*;
+

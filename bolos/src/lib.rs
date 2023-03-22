@@ -32,8 +32,6 @@ pub use flash_slot::Wear;
 pub mod swapping_buffer;
 pub use swapping_buffer::SwappingBuffer;
 
-pub mod encode;
-
 pub mod lock;
 pub use lock::Lock;
 
@@ -49,6 +47,9 @@ pub use panic_traits::LedgerUnwrap;
 mod apdu_errors;
 pub use apdu_errors::ApduError;
 
+mod utils;
+pub use utils::*;
+
 /// Set of utilities for UI
 pub mod ui;
 
@@ -60,7 +61,7 @@ pub mod ui;
 ///
 /// # How to use
 /// To register the app handler you should use the [`handlers::register`] macro:
-/**
+/*
 ```rust
 # use bolos::handlers::*;
 # use bolos::{ApduBufferRead, ApduError};
