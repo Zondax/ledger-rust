@@ -16,9 +16,14 @@ no-std-compat = { version = "0.4" }
 
 crc = { version = "1.8.1", default-features = false }
 zeroize = { version = "1.4", default-features = false }
+educe = { version = "0.4.20" }
 
 [target.'cfg(all(target_arch = "arm", target_os = "none"))'.dependencies]
 bolos-impl = { version = "0.1", path = "../bolos-impl" }
 
 [target.'cfg(not(all(target_arch = "arm", target_os = "none")))'.dependencies]
 bolos-mock = { version = "0.1", path = "../bolos-mock" }
+
+[dev-dependencies]
+nom = { version = "7.1.3" }
+rand = "0.8.5"

@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   (c) 2022 Zondax AG
+*   (c) 2023 Zondax AG
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.
@@ -13,13 +13,8 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 ********************************************************************************/
+mod from_bytes;
+mod object_list;
 
-mod wrapper;
-pub use wrapper::*;
-
-mod encode;
-pub use encode::*;
-
-mod parser;
-pub use parser::{FromBytes, ObjectList};
-
+pub use from_bytes::FromBytes;
+pub use object_list::ObjectList;
