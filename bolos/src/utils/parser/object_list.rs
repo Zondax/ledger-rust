@@ -280,7 +280,7 @@ mod tests {
             input: &'b [u8],
             out: &mut MaybeUninit<Self>,
         ) -> Result<&'b [u8], Self::Error> {
-            // read len 
+            // read len
             let (rem, a) = be_u32(input)?;
             let out = out.as_mut_ptr();
 
@@ -290,7 +290,6 @@ mod tests {
 
             Ok(rem)
         }
-
     }
 
     fn generate_data(len: usize) -> std::vec::Vec<u8> {
@@ -327,6 +326,4 @@ mod tests {
 
         assert_eq!(num_objs, count);
     }
-
 }
-

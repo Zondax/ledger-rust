@@ -51,4 +51,3 @@ pub trait FromBytes<'b>: Sized {
         out: &mut MaybeUninit<Self>,
     ) -> Result<&'b [u8], Self::Error>;
 }
-

@@ -22,4 +22,3 @@ pub use encode::*;
 
 mod parser;
 pub use parser::{FromBytes, ObjectList};
-
