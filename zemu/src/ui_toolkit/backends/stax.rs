@@ -25,99 +25,93 @@ pub const KEY_SIZE: usize = 63 + 1;
 //with null terminator
 pub const MESSAGE_SIZE: usize = 4095 + 1;
 
-const INCLUDE_ACTIONS_COUNT: usize = 0;
+pub const MAX_ITEMS: usize = 4;
 
 #[bolos_derive::lazy_static]
-pub static mut RUST_ZUI: Zui<NanoXBackend, KEY_SIZE> = Zui::new();
+pub static mut RUST_ZUI: Zui<StaxBackend, KEY_SIZE> = Zui::new();
 
 #[bolos_derive::lazy_static(cbindgen)]
-static mut BACKEND: NanoXBackend = NanoXBackend::default();
+static mut BACKEND: StaxBackend = StaxBackend::default();
 
 const DEFAULT_IDLE: &[u8] = b"DO NOT USE\x00";
 
 #[bolos_derive::lazy_static]
 pub static mut IDLE_MESSAGE: *const u8 = core::ptr::null();
 
+#[derive(Default)]
 #[repr(C)]
-pub struct NanoXBackend {
-    key: [u8; KEY_SIZE],
+struct Item {
+    title: [u8; KEY_SIZE],
     message: [u8; MESSAGE_SIZE],
-
-    viewable_size: usize,
-    expert: bool,
-
-    flow_inside_loop: bool,
 }
 
-impl Default for NanoXBackend {
+impl Item {
+    pub fn reset_contents(&mut self) {
+        self.title[0] = 0;
+        self.message[0] = 0;
+    }
+}
+
+#[repr(C)]
+pub struct StaxBackend {
+    // internal items buffers
+    items: [Item; MAX_ITEMS],
+    // tracks the number of items currently written to
+    items_len: usize,
+
+    // how big the current UI object is
+    viewable_size: usize,
+
+    // used to pass thru the current ui page content
+    nbgl_page_content: *mut (),
+}
+
+impl Default for StaxBackend {
     fn default() -> Self {
         Self {
-            key: [0; KEY_SIZE],
-            message: [0; MESSAGE_SIZE],
+            items: Default::default(),
+            items_len: 0,
             viewable_size: 0,
-            expert: false,
-            flow_inside_loop: false,
+            nbgl_page_content: core::ptr::null_mut(),
         }
     }
 }
 
-impl NanoXBackend {
-    pub fn review_loop_start(&mut self, ui: &mut Zui<Self, KEY_SIZE>) {
-        if self.flow_inside_loop {
-            //coming from right
+impl Stax {
+    pub fn reset_ui(&mut self) {
+        self.items.reset();
+        self.items_len = 0;
+    }
 
-            if !ui.paging_can_decrease() {
-                //exit to the left
-                self.flow_inside_loop = false;
-                unsafe {
-                    bindings::crapoline_ux_flow_prev();
-                }
-
-                return;
-            }
-
-            ui.paging_decrease();
+    pub fn advance_item(&mut self) -> bool {
+        self.items_len += 1;
+        if self.items.get(self.items_len).is_some() {
+            true
         } else {
-            ui.paging_init();
-        }
-
-        Self::update_review(ui);
-
-        unsafe {
-            bindings::crapoline_ux_flow_next();
+            self.items_len -= 1;
+            false
         }
     }
 
-    pub fn review_loop_end(&mut self, ui: &mut Zui<Self, KEY_SIZE>) {
-        if self.flow_inside_loop {
-            //coming from left
-            ui.paging_increase();
+    pub fn next_item_mut(&mut self) -> Option<&mut Item> {
+        self.advance_item()
+            .then_some(|| ())
+            .and_then(|_| self.current_item_mut())
+    }
 
-            match ui.review_update_data() {
-                Ok(_) => unsafe {
-                    bindings::crapoline_ux_layout_bnnn_paging_reset();
-                },
-                Err(ViewError::NoData) => {
-                    self.flow_inside_loop = false;
-                    unsafe {
-                        bindings::crapoline_ux_flow_next();
-                    }
-                    return;
-                }
-                Err(_) => ui.show_error(),
-            }
-        } else {
-            ui.paging_decrease();
-            Self::update_review(ui);
-        }
+    pub fn current_item_mut(&mut self) -> Option<&mut Item> {
+        self.items.get_mut(self.items_len)
+    }
+    pub fn current_item(&self) -> Option<&Item> {
+        self.items.get(self.items_len)
+    }
 
-        unsafe {
-            bindings::crapoline_ux_flow_relayout();
-        }
+    pub fn can_fit_item(&self) -> bool {
+        self.current_item().is_some()
     }
 }
 
-impl UIBackend<KEY_SIZE> for NanoXBackend {
+impl UIBackend<KEY_SIZE> for StaxBackend {
     type MessageBuf = &'static mut str;
 
     const INCLUDE_ACTIONS_COUNT: usize = 0;
@@ -126,26 +120,33 @@ impl UIBackend<KEY_SIZE> for NanoXBackend {
         unsafe { &mut BACKEND }
     }
 
-    fn update_expert(&mut self) {
-        let msg = if self.expert {
-            &pic_str!(b"enabled")[..]
-        } else {
-            &pic_str!(b"disabled")[..]
-        };
-
-        self.message[..msg.len()].copy_from_slice(msg);
-    }
+    fn update_expert(&mut self) {}
 
     fn key_buf(&mut self) -> &mut [u8; KEY_SIZE] {
-        &mut self.key
+        let item = self
+            .current_item_mut()
+            //this shouldn't happen as we shouldn't get to here
+            // unless we have enough slots
+            // TODO: wraparound instead?
+            .unwrap_or_else(|| unsafe { core::hint::unreachable_unchecked() });
+
+        &mut item.title
     }
 
     fn message_buf(&mut self) -> &'static mut str {
-        core::str::from_utf8_mut(&mut self.message)
+        let item = self
+            .current_item_mut()
+            //this shouldn't happen as we shouldn't get to here
+            // unless we have enough slots
+            // TODO: wraparound instead?
+            .unwrap_or_else(|| unsafe { core::hint::unreachable_unchecked() });
+
+        core::str::from_utf8_mut(&mut item.message)
             //this should never happen as we always asciify
             .unwrap_or_else(|| unsafe { core::hint::unreachable_unchecked() })
     }
 
+    //leave emtpy, no-op
     fn split_value_field(&mut self, _: &'static mut str) {}
 
     fn show_idle(&mut self, _item_idx: usize, status: Option<&[u8]>) {
@@ -159,66 +160,63 @@ impl UIBackend<KEY_SIZE> for NanoXBackend {
             })
             .unwrap_or_else(|| PIC::new(DEFAULT_IDLE).into_inner());
 
+        let item = self.items[0];
+
         //truncate status
         let len = core::cmp::min(self.key.len() - 1, status.len());
-        self.key[..len].copy_from_slice(status);
-        self.key[len] = 0; //0 terminate
+        item.title[..len].copy_from_slice(status);
+        item.title[len] = 0; //0 terminate
 
         unsafe {
-            bindings::crapoline_ux_show_idle();
+            bindings::crapolines::crapoline_home();
         }
     }
 
-    fn show_error(&mut self) {
-        unsafe {
-            bindings::crapoline_ux_show_error();
-        }
-    }
+    fn show_error(&mut self) {}
 
-    fn show_message(&mut self, _title: &str, _message: &str) {
-        panic!("capability not supported on nanox yet?")
-    }
+    fn show_message(&mut self, _title: &str, _message: &str) {}
 
     fn show_review(ui: &mut Zui<Self, KEY_SIZE>) {
-        //reset ui struct
+        // initialize ui struct
         ui.paging_init();
 
-        unsafe {
-            //we access the backend directly here instead
-            // of going thru RUST_ZUI since otherwise we don't have access
-            // to this functionality
-            BACKEND.flow_inside_loop = false;
+        ui.backend.reset_ui();
 
-            bindings::crapoline_ux_show_review();
-        }
+        bindings::use_case_review_start(
+            pic_str!("Review transaction"),
+            None,
+            continuations::review_transaction,
+        );
     }
 
     fn update_review(ui: &mut Zui<Self, KEY_SIZE>) {
-        match ui.review_update_data() {
-            Ok(_) | Err(ViewError::NoData) => {}
-            Err(_) => {
-                ui.show_error();
+        let this = ui.backend;
+
+        let mut n_items = 1;
+        while this.can_fit_item() {
+            this.advance_item();
+
+            match ui.review_update_data() {
+                Ok(_) => {
+                    n_items += 1;
+                }
+                Err(ViewError::NoData) => unsafe {
+                    bindings::crapolines::crapoline_show_confirmation(this.nbgl_page_content);
+                },
+                Err(_) => {
+                    ui.show_error();
+                }
             }
         }
+
+        unsafe { bindings::crapolines::crapoline_show_items(this.nbgl_page_content, n_items) };
     }
 
-    fn wait_ui(&mut self) {
-        unsafe {
-            bindings::crapoline_ux_wait();
-        }
-    }
+    fn wait_ui(&mut self) {}
 
-    fn expert(&self) -> bool {
-        self.expert
-    }
+    fn expert(&self) -> bool {}
 
-    fn toggle_expert(&mut self) {
-        self.expert = !self.expert;
-
-        unsafe {
-            bindings::crapoline_ux_flow_init_idle_flow_toggle_expert();
-        }
-    }
+    fn toggle_expert(&mut self) {}
 
     fn accept_reject_out(&mut self) -> &mut [u8] {
         let buf = apdu_buffer_mut();
@@ -271,6 +269,7 @@ mod cabi {
 
     #[no_mangle]
     pub unsafe extern "C" fn view_init_impl(msg: *mut u8) {
+        //this exists to force Lazy initialization from the C side
         *IDLE_MESSAGE = msg;
     }
 
@@ -313,32 +312,36 @@ mod cabi {
         RUST_ZUI.accept_error();
     }
 
+    /// This needs to refresh the UI with the content for the given page
+    ///
+    /// Will be called by `nbgl_useCaseRegularView`
     #[no_mangle]
-    pub unsafe extern "C" fn rs_h_review_loop_start() {
-        BACKEND.review_loop_start(&mut RUST_ZUI)
-    }
+    pub unsafe extern "C" fn rs_transaction_screen(
+        page: cty::uint8_t,
+        nbgl_page_content: *mut cty::c_void,
+    ) -> cty::c_uint {
+        if let Err(e) = RUST_ZUI.skip_to_item(page as usize) {
+            return e.into();
+        }
 
-    #[no_mangle]
-    pub unsafe extern "C" fn rs_h_review_loop_inside() {
-        BACKEND.flow_inside_loop = true;
-    }
+        // store the nbgl page content pointer in the backend to pass it thru if necessary
+        RUST_ZUI.backend.nbgl_page_content = nbgl_page_content.cast();
+        StaxBackend::update_review(&mut RUST_ZUI);
+        RUST_ZUI.backend.nbgl_page_content = core::ptr::null_mut();
 
-    #[no_mangle]
-    pub unsafe extern "C" fn rs_h_review_loop_end() {
-        BACKEND.review_loop_end(&mut RUST_ZUI)
+        0
     }
 }
 
-mod bindings {
-    extern "C" {
-        pub fn crapoline_ux_wait();
-        pub fn crapoline_ux_flow_init_idle_flow_toggle_expert();
-        pub fn crapoline_ux_show_review();
-        pub fn crapoline_ux_show_error();
-        pub fn crapoline_ux_show_idle();
-        pub fn crapoline_ux_flow_prev();
-        pub fn crapoline_ux_flow_next();
-        pub fn crapoline_ux_layout_bnnn_paging_reset();
-        pub fn crapoline_ux_flow_relayout();
+mod bindings;
+
+mod continuations {
+    use super::RUST_ZUI;
+
+    /// Continuation callback to kickoff the regular review flow
+    pub fn review_transaction() {
+        let total_pages = unsafe { RUST_ZUI.n_items() };
+
+        bindings::use_case_regular_review(0, total_pages);
     }
 }

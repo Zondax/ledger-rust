@@ -49,7 +49,7 @@ impl UIBackend<KEY_SIZE> for ConsoleBackend {
         &mut self.key
     }
 
-    fn message_buf(&self) -> Self::MessageBuf {
+    fn message_buf(&mut self) -> Self::MessageBuf {
         ArrayString::new_const()
     }
 

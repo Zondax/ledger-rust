@@ -1,0 +1,13 @@
+language = "C"
+
+pragma_once = true
+
+[parse.expand]
+crates = ["zemu-sys"]
+features = ["cbindgen_fs"]
+
+[defines]
+stax = "TARGET_STAX"
+
+[export]
+include = ["StaxBackend", "BACKEND_LAZY"]

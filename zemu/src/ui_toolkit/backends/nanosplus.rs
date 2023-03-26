@@ -140,8 +140,8 @@ impl UIBackend<KEY_SIZE> for NanoSPBackend {
         &mut self.key
     }
 
-    fn message_buf(&self) -> &'static mut str {
-        core::str::from_utf8_mut(&mut Self::static_mut().message)
+    fn message_buf(&mut self) -> &'static mut str {
+        core::str::from_utf8_mut(&mut self.message)
             //this should never happen as we always asciify
             .expect("message wasn't valid utf8")
     }

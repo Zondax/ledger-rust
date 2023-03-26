@@ -12,6 +12,7 @@ fn main() {
                 "TARGET_NANOX" => println!("cargo:rustc-cfg=nanox"),
                 "TARGET_NANOS" => println!("cargo:rustc-cfg=nanos"),
                 "TARGET_NANOS2" => println!("cargo:rustc-cfg=nanosplus"),
+                "TARGET_STAX" => println!("cargo:rustc-cfg=stax"),
                 _ => panic!("TARGET_NAME is not valid"),
             }
 

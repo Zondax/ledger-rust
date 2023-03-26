@@ -26,4 +26,11 @@ cbindgen --config "$SCRIPT_DIR"/cbindgen_sp.toml \
     --crate zemu-sys \
     --output "$SCRIPT_DIR"/include/zemu_ui_sp.h
 
+echo "Cleaning up old Stax bindings and regenerating them"
+
+rm "$SCRIPT_DIR"/include/zemu_ui_fs.h || true
+cbindgen --config "$SCRIPT_DIR"/cbindgen_fs.toml \
+    --crate zemu-sys \
+    --output "$SCRIPT_DIR"/include/zemu_ui_fs.h
+
 echo "Done!"

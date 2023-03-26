@@ -77,7 +77,7 @@ impl UIBackend<KEY_SIZE> for NanoSBackend {
         &mut self.key
     }
 
-    fn message_buf(&self) -> Self::MessageBuf {
+    fn message_buf(&mut self) -> Self::MessageBuf {
         let init = PIC::new(&[0; MESSAGE_SIZE]).into_inner();
         ArrayString::from_byte_string(init).expect("0x00 is not valid utf8?")
     }
