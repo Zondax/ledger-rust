@@ -140,8 +140,10 @@ impl UIBackend<KEY_SIZE> for NanoXBackend {
         &mut self.key
     }
 
-    fn message_buf(&mut self) -> &'static mut str {
-        core::str::from_utf8_mut(&mut self.message)
+    fn message_buf(&mut self) -> Self::MessageBuf {
+        core::mem::drop(self);
+
+        core::str::from_utf8_mut(&mut Self::static_mut().message)
             //this should never happen as we always asciify
             .unwrap_or_else(|| unsafe { core::hint::unreachable_unchecked() })
     }

@@ -76,8 +76,6 @@ pub trait UIBackend<const KEY_SIZE: usize>: Sized {
     ) -> Option<RefMutDynViewable>;
 }
 
-mod stax;
-
 cfg_if::cfg_if! {
     if #[cfg(any(nanos, feature = "cbindgen_s"))] {
         mod nanos;

@@ -18,10 +18,10 @@ pub mod crapolines {
 
     ///NBGL crapolines
     pub mod nbgl {
+        pub type NbglCallback = unsafe extern "C" fn();
+
         extern "C" {
             /// Generic callback
-            pub type NbglCallback = unsafe extern "C" fn();
-
             //this will pass the icon for us
             // and the (fixed) rejection text
             pub fn crapoline_useCaseReviewStart(
@@ -45,20 +45,37 @@ pub mod crapolines {
     }
 }
 
+fn pic_callback(cb: NbglCallback) -> NbglCallback {
+    let to_pic = cb as usize;
+    let picced = unsafe { bolos_sys::pic::PIC::manual(to_pic) };
+
+    unsafe { core::mem::transmute(picced) }
+}
+
 #[inline(always)]
-pub fn use_case_review_start(title: &str, subtitle: Option<&str>, continuation: fn()) {
+pub fn use_case_review_start(
+    title: &str,
+    subtitle: Option<&str>,
+    continuation: unsafe extern "C" fn(),
+) {
     let title = title.as_ptr().cast_mut() as *mut _;
     let subtitle = subtitle
         .map(|s| s.as_ptr())
         .unwrap_or(core::ptr::null())
-        .as_mut() as *mut _;
+        .cast_mut() as *mut _;
+
+    //I'd like to reuse rs_h_reject but alas
+    // (u32) and () are different
+    unsafe extern "C" fn reject() {
+        super::RUST_ZUI.reject();
+    }
 
     unsafe {
         crapolines::nbgl::use_case_review_start(
             title,
             subtitle,
-            continuation as NbglCallback,
-            super::cabi::rs_h_reject as NbglCallback,
+            pic_callback(continuation as NbglCallback),
+            pic_callback(reject as NbglCallback),
         )
     }
 }

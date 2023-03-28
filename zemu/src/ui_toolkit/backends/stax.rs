@@ -38,11 +38,19 @@ const DEFAULT_IDLE: &[u8] = b"DO NOT USE\x00";
 #[bolos_derive::lazy_static]
 pub static mut IDLE_MESSAGE: *const u8 = core::ptr::null();
 
-#[derive(Default)]
 #[repr(C)]
 struct Item {
     title: [u8; KEY_SIZE],
     message: [u8; MESSAGE_SIZE],
+}
+
+impl Default for Item {
+    fn default() -> Self {
+        Self {
+            title: [0; KEY_SIZE],
+            message: [0; MESSAGE_SIZE],
+        }
+    }
 }
 
 impl Item {
@@ -77,9 +85,11 @@ impl Default for StaxBackend {
     }
 }
 
-impl Stax {
+impl StaxBackend {
     pub fn reset_ui(&mut self) {
-        self.items.reset();
+        for i in self.items.iter_mut() {
+            i.reset_contents()
+        }
         self.items_len = 0;
     }
 
@@ -88,26 +98,43 @@ impl Stax {
         if self.items.get(self.items_len).is_some() {
             true
         } else {
-            self.items_len -= 1;
             false
         }
     }
 
-    pub fn next_item_mut(&mut self) -> Option<&mut Item> {
-        self.advance_item()
-            .then_some(|| ())
-            .and_then(|_| self.current_item_mut())
+    fn next_item_mut(&mut self) -> Option<&mut Item> {
+        if self.advance_item() {
+            self.current_item_mut()
+        } else {
+            None
+        }
     }
 
-    pub fn current_item_mut(&mut self) -> Option<&mut Item> {
+    fn current_item_mut(&mut self) -> Option<&mut Item> {
         self.items.get_mut(self.items_len)
     }
-    pub fn current_item(&self) -> Option<&Item> {
+
+    fn current_item(&self) -> Option<&Item> {
         self.items.get(self.items_len)
     }
 
     pub fn can_fit_item(&self) -> bool {
         self.current_item().is_some()
+    }
+}
+
+struct NbglPageContentPtrGuard;
+impl Drop for NbglPageContentPtrGuard {
+    fn drop(&mut self) {
+        unsafe {
+            // BACKEND.nbgl_page_content = core::ptr::null_mut();
+        }
+    }
+}
+impl StaxBackend {
+    fn with_nbgl_page_content(&mut self, p: *mut ()) -> NbglPageContentPtrGuard {
+        self.nbgl_page_content = p;
+        NbglPageContentPtrGuard
     }
 }
 
@@ -133,8 +160,10 @@ impl UIBackend<KEY_SIZE> for StaxBackend {
         &mut item.title
     }
 
-    fn message_buf(&mut self) -> &'static mut str {
-        let item = self
+    fn message_buf(&mut self) -> Self::MessageBuf {
+        // core::mem::drop(self);
+
+        let item = Self::static_mut()
             .current_item_mut()
             //this shouldn't happen as we shouldn't get to here
             // unless we have enough slots
@@ -143,7 +172,7 @@ impl UIBackend<KEY_SIZE> for StaxBackend {
 
         core::str::from_utf8_mut(&mut item.message)
             //this should never happen as we always asciify
-            .unwrap_or_else(|| unsafe { core::hint::unreachable_unchecked() })
+            .unwrap_or_else(|_| unsafe { core::hint::unreachable_unchecked() })
     }
 
     //leave emtpy, no-op
@@ -160,10 +189,10 @@ impl UIBackend<KEY_SIZE> for StaxBackend {
             })
             .unwrap_or_else(|| PIC::new(DEFAULT_IDLE).into_inner());
 
-        let item = self.items[0];
+        let mut item = &mut self.items[0];
 
         //truncate status
-        let len = core::cmp::min(self.key.len() - 1, status.len());
+        let len = core::cmp::min(item.title.len() - 1, status.len());
         item.title[..len].copy_from_slice(status);
         item.title[len] = 0; //0 terminate
 
@@ -190,18 +219,16 @@ impl UIBackend<KEY_SIZE> for StaxBackend {
     }
 
     fn update_review(ui: &mut Zui<Self, KEY_SIZE>) {
-        let this = ui.backend;
-
         let mut n_items = 1;
-        while this.can_fit_item() {
-            this.advance_item();
-
+        while ui.backend.can_fit_item() {
             match ui.review_update_data() {
                 Ok(_) => {
+                    ui.paging_increase();
+                    ui.backend.advance_item();
                     n_items += 1;
                 }
                 Err(ViewError::NoData) => unsafe {
-                    bindings::crapolines::crapoline_show_confirmation(this.nbgl_page_content);
+                    bindings::crapolines::crapoline_show_confirmation(ui.backend.nbgl_page_content);
                 },
                 Err(_) => {
                     ui.show_error();
@@ -209,12 +236,16 @@ impl UIBackend<KEY_SIZE> for StaxBackend {
             }
         }
 
-        unsafe { bindings::crapolines::crapoline_show_items(this.nbgl_page_content, n_items) };
+        unsafe {
+            bindings::crapolines::crapoline_show_items(ui.backend.nbgl_page_content, n_items)
+        };
     }
 
     fn wait_ui(&mut self) {}
 
-    fn expert(&self) -> bool {}
+    fn expert(&self) -> bool {
+        false
+    }
 
     fn toggle_expert(&mut self) {}
 
@@ -319,17 +350,18 @@ mod cabi {
     pub unsafe extern "C" fn rs_transaction_screen(
         page: cty::uint8_t,
         nbgl_page_content: *mut cty::c_void,
-    ) -> cty::c_uint {
-        if let Err(e) = RUST_ZUI.skip_to_item(page as usize) {
-            return e.into();
+    ) -> bool {
+        if let Err(_) = RUST_ZUI.skip_to_item(page as usize) {
+            return false;
         }
 
         // store the nbgl page content pointer in the backend to pass it thru if necessary
-        RUST_ZUI.backend.nbgl_page_content = nbgl_page_content.cast();
+        let _guard = RUST_ZUI
+            .backend
+            .with_nbgl_page_content(nbgl_page_content.cast());
         StaxBackend::update_review(&mut RUST_ZUI);
-        RUST_ZUI.backend.nbgl_page_content = core::ptr::null_mut();
 
-        0
+        true
     }
 }
 
@@ -339,9 +371,9 @@ mod continuations {
     use super::RUST_ZUI;
 
     /// Continuation callback to kickoff the regular review flow
-    pub fn review_transaction() {
+    pub unsafe extern "C" fn review_transaction() {
         let total_pages = unsafe { RUST_ZUI.n_items() };
 
-        bindings::use_case_regular_review(0, total_pages);
+        super::bindings::use_case_regular_review(0, total_pages as u8);
     }
 }

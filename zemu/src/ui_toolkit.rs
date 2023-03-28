@@ -39,16 +39,18 @@ pub struct Zui<B: UIBackend<KS> + 'static, const KS: usize> {
     current_viewable: Option<RefMutDynViewable>,
 }
 
-impl<B, const KS: usize> Zui<B, KS> {
+impl<B: UIBackend<KS>, const KS: usize> Zui<B, KS> {
     /// Will return the number of items of the current viewable
     ///
     /// Will return 0 in case of any error
-    pub fn n_items(&self) -> usize {
+    pub fn n_items(&mut self) -> usize {
         self.item_count = self
             .current_viewable
             .as_mut()
             .and_then(|item| item.num_items().ok())
-            .unwrap_or_default()
+            .unwrap_or_default() as usize;
+
+        self.item_count
     }
 
     /// Will skip the internal buffer to the given item

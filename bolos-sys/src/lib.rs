@@ -40,7 +40,7 @@ pub mod raw {
             include!("./bindings/bindingsX.rs");
         } else if #[cfg(nanosplus)] {
             include!("./bindings/bindingsSP.rs");
-        } else if #[cfg(nanosplus)] {
+        } else if #[cfg(stax)] {
             include!("./bindings/bindingsFS.rs");
         }
     }
