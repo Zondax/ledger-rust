@@ -33,17 +33,8 @@ pub mod raw {
     #![allow(dead_code)]
     #![allow(clippy::upper_case_acronyms)]
 
-    cfg_if! {
-        if #[cfg(nanos)] {
-            include!("./bindings/bindingsS.rs");
-        } else if #[cfg(nanox)] {
-            include!("./bindings/bindingsX.rs");
-        } else if #[cfg(nanosplus)] {
-            include!("./bindings/bindingsSP.rs");
-        } else if #[cfg(stax)] {
-            include!("./bindings/bindingsFS.rs");
-        }
-    }
+    #[cfg(any(nanos, nanox, nanosplus, stax))]
+    include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 }
 
 #[cfg(bolos_sdk)]
