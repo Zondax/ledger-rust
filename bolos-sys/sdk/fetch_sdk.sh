@@ -12,10 +12,10 @@
 
 # Nano X
 : "${BOLOS_SDK_X_PATH:=nanox-secure-sdk}"
-: "${BOLOS_SDK_X_GIT_TAG:=v7.1.0}"
+: "${BOLOS_SDK_X_GIT_TAG:=v1.3.0}"
 # Nano S+
 : "${BOLOS_SDK_SP_PATH:=nanosplus-secure-sdk}"
-: "${BOLOS_SDK_SP_GIT_TAG:=v7.1.0}"
+: "${BOLOS_SDK_SP_GIT_TAG:=v1.3.0}"
 
 echo "Checkout S SDK & update in $BOLOS_SDK_S_PATH from $BOLOS_SDK_S_GIT $BOLOS_SDK_S_GIT_HASH"
 git submodule add --force "$BOLOS_SDK_S_GIT" "$BOLOS_SDK_S_PATH" || true
