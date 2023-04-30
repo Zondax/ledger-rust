@@ -23,8 +23,8 @@ hmac = "0.11.0"
 cfg-if = "1.0.0"
 
 ed25519-dalek = "1.0.1"
-k256 = "0.9.6"
-p256 = "0.9.0"
+k256 = "0.13.1"
+p256 = "0.13.2"
 
 rand7 = { version = "0.7", package = "rand" }
 rand_chacha7 = { version = "0.2.2", package = "rand_chacha" }
