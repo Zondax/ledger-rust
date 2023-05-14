@@ -97,7 +97,7 @@ fn main() {
             // Generate bindings via `bindgen` cli
             // as using it as build dependency doesn't work
             // see https://github.com/rust-lang/rust-bindgen/issues/2333
-            Command::new("bindgen")
+            let bindgen = Command::new("bindgen")
                 .arg("--use-core")
                 .arg("--with-derive-default")
                 .args(&[
@@ -117,7 +117,11 @@ fn main() {
                 )
                 .arg("-I/usr/arm-none-eabi/include")
                 .spawn()
-                .expect("bindings generated correctly");
+                .expect("able to run bindgen")
+                .wait()
+                .expect("bindgen wasn't running");
+
+            assert!(bindgen.success(), "bindgen didn't complete succesfully")
         } else {
             panic!("BOLOS_SDK is not valid");
         }
