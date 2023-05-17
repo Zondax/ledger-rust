@@ -121,6 +121,21 @@ impl StaxBackend {
     pub fn can_fit_item(&self) -> bool {
         self.current_item().is_some()
     }
+
+    fn update_static_review(ui: &mut Zui<Self, KEY_SIZE>) -> bool {
+        ui.backend.reset_ui();
+        match ui.review_update_data() {
+            Ok(_) => {
+                ui.paging_increase();
+            }
+            Err(ViewError::NoData) => {}
+            Err(_) => {
+                ui.show_error();
+            }
+        }
+
+        true
+    }
 }
 
 struct NbglPageContentPtrGuard;
@@ -214,7 +229,7 @@ impl UIBackend<KEY_SIZE> for StaxBackend {
         bindings::use_case_review_start(
             pic_str!("Review transaction"),
             None,
-            continuations::review_transaction,
+            continuations::review_transaction_static,
         );
     }
 
@@ -363,6 +378,29 @@ mod cabi {
 
         true
     }
+
+    /// This needs to refresh the UI with the content for the given item/pair
+    ///
+    /// Will be called by `nbgl_useCaseStaticReview`
+    #[no_mangle]
+    pub unsafe extern "C" fn rs_update_static_item(page: cty::uint8_t) -> bool {
+        if let Err(_) = RUST_ZUI.skip_to_item(page as usize) {
+            return false;
+        }
+
+        StaxBackend::update_static_review(&mut RUST_ZUI)
+    }
+
+    #[no_mangle]
+    pub unsafe extern "C" fn rs_action_callback(confirm: bool) {
+        if confirm {
+            // TODO: additional confirmation page
+            RUST_ZUI.approve();
+        } else {
+            // TODO: additional rejection confirmation page
+            RUST_ZUI.reject();
+        }
+    }
 }
 
 mod bindings;
@@ -375,5 +413,12 @@ mod continuations {
         let total_pages = unsafe { RUST_ZUI.n_items() };
 
         super::bindings::use_case_regular_review(0, total_pages as u8);
+    }
+
+    /// Continuation callback to kickoff the static review flow
+    pub unsafe extern "C" fn review_transaction_static() {
+        let total_pages = unsafe { RUST_ZUI.n_items() };
+
+        super::bindings::use_case_static_review(total_pages as u8);
     }
 }

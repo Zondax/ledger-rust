@@ -38,10 +38,16 @@ pub mod crapolines {
                 first_page: cty::uint8_t,
                 n_total_pages: cty::uint8_t,
             );
+
+            // this will pass the (fixed) rejection text
+            // along with the update callback and choice callback
+            // TODO: choice callback should have a confirmation screen
+            pub fn crapoline_useCaseStaticReview(n_total_pages: cty::uint8_t);
         }
 
         pub use crapoline_useCaseRegularReview as use_case_regular_review;
         pub use crapoline_useCaseReviewStart as use_case_review_start;
+        pub use crapoline_useCaseStaticReview as use_case_static_review;
     }
 }
 
@@ -83,4 +89,9 @@ pub fn use_case_review_start(
 #[inline(always)]
 pub fn use_case_regular_review(first_page: u8, n_total_pages: u8) {
     unsafe { crapolines::nbgl::use_case_regular_review(first_page, n_total_pages) }
+}
+
+#[inline(always)]
+pub fn use_case_static_review(n_total_pages: u8) {
+    unsafe { crapolines::nbgl::use_case_static_review(n_total_pages) }
 }
