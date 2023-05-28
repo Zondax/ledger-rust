@@ -61,7 +61,7 @@ impl<B: UIBackend<KS>, const KS: usize> Zui<B, KS> {
             return Err(ViewError::NoData);
         }
 
-        self.item_count = idx;
+        self.item_idx = idx;
 
         //reset item pages
         self.page_idx = 0;
