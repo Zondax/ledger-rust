@@ -69,9 +69,6 @@ pub struct StaxBackend {
 
     // how big the current UI object is
     viewable_size: usize,
-
-    // used to pass thru the current ui page content
-    nbgl_page_content: *mut (),
 }
 
 impl Default for StaxBackend {
@@ -80,7 +77,6 @@ impl Default for StaxBackend {
             items: Default::default(),
             items_len: 0,
             viewable_size: 0,
-            nbgl_page_content: core::ptr::null_mut(),
         }
     }
 }
@@ -91,6 +87,11 @@ impl StaxBackend {
             i.reset_contents()
         }
         self.items_len = 0;
+    }
+
+    fn set_item(&mut self, idx: usize) {
+        self.items_len = idx;
+        self.items[idx].reset_contents();
     }
 
     pub fn advance_item(&mut self) -> bool {
@@ -122,34 +123,11 @@ impl StaxBackend {
         self.current_item().is_some()
     }
 
-    fn update_static_review(ui: &mut Zui<Self, KEY_SIZE>) -> bool {
-        ui.backend.reset_ui();
-        match ui.review_update_data() {
-            Ok(_) => {
-                ui.paging_increase();
-            }
-            Err(ViewError::NoData) => {}
-            Err(_) => {
-                ui.show_error();
-            }
-        }
-
+    /// Set the current item to write to and launch update_review
+    fn update_static_review(ui: &mut Zui<Self, KEY_SIZE>, idx: usize) -> bool {
+        ui.backend.set_item(idx);
+        Self::update_review(ui);
         true
-    }
-}
-
-struct NbglPageContentPtrGuard;
-impl Drop for NbglPageContentPtrGuard {
-    fn drop(&mut self) {
-        unsafe {
-            // BACKEND.nbgl_page_content = core::ptr::null_mut();
-        }
-    }
-}
-impl StaxBackend {
-    fn with_nbgl_page_content(&mut self, p: *mut ()) -> NbglPageContentPtrGuard {
-        self.nbgl_page_content = p;
-        NbglPageContentPtrGuard
     }
 }
 
@@ -234,26 +212,15 @@ impl UIBackend<KEY_SIZE> for StaxBackend {
     }
 
     fn update_review(ui: &mut Zui<Self, KEY_SIZE>) {
-        let mut n_items = 1;
-        while ui.backend.can_fit_item() {
-            match ui.review_update_data() {
-                Ok(_) => {
-                    ui.paging_increase();
-                    ui.backend.advance_item();
-                    n_items += 1;
-                }
-                Err(ViewError::NoData) => unsafe {
-                    bindings::crapolines::crapoline_show_confirmation(ui.backend.nbgl_page_content);
-                },
-                Err(_) => {
-                    ui.show_error();
-                }
+        match ui.review_update_data() {
+            Ok(_) => {
+                ui.paging_increase();
+            }
+            Err(ViewError::NoData) => {}
+            Err(_) => {
+                ui.show_error();
             }
         }
-
-        unsafe {
-            bindings::crapolines::crapoline_show_items(ui.backend.nbgl_page_content, n_items)
-        };
     }
 
     fn wait_ui(&mut self) {}
@@ -358,37 +325,21 @@ mod cabi {
         RUST_ZUI.accept_error();
     }
 
-    /// This needs to refresh the UI with the content for the given page
+    /// This needs to refresh the UI with the content for the given item/pair
     ///
-    /// Will be called by `nbgl_useCaseRegularView`
+    /// Will also set which item to write to for this call
+    ///
+    /// Will be called by `nbgl_useCaseStaticReview`
     #[no_mangle]
-    pub unsafe extern "C" fn rs_transaction_screen(
+    pub unsafe extern "C" fn rs_update_static_item(
         page: cty::uint8_t,
-        nbgl_page_content: *mut cty::c_void,
+        internal_idx: cty::uint8_t,
     ) -> bool {
         if let Err(_) = RUST_ZUI.skip_to_item(page as usize) {
             return false;
         }
 
-        // store the nbgl page content pointer in the backend to pass it thru if necessary
-        let _guard = RUST_ZUI
-            .backend
-            .with_nbgl_page_content(nbgl_page_content.cast());
-        StaxBackend::update_review(&mut RUST_ZUI);
-
-        true
-    }
-
-    /// This needs to refresh the UI with the content for the given item/pair
-    ///
-    /// Will be called by `nbgl_useCaseStaticReview`
-    #[no_mangle]
-    pub unsafe extern "C" fn rs_update_static_item(page: cty::uint8_t) -> bool {
-        if let Err(_) = RUST_ZUI.skip_to_item(page as usize) {
-            return false;
-        }
-
-        StaxBackend::update_static_review(&mut RUST_ZUI)
+        StaxBackend::update_static_review(&mut RUST_ZUI, internal_idx as usize)
     }
 
     #[no_mangle]
@@ -407,13 +358,6 @@ mod bindings;
 
 mod continuations {
     use super::RUST_ZUI;
-
-    /// Continuation callback to kickoff the regular review flow
-    pub unsafe extern "C" fn review_transaction() {
-        let total_pages = unsafe { RUST_ZUI.n_items() };
-
-        super::bindings::use_case_regular_review(0, total_pages as u8);
-    }
 
     /// Continuation callback to kickoff the static review flow
     pub unsafe extern "C" fn review_transaction_static() {

@@ -5,15 +5,7 @@ use self::crapolines::nbgl::NbglCallback;
 
 pub mod crapolines {
     extern "C" {
-        pub fn crapoline_ux_wait();
-        pub fn crapoline_ux_flow_init_idle_flow_toggle_expert();
-        pub fn crapoline_ux_show_review();
-        pub fn crapoline_ux_show_error();
-
         pub fn crapoline_home();
-
-        pub fn crapoline_show_confirmation(nbgl_page_content: *mut ());
-        pub fn crapoline_show_items(nbgl_page_ontent: *mut (), nbPairs: cty::uint8_t);
     }
 
     ///NBGL crapolines
@@ -32,20 +24,11 @@ pub mod crapolines {
             );
 
             // this will pass the (fixed) rejection text
-            // along with the nav callback and the choice callback
-            // TODO: choice callback should have a confirmation screen
-            pub fn crapoline_useCaseRegularReview(
-                first_page: cty::uint8_t,
-                n_total_pages: cty::uint8_t,
-            );
-
-            // this will pass the (fixed) rejection text
             // along with the update callback and choice callback
             // TODO: choice callback should have a confirmation screen
             pub fn crapoline_useCaseStaticReview(n_total_pages: cty::uint8_t);
         }
 
-        pub use crapoline_useCaseRegularReview as use_case_regular_review;
         pub use crapoline_useCaseReviewStart as use_case_review_start;
         pub use crapoline_useCaseStaticReview as use_case_static_review;
     }
@@ -84,11 +67,6 @@ pub fn use_case_review_start(
             pic_callback(reject as NbglCallback),
         )
     }
-}
-
-#[inline(always)]
-pub fn use_case_regular_review(first_page: u8, n_total_pages: u8) {
-    unsafe { crapolines::nbgl::use_case_regular_review(first_page, n_total_pages) }
 }
 
 #[inline(always)]
