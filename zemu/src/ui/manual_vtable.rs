@@ -30,6 +30,7 @@ type RejectFn = unsafe fn(*mut This, &mut [u8]) -> (usize, u16);
 type DropFn = unsafe fn(*mut This);
 
 struct ViewableVTable {
+    is_address: bool,
     num_items: NumItemsFn,
     render_item: RenderItemFn,
     accept: AcceptFn,
@@ -39,6 +40,7 @@ struct ViewableVTable {
 
 trait ViewableWithVTable: Viewable + Sized {
     const VTABLE: ViewableVTable = ViewableVTable {
+        is_address: Self::IS_ADDRESS,
         num_items: |this: *mut This| -> Result<u8, ViewError> {
             unsafe {
                 let this = this.cast::<Self>().as_mut().expect("Got NULL");
@@ -88,6 +90,10 @@ pub struct RefMutDynViewable {
 }
 
 impl RefMutDynViewable {
+    pub fn is_address(&self) -> bool {
+        self.vtable.is_address
+    }
+
     pub fn num_items(&mut self) -> Result<u8, ViewError> {
         let to_pic = self.vtable.num_items as usize;
         let picced = unsafe { PIC::manual(to_pic) };

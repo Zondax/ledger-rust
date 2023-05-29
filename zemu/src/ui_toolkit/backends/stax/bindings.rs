@@ -27,8 +27,15 @@ pub mod crapolines {
             // along with the update callback and choice callback
             // TODO: choice callback should have a confirmation screen
             pub fn crapoline_useCaseStaticReview(n_total_pages: cty::uint8_t);
+
+            // this will pass the choice callback
+            // and prepare the extra pages pointer if necessary
+            // TODO: choice callback should have a confirmation screen
+            pub fn crapoline_useCaseAddressConfirmationExt(n_total_pages: cty::uint8_t);
+
         }
 
+        pub use crapoline_useCaseAddressConfirmationExt as use_case_address_confirmation_ext;
         pub use crapoline_useCaseReviewStart as use_case_review_start;
         pub use crapoline_useCaseStaticReview as use_case_static_review;
     }
@@ -72,4 +79,9 @@ pub fn use_case_review_start(
 #[inline(always)]
 pub fn use_case_static_review(n_total_pages: u8) {
     unsafe { crapolines::nbgl::use_case_static_review(n_total_pages) }
+}
+
+#[inline(always)]
+pub fn use_case_address(n_total_pages: u8) {
+    unsafe { crapolines::nbgl::use_case_address_confirmation_ext(n_total_pages) }
 }

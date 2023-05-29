@@ -204,11 +204,25 @@ impl UIBackend<KEY_SIZE> for StaxBackend {
 
         ui.backend.reset_ui();
 
-        bindings::use_case_review_start(
-            pic_str!("Review transaction"),
-            None,
-            continuations::review_transaction_static,
-        );
+        let is_address = ui
+            .current_viewable
+            .as_ref()
+            .map(|v| v.is_address())
+            .unwrap_or_default();
+
+        if is_address {
+            bindings::use_case_review_start(
+                pic_str!("Verify address"),
+                None,
+                continuations::review_address,
+            );
+        } else {
+            bindings::use_case_review_start(
+                pic_str!("Review transaction"),
+                None,
+                continuations::review_transaction_static,
+            );
+        }
     }
 
     fn update_review(ui: &mut Zui<Self, KEY_SIZE>) {
@@ -357,12 +371,23 @@ mod cabi {
 mod bindings;
 
 mod continuations {
-    use super::RUST_ZUI;
+    use super::{bindings, StaxBackend, UIBackend, RUST_ZUI};
 
     /// Continuation callback to kickoff the static review flow
     pub unsafe extern "C" fn review_transaction_static() {
         let total_pages = unsafe { RUST_ZUI.n_items() };
 
-        super::bindings::use_case_static_review(total_pages as u8);
+        bindings::use_case_static_review(total_pages as u8);
+    }
+
+    /// Continuation callback to kickoff an address flow
+    pub unsafe extern "C" fn review_address() {
+        let ui = unsafe { &mut *RUST_ZUI };
+        let total_pages = ui.n_items();
+
+        ui.skip_to_item(0);
+        StaxBackend::update_review(&mut RUST_ZUI);
+
+        bindings::use_case_address(total_pages as u8);
     }
 }
