@@ -384,13 +384,29 @@ mod cabi {
 
     #[no_mangle]
     pub unsafe extern "C" fn rs_action_callback(confirm: bool) {
-        if confirm {
-            // TODO: additional confirmation page
-            RUST_ZUI.approve();
+        super::bindings::use_case_status("", confirm);
+    }
+
+    #[no_mangle]
+    pub unsafe extern "C" fn rs_confirm_address(confirm: bool) {
+        let message = if confirm {
+            pic_str!("ADDRESS\nVERIFIED")
         } else {
-            // TODO: additional rejection confirmation page
-            RUST_ZUI.reject();
-        }
+            pic_str!("Address verification\ncancelled")
+        };
+
+        super::bindings::use_case_status(message, confirm);
+    }
+
+    #[no_mangle]
+    pub unsafe extern "C" fn rs_confirm_txn(confirm: bool) {
+        let message = if confirm {
+            pic_str!("TRANSACTION\nSIGNED")
+        } else {
+            pic_str!("Transaction rejected")
+        };
+
+        super::bindings::use_case_status(message, confirm);
     }
 }
 
@@ -412,7 +428,8 @@ mod continuations {
         let total_pages = ui.n_items();
 
         for idx in 0..total_pages {
-            ui.skip_to_item(idx);
+            //always in the item range
+            let _ = ui.skip_to_item(idx);
             ui.backend.set_item(idx);
             StaxBackend::update_review(&mut RUST_ZUI);
         }
