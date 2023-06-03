@@ -12,15 +12,10 @@
 
 # Nano X
 : "${BOLOS_SDK_X_PATH:=nanox-secure-sdk}"
-: "${BOLOS_SDK_X_GIT_TAG:=v1.2.1}"
-
+: "${BOLOS_SDK_X_GIT_TAG:=v1.3.0}"
 # Nano S+
 : "${BOLOS_SDK_SP_PATH:=nanosplus-secure-sdk}"
-: "${BOLOS_SDK_SP_GIT_TAG:=v1.2.1}"
-
-# Stax
-: "${BOLOS_SDK_FS_PATH:=stax-secure-sdk}"
-: "${BOLOS_SDK_FS_GIT_TAG:=v3.0.1}"
+: "${BOLOS_SDK_SP_GIT_TAG:=v1.3.0}"
 
 echo "Checkout S SDK & update in $BOLOS_SDK_S_PATH from $BOLOS_SDK_S_GIT $BOLOS_SDK_S_GIT_HASH"
 git submodule add --force "$BOLOS_SDK_S_GIT" "$BOLOS_SDK_S_PATH" || true
@@ -43,8 +38,3 @@ echo "Create S+ SDK worktree in $BOLOS_SDK_SP_PATH from $BOLOS_SDK_GIT $BOLOS_SD
 git -C "$BOLOS_SDK_PATH" worktree remove -f ../"$BOLOS_SDK_SP_PATH"
 git -C "$BOLOS_SDK_PATH" worktree add -f ../"$BOLOS_SDK_SP_PATH" "$BOLOS_SDK_SP_GIT_TAG"
 echo nanos2 > "$BOLOS_SDK_SP_PATH"/.target
-
-echo "Create Stax SDK worktree in $BOLOS_SDK_FS_PATH from $BOLOS_SDK_GIT $BOLOS_SDK_FS_GIT_TAG"
-git -C "$BOLOS_SDK_PATH" worktree remove -f ../"$BOLOS_SDK_FS_PATH"
-git -C "$BOLOS_SDK_PATH" worktree add -f ../"$BOLOS_SDK_FS_PATH" "$BOLOS_SDK_FS_GIT_TAG"
-echo stax > "$BOLOS_SDK_FS_PATH"/.target
