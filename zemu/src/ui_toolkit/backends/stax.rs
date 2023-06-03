@@ -189,7 +189,7 @@ impl UIBackend<KEY_SIZE> for StaxBackend {
 
         //truncate status
         let len = core::cmp::min(item.title.len() - 1, status.len());
-        item.title[..len].copy_from_slice(status);
+        item.title[..len].copy_from_slice(&status[..len]);
         item.title[len] = 0; //0 terminate
 
         unsafe {
@@ -197,9 +197,25 @@ impl UIBackend<KEY_SIZE> for StaxBackend {
         }
     }
 
-    fn show_error(&mut self) {}
+    fn show_error(&mut self) {
+        unsafe {
+            bindings::crapolines::crapoline_error();
+        }
+    }
 
-    fn show_message(&mut self, _title: &str, _message: &str) {}
+    fn show_message(&mut self, title: &str, message: &str) {
+        let item = &mut self.items[0];
+
+        let title_len = core::cmp::min(item.title.len() - 1, title.len());
+        let message_len = core::cmp::min(item.message.len() - 1, message.len());
+
+        item.title[..title_len].copy_from_slice(title[..title_len].as_bytes());
+        item.message[..message_len].copy_from_slice(message[..message_len].as_bytes());
+
+        unsafe {
+            bindings::crapolines::crapoline_message();
+        }
+    }
 
     fn show_review(ui: &mut Zui<Self, KEY_SIZE>) {
         // initialize ui struct
@@ -240,6 +256,7 @@ impl UIBackend<KEY_SIZE> for StaxBackend {
         }
     }
 
+    //leave empty, no-op
     fn wait_ui(&mut self) {}
 
     fn expert(&self) -> bool {

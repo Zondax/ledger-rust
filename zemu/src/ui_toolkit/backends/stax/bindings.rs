@@ -6,6 +6,8 @@ use self::crapolines::nbgl::NbglCallback;
 pub mod crapolines {
     extern "C" {
         pub fn crapoline_home();
+        pub fn crapoline_error();
+        pub fn crapoline_message();
     }
 
     ///NBGL crapolines
