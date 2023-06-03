@@ -69,6 +69,7 @@ pub struct StaxBackend {
 
     // how big the current UI object is
     viewable_size: usize,
+    expert_mode: bool,
 }
 
 impl Default for StaxBackend {
@@ -77,6 +78,7 @@ impl Default for StaxBackend {
             items: Default::default(),
             items_len: 0,
             viewable_size: 0,
+            expert_mode: false,
         }
     }
 }
@@ -140,6 +142,7 @@ impl UIBackend<KEY_SIZE> for StaxBackend {
         unsafe { &mut BACKEND }
     }
 
+    //leave empty, no-op
     fn update_expert(&mut self) {}
 
     fn key_buf(&mut self) -> &mut [u8; KEY_SIZE] {
@@ -240,10 +243,12 @@ impl UIBackend<KEY_SIZE> for StaxBackend {
     fn wait_ui(&mut self) {}
 
     fn expert(&self) -> bool {
-        false
+        self.expert_mode
     }
 
-    fn toggle_expert(&mut self) {}
+    fn toggle_expert(&mut self) {
+        self.expert_mode = !self.expert_mode;
+    }
 
     fn accept_reject_out(&mut self) -> &mut [u8] {
         let buf = apdu_buffer_mut();
@@ -301,13 +306,13 @@ mod cabi {
     }
 
     #[no_mangle]
-    pub unsafe extern "C" fn rs_h_expert_toggle() {
+    pub unsafe extern "C" fn rs_h_toggle_expert() {
         RUST_ZUI.backend.toggle_expert();
     }
 
     #[no_mangle]
-    pub unsafe extern "C" fn rs_h_expert_update() {
-        RUST_ZUI.backend.update_expert();
+    pub unsafe extern "C" fn rs_h_expert() -> bool {
+        RUST_ZUI.backend.expert()
     }
 
     #[no_mangle]
