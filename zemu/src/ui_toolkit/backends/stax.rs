@@ -203,14 +203,18 @@ impl UIBackend<KEY_SIZE> for StaxBackend {
         }
     }
 
+    // put both title and message on the same item.message
+    // as we displa only 1 text w/ spinner
     fn show_message(&mut self, title: &str, message: &str) {
         let item = &mut self.items[0];
 
-        let title_len = core::cmp::min(item.title.len() - 1, title.len());
-        let message_len = core::cmp::min(item.message.len() - 1, message.len());
+        let title_len = core::cmp::min(item.message.len() - 1, title.len());
+        item.message[..title_len].copy_from_slice(title[..title_len].as_bytes());
 
-        item.title[..title_len].copy_from_slice(title[..title_len].as_bytes());
-        item.message[..message_len].copy_from_slice(message[..message_len].as_bytes());
+        if !message.is_empty() {
+            let message_len = core::cmp::min(item.message.len() - title_len - 1, message.len());
+            item.message[..message_len].copy_from_slice(message[..message_len].as_bytes());
+        }
 
         unsafe {
             bindings::crapolines::crapoline_message();
