@@ -385,8 +385,11 @@ mod continuations {
         let ui = unsafe { &mut *RUST_ZUI };
         let total_pages = ui.n_items();
 
-        ui.skip_to_item(0);
-        StaxBackend::update_review(&mut RUST_ZUI);
+        for idx in 0..total_pages {
+            ui.skip_to_item(idx);
+            ui.backend.set_item(idx);
+            StaxBackend::update_review(&mut RUST_ZUI);
+        }
 
         bindings::use_case_address(total_pages as u8);
     }
