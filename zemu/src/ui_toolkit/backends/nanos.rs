@@ -79,7 +79,8 @@ impl UIBackend<KEY_SIZE> for NanoSBackend {
 
     fn message_buf(&mut self) -> Self::MessageBuf {
         let init = PIC::new(&[0; MESSAGE_SIZE]).into_inner();
-        ArrayString::from_byte_string(init).expect("0x00 is not valid utf8?")
+        ArrayString::from_byte_string(init)
+            .unwrap_or_else(|_| unsafe { core::hint::unreachable_unchecked() })
     }
 
     fn split_value_field(&mut self, message_buf: Self::MessageBuf) {

@@ -145,7 +145,7 @@ impl UIBackend<KEY_SIZE> for NanoSPBackend {
 
         core::str::from_utf8_mut(&mut Self::static_mut().message)
             //this should never happen as we always asciify
-            .expect("message wasn't valid utf8")
+            .unwrap_or_else(|_| unsafe { core::hint::unreachable_unchecked() })
     }
 
     fn split_value_field(&mut self, _: &'static mut str) {}
