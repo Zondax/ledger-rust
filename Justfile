@@ -20,9 +20,11 @@ link-ledger-sdk base-dir=justfile_directory() target-dir=invocation_directory() 
     ln -s $f {{base-dir}}/bolos-sys/sdk/stax-secure-sdk {{target-dir}}/
 
 alias fetch-sdk := fetch-bindings
+# Fetch Ledger SDK's and do the requires setup
 @fetch-bindings:
     cd bolos-sys/sdk; ./fetch_sdk.sh
 
 alias bindings := generate-bindings
+# Generate SDK bindings
 @generate-bindings:
     ./bolos-sys/sdk/generate_bindings.sh
