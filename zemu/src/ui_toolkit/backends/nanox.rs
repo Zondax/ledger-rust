@@ -272,7 +272,7 @@ mod cabi {
     use super::*;
 
     #[no_mangle]
-    pub unsafe extern "C" fn view_init_impl(msg: *mut u8) {
+    pub unsafe extern "C" fn view_init_impl(msg: *const u8) {
         *IDLE_MESSAGE = msg;
     }
 
@@ -287,7 +287,7 @@ mod cabi {
     }
 
     #[no_mangle]
-    pub unsafe extern "C" fn view_idle_show_impl(item_idx: u8, status: *mut i8) {
+    pub unsafe extern "C" fn view_idle_show_impl(item_idx: u8, status: *const i8) {
         let status = if status.is_null() {
             None
         } else {
