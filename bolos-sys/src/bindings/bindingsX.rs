@@ -5189,7 +5189,7 @@ extern "C" {
     pub fn os_lib_call(call_parameters: *mut cty::c_uint);
 }
 extern "C" {
-    pub fn os_lib_end();
+    pub fn os_lib_end() -> !;
 }
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone)]
@@ -8780,6 +8780,9 @@ extern "C" {
 }
 extern "C" {
     pub fn os_memset(s: *mut cty::c_void, c: cty::c_int, n: usize) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn os_explicit_zero_BSS_segment();
 }
 extern "C" {
     pub fn app_main();
