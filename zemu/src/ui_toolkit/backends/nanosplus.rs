@@ -140,10 +140,12 @@ impl UIBackend<KEY_SIZE> for NanoSPBackend {
         &mut self.key
     }
 
-    fn message_buf(&self) -> &'static mut str {
+    fn message_buf(&mut self) -> Self::MessageBuf {
+        core::mem::drop(self);
+
         core::str::from_utf8_mut(&mut Self::static_mut().message)
             //this should never happen as we always asciify
-            .expect("message wasn't valid utf8")
+            .unwrap_or_else(|_| unsafe { core::hint::unreachable_unchecked() })
     }
 
     fn split_value_field(&mut self, _: &'static mut str) {}
@@ -272,7 +274,7 @@ mod cabi {
     use super::*;
 
     #[no_mangle]
-    pub unsafe extern "C" fn view_init_impl(msg: *mut u8) {
+    pub unsafe extern "C" fn view_init_impl(msg: *const u8) {
         *IDLE_MESSAGE = msg;
     }
 
@@ -287,7 +289,7 @@ mod cabi {
     }
 
     #[no_mangle]
-    pub unsafe extern "C" fn view_idle_show_impl(item_idx: u8, status: *mut i8) {
+    pub unsafe extern "C" fn view_idle_show_impl(item_idx: u8, status: *const i8) {
         let status = if status.is_null() {
             None
         } else {

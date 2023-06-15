@@ -77,9 +77,10 @@ impl UIBackend<KEY_SIZE> for NanoSBackend {
         &mut self.key
     }
 
-    fn message_buf(&self) -> Self::MessageBuf {
+    fn message_buf(&mut self) -> Self::MessageBuf {
         let init = PIC::new(&[0; MESSAGE_SIZE]).into_inner();
-        ArrayString::from_byte_string(init).expect("0x00 is not valid utf8?")
+        ArrayString::from_byte_string(init)
+            .unwrap_or_else(|_| unsafe { core::hint::unreachable_unchecked() })
     }
 
     fn split_value_field(&mut self, message_buf: Self::MessageBuf) {
@@ -250,7 +251,7 @@ mod cabi {
     use super::*;
 
     #[no_mangle]
-    pub unsafe extern "C" fn view_init_impl(msg: *mut u8) {
+    pub unsafe extern "C" fn view_init_impl(msg: *const u8) {
         *IDLE_MESSAGE = msg;
     }
 
@@ -275,7 +276,7 @@ mod cabi {
     }
 
     #[no_mangle]
-    pub unsafe extern "C" fn view_idle_show_impl(item_idx: u8, status: *mut i8) {
+    pub unsafe extern "C" fn view_idle_show_impl(item_idx: u8, status: *const i8) {
         let status = if status.is_null() {
             None
         } else {

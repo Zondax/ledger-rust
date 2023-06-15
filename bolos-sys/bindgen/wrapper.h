@@ -7,7 +7,6 @@
 
 #define OS_IO_SEPROXYHAL
 
-#define HAVE_BAGL
 #define HAVE_SPRINTF
 
 #define HAVE_IO_USB

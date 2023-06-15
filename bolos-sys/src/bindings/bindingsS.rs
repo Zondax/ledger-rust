@@ -2,6 +2,8 @@
 
 pub const BOLOS_VERSION: &[u8; 6usize] = b"2.1.0\0";
 pub const IO_SEPROXYHAL_BUFFER_SIZE_B: u32 = 128;
+pub const BAGL_WIDTH: u32 = 128;
+pub const BAGL_HEIGHT: u32 = 32;
 pub const __bool_true_false_are_defined: u32 = 1;
 pub const true_: u32 = 1;
 pub const false_: u32 = 0;
@@ -467,6 +469,7 @@ pub const SYSCALL_os_perso_setonboardingstatus_ID_IN: u32 = 1610650624;
 pub const SYSCALL_os_perso_derive_node_bip32_ID_IN: u32 = 1610634170;
 pub const SYSCALL_os_perso_derive_node_with_seed_key_ID_IN: u32 = 1610655448;
 pub const SYSCALL_os_perso_derive_eip2333_ID_IN: u32 = 1610655568;
+pub const SYSCALL_os_perso_seed_cookie_ID_IN: u32 = 1610655996;
 pub const SYSCALL_os_endorsement_get_code_hash_ID_IN: u32 = 1610634511;
 pub const SYSCALL_os_endorsement_get_public_key_ID_IN: u32 = 1610634995;
 pub const SYSCALL_os_endorsement_get_public_key_certificate_ID_IN: u32 = 1610635084;
@@ -4516,7 +4519,7 @@ extern "C" {
     pub fn os_sched_exec(app_idx: cty::c_uint);
 }
 extern "C" {
-    pub fn os_sched_exit(exit_code: bolos_task_status_t);
+    pub fn os_sched_exit(exit_code: bolos_task_status_t) -> !;
 }
 extern "C" {
     pub fn os_sched_is_running(task_idx: cty::c_uint) -> bolos_bool_t;
@@ -4639,7 +4642,7 @@ extern "C" {
     pub fn os_lib_call(call_parameters: *mut cty::c_uint);
 }
 extern "C" {
-    pub fn os_lib_end();
+    pub fn os_lib_end() -> !;
 }
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone)]
@@ -8096,6 +8099,12 @@ extern "C" {
         privateKey: *mut cty::c_uchar,
     );
 }
+extern "C" {
+    pub fn os_perso_seed_cookie(
+        seed_cookie: *mut cty::c_uchar,
+        seed_cookie_length: cty::c_uint,
+    ) -> cty::c_uint;
+}
 pub const os_setting_e_OS_SETTING_BRIGHTNESS: os_setting_e = 0;
 pub const os_setting_e_OS_SETTING_INVERT: os_setting_e = 1;
 pub const os_setting_e_OS_SETTING_ROTATION: os_setting_e = 2;
@@ -8163,6 +8172,9 @@ extern "C" {
 }
 extern "C" {
     pub fn os_memset(s: *mut cty::c_void, c: cty::c_int, n: usize) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn os_explicit_zero_BSS_segment();
 }
 extern "C" {
     pub fn app_main();
