@@ -1,4 +1,4 @@
-use std::{env, path::PathBuf, process::Command};
+use std::{env, path::PathBuf};
 
 fn sdk_includes(target: &str) -> impl IntoIterator<Item = PathBuf> {
     [
@@ -7,6 +7,7 @@ fn sdk_includes(target: &str) -> impl IntoIterator<Item = PathBuf> {
         PathBuf::from("lib_ux").join("include"),
         PathBuf::from("lib_cxng").join("include"),
         PathBuf::from("lib_bagl").join("include"),
+        PathBuf::from("lib_nbgl").join("include"),
         PathBuf::from(
             env::var_os("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR set in build script"),
         )
