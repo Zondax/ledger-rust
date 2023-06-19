@@ -25,7 +25,7 @@ pub trait ApduHandler {
     /// Entrypoint of the handler
     ///
     /// `flags` is used with the ui, to communicate to the system that some UI is runing
-    /// `apdu_buffer` is the input (and output buffer
+    /// `apdu_buffer` is the input (and output buffer).
     ///
     /// The return tells how many bytes of output were written, or an error code.
     fn handle(flags: &mut u32, apdu_buffer: ApduBufferRead) -> Result<u32, ApduError>;
@@ -70,7 +70,7 @@ impl Handler {
 #[inline(never)]
 /// Dispatch the APDU based on the list of given `handlers`
 ///
-/// The list is accessed as given, meaning earlier handlers take precedence
+/// The list is accessed as given, meaning earlier handlers take precedence.
 pub fn apdu_dispatch<const CLA: u8>(
     flags: &mut u32,
     apdu_buffer: ApduBufferRead,

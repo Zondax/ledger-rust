@@ -50,32 +50,7 @@ pub use utils::*;
 /// Set of utilities for UI
 pub mod ui;
 
-/// Contains the necessary mechanisms to
-/// register the app's handlers to be used.
-/// The registration requires 2 items,
-/// the instruction code used to determine if the handler should be called
-/// and the handler function itself.
-///
-/// # How to use
-/// To register the app handler you should use the [`handlers::register`] macro:
-/*
-```rust
-# use bolos::handlers::*;
-# use bolos::{ApduBufferRead, ApduError};
-
-struct Version;
-impl ApduHandler for Version {
-    fn handle(_: &mut u32, _: ApduBufferRead) -> Result<u32, ApduError> {
-        Ok(0)
-    }
-}
-
-#[register(HANDLERS)]
-static APP_VERSION: (u8, HandlerFn) = (0, Version::handle);
-
-# assert_eq!(unsafe{ HANDLERS.len() }, 1);
-```
-*/
+/// Descriptors and utilities for APDU handlers
 pub mod handlers;
 pub use handlers::{apdu_dispatch, ApduHandler};
 
