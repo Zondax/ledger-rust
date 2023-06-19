@@ -94,34 +94,25 @@ fn main() {
             let output = PathBuf::from(env::var("OUT_DIR").expect("OUT_DIR set in build script"))
                 .join("bindings.rs");
 
-            // Generate bindings via `bindgen` cli
-            // as using it as build dependency doesn't work
-            // see https://github.com/rust-lang/rust-bindgen/issues/2333
-            let bindgen = Command::new("bindgen")
-                .arg("--use-core")
-                .arg("--with-derive-default")
-                .args(&[
-                    std::ffi::OsStr::new("-o").to_owned(),
-                    output.into_os_string(),
-                ])
-                .arg(device.input_header())
-                .arg("--") //from here on clang args
-                .args(device.target().into_iter())
-                .args(device.device_flags().into_iter())
-                .args(
+            let bindings = bindgen::builder()
+                .use_core()
+                .derive_default(true)
+                .header(device.input_header().display().to_string())
+                .clang_args(device.target())
+                .clang_args(device.device_flags())
+                .clang_args(
                     device
                         .sdk_includes()
                         .into_iter()
                         .map(|inc| sdk_path.join(inc))
                         .map(|path| format!("-I{}", path.display())),
                 )
-                .arg("-I/usr/arm-none-eabi/include")
-                .spawn()
-                .expect("able to run bindgen")
-                .wait()
-                .expect("bindgen wasn't running");
-
-            assert!(bindgen.success(), "bindgen didn't complete succesfully")
+                .clang_arg("-I/usr/arm-none-eabi/include")
+                .generate()
+                .expect("able to generate bindings");
+            bindings
+                .write_to_file(output)
+                .expect("writing bindings to file");
         } else {
             panic!("BOLOS_SDK is not valid");
         }

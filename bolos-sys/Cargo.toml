@@ -11,3 +11,6 @@ zeroize = { version = "1", default-features = false }
 
 [dev-dependencies]
 bolos = { version = "0.1", path = "../bolos" }
+
+[build-dependencies]
+bindgen = { version = "0.66" }
