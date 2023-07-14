@@ -15,7 +15,7 @@
 ********************************************************************************/
 use super::UIBackend;
 use crate::{
-    ui::{apdu_buffer_mut, manual_vtable::RefMutDynViewable, ViewError, Viewable},
+    ui::{apdu_buffer_mut, manual_vtable::RefMutDynViewable, store_into, ViewError, Viewable},
     ui_toolkit::Zui,
 };
 use bolos_derive::pic_str;
@@ -242,29 +242,10 @@ impl UIBackend<KEY_SIZE> for NanoXBackend {
         &mut self,
         viewable: V,
     ) -> Option<RefMutDynViewable> {
-        let size = core::mem::size_of::<V>();
-        unsafe {
-            let apdu_buffer = apdu_buffer_mut();
+        let (size, viewable) = store_into(viewable, apdu_buffer_mut())?;
+        self.viewable_size = size;
 
-            let buf_len = apdu_buffer.len();
-            if size > buf_len {
-                return None;
-            }
-
-            let new_loc_slice = &mut apdu_buffer[buf_len - size..];
-            let new_loc_raw_ptr: *mut u8 = new_loc_slice.as_mut_ptr();
-            let new_loc: *mut V = new_loc_raw_ptr.cast();
-
-            //write but we don't want to drop `new_loc` since
-            // it's not actually valid T data
-            core::ptr::write(new_loc, viewable);
-
-            //write how many bytes we have occupied
-            self.viewable_size = size;
-
-            //we can unwrap as we know this ptr is valid
-            Some(new_loc.as_mut().unwrap().into())
-        }
+        Some(viewable)
     }
 }
 
