@@ -242,10 +242,10 @@ impl UIBackend<KEY_SIZE> for NanoXBackend {
         &mut self,
         viewable: V,
     ) -> Option<RefMutDynViewable> {
-        let (size, viewable) = store_into(viewable, apdu_buffer_mut())?;
+        let (size, new_loc) = store_into(viewable, apdu_buffer_mut())?;
         self.viewable_size = size;
 
-        Some(viewable)
+        Some(new_loc.into())
     }
 }
 
