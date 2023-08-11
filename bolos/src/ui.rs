@@ -86,7 +86,6 @@ pub trait DisplayableItem {
     ) -> Result<u8, ViewError>;
 }
 
-
 #[inline(never)]
 /// Perform paging of `input` into `out`
 ///
