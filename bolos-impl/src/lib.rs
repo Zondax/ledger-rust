@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   (c) 2021 Zondax GmbH
+*   (c) 2022 Zondax AG
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.
@@ -55,6 +55,7 @@ pub use bolos_sys::TARGET_ID;
 /// Provides a macro to register a panic handler with this crate
 mod panic {
     #[macro_export]
+    /// Register a panic handler to use within a ledger app
     macro_rules! panic_handler {
         ($($body:tt)*) => {
             mod __panic_handler {

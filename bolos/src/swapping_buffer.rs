@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   (c) 2021 Zondax GmbH
+*   (c) 2022 Zondax AG
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 ********************************************************************************/
 use super::{
     nvm::{NVMError, NVM},
-    PIC,
+    LedgerUnwrap, PIC,
 };
 use std::prelude::v1::*;
 
@@ -86,10 +86,25 @@ impl<'r, 'f, const RAM: usize, const FLASH: usize> SwappingBuffer<'r, 'f, RAM, F
 
     /// Will return the underlying written buffer as an immutable slice
     pub fn read_exact(&self) -> &[u8] {
+        //cnt is guaranteed to be less than the slice len
         match self.state {
-            BufferState::WritingToRam(cnt) => &self.ram[..cnt],
-            BufferState::WritingToFlash(cnt) => &self.flash[..cnt],
+            BufferState::WritingToRam(cnt) => &self.ram.get(..cnt).ledger_unwrap(),
+            BufferState::WritingToFlash(cnt) => &self.flash.get(..cnt).ledger_unwrap(),
         }
+    }
+
+    /// Will return the underlying written buffer as an immutable slice
+    ///
+    /// Will also reset the internal buffer state after the slice has been created
+    pub(crate) fn read_exact_and_reset(&mut self) -> &[u8] {
+        //cnt is guaranteed to be less than the slice len
+        let slice = match self.state {
+            BufferState::WritingToRam(cnt) => self.ram.get(..cnt).ledger_unwrap(),
+            BufferState::WritingToFlash(cnt) => self.flash.get(..cnt).ledger_unwrap(),
+        };
+        self.state = Default::default();
+
+        slice
     }
 
     /// Will attempt to append to the underlying buffer,
@@ -110,7 +125,7 @@ impl<'r, 'f, const RAM: usize, const FLASH: usize> SwappingBuffer<'r, 'f, RAM, F
             BufferState::WritingToRam(cnt) if *cnt + len > RAM => {
                 //copy ram to flash, and move state over to flash
                 self.flash.write(0, &*self.ram)?;
-                _ = self.state.transition_forward();
+                self.state.transition_forward().ledger_unwrap();
 
                 //then write (counter already incremented)
                 self.write(bytes)?;
@@ -119,7 +134,7 @@ impl<'r, 'f, const RAM: usize, const FLASH: usize> SwappingBuffer<'r, 'f, RAM, F
             //writing to ram and we have space
             BufferState::WritingToRam(cnt) => {
                 //copy slice and update counter
-                self.ram[*cnt..*cnt + len].copy_from_slice(bytes);
+                self.ram[*cnt..][..len].copy_from_slice(bytes);
                 *cnt += len;
                 Ok(())
             }
