@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   (c) 2021 Zondax GmbH
+*   (c) 2022 Zondax AG
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.
@@ -24,6 +24,8 @@ pub enum ViewError {
 /// This trait describes the interface that is needed for the UI toolkit to
 /// show on screen something
 pub trait Viewable {
+    const IS_ADDRESS: bool = false;
+
     /// Return the number of items to render
     fn num_items(&mut self) -> Result<u8, ViewError>;
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   (c) 2021 Zondax GmbH
+*   (c) 2022 Zondax AG
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 ********************************************************************************/
 use super::UIBackend;
 use crate::{
-    ui::{apdu_buffer_mut, manual_vtable::RefMutDynViewable, Viewable},
+    ui::{apdu_buffer_mut, manual_vtable::RefMutDynViewable, store_into, Viewable},
     ui_toolkit::{strlen, Zui},
 };
 use bolos_derive::pic_str;
@@ -77,9 +77,10 @@ impl UIBackend<KEY_SIZE> for NanoSBackend {
         &mut self.key
     }
 
-    fn message_buf(&self) -> Self::MessageBuf {
+    fn message_buf(&mut self) -> Self::MessageBuf {
         let init = PIC::new(&[0; MESSAGE_SIZE]).into_inner();
-        ArrayString::from_byte_string(init).expect("0x00 is not valid utf8?")
+        ArrayString::from_byte_string(init)
+            .unwrap_or_else(|_| unsafe { core::hint::unreachable_unchecked() })
     }
 
     fn split_value_field(&mut self, message_buf: Self::MessageBuf) {
@@ -220,29 +221,9 @@ impl UIBackend<KEY_SIZE> for NanoSBackend {
         &mut self,
         viewable: V,
     ) -> Option<RefMutDynViewable> {
-        let size = core::mem::size_of::<V>();
-        unsafe {
-            let apdu_buffer = apdu_buffer_mut();
-
-            let buf_len = apdu_buffer.len();
-            if size > buf_len {
-                return None;
-            }
-
-            let new_loc_slice = &mut apdu_buffer[buf_len - size..];
-            let new_loc_raw_ptr: *mut u8 = new_loc_slice.as_mut_ptr();
-            let new_loc: *mut V = new_loc_raw_ptr.cast();
-
-            //write but we don't want to drop `new_loc` since
-            // it's not actually valid T data
-            core::ptr::write(new_loc, viewable);
-
-            //write how many bytes we have occupied
-            self.viewable_size = size;
-
-            //we can unwrap as we know this ptr is valid
-            Some(new_loc.as_mut().unwrap().into())
-        }
+        let (size, new_loc) = store_into(viewable, apdu_buffer_mut())?;
+        self.viewable_size = size;
+        Some(new_loc.into())
     }
 }
 
@@ -250,7 +231,7 @@ mod cabi {
     use super::*;
 
     #[no_mangle]
-    pub unsafe extern "C" fn view_init_impl(msg: *mut u8) {
+    pub unsafe extern "C" fn view_init_impl(msg: *const u8) {
         *IDLE_MESSAGE = msg;
     }
 
@@ -275,7 +256,7 @@ mod cabi {
     }
 
     #[no_mangle]
-    pub unsafe extern "C" fn view_idle_show_impl(item_idx: u8, status: *mut i8) {
+    pub unsafe extern "C" fn view_idle_show_impl(item_idx: u8, status: *const i8) {
         let status = if status.is_null() {
             None
         } else {

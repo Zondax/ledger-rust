@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   (c) 2021 Zondax GmbH
+*   (c) 2022 Zondax AG
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ impl UIBackend<KEY_SIZE> for ConsoleBackend {
         &mut self.key
     }
 
-    fn message_buf(&self) -> Self::MessageBuf {
+    fn message_buf(&mut self) -> Self::MessageBuf {
         ArrayString::new_const()
     }
 

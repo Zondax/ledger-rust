@@ -8,6 +8,7 @@ edition = "2018"
 cbindgen_s = []
 cbindgen_x = []
 cbindgen_sp = []
+cbindgen_fs = []
 derive-debug = []
 
 [dependencies]

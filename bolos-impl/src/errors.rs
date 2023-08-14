@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   (c) 2021 Zondax GmbH
+*   (c) 2022 Zondax AG
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@ mod exceptions {
             include!("errors/exceptionsS.rs");
         } else if #[cfg(nanosplus)] {
             include!("errors/exceptionsSP.rs");
+        } else if #[cfg(stax)] {
+            include!("errors/exceptionsFS.rs");
         }
     }
 
@@ -91,9 +93,6 @@ mod exceptions {
         unsafe {
             os_longjmp(exception);
         }
-        //this should never happen, and it's here for the
-        //never type
-        unreachable!("returned from longjmp");
     }
 }
 pub use exceptions::*;

@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   (c) 2021 Zondax GmbH
+*   (c) 2022 Zondax AG
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.
@@ -13,82 +13,6 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 ********************************************************************************/
-
-pub struct OutputBufferTooSmall;
-
-pub enum ConvertBitsError {
-    /// `FROM` or `TO` bit size are either 0 or greater than 8
-    InvalidConversion {
-        from: u8,
-        to: u8,
-    },
-    /// Input value `elem` exceeds `FROM` bit size
-    InvalidData {
-        idx: usize,
-        elem: u8,
-    },
-    InvalidPadding,
-    /// `out` size was too small for the conversion
-    OutputBufferTooSmall {
-        expected: usize,
-    },
-}
-
-/// Perform bits conversion
-pub fn convert_bits<const FROM: u8, const TO: u8>(
-    input: &[u8],
-    out: &mut [u8],
-    pad: bool,
-) -> Result<(), ConvertBitsError> {
-    if FROM > 8 || TO > 8 || FROM == 0 || TO == 0 {
-        return Err(ConvertBitsError::InvalidConversion { from: FROM, to: TO });
-    }
-
-    let bits_num = input.len() * FROM as usize;
-    let expected_out_size = if bits_num % TO as usize == 0 {
-        bits_num / TO as usize
-    } else {
-        bits_num / TO as usize + 1
-    };
-    if out.len() < expected_out_size {
-        return Err(ConvertBitsError::OutputBufferTooSmall {
-            expected: expected_out_size,
-        });
-    }
-
-    let mut out_idx = 0;
-
-    let mut acc: u32 = 0;
-    let mut bits: u32 = 0;
-    let maxv: u32 = (1 << TO) - 1;
-    for (i, value) in input.iter().enumerate() {
-        let v = *value as u32;
-        if (v >> FROM) != 0 {
-            // Input value exceeds `from` bit size
-            return Err(ConvertBitsError::InvalidData {
-                idx: i,
-                elem: v as u8,
-            });
-        }
-        acc = (acc << FROM) | v;
-        bits += FROM as u32;
-        while bits >= TO as u32 {
-            bits -= TO as u32;
-
-            out[out_idx] = ((acc >> bits) & maxv) as u8;
-            out_idx += 1;
-        }
-    }
-    if pad {
-        if bits > 0 {
-            out[out_idx] = ((acc << (TO as u32 - bits)) & maxv) as u8;
-        }
-    } else if bits >= FROM as u32 || ((acc << (TO as u32 - bits)) & maxv) != 0 {
-        return Err(ConvertBitsError::InvalidPadding);
-    }
-
-    Ok(())
-}
 
 /// Integer in the range `0..32`
 #[derive(PartialEq, Eq, Debug, Copy, Clone, Default, PartialOrd, Ord, Hash)]
@@ -142,6 +66,7 @@ impl AsRef<u8> for u5 {
     }
 }
 
+/// Structure to write a byte slice using the bech32 encoding
 pub struct Bech32Writer<'b> {
     out: &'b mut [u8],
     bytes_written: usize,
@@ -175,7 +100,7 @@ impl<'b> Bech32Writer<'b> {
 
         let hrp = hrp.as_bytes();
         this.check_rem_out(hrp.len() + 1)?;
-        this.out[0..hrp.len()].copy_from_slice(hrp);
+        this.out[..hrp.len()].copy_from_slice(hrp);
         this.out[hrp.len()] = b'1'; //hrp1data (separator)
         this.bytes_written = hrp.len() + 1;
 
@@ -288,6 +213,7 @@ impl<'b> Bech32Writer<'b> {
         Ok(self.bytes_written)
     }
 
+    /// Estimate the size of the data encoded using bech32, given the hrp and data lengths
     pub const fn estimate_size(hrp_len: usize, data_len: usize) -> usize {
         let bits_num = data_len * 8;
         //verify if there's a need to add an extra bite for padding
@@ -305,7 +231,7 @@ impl<'b> Bech32Writer<'b> {
     }
 }
 
-/// Encode `data` with the given `hrp` into the given `out` with `Bech32`
+/// Encode `data` with the given `hrp` into the given `out` with [`Bech32Writer`]
 pub fn encode(
     hrp: &str,
     data: impl AsRef<[u8]>,
@@ -317,6 +243,7 @@ pub fn encode(
     encoder.finalize()
 }
 
+/// Shorthand for [`Bech32Writer::estimate_size`]
 pub const fn estimate_size(hrp_len: usize, data_len: usize) -> usize {
     Bech32Writer::estimate_size(hrp_len, data_len)
 }

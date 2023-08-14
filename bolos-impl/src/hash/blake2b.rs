@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   (c) 2021 Zondax GmbH
+*   (c) 2022 Zondax AG
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.
@@ -73,16 +73,13 @@ impl<const S: usize> Blake2b<S> {
         let salt = if salt.is_empty() {
             (std::ptr::null_mut(), 0)
         } else {
-            (salt.as_ptr() as *mut u8, salt.len() as u32)
+            (salt.as_ptr() as *mut u8, salt.len())
         };
 
         let perso = if personalization.is_empty() {
             (std::ptr::null_mut(), 0)
         } else {
-            (
-                personalization.as_ptr() as *mut u8,
-                personalization.len() as u32,
-            )
+            (personalization.as_ptr() as *mut u8, personalization.len())
         };
 
         cfg_if! {
@@ -90,7 +87,7 @@ impl<const S: usize> Blake2b<S> {
                 let r = unsafe {
                     crate::raw::cx_blake2b_init2_no_throw(
                         state,
-                        (S * 8) as u32,
+                        S * 8,
                         salt.0,
                         salt.1,
                         perso.0,

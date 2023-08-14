@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   (c) 2021 Zondax GmbH
+*   (c) 2022 Zondax AG
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
 #![no_builtins]
 
 extern crate no_std_compat as std;
-
 extern crate self as bolos;
 
 #[macro_use]
@@ -25,19 +24,35 @@ extern crate cfg_if;
 
 pub use bolos_derive::*;
 
-cfg_if! {
-    if #[cfg(feature = "flash-slot")] {
-        #[macro_use]
-        pub mod flash_slot;
-        pub use flash_slot::Wear;
-    }
-}
+#[macro_use]
+pub mod flash_slot;
+pub use flash_slot::Wear;
 
 #[macro_use]
 pub mod swapping_buffer;
-pub use swapping_buffer::*;
+pub use swapping_buffer::SwappingBuffer;
 
-pub mod bech32;
+pub mod lock;
+pub use lock::Lock;
+
+pub mod uploader;
+pub use uploader::Uploader;
+
+mod panic_traits;
+pub use panic_traits::LedgerUnwrap;
+
+mod apdu_errors;
+pub use apdu_errors::ApduError;
+
+mod utils;
+pub use utils::*;
+
+/// Set of utilities for UI
+pub mod ui;
+
+/// Descriptors and utilities for APDU handlers
+pub mod handlers;
+pub use handlers::{apdu_dispatch, ApduHandler};
 
 cfg_if! {
     if #[cfg(all(__impl, __mock))] {

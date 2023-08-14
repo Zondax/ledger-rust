@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   (c) 2021 Zondax GmbH
+*   (c) 2022 Zondax AG
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.
@@ -19,6 +19,19 @@ use core::mem::MaybeUninit;
 use crate::Error;
 
 use super::{bip32::BIP32Path, Curve, Mode, CHAIN_CODE_LEN};
+
+pub use enumflags2::BitFlags;
+
+#[enumflags2::bitflags]
+#[repr(u8)]
+#[derive(Clone, Copy, PartialEq)]
+#[cfg_attr(test, derive(Debug))]
+pub enum ECCInfo {
+    /// Tells wheter the Y component as even (0) or odd (1)
+    ParityOdd,
+    /// Tells wheter the X component was greater than the curve order
+    XGTn,
+}
 
 #[derive(Clone, Copy)]
 pub struct PublicKey {
@@ -133,16 +146,12 @@ impl<const B: usize> SecretKey<B> {
     pub fn public(&self) -> Result<PublicKey, Error> {
         let (data, len) = match self.curve {
             Curve::Secp256K1 => {
-                let secret = k256::ecdsa::SigningKey::from_bytes(&self.bytes[..]).unwrap();
+                let secret = k256::ecdsa::SigningKey::from_slice(&self.bytes[..]).unwrap();
 
                 let public = secret.verifying_key();
-                //this is already compressed
-                let compressed_point = public.to_bytes();
-                let uncompressed_point = k256::EncodedPoint::from_bytes(compressed_point)
-                    .unwrap()
-                    .decompress()
-                    .unwrap();
-                let uncompressed_point = uncompressed_point.as_ref();
+                //when we encode we don't compress the point right away
+                let uncompressed_point = public.to_encoded_point(false);
+                let uncompressed_point = uncompressed_point.as_bytes();
 
                 let mut bytes = [0; 65];
                 bytes[..uncompressed_point.len()].copy_from_slice(uncompressed_point);
@@ -150,7 +159,7 @@ impl<const B: usize> SecretKey<B> {
                 (bytes, uncompressed_point.len())
             }
             Curve::Secp256R1 => {
-                let secret = p256::ecdsa::SigningKey::from_bytes(&self.bytes[..]).unwrap();
+                let secret = p256::ecdsa::SigningKey::from_slice(&self.bytes[..]).unwrap();
 
                 let public = secret.verifying_key();
                 //when we encode we don't compress the point right away
@@ -193,7 +202,7 @@ impl<const B: usize> SecretKey<B> {
         Ok(())
     }
 
-    pub fn sign<H>(&self, data: &[u8], out: &mut [u8]) -> Result<usize, Error>
+    pub fn sign<H>(&self, data: &[u8], out: &mut [u8]) -> Result<(BitFlags<ECCInfo>, usize), Error>
     where
         H: HasherId,
         H::Id: Into<u8>,
@@ -202,25 +211,25 @@ impl<const B: usize> SecretKey<B> {
             Curve::Secp256K1 => {
                 use k256::ecdsa::{signature::Signer, Signature};
 
-                let secret = k256::ecdsa::SigningKey::from_bytes(&self.bytes[..]).unwrap();
+                let secret = k256::ecdsa::SigningKey::from_bytes((&self.bytes[..]).into()).unwrap();
 
                 let sig: Signature = secret.sign(data);
                 let sig = sig.to_der();
                 let sig = sig.as_ref();
 
                 out[..sig.len()].copy_from_slice(sig);
-                Ok(sig.len())
+                Ok((Default::default(), sig.len()))
             }
             Curve::Secp256R1 => {
-                use p256::ecdsa::signature::Signer;
+                use p256::ecdsa::{signature::Signer, Signature};
 
-                let secret = p256::ecdsa::SigningKey::from_bytes(&self.bytes[..]).unwrap();
-                let sig = secret.sign(data);
+                let secret = p256::ecdsa::SigningKey::from_bytes((&self.bytes[..]).into()).unwrap();
+                let sig: Signature = secret.sign(data);
                 let sig = sig.to_der();
                 let sig = sig.as_ref();
 
                 out[..sig.len()].copy_from_slice(sig);
-                Ok(sig.len())
+                Ok((Default::default(), sig.len()))
             }
             Curve::Ed25519 => {
                 use ed25519_dalek::Signer;
@@ -232,7 +241,7 @@ impl<const B: usize> SecretKey<B> {
                 let sig = keypair.sign(data);
 
                 out[..64].copy_from_slice(&sig.to_bytes()[..]);
-                Ok(64)
+                Ok((Default::default(), 64))
             }
             _ => unreachable!(),
         }

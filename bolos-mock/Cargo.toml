@@ -23,13 +23,15 @@ hmac = "0.11.0"
 cfg-if = "1.0.0"
 
 ed25519-dalek = "1.0.1"
-k256 = "0.9.6"
-p256 = "0.9.0"
+k256 = "0.13.1"
+p256 = "0.13.2"
 
 rand7 = { version = "0.7", package = "rand" }
 rand_chacha7 = { version = "0.2.2", package = "rand_chacha" }
 rand8 = { version = "0.8.4", package = "rand" }
 rand_chacha8 = { version = "0.3.1", package = "rand_chacha" }
+
+enumflags2 = "0.7"
 
 [dev-dependencies]
 bolos = { version = "0.1", path = "../bolos" }

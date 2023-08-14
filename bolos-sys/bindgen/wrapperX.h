@@ -3,9 +3,7 @@
 
 #include "defs.h"
 
-#include "bolos_version.h"
-
-// Taken from Makefile
+// Taken from Makefile.defines
 #define IO_SEPROXYHAL_BUFFER_SIZE_B 300
 #define HAVEGLO096
 
@@ -19,11 +17,12 @@
 
 #define HAVE_UX_FLOW
 
-#define HAVE_BLE
-#define HAVE_BLE_APDU
-#define BLE_COMMAND_TIMEOUT_MS 2000
+#include "wrapper_ble.h"
+
+#include "cx.h"
 
 #include "wrapper.h"
-#include "cx.h"
+
+#include "bagl.h"
 
 #endif // WRAPPERX_H_

@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   (c) 2021 Zondax GmbH
+*   (c) 2022 Zondax AG
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.
@@ -37,6 +37,38 @@ pub struct Zui<B: UIBackend<KS> + 'static, const KS: usize> {
     backend: &'static mut B,
 
     current_viewable: Option<RefMutDynViewable>,
+}
+
+impl<B: UIBackend<KS>, const KS: usize> Zui<B, KS> {
+    /// Will return the number of items of the current viewable
+    ///
+    /// Will return 0 in case of any error
+    pub fn n_items(&mut self) -> usize {
+        self.item_count = self
+            .current_viewable
+            .as_mut()
+            .and_then(|item| item.num_items().ok())
+            .unwrap_or_default() as usize;
+
+        self.item_count
+    }
+
+    /// Will skip the internal buffer to the given item
+    ///
+    /// Will return error if the item is out of bounds or if
+    pub fn skip_to_item(&mut self, idx: usize) -> Result<(), ViewError> {
+        if idx > self.item_count {
+            return Err(ViewError::NoData);
+        }
+
+        self.item_idx = idx;
+
+        //reset item pages
+        self.page_idx = 0;
+        self.page_count = 0;
+
+        Ok(())
+    }
 }
 
 impl<B: UIBackend<KS>, const KS: usize> Zui<B, KS> {

@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   (c) 2021 Zondax GmbH
+*   (c) 2022 Zondax AG
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.
@@ -300,7 +300,7 @@ mod bindings {
 
                 catch(might_throw)?;
             } else {
-                unimplemented!("os derive called in non-bolos")
+                unsafe { core::hint::unreachable_unchecked() }
             }
         }
 

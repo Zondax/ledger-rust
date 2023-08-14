@@ -18,5 +18,3 @@ typedef struct NanoXBackend {
 } NanoXBackend;
 
 extern struct NanoXBackend BACKEND_LAZY;
-
-extern const uint8_t *IDLE_MESSAGE;

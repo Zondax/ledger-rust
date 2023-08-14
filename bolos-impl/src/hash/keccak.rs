@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   (c) 2021 Zondax GmbH
+*   (c) 2022 Zondax AG
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.
@@ -51,14 +51,7 @@ impl<const S: usize> Keccak<S> {
     fn init_state(state: *mut cx_sha3_t) -> Result<(), Error> {
         cfg_if! {
             if #[cfg(bolos_sdk)] {
-                let r = unsafe {
-                    crate::raw::cx_keccak_init_no_throw(
-                        state,
-                        (S * 8) as u32
-                    )
-                };
-
-                match r {
+                match unsafe { crate::raw::cx_keccak_init_no_throw(state, S * 8) } {
                     0 => {},
                     err => return Err(err.into()),
                 }

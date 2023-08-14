@@ -17,5 +17,7 @@ no-std-compat = { version = "0.4" }
 
 zeroize = { version = "1", default-features = false }
 
+enumflags2 = { version = "0.7", default-features = false }
+
 [dev-dependencies]
 bolos = { version = "0.1", path = "../bolos" }

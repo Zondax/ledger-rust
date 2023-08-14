@@ -7,7 +7,6 @@
 
 #define OS_IO_SEPROXYHAL
 
-#define HAVE_BAGL
 #define HAVE_SPRINTF
 
 #define HAVE_IO_USB
@@ -23,13 +22,10 @@
 #define WEBUSB_URL_SIZE_B 0
 #define WEBUSB_URL ""
 
-#include "bagl.h"
 #include "bolos_target.h"
-#include "bolos_version.h"
 
-#include "os_hal.h"
+#include "os.h"
 #include "os_io_seproxyhal.h"
 #include "os_io_usb.h"
-#include "os.h"
 
 #endif // WRAPPER_H_

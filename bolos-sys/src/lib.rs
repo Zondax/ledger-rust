@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   (c) 2021 Zondax GmbH
+*   (c) 2022 Zondax AG
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.
@@ -33,15 +33,8 @@ pub mod raw {
     #![allow(dead_code)]
     #![allow(clippy::upper_case_acronyms)]
 
-    cfg_if! {
-        if #[cfg(nanos)] {
-            include!("./bindings/bindingsS.rs");
-        } else if #[cfg(nanox)] {
-            include!("./bindings/bindingsX.rs");
-        } else if #[cfg(nanosplus)] {
-            include!("./bindings/bindingsSP.rs");
-        }
-    }
+    #[cfg(any(nanos, nanox, nanosplus, stax))]
+    include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 }
 
 #[cfg(bolos_sdk)]
