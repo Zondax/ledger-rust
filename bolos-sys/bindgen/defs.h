@@ -28,4 +28,6 @@
 
 #define HAVE_MATH
 
+#define CX_SHA224_SIZE 28
+
 #endif // DEFINES_H_
