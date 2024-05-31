@@ -352,7 +352,7 @@ impl<B: UIBackend<KS>, const KS: usize> Zui<B, KS> {
     fn format_key_with_page(&mut self) {
         if self.page_count > 1 {
             let key = self.backend.key_buf();
-            let key_len = strlen(&key[..]).unwrap_or_else(|_| key.len());
+            let key_len = strlen(&key[..]).unwrap_or(key.len());
 
             if key_len < KS {
                 let mut tmp = ArrayString::from_byte_string(key).expect("key was not utf8");
@@ -441,7 +441,7 @@ fn strlen(s: &[u8]) -> Result<usize, StrNotNullTerminated> {
 }
 
 /// This function returns the index of the first null byte if found
-pub(self) fn c_strlen(s: *const u8, max: usize) -> Result<usize, StrNotNullTerminated> {
+ fn c_strlen(s: *const u8, max: usize) -> Result<usize, StrNotNullTerminated> {
     let mut count = 0;
     loop {
         if count >= max {

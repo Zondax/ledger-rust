@@ -58,6 +58,11 @@ impl<T> PIC<T> {
 }
 
 impl PIC<()> {
+    /// This function is used to manually convert a pointer to a pic.
+    /// # Safety
+    /// This function is unsafe because it can create a PIC from any pointer.
+    /// but this mocking implementations is safe, we keep the unsafe part for compatibility
+    /// with the counterpart code that uses the real SDK
     pub unsafe fn manual(ptr: usize) -> usize {
         ptr
     }

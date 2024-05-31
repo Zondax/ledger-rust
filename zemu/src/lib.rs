@@ -16,12 +16,17 @@
 #![no_std]
 #![no_builtins]
 #![allow(dead_code)]
+// There are some exported types for which clippy complains
+// that they are not used. But they are meant to be used by library users
+// under specifict targets depending on feature flags, that are not defined
+// globaly in this workspace.
+#![allow(unused)]
 
 #[macro_use]
 extern crate cfg_if;
 
 /// cbindgen:ignore
-pub(self) mod bindings {
+ mod bindings {
     extern "C" {
         cfg_if! {
             if #[cfg(zemu_sdk)] {
