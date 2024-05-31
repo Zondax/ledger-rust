@@ -88,8 +88,8 @@ impl<'r, 'f, const RAM: usize, const FLASH: usize> SwappingBuffer<'r, 'f, RAM, F
     pub fn read_exact(&self) -> &[u8] {
         //cnt is guaranteed to be less than the slice len
         match self.state {
-            BufferState::WritingToRam(cnt) => &self.ram.get(..cnt).ledger_unwrap(),
-            BufferState::WritingToFlash(cnt) => &self.flash.get(..cnt).ledger_unwrap(),
+            BufferState::WritingToRam(cnt) => self.ram.get(..cnt).ledger_unwrap(),
+            BufferState::WritingToFlash(cnt) => self.flash.get(..cnt).ledger_unwrap(),
         }
     }
 

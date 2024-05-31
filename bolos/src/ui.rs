@@ -26,7 +26,7 @@ use crate::LedgerUnwrap;
 macro_rules! show_ui {
     ($show:expr, $tx:ident) => {
         match unsafe { $show } {
-            Ok((size, err)) if err == crate::ApduError::Success as u16 => {
+            Ok((size, err)) if err == $crate::ApduError::Success as u16 => {
                 *$tx = size as _;
                 Ok(())
             }
@@ -36,24 +36,24 @@ macro_rules! show_ui {
 
                 match err.try_into() {
                     Ok(err) => Err(err),
-                    Err(_) => Err(crate::ApduError::ExecutionError),
+                    Err(_) => Err($crate::ApduError::ExecutionError),
                 }
             }
-            Err(_) => Err(crate::ApduError::ExecutionError),
+            Err(_) => Err($crate::ApduError::ExecutionError),
         }
     };
     ($show:expr) => {
         match unsafe { $show } {
-            Ok((size, err)) if err == crate::ApduError::Success as u16 => Ok(size as _),
+            Ok((size, err)) if err == $crate::ApduError::Success as u16 => Ok(size as _),
             Ok((_, err)) => {
                 use ::core::convert::TryInto;
 
                 match err.try_into() {
                     Ok(err) => Err(err),
-                    Err(_) => Err(crate::ApduError::ExecutionError),
+                    Err(_) => Err($crate::ApduError::ExecutionError),
                 }
             }
-            Err(_) => Err(crate::ApduError::ExecutionError),
+            Err(_) => Err($crate::ApduError::ExecutionError),
         }
     };
 }

@@ -31,22 +31,18 @@ pub trait SynIteratorExtend: Iterator {
         })
     }
 
-    fn syn_try_fold<C, T>(self) -> Result<C, Error>
+    fn syn_try_fold<C, T>(mut self) -> Result<C, Error>
     where
         Self: Sized,
         Self: Iterator<Item = Result<T, Error>>,
         C: Extend<T> + Default,
     {
-        self.fold(Ok(Default::default()), |acc, x| match (acc, x) {
-            (Err(e), Ok(_)) | (Ok(_), Err(e)) => Err(e),
-            (Err(mut e), Err(e2)) => {
-                e.combine(e2);
-                Err(e)
+        self.try_fold(C::default(), |mut acc, x| match x {
+            Ok(x) => {
+                acc.extend(std::iter::once(x));
+                Ok(acc)
             }
-            (Ok(mut v), Ok(x)) => {
-                v.extend(std::iter::once(x));
-                Ok(v)
-            }
+            Err(e) => Err(e),
         })
     }
 }
@@ -62,6 +58,9 @@ pub struct GenericArgumentsCollector<'ast> {
 }
 
 impl<'ast> GenericArgumentsCollector<'ast> {
+    // allow it here as it is used in another
+    // macro code that gets compile when used?
+    #[allow(dead_code)]
     pub fn traverse_type(ty: &'ast Type, filter: impl Into<Option<Vec<&'ast Ident>>>) -> Self {
         let mut this = Self::default().with_filter(filter.into());
 
@@ -75,6 +74,9 @@ impl<'ast> GenericArgumentsCollector<'ast> {
         this
     }
 
+    // allow it here as it is used in another
+    // macro code that gets compile when used?
+    #[allow(dead_code)]
     pub fn traverse_generics(
         g: &'ast Generics,
         filter: impl Into<Option<Vec<&'ast Ident>>>,
@@ -145,6 +147,9 @@ pub struct GenericParamsCollector<'ast> {
 }
 
 impl<'ast> GenericParamsCollector<'ast> {
+    // allow it here as it is used in another
+    // macro code that gets compile when used?
+    #[allow(dead_code)]
     pub fn traverse_generics(generics: &'ast Generics) -> Self {
         let mut this = Self::default();
 
@@ -153,6 +158,9 @@ impl<'ast> GenericParamsCollector<'ast> {
         this
     }
 
+    // allow it here as it is used in another
+    // macro code that gets compile when used?
+    #[allow(dead_code)]
     pub fn traverse_type(ty: &'ast Type) -> Self {
         let mut this = Self::default();
 
@@ -199,6 +207,9 @@ pub struct IdentsCollector<'ast> {
 }
 
 impl<'ast> IdentsCollector<'ast> {
+    // allow it here as it is used in another
+    // macro code that gets compile when used?
+    #[allow(dead_code)]
     pub fn traverse_generics(generics: &'ast Generics) -> Self {
         let mut this = Self::default();
 
@@ -207,6 +218,9 @@ impl<'ast> IdentsCollector<'ast> {
         this
     }
 
+    // allow it here as it is used in another
+    // macro code that gets compile when used?
+    #[allow(dead_code)]
     pub fn traverse_type(ty: &'ast Type) -> Self {
         let mut this = Self::default();
 

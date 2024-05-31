@@ -21,7 +21,7 @@ pub struct Keccak<const S: usize>(tiny_keccak::Keccak);
 //This below is a workaround to allow to implement the functionality
 // only for specific values of S
 
-trait Keccak_<const S: usize>: Sized {
+pub trait Keccak_<const S: usize>: Sized {
     fn new() -> Result<Self, crate::Error>;
 }
 
