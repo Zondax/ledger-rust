@@ -26,7 +26,7 @@
 extern crate cfg_if;
 
 /// cbindgen:ignore
- mod bindings {
+mod bindings {
     extern "C" {
         cfg_if! {
             if #[cfg(zemu_sdk)] {

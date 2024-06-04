@@ -24,7 +24,7 @@ pub const SLOT_SIZE: usize = PAGE_SIZE - COUNTER_SIZE - CRC_SIZE;
 
 pub const ZEROED_STORAGE: [u8; PAGE_SIZE] = Slot::zeroed().as_storage();
 
- struct Slot<'nvm> {
+struct Slot<'nvm> {
     pub counter: u64,
     payload: &'nvm [u8; SLOT_SIZE],
     crc: u32,
