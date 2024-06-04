@@ -15,7 +15,7 @@
 ********************************************************************************/
 use proc_macro_error::emit_error;
 use syn::{
-    punctuated::Punctuated, spanned::Spanned, visit::Visit, Attribute, Error, GenericArgument,
+    punctuated::Punctuated, spanned::Spanned, visit::Visit, Attribute, GenericArgument,
     GenericParam, Generics, Ident, Type, TypePath,
 };
 
@@ -31,20 +31,20 @@ pub trait SynIteratorExtend: Iterator {
         })
     }
 
-    fn syn_try_fold<C, T>(mut self) -> Result<C, Error>
-    where
-        Self: Sized,
-        Self: Iterator<Item = Result<T, Error>>,
-        C: Extend<T> + Default,
-    {
-        self.try_fold(C::default(), |mut acc, x| match x {
-            Ok(x) => {
-                acc.extend(std::iter::once(x));
-                Ok(acc)
-            }
-            Err(e) => Err(e),
-        })
-    }
+    // fn syn_try_fold<C, T>(mut self) -> Result<C, Error>
+    // where
+    //     Self: Sized,
+    //     Self: Iterator<Item = Result<T, Error>>,
+    //     C: Extend<T> + Default,
+    // {
+    //     self.try_fold(C::default(), |mut acc, x| match x {
+    //         Ok(x) => {
+    //             acc.extend(std::iter::once(x));
+    //             Ok(acc)
+    //         }
+    //         Err(e) => Err(e),
+    //     })
+    // }
 }
 
 impl<I: Iterator> SynIteratorExtend for I {}
