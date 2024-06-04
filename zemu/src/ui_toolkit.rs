@@ -441,7 +441,7 @@ fn strlen(s: &[u8]) -> Result<usize, StrNotNullTerminated> {
 }
 
 /// This function returns the index of the first null byte if found
- fn c_strlen(s: *const u8, max: usize) -> Result<usize, StrNotNullTerminated> {
+fn c_strlen(s: *const u8, max: usize) -> Result<usize, StrNotNullTerminated> {
     let mut count = 0;
     loop {
         if count >= max {
