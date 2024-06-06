@@ -140,7 +140,7 @@ impl UIBackend<KEY_SIZE> for NanoXBackend {
         &mut self.key
     }
 
-    fn message_buf(&mut self) -> Self::MessageBuf {
+    fn message_buf(self) -> Self::MessageBuf {
         core::mem::drop(self);
 
         core::str::from_utf8_mut(&mut Self::static_mut().message)
