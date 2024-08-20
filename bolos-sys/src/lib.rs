@@ -53,3 +53,4 @@ pub fn exit_app(_status: u8) -> ! {
 mod extra_traits;
 
 pub mod pic;
+pub mod heap;

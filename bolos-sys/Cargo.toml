@@ -7,6 +7,14 @@ edition = "2018"
 [dependencies]
 cfg-if = "1.0.0"
 
+# Required for the global allocator
+critical-section = { version = "1.1.2" }
+
+# Required for LLHeap
+linked_list_allocator = { version = "0.10.5", default-features = false }
+rlsf = { version = "0.2.1", default-features = false, optional = true }
+const-default = { version = "1.0.0", default-features = false, optional = true }
+
 zeroize = { version = "1", default-features = false }
 
 [dev-dependencies]

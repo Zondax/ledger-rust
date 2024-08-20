@@ -36,6 +36,9 @@ pub use bolos_sys::exit_app;
 pub use bolos_sys::pic;
 pub use bolos_sys::pic::PIC;
 
+pub use bolos_sys::heap;
+pub use bolos_sys::heap::Heap;
+
 pub mod nvm;
 pub use nvm::NVM;
 
