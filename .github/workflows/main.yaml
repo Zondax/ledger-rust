@@ -34,9 +34,9 @@ jobs:
           rustup show
       - name: rustfmt
         run: |
-          cargo fmt --version
+          # cargo fmt --version
           cargo fmt -- --check
       - name: clippy
         run: |
-          cargo clippy --version
+          # cargo clippy --version
           cargo clippy --all-targets
