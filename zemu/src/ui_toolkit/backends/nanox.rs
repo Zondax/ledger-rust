@@ -141,7 +141,10 @@ impl UIBackend<KEY_SIZE> for NanoXBackend {
     }
 
     fn message_buf(&mut self) -> Self::MessageBuf {
-        core::mem::drop(self);
+        // We do not know what is self, but the compiler
+        // does, so let it know we are done with self
+        // at this point
+        _ = self;
 
         core::str::from_utf8_mut(&mut Self::static_mut().message)
             //this should never happen as we always asciify
