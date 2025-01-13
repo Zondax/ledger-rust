@@ -127,7 +127,11 @@ impl<const B: usize> SecretKey<B> {
                 *secret.to_bytes().as_ref()
             }
             Curve::Ed25519 => {
-                let secret = ed25519_dalek::SecretKey::generate(&mut Self::rng7(path));
+                use rand_chacha7::rand_core::RngCore;
+                let mut rng = Self::rng7(path);
+                let mut bytes = [0u8; 32];
+                rng.fill_bytes(&mut bytes);
+                let secret = ed25519_dalek::SigningKey::from_bytes(&bytes);
 
                 secret.to_bytes()
             }
@@ -172,12 +176,10 @@ impl<const B: usize> SecretKey<B> {
                 (bytes, uncompressed_point.len())
             }
             Curve::Ed25519 => {
-                let secret = ed25519_dalek::SecretKey::from_bytes(&self.bytes[..]).unwrap();
-
-                let public = ed25519_dalek::PublicKey::from(&secret);
+                let secret = ed25519_dalek::SigningKey::from_bytes(&self.bytes);
+                let public = secret.verifying_key();
                 let mut bytes = [0; 65];
-                bytes[..32].copy_from_slice(&public.as_bytes()[..]);
-
+                bytes[..32].copy_from_slice(public.as_bytes());
                 (bytes, 32)
             }
             _ => unreachable!(),
@@ -233,13 +235,8 @@ impl<const B: usize> SecretKey<B> {
             }
             Curve::Ed25519 => {
                 use ed25519_dalek::Signer;
-
-                let secret = ed25519_dalek::SecretKey::from_bytes(&self.bytes[..]).unwrap();
-                let public = ed25519_dalek::PublicKey::from(&secret);
-
-                let keypair = ed25519_dalek::Keypair { secret, public };
-                let sig = keypair.sign(data);
-
+                let secret = ed25519_dalek::SigningKey::from_bytes(&self.bytes);
+                let sig = secret.sign(data);
                 out[..64].copy_from_slice(&sig.to_bytes()[..]);
                 Ok((Default::default(), 64))
             }
