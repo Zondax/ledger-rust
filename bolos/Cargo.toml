@@ -28,3 +28,6 @@ bolos-mock = { version = "0.1", path = "../bolos-mock" }
 [dev-dependencies]
 nom = { version = "7.1.3" }
 rand = "0.8.5"
+
+[lints.rust]
+static_mut_refs = "allow"
