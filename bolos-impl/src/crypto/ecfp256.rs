@@ -143,6 +143,25 @@ impl AsRef<[u8]> for PublicKey {
     }
 }
 
+pub fn public_from_bytes_ed25519(
+    bytes: &[u8; 32],
+    out: &mut MaybeUninit<PublicKey>,
+) -> Result<(), Error> {
+    use ed25519_dalek::{SigningKey, VerifyingKey};
+
+    // Initialize the PublicKey struct with the appropriate data
+    unsafe {
+        let out_ptr = out.as_mut_ptr();
+        (*out_ptr).0.W[0] = 0x02; // Add prefix for compressed format
+        (*out_ptr).0.W[1..33]
+            .copy_from_slice(&SigningKey::from_bytes(bytes).verifying_key().to_bytes());
+        (*out_ptr).0.W_len = 33; // Length includes the prefix byte
+        (*out_ptr).0.curve = Curve::Ed25519 as u32;
+    }
+
+    Ok(())
+}
+
 pub struct SecretKey<const B: usize> {
     mode: Mode,
     curve: Curve,
