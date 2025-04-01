@@ -95,12 +95,54 @@ fn main() {
             let output = PathBuf::from(env::var("OUT_DIR").expect("OUT_DIR set in build script"))
                 .join("bindings.rs");
 
+            // Try both Ubuntu and Debian paths for GCC
+            let gcc_paths = [
+                "/usr/lib/gcc/arm-none-eabi",
+                "/usr/lib/gcc-cross/arm-none-eabi", // Debian specific path
+                "/usr/arm-none-eabi",
+                "/usr/lib/arm-none-eabi",
+            ];
+
+            // Find the GCC version directory
+            let gcc_version = std::process::Command::new("arm-none-eabi-gcc")
+                .arg("-dumpversion")
+                .output()
+                .ok()
+                .and_then(|output| String::from_utf8(output.stdout).ok())
+                .unwrap_or_else(|| "10.3.1".to_string());
+
+            // Try to find the correct include path
+            let mut found_gcc_include = None;
+            for base_path in gcc_paths.iter() {
+                let test_path = format!("{}/{}/include", base_path, gcc_version.trim());
+                if std::path::Path::new(&test_path).exists() {
+                    found_gcc_include = Some(test_path);
+                    break;
+                }
+            }
+
+            let gcc_include = found_gcc_include.unwrap_or_else(|| {
+                println!("cargo:warning=Could not find GCC include directory, using default path");
+                format!(
+                    "/usr/lib/gcc-cross/arm-none-eabi/{}/include",
+                    gcc_version.trim()
+                )
+            });
+
             let bindings = bindgen::builder()
                 .use_core()
                 .derive_default(true)
                 .header(device.input_header().display().to_string())
+                // Add GCC includes first
+                .clang_arg(format!("-I{}", gcc_include))
+                // Then ARM includes with Debian paths
+                .clang_arg("-I/usr/arm-none-eabi/include")
+                .clang_arg("-I/usr/include/arm-none-eabi") // Debian specific path
+                .clang_arg("-I/usr/lib/arm-none-eabi/include")
+                // Device specific flags
                 .clang_args(device.target())
                 .clang_args(device.device_flags())
+                // SDK includes
                 .clang_args(
                     device
                         .sdk_includes()
@@ -108,7 +150,8 @@ fn main() {
                         .map(|inc| sdk_path.join(inc))
                         .map(|path| format!("-I{}", path.display())),
                 )
-                .clang_arg("-I/usr/arm-none-eabi/include")
+                .clang_arg(format!("-I{}", sdk_path.display()))
+                .clang_arg(format!("-I{}/include", sdk_path.display()))
                 .generate()
                 .expect("able to generate bindings");
             bindings
