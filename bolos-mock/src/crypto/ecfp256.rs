@@ -114,12 +114,7 @@ impl<const B: usize> SecretKey<B> {
         rand_chacha7::ChaCha8Rng::from_seed(seed)
     }
 
-    pub fn new(
-        _: Mode,
-        curve: Curve,
-        path: BIP32Path<B>,
-        ed25519_secret_key_bytes: Option<[u8; 32]>,
-    ) -> Self {
+    pub fn new(_: Mode, curve: Curve, path: BIP32Path<B>) -> Self {
         let bytes = match curve {
             Curve::Secp256K1 => {
                 let secret = k256::ecdsa::SigningKey::random(&mut Self::rng8(path));
@@ -132,17 +127,13 @@ impl<const B: usize> SecretKey<B> {
                 *secret.to_bytes().as_ref()
             }
             Curve::Ed25519 => {
-                if let Some(bytes) = ed25519_secret_key_bytes {
-                    let secret = ed25519_dalek::SigningKey::from_bytes(&bytes);
-                    secret.to_bytes()
-                } else {
-                    // Generate random bytes using the path if no bytes provided
-                    let mut bytes = [0u8; 32];
-                    let mut rng = Self::rng8(path);
-                    use rand_chacha8::rand_core::RngCore;
-                    rng.fill_bytes(&mut bytes);
-                    bytes
-                }
+                use rand_chacha7::rand_core::RngCore;
+                let mut rng = Self::rng7(path);
+                let mut bytes = [0u8; 32];
+                rng.fill_bytes(&mut bytes);
+                let secret = ed25519_dalek::SigningKey::from_bytes(&bytes);
+
+                secret.to_bytes()
             }
             Curve::Stark256 => {
                 panic!("invalid curve passed to ecfp256 new")
