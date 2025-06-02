@@ -3,6 +3,8 @@ use std::{env, path::PathBuf};
 fn sdk_includes(target: &str) -> impl IntoIterator<Item = PathBuf> {
     [
         PathBuf::from("include"),
+        PathBuf::from("io/include"),
+        PathBuf::from("io_legacy/include"),
         PathBuf::from("target").join(target).join("include"),
         PathBuf::from("lib_ux").join("include"),
         PathBuf::from("lib_cxng").join("include"),
@@ -151,7 +153,7 @@ fn main() {
                         .map(|path| format!("-I{}", path.display())),
                 )
                 .clang_arg(format!("-I{}", sdk_path.display()))
-                .clang_arg(format!("-I{}/include", sdk_path.display()))
+                .clang_arg("-D OS_IO_SEPH_BUFFER_SIZE=272")
                 .generate()
                 .expect("able to generate bindings");
             bindings
