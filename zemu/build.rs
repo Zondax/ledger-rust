@@ -1,4 +1,4 @@
-use std::env;
+use std::{env, fs, path};
 
 #[derive(Debug, Clone, Copy)]
 enum Device {
@@ -24,6 +24,12 @@ fn main() {
 
     if let Some(v) = env::var_os("BOLOS_SDK") {
         if !v.is_empty() {
+            if let Ok(contents) = fs::read_to_string(path::Path::new(&v).join("Makefile.defines")) {
+                if contents.contains("REVAMPED_IO") {
+                    println!("cargo:rustc-cfg=revamped_io");
+                }
+            }
+
             match detect_device().expect("invalid or unable to retrieve TARGET_NAME") {
                 Device::NanoS => println!("cargo:rustc-cfg=nanos"),
                 Device::NanoX => println!("cargo:rustc-cfg=nanox"),
