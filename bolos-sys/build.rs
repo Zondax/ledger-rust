@@ -152,6 +152,9 @@ fn main() {
                 )
                 .clang_arg(format!("-I{}", sdk_path.display()))
                 .clang_arg(format!("-I{}/include", sdk_path.display()))
+                .clang_arg(format!("-I{}/io/include", sdk_path.display()))
+                .clang_arg(format!("-I{}/io_legacy/include", sdk_path.display()))
+                .clang_arg("-D OS_IO_SEPH_BUFFER_SIZE=272")
                 .generate()
                 .expect("able to generate bindings");
             bindings

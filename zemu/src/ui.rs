@@ -42,7 +42,7 @@ impl Into<bindings::zxerr_t> for ViewError {
 }
 
 pub(crate) fn apdu_buffer_mut() -> &'static mut [u8] {
-    PIC::new(unsafe { &mut bolos_sys::raw::G_io_apdu_buffer }).into_inner()
+    PIC::new(unsafe { &mut bolos_sys::raw::G_io_tx_buffer }).into_inner()
 }
 
 pub(crate) fn store_into<'buf, T: Sized>(
