@@ -17,12 +17,12 @@ use proc_macro::TokenStream;
 use proc_macro2::TokenStream as TokenStream2;
 use quote::quote;
 use syn::{
-    parse_macro_input, spanned::Spanned, AttributeArgs, Error, Expr, Ident, ItemStatic, Meta,
-    NestedMeta, Token, Type,
+    parse_macro_input, spanned::Spanned, Error, Expr, Ident, ItemStatic, Meta,
+    Token, Type, punctuated::Punctuated, parse::Parser,
 };
 
 pub fn lazy_static(metadata: TokenStream, input: TokenStream) -> TokenStream {
-    let args = parse_macro_input!(metadata as AttributeArgs);
+    let args = Punctuated::<Meta, Token![,]>::parse_terminated.parse(metadata).unwrap();
     let input = parse_macro_input!(input as ItemStatic);
 
     let ItemStatic {
@@ -39,7 +39,7 @@ pub fn lazy_static(metadata: TokenStream, input: TokenStream) -> TokenStream {
         &name,
         *ty,
         *expr,
-        mutability.is_some(),
+        matches!(mutability, syn::StaticMutability::Mut(_)),
         is_cbindgen_mode(&args),
     )
     .map_err(|e| e.into_compile_error())
@@ -242,9 +242,9 @@ fn produce_custom_ty(
 // For example, it will return true for
 //#[attr(cbindgen)]
 #[allow(clippy::ptr_arg)]
-fn is_cbindgen_mode(args: &AttributeArgs) -> bool {
+fn is_cbindgen_mode(args: &Punctuated<Meta, Token![,]>) -> bool {
     for arg in args {
-        if let NestedMeta::Meta(Meta::Path(path)) = arg {
+        if let Meta::Path(path) = arg {
             if path
                 .segments
                 .iter()

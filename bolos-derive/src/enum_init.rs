@@ -73,6 +73,7 @@ pub fn enum_init(_metadata: TokenStream, input: TokenStream) -> TokenStream {
                 &Field {
                     attrs: variant.attrs.clone(),
                     vis: Visibility::Inherited,
+                    mutability: syn::FieldMutability::None,
                     ident: None,
                     colon_token: None,
                     ty: inner.clone(),
