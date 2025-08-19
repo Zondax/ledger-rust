@@ -13,9 +13,8 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 ********************************************************************************/
-use proc_macro_error::emit_error;
 use syn::{
-    punctuated::Punctuated, spanned::Spanned, visit::Visit, Attribute, GenericArgument,
+    punctuated::Punctuated, visit::Visit, Attribute, GenericArgument,
     GenericParam, Generics, Ident, Type, TypePath,
 };
 
@@ -68,7 +67,7 @@ impl<'ast> GenericArgumentsCollector<'ast> {
             Type::Array(i) => this.visit_type_array(i),
             Type::Path(i) => this.visit_type_path(i),
             Type::Tuple(i) => this.visit_type_tuple(i),
-            _ => emit_error!(ty.span(), "unsupported type"),
+            _ => panic!("unsupported type"),
         }
 
         this
@@ -97,9 +96,9 @@ impl<'ast> GenericArgumentsCollector<'ast> {
 impl<'ast> Visit<'ast> for GenericArgumentsCollector<'ast> {
     fn visit_parenthesized_generic_arguments(
         &mut self,
-        i: &'ast syn::ParenthesizedGenericArguments,
+        _i: &'ast syn::ParenthesizedGenericArguments,
     ) {
-        emit_error!(i.span(), "paranthesized generics arguments not supported")
+        panic!("paranthesized generics arguments not supported")
     }
 
     fn visit_generic_argument(&mut self, i: &'ast GenericArgument) {
@@ -186,7 +185,7 @@ impl<'ast> Visit<'ast> for GenericParamsCollector<'ast> {
 pub fn remove_doc_comment_attributes(attrs: Vec<Attribute>) -> Vec<Attribute> {
     attrs
         .into_iter()
-        .filter(|a| !a.path.is_ident("doc"))
+        .filter(|a| !a.path().is_ident("doc"))
         .collect()
 }
 
@@ -196,7 +195,7 @@ pub fn remove_doc_comment_attributes(attrs: Vec<Attribute>) -> Vec<Attribute> {
 pub fn cfg_variant_attributes(attrs: Vec<Attribute>) -> Vec<Attribute> {
     attrs
         .into_iter()
-        .filter(|a| a.path.is_ident("cfg"))
+        .filter(|a| a.path().is_ident("cfg"))
         .collect()
 }
 
