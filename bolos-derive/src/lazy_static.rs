@@ -17,12 +17,14 @@ use proc_macro::TokenStream;
 use proc_macro2::TokenStream as TokenStream2;
 use quote::quote;
 use syn::{
-    parse_macro_input, spanned::Spanned, Error, Expr, Ident, ItemStatic, Meta,
-    Token, Type, punctuated::Punctuated, parse::Parser,
+    parse::Parser, parse_macro_input, punctuated::Punctuated, spanned::Spanned, Error, Expr, Ident,
+    ItemStatic, Meta, Token, Type,
 };
 
 pub fn lazy_static(metadata: TokenStream, input: TokenStream) -> TokenStream {
-    let args = Punctuated::<Meta, Token![,]>::parse_terminated.parse(metadata).unwrap();
+    let args = Punctuated::<Meta, Token![,]>::parse_terminated
+        .parse(metadata)
+        .unwrap();
     let input = parse_macro_input!(input as ItemStatic);
 
     let ItemStatic {

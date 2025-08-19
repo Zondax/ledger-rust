@@ -14,8 +14,8 @@
 *  limitations under the License.
 ********************************************************************************/
 use syn::{
-    punctuated::Punctuated, visit::Visit, Attribute, GenericArgument,
-    GenericParam, Generics, Ident, Type, TypePath,
+    punctuated::Punctuated, visit::Visit, Attribute, GenericArgument, GenericParam, Generics,
+    Ident, Type, TypePath,
 };
 
 /// Helper extension iterator to `syn` things

@@ -137,7 +137,6 @@ pub fn enum_init(_metadata: TokenStream, input: TokenStream) -> TokenStream {
         }
     });
 
-
     quote! {
         #type_enum
 
