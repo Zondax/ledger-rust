@@ -14,7 +14,6 @@
 *  limitations under the License.
 ********************************************************************************/
 use proc_macro::TokenStream;
-use proc_macro_error::{abort, abort_if_dirty};
 use quote::{quote, ToTokens};
 use syn::{
     parse_macro_input, parse_quote, parse_quote_spanned, punctuated::Punctuated, token::Comma,
@@ -74,6 +73,7 @@ pub fn enum_init(_metadata: TokenStream, input: TokenStream) -> TokenStream {
                 &Field {
                     attrs: variant.attrs.clone(),
                     vis: Visibility::Inherited,
+                    mutability: syn::FieldMutability::None,
                     ident: None,
                     colon_token: None,
                     ty: inner.clone(),
@@ -107,7 +107,7 @@ pub fn enum_init(_metadata: TokenStream, input: TokenStream) -> TokenStream {
 
             let unnamed = &unnamed.unnamed;
             if unnamed.len() != 1 {
-                abort!(variant.ident.span(), "only 1 item in field supported")
+                panic!("only 1 item in field supported")
             } else {
                 let field = unnamed.first().unwrap();
                 let variant_struct = create_variant_struct_for_unnamed(
@@ -136,9 +136,6 @@ pub fn enum_init(_metadata: TokenStream, input: TokenStream) -> TokenStream {
             }
         }
     });
-
-    //if we emitted errors let's abort before we emit weird data
-    abort_if_dirty();
 
     quote! {
         #type_enum

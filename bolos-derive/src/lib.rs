@@ -28,8 +28,6 @@ use proc_macro::TokenStream;
 use quote::quote;
 use syn::{parse_macro_input, ItemStatic};
 
-use proc_macro_error::proc_macro_error;
-
 pub(crate) mod utils;
 
 // #[bolos::nvm]
@@ -123,7 +121,6 @@ pub fn lazy_static(metadata: TokenStream, input: TokenStream) -> TokenStream {
 
 mod enum_init;
 
-#[proc_macro_error]
 #[proc_macro_attribute]
 /// The aim of this macro is to ease the writing of boilerplate for enums
 /// where we want to initialize said enum using [`MaybeUninit`].
