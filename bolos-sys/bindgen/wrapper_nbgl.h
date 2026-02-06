@@ -11,7 +11,6 @@
 #include "nbgl_page.h"
 #include "nbgl_screen.h"
 #include "nbgl_serialize.h"
-#include "nbgl_side.h"
 #include "nbgl_touch.h"
 #include "nbgl_types.h"
 #include "nbgl_use_case.h"
