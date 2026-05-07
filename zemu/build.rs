@@ -21,6 +21,14 @@ fn detect_device() -> Option<Device> {
 fn main() {
     println!("cargo:rerun-if-env-changed=BOLOS_SDK");
     println!("cargo:rerun-if-env-changed=TARGET_NAME");
+    println!("cargo::rustc-check-cfg=cfg(bolos_sdk)");
+    println!("cargo::rustc-check-cfg=cfg(nanos)");
+    println!("cargo::rustc-check-cfg=cfg(nanox)");
+    println!("cargo::rustc-check-cfg=cfg(nanosplus)");
+    println!("cargo::rustc-check-cfg=cfg(stax)");
+    println!("cargo::rustc-check-cfg=cfg(zemu_sdk)");
+    println!("cargo::rustc-check-cfg=cfg(zemu_logging)");
+    println!("cargo::rustc-check-cfg=cfg(revamped_io)");
 
     if let Some(v) = env::var_os("BOLOS_SDK") {
         if !v.is_empty() {
