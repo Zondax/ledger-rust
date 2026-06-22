@@ -33,7 +33,11 @@ use crate::Error as SysError;
 /// assert_eq!(&[0; 1024], &**MEMORY);
 /// ```
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
-#[repr(transparent)]
+// Match the on-device NVM alignment (bolos-impl uses repr(align(64))). The app
+// reinterprets these byte buffers as aligned #[repr(C)] structs (e.g. via
+// ByteSerializable::from_bytes), so the mock must provide the same alignment
+// guarantee or that cast is a misaligned-pointer deref (UB) on the host.
+#[repr(align(64))]
 pub struct NVM<const N: usize>([u8; N]);
 
 #[derive(Clone, Copy, Debug)]
