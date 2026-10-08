@@ -22,6 +22,10 @@ pub use bolos_common::bip32;
 
 pub const CHAIN_CODE_LEN: usize = 32;
 
+/// `CX_INVALID_PARAMETER_SIZE`, returned when a caller-provided output buffer
+/// is too small to hold the result
+pub(crate) const CX_INVALID_PARAMETER_SIZE: u32 = 0xFFFFFF86;
+
 //Constants
 use crate::raw::{
     cx_curve_e_CX_CURVE_BLS12_381_G1, cx_curve_e_CX_CURVE_BrainPoolP256R1,

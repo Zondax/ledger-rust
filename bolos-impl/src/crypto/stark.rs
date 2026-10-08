@@ -125,6 +125,9 @@ impl<const B: usize> SecretKey<B> {
     #[inline(never)]
     /// Signs a given message with the stark curve
     ///
+    /// `out` must be at least [`Self::SIGNATURE_MAX_LEN`] bytes long,
+    /// otherwise `CX_INVALID_PARAMETER_SIZE` is returned and `out` is left untouched
+    ///
     /// Returns (ECC_PARITY_ODD, sig_size)
     pub fn sign(&self, data: &[u8], out: &mut [u8]) -> Result<(bool, usize), Error> {
         stark_sign::<B>(self, data, out)
@@ -134,8 +137,9 @@ impl<const B: usize> SecretKey<B> {
 mod bindings {
     #![allow(unused_imports)]
 
-    use super::{BIP32Path, Curve, Error, Mode, SecretKey};
+    use super::{BIP32Path, Curve, Error, Mode, SecretKey, SIGNATURE_MAX_LEN};
     use crate::{
+        crypto::CX_INVALID_PARAMETER_SIZE,
         errors::catch,
         hash::{Hasher, HasherId, Sha256},
         math,
@@ -263,7 +267,11 @@ mod bindings {
 
         let id: u8 = Sha256::id().into();
 
-        let crv = Curve::Stark256;
+        //make sure `sig_out` can hold the largest DER signature
+        // instead of relying on the SDK to reject it
+        if sig_out.len() < SIGNATURE_MAX_LEN {
+            return Err(Error::from(CX_INVALID_PARAMETER_SIZE));
+        }
 
         let mut raw_sk = sk.generate()?;
         let raw_sk: *mut cx_ecfp_private_key_t = &mut *raw_sk;
@@ -272,10 +280,8 @@ mod bindings {
         let (data, data_len) = (data.as_ptr(), data.len() as u32);
         let sig = sig_out.as_mut_ptr();
 
-        let mut sig_len = match crv.domain_length() {
-            Some(n) => 6 + 2 * (n + 1),
-            None => sig_out.len(),
-        };
+        //never advertise more capacity than `sig_out` has
+        let mut sig_len = sig_out.len();
 
         let mut info = 0;
 

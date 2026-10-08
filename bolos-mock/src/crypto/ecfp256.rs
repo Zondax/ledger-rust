@@ -22,6 +22,12 @@ use super::{bip32::BIP32Path, Curve, Mode, CHAIN_CODE_LEN};
 
 pub use enumflags2::BitFlags;
 
+/// Returned when a caller-provided output buffer is too small
+///
+/// On device this is `CX_INVALID_PARAMETER_SIZE`, which doesn't fit
+/// the mock's `u16` error code, so `EXCEPTION_OVERFLOW` is used instead
+const BUFFER_TOO_SMALL: u16 = 0x7;
+
 #[enumflags2::bitflags]
 #[repr(u8)]
 #[derive(Clone, Copy, PartialEq)]
@@ -204,11 +210,27 @@ impl<const B: usize> SecretKey<B> {
         Ok(())
     }
 
+    /// Signs the given data, writing the signature into `out`
+    ///
+    /// Like on device, `out` must be able to hold the largest signature for the curve
+    /// (the DER encoding for ECDSA, `R || S` for EdDSA), otherwise an error
+    /// is returned and `out` is left untouched
     pub fn sign<H>(&self, data: &[u8], out: &mut [u8]) -> Result<(BitFlags<ECCInfo>, usize), Error>
     where
         H: HasherId,
         H::Id: Into<u8>,
     {
+        let max_sig_len = match self.curve {
+            //largest DER signature for a 32 bytes domain
+            Curve::Secp256K1 | Curve::Secp256R1 => 6 + 2 * (32 + 1),
+            Curve::Ed25519 => 64,
+            _ => unreachable!(),
+        };
+
+        if out.len() < max_sig_len {
+            return Err(Error::from(BUFFER_TOO_SMALL));
+        }
+
         match self.curve {
             Curve::Secp256K1 => {
                 use k256::ecdsa::{signature::Signer, Signature};
@@ -242,5 +264,60 @@ impl<const B: usize> SecretKey<B> {
             }
             _ => unreachable!(),
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::{errors::SyscallError, hash::Sha256};
+
+    const MSG: &[u8] = b"zondax";
+
+    fn sk(curve: Curve) -> SecretKey<5> {
+        let path = BIP32Path::new([0x8000_002c, 0x8000_0000, 0x8000_0000, 0, 0]).unwrap();
+        SecretKey::new(Mode::BIP32, curve, path)
+    }
+
+    fn assert_too_small(curve: Curve, len: usize) {
+        let mut out = std::vec![0xAA; len];
+        let r = sk(curve).sign::<Sha256>(MSG, &mut out);
+
+        assert!(matches!(r, Err(SyscallError::Code(BUFFER_TOO_SMALL))));
+        //nothing should have been written
+        assert!(out.iter().all(|&b| b == 0xAA));
+    }
+
+    fn sign_len(curve: Curve, len: usize) -> usize {
+        let mut out = std::vec![0; len];
+        let (_, sig_len) = sk(curve).sign::<Sha256>(MSG, &mut out).unwrap();
+
+        sig_len
+    }
+
+    #[test]
+    fn sign_rejects_undersized_buffer() {
+        for curve in [Curve::Secp256K1, Curve::Secp256R1] {
+            assert_too_small(curve, 0);
+            assert_too_small(curve, 64);
+            assert_too_small(curve, 71);
+        }
+
+        assert_too_small(Curve::Ed25519, 0);
+        assert_too_small(Curve::Ed25519, 32);
+        assert_too_small(Curve::Ed25519, 63);
+    }
+
+    #[test]
+    //actual signing is too slow under miri
+    #[cfg_attr(miri, ignore)]
+    fn sign_accepts_exact_and_oversized_buffer() {
+        for curve in [Curve::Secp256K1, Curve::Secp256R1] {
+            assert!(sign_len(curve, 72) <= 72);
+            assert!(sign_len(curve, 100) <= 72);
+        }
+
+        assert_eq!(sign_len(Curve::Ed25519, 64), 64);
+        assert_eq!(sign_len(Curve::Ed25519, 100), 64);
     }
 }
