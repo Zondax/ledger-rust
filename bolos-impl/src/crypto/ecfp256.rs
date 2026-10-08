@@ -241,6 +241,11 @@ impl<const B: usize> SecretKey<B> {
     }
 
     #[inline(never)]
+    /// Signs the given data, writing the signature into `out`
+    ///
+    /// `out` must be able to hold the largest signature for the curve
+    /// (the DER encoding for ECDSA, `R || S` for EdDSA), otherwise
+    /// `CX_INVALID_PARAMETER_SIZE` is returned and `out` is left untouched
     pub fn sign<H>(&self, data: &[u8], out: &mut [u8]) -> Result<(BitFlags<ECCInfo>, usize), Error>
     where
         H: HasherId,
@@ -266,6 +271,7 @@ mod bindings {
 
     use super::{BitFlags, Curve, ECCInfo, Error, HasherId, SecretKey, CHAIN_CODE_LEN};
     use crate::{
+        crypto::CX_INVALID_PARAMETER_SIZE,
         errors::catch,
         raw::{cx_ecfp_private_key_t, cx_ecfp_public_key_t},
     };
@@ -398,6 +404,14 @@ mod bindings {
 
         let crv = sk.curve();
 
+        //the SDK requires room for the largest DER signature of the curve
+        // so make sure `sig_out` can actually hold it
+        if let Some(n) = crv.domain_length() {
+            if sig_out.len() < 6 + 2 * (n + 1) {
+                return Err(Error::from(CX_INVALID_PARAMETER_SIZE));
+            }
+        }
+
         let mut raw_sk = sk.generate(None)?;
         let raw_sk: *mut cx_ecfp_private_key_t = &mut *raw_sk;
         let raw_sk = raw_sk as *const _;
@@ -405,10 +419,8 @@ mod bindings {
         let (data, data_len) = (data.as_ptr(), data.len() as u32);
         let sig = sig_out.as_mut_ptr();
 
-        let mut sig_len = match crv.domain_length() {
-            Some(n) => 6 + 2 * (n + 1),
-            None => sig_out.len(),
-        };
+        //never advertise more capacity than `sig_out` has
+        let mut sig_len = sig_out.len();
 
         let mut info = 0u32;
 
@@ -447,6 +459,14 @@ mod bindings {
 
         let crv = sk.curve();
 
+        //an EdDSA signature is R || S, 2 * domain length bytes
+        // so make sure `sig_out` can actually hold it
+        if let Some(n) = crv.domain_length() {
+            if sig_out.len() < 2 * n {
+                return Err(Error::from(CX_INVALID_PARAMETER_SIZE));
+            }
+        }
+
         let mut raw_sk = sk.generate(None)?;
         let raw_sk: *mut cx_ecfp_private_key_t = &mut *raw_sk;
         let raw_sk = raw_sk as *const _;
@@ -454,10 +474,8 @@ mod bindings {
         let (data, data_len) = (data.as_ptr(), data.len() as u32);
         let sig = sig_out.as_mut_ptr();
 
-        let mut sig_len = match crv.domain_length() {
-            Some(n) => 6 + 2 * (n + 1),
-            None => sig_out.len(),
-        };
+        //never advertise more capacity than `sig_out` has
+        let mut sig_len = sig_out.len();
 
         cfg_if! {
             if #[cfg(bolos_sdk)] {
